@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Gabriel Costa Economista — Portfólio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Gabriel Costa — Economista. Portfólio de projetos, análises e consultoria para o mercado financeiro.">
+  <link rel="canonical" href="https://gabrielcostaeconomista-specportifoliodeprojetos/">
+  <meta name="theme-color" content="#0b2f2f">
+  <style>
+    :root{
+      --bg:#071018;
+      --card:#0f1b24;
+      --muted:#9fb3b3;
+      --accent:#2ecc71;
+      --glass: rgba(255,255,255,0.03);
+      --maxw:1100px;
+      --radius:12px;
+      --ff-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff-sans);
+      background:linear-gradient(180deg,var(--bg) 0%, #041018 100%);
+      color:#e6f2f2;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px 16px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--maxw)}
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#062b2b,#0b4b3b);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);
+      font-size:18px;box-shadow:0 6px 18px rgba(2,10,10,0.6);
+    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:15px}
+    nav a.cta{background:var(--accent);color:#042018;padding:8px 12px;border-radius:8px;font-weight:600}
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:28px;
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:28px;border-radius:var(--radius);backdrop-filter:blur(6px);
+      box-shadow:0 8px 30px rgba(2,10,10,0.6);
+    }
+    h1{margin:0 0 8px 0;font-size:28px}
+    .lead{color:var(--muted);margin:0 0 18px 0}
+    .metrics{display:flex;gap:12px;margin-top:12px}
+    .metric{background:var(--glass);padding:12px;border-radius:10px;flex:1;text-align:center}
+    .metric strong{display:block;font-size:18px;color:var(--accent)}
+    .profile{
+      padding:22px;border-radius:var(--radius);background:linear-gradient(180deg,#071a1a,#052022);
+      text-align:center;
+    }
+    .avatar{width:120px;height:120px;border-radius:14px;background:#083033;margin:0 auto 12px;display:block}
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px 0;font-size:16px}
+    .card p{color:var(--muted);font-size:14px;margin:0 0 12px 0}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:12px;color:var(--muted)}
+    footer{margin-top:36px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;align-items:center}
+    .contact-form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit}
+    button{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;color:#042018;font-weight:700;cursor:pointer}
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .projects{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .projects{grid-template-columns:1fr}
+      nav a{display:none}
+      header{align-items:flex-start;flex-direction:column;gap:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">GC</div>
+        <div>
+          <div style="font-weight:700">Gabriel Costa</div>
+          <div style="font-size:13px;color:var(--muted)">Economista | Analista de Mercado Financeiro</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato" class="cta">Contato</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Estratégia, análise e modelos para decisões financeiras</h1>
+        <p class="lead">Sou economista com experiência em modelagem macro, valuation e análise de risco. Ajudo equipes e clientes a transformar dados em decisões acionáveis.</p>
+
+        <div class="metrics" aria-hidden>
+          <div class="metric">
+            <span style="font-size:12px;color:var(--muted)">Projetos entregues</span>
+            <strong>42</strong>
+          </div>
+          <div class="metric">
+            <span style="font-size:12px;color:var(--muted)">Retorno médio estimado</span>
+            <strong>+18% a.a.</strong>
+          </div>
+          <div class="metric">
+            <span style="font-size:12px;color:var(--muted)">Clientes institucionais</span>
+            <strong>8</strong>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:12px">
+          <a href="#projetos" style="text-decoration:none"><button>Ver projetos</button></a>
+          <a href="#contato" style="text-decoration:none"><button style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Solicitar consultoria</button></a>
+        </div>
+      </div>
+
+      <aside class="profile">
+        <div class="avatar" aria-hidden></div>
+        <div style="font-weight:700">Gabriel Costa</div>
+        <div style="color:var(--muted);font-size:14px;margin-bottom:12px">Economista | Modelagem Quantitativa | Valuation</div>
+        <div style="font-size:13px;color:var(--muted)">Disponível para consultoria e projetos de análise quantitativa</div>
+      </aside>
+    </section>
+
+    <section id="sobre" style="margin-top:8px">
+      <h2 style="margin-bottom:8px">Sobre</h2>
+      <div class="card" style="display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:1">
+          <p style="color:var(--muted);margin:0 0 12px 0">
+            Sou economista com formação em economia aplicada e experiência em bancos de investimento e consultoria. Trabalho com modelagem macroeconômica, avaliação de ativos, backtesting de estratégias e análise de risco.
+          </p>
+          <ul style="color:var(--muted);margin:0 0 12px 18px">
+            <li>Modelagem econométrica e séries temporais</li>
+            <li>Valuation e análise de fluxo de caixa descontado</li>
+            <li>Automação de relatórios e dashboards</li>
+          </ul>
+          <p style="margin:0;color:var(--muted)">Idiomas: Português nativo; Inglês avançado.</p>
+        </div>
+        <div style="width:220px">
+          <div class="card" style="padding:12px;text-align:center">
+            <div style="font-size:12px;color:var(--muted)">Disponibilidade</div>
+            <div style="font-weight:700;font-size:18px;margin-top:6px">Projetos fechados por trimestre</div>
+            <div style="margin-top:10px;color:var(--muted);font-size:13px">Consultoria, análises e treinamentos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" style="margin-top:22px">
+      <h2 style="margin-bottom:8px">Projetos</h2>
+      <div class="projects">
+        <!-- Projeto 1 -->
+        <article class="card">
+          <h3>Valuation de carteira setorial</h3>
+          <p>Modelo de valuation por fluxo de caixa descontado aplicado a uma carteira setorial com cenários macro e sensibilidade.</p>
+          <div class="tags">
+            <span class="tag">Valuation</span>
+            <span class="tag">DCF</span>
+            <span class="tag">Python</span>
+          </div>
+        </article>
+
+        <!-- Projeto 2 -->
+        <article class="card">
+          <h3>Backtest de estratégia macro</h3>
+          <p>Backtest de estratégia baseada em indicadores macroeconômicos com métricas de performance e drawdown.</p>
+          <div class="tags">
+            <span class="tag">Backtest</span>
+            <span class="tag">R</span>
+            <span class="tag">Risk</span>
+          </div>
+        </article>
+
+        <!-- Projeto 3 -->
+        <article class="card">
+          <h3>Dashboard de risco e liquidez</h3>
+          <p>Dashboard interativo para monitoramento de risco de mercado e liquidez com alertas e exportação de relatórios.</p>
+          <div class="tags">
+            <span class="tag">Dashboards</span>
+            <span class="tag">PowerBI</span>
+            <span class="tag">Automação</span>
+          </div>
+        </article>
+      </div>
+
+      <div style="margin-top:14px" class="card">
+        <h3 style="margin-bottom:8px">Projetos adicionais</h3>
+        <p style="color:var(--muted);margin:0 0 8px 0">Inclua links para repositórios, notebooks ou PDFs. Exemplo: GitHub, Kaggle, relatórios PDF.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="#" style="text-decoration:none"><span class="tag">Relatório Q1</span></a>
+          <a href="#" style="text-decoration:none"><span class="tag">Notebook macro</span></a>
+          <a href="#" style="text-decoration:none"><span class="tag">Código backtest</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" style="margin-top:22px">
+      <h2 style="margin-bottom:8px">Contato</h2>
+      <div class="card" style="display:grid;grid-template-columns:1fr 360px;gap:18px">
+        <div>
+          <p style="color:var(--muted);margin-top:0">Preencha o formulário ou envie um e-mail para <strong style="color:var(--accent)">gabriel@seudominio.com</strong>. Para propostas institucionais, indique escopo e prazo.</p>
+
+          <form class="contact-form" action="mailto:gabriel@seudominio.com" method="post" enctype="text/plain">
+            <input type="text" name="nome" placeholder="Nome completo" required>
+            <input type="email" name="email" placeholder="Seu e-mail" required>
+            <input type="text" name="assunto" placeholder="Assunto" required>
+            <textarea name="mensagem" rows="6" placeholder="Mensagem breve com escopo e prazos" required></textarea>
+            <div style="display:flex;gap:10px">
+              <button type="submit">Enviar por e-mail</button>
+              <a href="mailto:gabriel@seudominio.com" style="text-decoration:none"><button type="button" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Abrir no e-mail</button></a>
+            </div>
+          </form>
+        </div>
+
+        <aside style="padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)">
+          <div style="font-weight:700">Informações rápidas</div>
+          <div style="color:var(--muted);margin-top:8px">
+            <div><strong>Local</strong><div style="color:var(--muted)">Capitólio, MG, Brasil</div></div>
+            <div style="margin-top:8px"><strong>Disponibilidade</strong><div style="color:var(--muted)">Projetos e consultoria</div></div>
+            <div style="margin-top:8px"><strong>LinkedIn</strong><div style="color:var(--muted)"><a href="#" style="color:var(--muted);text-decoration:underline">linkedin.com/in/seu-perfil</a></div></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <strong>Gabriel Costa</strong> — Economista</div>
+      <div style="color:var(--muted)">Desenvolvido para mercado financeiro</div>
+    </footer>
+  </div>
+</body>
+</html>
