@@ -1,0 +1,50 @@
+# Portfólio — Gabriel Costa
+
+**Status:** Em construção  
+**Publicação prevista:** **06/02/2025**
+
+Este repositório contém o site do meu portfólio profissional, focado em projetos de análises de dados e consultorias financeiras. Estou finalizando o conteúdo e a apresentação visual; a versão completa será publicada em **06 de fevereiro de 2025**.
+
+**O que estará disponível na publicação**
+- **Seção Sobre** com experiência e competências.
+- **Projetos de Dashboards em PowerBI** com descrições e exemplos de uso.
+- **Relatórios de auditorias financeiras** realizadas, incluindo metodologias de trabalho e resultados encontrados, com dados anonimizados.
+- **Projetos em SQL Server** com exemplos de consultas, modelagem e otimização.
+- **Projetos de ETL automatizados com Python** incluindo scripts, pipelines e instruções de execução.
+- **Contato profissional e formulário** para propostas institucionais.
+- **Materiais de apoio**: relatórios, dashboards e exemplos de código.
+
+**Contato**
+Para consultas urgentes ou propostas, envie um e‑mail para **gabrielcostaeconomista@gmail.com** ou visite **https://gabrielcostaeconomista-specportifoliodeprojetos/**.
+
+Obrigado pela visita — volto em breve com o portfólio completo.
+
+# Portfolio — Gabriel Costa
+
+**Status:** Under construction  
+**Planned publication date:** **06/02/2025 (February 6, 2025)**
+
+This repository contains the website for my professional portfolio, focused on projects and analyses for the financial market. The full version will be published on **February 6, 2025**.
+
+**What will be available at publication**
+- **About section** with experience and core competencies.  
+- **Power BI dashboard projects** with descriptions and usage examples.  
+- **Financial audit reports** including methodologies and findings, published with fully anonymized data.  
+- **SQL Server projects** with sample queries, data modeling, and optimization notes.  
+- **Automated ETL projects with Python** including scripts, pipeline descriptions, and execution instructions.  
+- **Professional contact and proposal form** for institutional inquiries.  
+- **Supporting materials**: reports, dashboards, and code examples.
+
+**Repository structure (expected)**
+- `index.html` — public site (when published).  
+- `assets/` — images, logos, and static files.  
+- `projects/` — folders for each project, notebooks, and reports.  
+- `docs/` — technical documentation and methodologies.
+
+**Privacy and data handling**
+Any reports or examples that include real data will be published only after **complete anonymization** to protect sensitive information and comply with confidentiality requirements.
+
+**Contact**
+For urgent inquiries or institutional proposals, email **gabriel@seudominio.com** or visit **https://gabrielcostaeconomista-specportifoliodeprojetos/**.
+
+Thank you for visiting — the complete portfolio will be available soon.
