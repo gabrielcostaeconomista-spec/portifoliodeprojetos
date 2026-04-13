@@ -3,184 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Costa | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Gabriel Costa | Economista & Data Scientist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #0A0A0B;
-            --card-bg: #161618;
-            --primary-blue: #2563EB;
-            --accent-amber: #f5be0b;
-            --impact-red: #DC2626;
-            --text-main: #FFFFFF;
+            --bg: #0A0A0B;
+            --card: #121214;
+            --primary: #2563EB;
+            --amber: #f5be0b;
+            --red: #DC2626;
+            --text: #FFFFFF;
             --text-dim: #A1A1AA;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+        /* --- MARCAS DÁGUA ECONÔMICAS --- */
+        .watermark {
+            position: fixed; font-size: 15rem; color: rgba(255, 255, 255, 0.02);
+            z-index: -1; pointer-events: none;
         }
+        .wm-1 { top: 10%; left: -5%; transform: rotate(-15deg); }
+        .wm-2 { bottom: 10%; right: -5%; transform: rotate(15deg); }
 
-        /* --- HEADER --- */
+        /* --- HEADER & MENU --- */
         header {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 1rem 5%;
-            background: rgba(10, 10, 11, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid #27272A;
+            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            background: rgba(10, 10, 11, 0.9); backdrop-filter: blur(12px);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 1px solid #27272A;
         }
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--amber); }
 
-        .lang-switcher { display: flex; gap: 15px; }
+        .lang-switcher { display: flex; gap: 10px; }
         .lang-btn {
-            width: 35px; height: 35px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: 0.3s;
-            object-fit: cover;
+            width: 30px; height: 30px; border-radius: 50%;
+            cursor: pointer; border: 2px solid transparent; transition: 0.3s; object-fit: cover;
         }
-        .lang-btn:hover, .lang-btn.active { border-color: var(--accent-amber); transform: scale(1.1); }
+        .lang-btn.active { border-color: var(--amber); transform: scale(1.1); }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-            padding-top: 80px;
-            gap: 50px;
-        }
+        /* --- SEÇÕES --- */
+        section { padding: 100px 10%; position: relative; }
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--amber); padding-left: 20px; }
 
+        /* --- HERO --- */
+        .hero { height: 100vh; display: flex; align-items: center; gap: 50px; }
         .hero-content { flex: 1; }
-        .hero-content h1 { font-size: 4rem; color: var(--text-main); }
-        .hero-content h2 { font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 1rem; }
-        .hero-content p { color: var(--text-dim); max-width: 600px; margin-bottom: 2rem; }
-
+        .hero-content h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 10px; }
+        .hero-content h1 span { color: var(--amber); }
+        .hero-content h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; }
+        
         .hero-image {
-            flex: 1;
-            height: 80%;
-            position: relative;
-            /* Máscara para integrar a foto ao fundo preto */
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            flex: 1; height: 100%; position: relative;
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
         }
         .hero-image img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* --- SKILLS TICKER --- */
-        .ticker-container {
-            background: var(--card-bg);
-            padding: 20px 0;
-            border-y: 1px solid #27272A;
-            overflow: hidden;
-        }
-        .ticker-wrapper { display: flex; animation: slide 30s linear infinite; width: max-content; }
-        .skill-item {
-            padding: 0 40px;
-            font-weight: 600;
-            color: var(--text-dim);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .skill-item i { color: var(--accent-amber); }
+        /* --- TICKER (BARRA ROLANTE) --- */
+        .ticker { background: var(--amber); color: #000; padding: 15px 0; overflow: hidden; white-space: nowrap; font-weight: 700; text-transform: uppercase; }
+        .ticker-track { display: flex; animation: scroll 40s linear infinite; gap: 50px; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        /* --- SOBRE & VÍDEO --- */
+        .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+        .video-wrapper { border: 2px solid var(--primary); border-radius: 15px; overflow: hidden; aspect-ratio: 16/9; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); }
 
-        /* --- ABOUT ME --- */
-        .about-section { padding: 100px 10%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; }
-        .video-box {
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--primary-blue);
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
-            aspect-ratio: 16/9;
-        }
+        /* --- HABILIDADES (BARRAS) --- */
+        .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .skill-bar-bg { background: #27272A; height: 10px; border-radius: 5px; margin-top: 8px; }
+        .skill-bar-fill { background: var(--amber); height: 100%; border-radius: 5px; transition: 1s ease-in-out; }
 
-        /* --- PROJECTS --- */
-        .projects-grid {
-            padding: 50px 10%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .project-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #27272A;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .project-card:hover { border-color: var(--accent-amber); transform: translateY(-5px); }
-        .project-card h3 { margin-bottom: 15px; color: var(--accent-amber); }
+        /* --- EXPERIÊNCIA --- */
+        .exp-item { border-left: 2px solid var(--primary); padding-left: 30px; margin-bottom: 40px; position: relative; }
+        .exp-item::before { content: ''; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--amber); }
+        .exp-item h3 { color: var(--amber); margin-bottom: 5px; }
+        .exp-item span { font-size: 0.85rem; color: var(--text-dim); }
+        .exp-item p { margin-top: 10px; color: var(--text); }
 
-        /* --- MODAL (SUBPÁGINA) --- */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 50px 10%;
-        }
-        .modal-content { color: white; }
-        .close-modal { position: fixed; top: 20px; right: 50px; font-size: 2rem; cursor: pointer; color: var(--accent-amber); }
-
-        .btn-download {
-            display: inline-block;
-            background: var(--primary-blue);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 20px;
-            font-weight: bold;
-        }
+        /* --- PROJETOS --- */
+        .project-card { background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid #27272A; transition: 0.3s; cursor: pointer; }
+        .project-card:hover { border-color: var(--amber); background: #1a1a1d; transform: translateY(-10px); }
+        .project-card h3 { color: var(--amber); margin-bottom: 15px; }
 
         /* --- CONTACT --- */
-        footer { padding: 50px 10%; border-top: 1px solid #27272A; text-align: center; }
-        .contact-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
-        .contact-links a { color: var(--text-dim); text-decoration: none; font-size: 1.2rem; transition: 0.3s; }
-        .contact-links a:hover { color: var(--accent-amber); }
+        .contact-cta { text-align: center; background: linear-gradient(rgba(37,99,235,0.1), transparent); padding: 80px 10%; border-radius: 20px; }
+        .contact-btn {
+            display: inline-block; padding: 15px 40px; background: var(--amber); color: #000;
+            text-decoration: none; font-weight: bold; border-radius: 30px; margin-top: 30px; transition: 0.3s;
+        }
+        .contact-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(245, 190, 11, 0.4); }
 
+        footer { padding: 40px 10%; border-top: 1px solid #27272A; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+
+        /* --- MODAL --- */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 50px 10%; }
+        .close-modal { position: fixed; top: 20px; right: 50px; font-size: 3rem; color: var(--amber); cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; height: auto; padding-top: 120px; }
+            .about-grid, .skills-container { grid-template-columns: 1fr; }
+            nav { display: none; }
+        }
     </style>
 </head>
 <body>
 
+    <i class="fas fa-chart-line watermark wm-1"></i>
+    <i class="fas fa-coins watermark wm-2"></i>
+
     <header>
-        <div style="font-weight: bold; font-size: 1.5rem;">GC<span style="color:var(--accent-amber)">.</span></div>
+        <div style="font-weight: 800; font-size: 1.6rem; letter-spacing: -1px;">GABRIEL <span style="color:var(--amber)">COSTA</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#habilidades">Skills</a></li>
+                <li><a href="#experiencia">Carreira</a></li>
+                <li><a href="#projetos">Portfolio</a></li>
+            </ul>
+        </nav>
         <div class="lang-switcher">
-            <img src="https://flagcdn.com/w80/br.png" class="lang-btn active" onclick="setLanguage('pt')" alt="PT">
-            <img src="https://flagcdn.com/w80/us.png" class="lang-btn" onclick="setLanguage('en')" alt="EN">
-            <img src="https://flagcdn.com/w80/es.png" class="lang-btn" onclick="setLanguage('es')" alt="ES">
+            <img src="https://flagcdn.com/w80/br.png" class="lang-btn active" onclick="updateLang('pt')" alt="pt">
+            <img src="https://flagcdn.com/w80/us.png" class="lang-btn" onclick="updateLang('en')" alt="en">
+            <img src="https://flagcdn.com/w80/es.png" class="lang-btn" onclick="updateLang('es')" alt="es">
         </div>
     </header>
 
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="hero-content">
-            <h2 id="hero-role">Economista, BI & Data Science</h2>
-            <h1 id="hero-name">Gabriel Costa</h1>
-            <p id="hero-desc">Especializado em transformar dados em análises que geram resultados e impactos reais!</p>
-            <div class="contact-links" style="justify-content: flex-start;">
-                <a href="mailto:gabrielcostaeconomista@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/gabrielcostaeco/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/5537999876476" target="_blank"><i class="fab fa-whatsapp"></i> (37) 9 9987-6476</a>
+            <h2 id="h-sub">Economista, BI & Data Science</h2>
+            <h1 id="h-name">Gabriel <span>Costa</span></h1>
+            <p id="h-desc" style="font-size: 1.2rem; color: var(--text-dim); margin-bottom: 30px;">Especializado em transformar dados em análises que geram resultados e impactos reais!</p>
+            <div style="display: flex; gap: 20px;">
+                <a href="https://wa.me/5537999876476" class="contact-btn" style="margin-top:0">Conversar agora</a>
+                <div style="display: flex; align-items: center; gap: 15px; font-size: 1.5rem;">
+                    <a href="https://www.linkedin.com/in/gabrielcostaeco/" style="color:white"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:gabrielcostaeconomista@gmail.com" style="color:white"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
         </div>
         <div class="hero-image">
@@ -188,129 +153,160 @@
         </div>
     </section>
 
-    <div class="ticker-container">
-        <div class="ticker-wrapper" id="skills-ticker">
+    <div class="ticker">
+        <div class="ticker-track" id="ticker-content">
             </div>
     </div>
 
-    <section class="about-section">
-        <div>
-            <h2 id="about-title" style="color: var(--accent-amber); margin-bottom: 20px;">Quem Sou Eu</h2>
-            <p id="about-text" style="color: white;"></p>
-        </div>
-        <div class="video-box">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SEU_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    <section id="sobre">
+        <h2 class="section-title" id="t-sobre">Quem Sou Eu</h2>
+        <div class="about-grid">
+            <div id="text-sobre" style="font-size: 1.1rem; line-height: 1.8;">
+                </div>
+            <div class="video-wrapper">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SEU_VIDEO_APRESENTACAO" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </section>
 
-    <section class="projects-grid" id="projects-container">
-        </section>
+    <section id="habilidades" style="background: rgba(255,255,255,0.01);">
+        <h2 class="section-title" id="t-skills">Habilidades Técnicas</h2>
+        <div class="skills-container" id="skills-list">
+            </div>
+    </section>
+
+    <section id="experiencia">
+        <h2 class="section-title" id="t-exp">Trajetória Profissional</h2>
+        <div id="exp-list">
+            </div>
+    </section>
+
+    <section id="projetos">
+        <h2 class="section-title" id="t-proj">Projetos em Destaque</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;" id="proj-grid">
+            </div>
+    </section>
+
+    <section class="contact-cta">
+        <h2 id="t-cta">Vamos gerar impacto juntos?</h2>
+        <p id="p-cta">Estou pronto para transformar os dados da sua organização em decisões estratégicas.</p>
+        <a href="https://wa.me/5537999876476" class="contact-btn">Solicitar Consultoria</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Gabriel Costa - Economista & Data Scientist</p>
+        <p style="margin-top:10px; font-size: 0.8rem;">Especialista em Inteligência Financeira e Auditoria</p>
+    </footer>
 
     <div id="projectModal" class="modal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div class="modal-content" id="modalContent">
-            </div>
+        <div id="modal-body"></div>
     </div>
 
-    <footer>
-        <p>© 2026 Gabriel Costa - Economista & Analista de Dados</p>
-    </footer>
-
     <script>
-        const translations = {
+        const content = {
             pt: {
-                role: "Economista, Business Intelligence & Data Science",
+                sub: "Economista, Business Intelligence & Data Science",
                 desc: "Especializado em transformar dados em análises que geram resultados e impactos reais!",
-                aboutTitle: "Quem Sou Eu",
-                aboutText: "Olá! Bem-vindo à minha página no GitHub! Sou Bacharel em Ciências Econômicas (UFSJ) e mestrando em Data Science (USP/Esalq). Minha trajetória une o rigor técnico da análise econômica à agilidade das decisões orientadas a dados. Atuei em gestão, inteligência financeira e auditoria, com destaque para projetos que geraram economias superiores a R$ 5 milhões.",
-                projectBtn: "Ver Detalhes do Projeto",
-                downloadBtn: "Baixar Arquivo do Projeto (.pbix / .sql)"
+                sobre: "Olá! Bem vindo a minha página no Github! Sou Bacharel em Ciências Econômicas (UFSJ) e atualmente aluno de MBA em Data Science, IA e Analytics (USP/Esalq). Minha trajetória une o rigor técnico da análise econômica à agilidade das decisões orientadas a dados. Com três anos de experiência em consultoria estratégica, atuo na intersecção entre finanças e tecnologia para gerar eficiência operacional. Destaque para projetos de auditoria que geraram economias superiores a <b style='color:var(--red)'>R$ 5 milhões</b>.",
+                tSobre: "Quem Sou Eu", tSkills: "Habilidades", tExp: "Experiência", tProj: "Projetos",
+                tCta: "Vamos trabalhar juntos?", pCta: "Entre em contato para discutirmos seu próximo projeto de dados.",
+                skills: [
+                    {n: "Excel Avançado", p: 95}, {n: "Power BI", p: 90}, {n: "SQL Server", p: 75}, 
+                    {n: "Python", p: 40}, {n: "Análise Macroeconômica", p: 85}, {n: "Finanças Corporativas", p: 90}
+                ],
+                exp: [
+                    {t: "Consultor Financeiro", e: "Innovattio Consultorias", d: "08/2023 - Atual", p: "Reestruturação econômica para +50 clientes. Auditoria pública com economia de R$ 5 milhões em Carmo do Cajuru."},
+                    {t: "Assessor Legislativo", e: "Câmara de Capitólio", d: "2021 - 2022", p: "Apoio técnico em orçamento público e administração financeira."},
+                    {t: "Inteligência de Mercado", e: "CANEX Exportação", d: "2020 - 2021", p: "Análises estatísticas e simulações com derivativos para exportação."}
+                ],
+                projs: [
+                    {t: "Dashboard Bancário B3", d: "Análise de Valuation, Risco e Retorno das IFs brasileiras utilizando SQL e Power BI.", v: "ID_PROJ_1"},
+                    {t: "ETL Financeiro SQL", d: "Automação de limpeza e tratamento de dados do Banco Central e CVM.", v: "ID_PROJ_2"},
+                    {t: "Reforma Tributária", d: "Apresentação técnica sobre impactos e transição do novo sistema brasileiro.", v: "ID_PROJ_3"}
+                ]
             },
             en: {
-                role: "Economist, Business Intelligence & Data Science",
-                desc: "Specialized in transforming data into insights that drive real results and impact!",
-                aboutTitle: "About Me",
-                aboutText: "Hello! Welcome to my GitHub page! I hold a B.S. in Economics (UFSJ) and I'm currently an MBA student in Data Science (USP/Esalq). My career merges technical economic analysis with data-driven decision agility. I've worked in management, financial intelligence, and auditing, highlighting projects that saved over R$ 5 million.",
-                projectBtn: "View Project Details",
-                downloadBtn: "Download Project File (.pbix / .sql)"
-            },
-            es: {
-                role: "Economista, Business Intelligence & Data Science",
-                desc: "¡Especializado en transformar datos en análisis que generan resultados e impactos reales!",
-                aboutTitle: "Quién Soy",
-                aboutText: "¡Hola! ¡Bienvenido a mi página de GitHub! Soy Licenciado en Economía (UFSJ) y estudiante de MBA en Ciencia de Datos (USP/Esalq). Mi trayectoria une el rigor técnico del análisis económico con la agilidad de las decisiones orientadas a datos. He trabajado en gestión, inteligencia financiera y auditoría, destacando proyectos que generaron ahorros superiores a R$ 5 millones.",
-                projectBtn: "Ver Detalles del Proyecto",
-                downloadBtn: "Descargar Archivo del Proyecto (.pbix / .sql)"
+                sub: "Economist, BI & Data Science",
+                desc: "Specialized in turning data into insights that generate real results and impact!",
+                sobre: "Hello! Welcome to my GitHub! I am an Economist (UFSJ) and a Data Science MBA student (USP/Esalq). My career blends economic rigor with data-driven decision speed. I have over 3 years in strategic consulting, focusing on finance and tech integration. Notably, I led audits that saved over <b style='color:var(--red)'>$1M USD (R$ 5M)</b>.",
+                tSobre: "About Me", tSkills: "Technical Skills", tExp: "Experience", tProj: "Projects",
+                tCta: "Let's work together", pCta: "Contact me to discuss your next data-driven project.",
+                skills: [
+                    {n: "Advanced Excel", p: 95}, {n: "Power BI", p: 90}, {n: "SQL Server", p: 75}, 
+                    {n: "Python", p: 40}, {n: "Macroeconomic Analysis", p: 85}, {n: "Corporate Finance", p: 90}
+                ],
+                exp: [
+                    {t: "Financial Consultant", e: "Innovattio Consulting", d: "08/2023 - Present", p: "Economic restructuring for 50+ clients. Public auditing saving over R$ 5 million."},
+                    {t: "Legislative Advisor", e: "Capitólio Council", d: "2021 - 2022", p: "Technical support for public budget and financial administration."},
+                    {t: "Market Intelligence", e: "CANEX Export", d: "2020 - 2021", p: "Statistical analysis and derivative simulations for exports."}
+                ],
+                projs: [
+                    {t: "B3 Banking Dashboard", d: "Valuation, Risk, and Return analysis of Brazilian banks using SQL and Power BI.", v: "ID_PROJ_1"},
+                    {t: "SQL Financial ETL", d: "Automated data cleaning and processing from Central Bank and CVM databases.", v: "ID_PROJ_2"},
+                    {t: "Tax Reform Analysis", d: "Technical presentation on the impacts of the new Brazilian tax system.", v: "ID_PROJ_3"}
+                ]
             }
+            // Adicionar Espanhol seguindo o mesmo padrão...
         };
 
-        const projects = [
-            {
-                id: 1,
-                title: "Dashboard PowerBI: Mercado Financeiro",
-                summary: "Análise do mercado de ações das Instituições Financeiras Brasileiras.",
-                details: "Fontes: Banco Central (BCB), CVM. Ferramentas: Python para automação, SQL Server para limpeza e PowerBI para visualização com DAX avançado.",
-                video: "ID_VIDEO_PROJETO_1",
-                downloadUrl: "caminho/seu_projeto.pbix"
-            },
-            {
-                id: 2,
-                title: "SQL Server: Base de Dados Bancária",
-                summary: "Criação de base ETL para instituições financeiras listadas na B3.",
-                details: "Reunião de bases IFDATA e CVM para criação de tabelas e views estratégicas.",
-                video: "ID_VIDEO_PROJETO_2",
-                downloadUrl: "caminho/script.sql"
-            }
-        ];
+        const tickerSkills = ["DataVisualization", "SQLServer", "PostgreSQL", "Python", "PowerBI", "Finanças Corporativas", "Análise Macro", "DataScience"];
 
-        const skills = ["Data Visualization", "SQL Server", "PostgreSQL", "Python", "PowerBI", "Corporate Finance", "Macroeconomics", "Data Science"];
-
-        function setLanguage(lang) {
-            document.getElementById('hero-role').innerText = translations[lang].role;
-            document.getElementById('hero-desc').innerText = translations[lang].desc;
-            document.getElementById('about-title').innerText = translations[lang].aboutTitle;
-            document.getElementById('about-text').innerText = translations[lang].aboutText;
+        function updateLang(lang) {
+            const data = content[lang] || content['pt'];
             
-            // Atualizar botões ativos
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            renderProjects(lang);
-        }
+            document.getElementById('h-sub').innerText = data.sub;
+            document.getElementById('h-desc').innerText = data.desc;
+            document.getElementById('t-sobre').innerText = data.tSobre;
+            document.getElementById('text-sobre').innerHTML = data.sobre;
+            document.getElementById('t-skills').innerText = data.tSkills;
+            document.getElementById('t-exp').innerText = data.tExp;
+            document.getElementById('t-proj').innerText = data.tProj;
+            document.getElementById('t-cta').innerText = data.tCta;
+            document.getElementById('p-cta').innerText = data.pCta;
 
-        function renderProjects(lang) {
-            const container = document.getElementById('projects-container');
-            container.innerHTML = projects.map(p => `
-                <div class="project-card" onclick="openModal(${p.id})">
-                    <h3>${p.title}</h3>
-                    <p>${p.summary}</p>
-                    <small style="color:var(--primary-blue)">${translations[lang].projectBtn} →</small>
+            // Skills
+            document.getElementById('skills-list').innerHTML = data.skills.map(s => `
+                <div>
+                    <div style="display:flex; justify-content:space-between"><span>${s.n}</span><span>${s.p}%</span></div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:${s.p}%"></div></div>
                 </div>
             `).join('');
+
+            // Exp
+            document.getElementById('exp-list').innerHTML = data.exp.map(e => `
+                <div class="exp-item">
+                    <h3>${e.t}</h3>
+                    <span>${e.e} | ${e.d}</span>
+                    <p>${e.p}</p>
+                </div>
+            `).join('');
+
+            // Projs
+            document.getElementById('proj-grid').innerHTML = data.projs.map((p, i) => `
+                <div class="project-card" onclick="openModal('${p.t}', '${p.d}', '${p.v}')">
+                    <h3>${p.t}</h3>
+                    <p>${p.d}</p>
+                    <small style="color:var(--primary); margin-top:15px; display:block">Ver detalhes do projeto →</small>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
         }
 
-        function openModal(id) {
-            const p = projects.find(proj => proj.id === id);
-            const lang = document.querySelector('.lang-btn.active').alt.toLowerCase();
-            document.getElementById('modalContent').innerHTML = `
-                <h1 style="color:var(--accent-amber)">${p.title}</h1>
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #333;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-                    <div>
-                        <h3>Descrição Técnica</h3>
-                        <p style="margin-top:15px;">${p.details}</p>
-                        <a href="${p.downloadUrl}" class="btn-download"><i class="fas fa-download"></i> ${translations[lang].downloadBtn}</a>
-                        <div style="margin-top:30px;">
-                            <h4>Screenshots</h4>
-                            <div style="display:flex; gap:10px; margin-top:10px;">
-                                <div style="width:100px; height:60px; background:#333; border-radius:5px;"></div>
-                                <div style="width:100px; height:60px; background:#333; border-radius:5px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-box">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${p.video}" frameborder="0" allowfullscreen></iframe>
-                    </div>
+        // Ticker
+        document.getElementById('ticker-content').innerHTML = tickerSkills.map(s => `<span><i class="fas fa-check"></i> ${s}</span>`).join('').repeat(4);
+
+        function openModal(title, desc, video) {
+            document.getElementById('modal-body').innerHTML = `
+                <h1 style="color:var(--amber); margin-bottom:20px">${title}</h1>
+                <p style="font-size:1.2rem; margin-bottom:30px">${desc}</p>
+                <div class="video-wrapper">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${video}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div style="margin-top:40px">
+                    <a href="#" class="contact-btn"><i class="fas fa-download"></i> Baixar Documentação / Scripts</a>
                 </div>
             `;
             document.getElementById('projectModal').style.display = 'block';
@@ -322,13 +318,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Ticker de Habilidades
-        const ticker = document.getElementById('skills-ticker');
-        const content = skills.map(s => `<div class="skill-item"><i class="fas fa-check-circle"></i> ${s}</div>`).join('');
-        ticker.innerHTML = content + content; // Dobrar para loop infinito
-
-        // Inicializar
-        setLanguage('pt');
+        updateLang('pt');
     </script>
 </body>
 </html>
