@@ -1,256 +1,334 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <title>Gabriel Costa Economista — Portfólio</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Gabriel Costa — Economista. Portfólio de projetos, análises e consultoria para o mercado financeiro.">
-  <link rel="canonical" href="https://gabrielcostaeconomista-specportifoliodeprojetos/">
-  <meta name="theme-color" content="#0b2f2f">
-  <style>
-    :root{
-      --bg:#071018;
-      --card:#0f1b24;
-      --muted:#9fb3b3;
-      --accent:#2ecc71;
-      --glass: rgba(255,255,255,0.03);
-      --maxw:1100px;
-      --radius:12px;
-      --ff-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--ff-sans);
-      background:linear-gradient(180deg,var(--bg) 0%, #041018 100%);
-      color:#e6f2f2;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-      padding:32px 16px;
-      display:flex;
-      justify-content:center;
-    }
-    .wrap{width:100%;max-width:var(--maxw)}
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      margin-bottom:28px;
-    }
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .logo{
-      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#062b2b,#0b4b3b);
-      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);
-      font-size:18px;box-shadow:0 6px 18px rgba(2,10,10,0.6);
-    }
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:15px}
-    nav a.cta{background:var(--accent);color:#042018;padding:8px 12px;border-radius:8px;font-weight:600}
-    .hero{
-      display:grid;
-      grid-template-columns:1fr 360px;
-      gap:28px;
-      align-items:center;
-      margin-bottom:28px;
-    }
-    .hero-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:28px;border-radius:var(--radius);backdrop-filter:blur(6px);
-      box-shadow:0 8px 30px rgba(2,10,10,0.6);
-    }
-    h1{margin:0 0 8px 0;font-size:28px}
-    .lead{color:var(--muted);margin:0 0 18px 0}
-    .metrics{display:flex;gap:12px;margin-top:12px}
-    .metric{background:var(--glass);padding:12px;border-radius:10px;flex:1;text-align:center}
-    .metric strong{display:block;font-size:18px;color:var(--accent)}
-    .profile{
-      padding:22px;border-radius:var(--radius);background:linear-gradient(180deg,#071a1a,#052022);
-      text-align:center;
-    }
-    .avatar{width:120px;height:120px;border-radius:14px;background:#083033;margin:0 auto 12px;display:block}
-    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-    .card h3{margin:0 0 8px 0;font-size:16px}
-    .card p{color:var(--muted);font-size:14px;margin:0 0 12px 0}
-    .tags{display:flex;gap:8px;flex-wrap:wrap}
-    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:12px;color:var(--muted)}
-    footer{margin-top:36px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;align-items:center}
-    .contact-form{display:flex;flex-direction:column;gap:10px}
-    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit}
-    button{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;color:#042018;font-weight:700;cursor:pointer}
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .projects{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .projects{grid-template-columns:1fr}
-      nav a{display:none}
-      header{align-items:flex-start;flex-direction:column;gap:12px}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Costa | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0A0A0B;
+            --card-bg: #161618;
+            --primary-blue: #2563EB;
+            --accent-amber: #f5be0b;
+            --impact-red: #DC2626;
+            --text-main: #FFFFFF;
+            --text-dim: #A1A1AA;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #27272A;
+        }
+
+        .lang-switcher { display: flex; gap: 15px; }
+        .lang-btn {
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.3s;
+            object-fit: cover;
+        }
+        .lang-btn:hover, .lang-btn.active { border-color: var(--accent-amber); transform: scale(1.1); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            padding-top: 80px;
+            gap: 50px;
+        }
+
+        .hero-content { flex: 1; }
+        .hero-content h1 { font-size: 4rem; color: var(--text-main); }
+        .hero-content h2 { font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 1rem; }
+        .hero-content p { color: var(--text-dim); max-width: 600px; margin-bottom: 2rem; }
+
+        .hero-image {
+            flex: 1;
+            height: 80%;
+            position: relative;
+            /* Máscara para integrar a foto ao fundo preto */
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+        .hero-image img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* --- SKILLS TICKER --- */
+        .ticker-container {
+            background: var(--card-bg);
+            padding: 20px 0;
+            border-y: 1px solid #27272A;
+            overflow: hidden;
+        }
+        .ticker-wrapper { display: flex; animation: slide 30s linear infinite; width: max-content; }
+        .skill-item {
+            padding: 0 40px;
+            font-weight: 600;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skill-item i { color: var(--accent-amber); }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- ABOUT ME --- */
+        .about-section { padding: 100px 10%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; }
+        .video-box {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--primary-blue);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+            aspect-ratio: 16/9;
+        }
+
+        /* --- PROJECTS --- */
+        .projects-grid {
+            padding: 50px 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #27272A;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .project-card:hover { border-color: var(--accent-amber); transform: translateY(-5px); }
+        .project-card h3 { margin-bottom: 15px; color: var(--accent-amber); }
+
+        /* --- MODAL (SUBPÁGINA) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 50px 10%;
+        }
+        .modal-content { color: white; }
+        .close-modal { position: fixed; top: 20px; right: 50px; font-size: 2rem; cursor: pointer; color: var(--accent-amber); }
+
+        .btn-download {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* --- CONTACT --- */
+        footer { padding: 50px 10%; border-top: 1px solid #27272A; text-align: center; }
+        .contact-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+        .contact-links a { color: var(--text-dim); text-decoration: none; font-size: 1.2rem; transition: 0.3s; }
+        .contact-links a:hover { color: var(--accent-amber); }
+
+    </style>
 </head>
 <body>
-  <div class="wrap">
+
     <header>
-      <div class="brand">
-        <div class="logo">GC</div>
-        <div>
-          <div style="font-weight:700">Gabriel Costa</div>
-          <div style="font-size:13px;color:var(--muted)">Economista | Analista de Mercado Financeiro</div>
+        <div style="font-weight: bold; font-size: 1.5rem;">GC<span style="color:var(--accent-amber)">.</span></div>
+        <div class="lang-switcher">
+            <img src="https://flagcdn.com/w80/br.png" class="lang-btn active" onclick="setLanguage('pt')" alt="PT">
+            <img src="https://flagcdn.com/w80/us.png" class="lang-btn" onclick="setLanguage('en')" alt="EN">
+            <img src="https://flagcdn.com/w80/es.png" class="lang-btn" onclick="setLanguage('es')" alt="ES">
         </div>
-      </div>
-      <nav>
-        <a href="#sobre">Sobre</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato" class="cta">Contato</a>
-      </nav>
     </header>
 
     <section class="hero">
-      <div class="hero-card">
-        <h1>Estratégia, análise e modelos para decisões financeiras</h1>
-        <p class="lead">Sou economista com experiência em modelagem macro, valuation e análise de risco. Ajudo equipes e clientes a transformar dados em decisões acionáveis.</p>
-
-        <div class="metrics" aria-hidden>
-          <div class="metric">
-            <span style="font-size:12px;color:var(--muted)">Projetos entregues</span>
-            <strong>42</strong>
-          </div>
-          <div class="metric">
-            <span style="font-size:12px;color:var(--muted)">Retorno médio estimado</span>
-            <strong>+18% a.a.</strong>
-          </div>
-          <div class="metric">
-            <span style="font-size:12px;color:var(--muted)">Clientes institucionais</span>
-            <strong>8</strong>
-          </div>
-        </div>
-
-        <div style="margin-top:18px;display:flex;gap:12px">
-          <a href="#projetos" style="text-decoration:none"><button>Ver projetos</button></a>
-          <a href="#contato" style="text-decoration:none"><button style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Solicitar consultoria</button></a>
-        </div>
-      </div>
-
-      <aside class="profile">
-        <div class="avatar" aria-hidden></div>
-        <div style="font-weight:700">Gabriel Costa</div>
-        <div style="color:var(--muted);font-size:14px;margin-bottom:12px">Economista | Modelagem Quantitativa | Valuation</div>
-        <div style="font-size:13px;color:var(--muted)">Disponível para consultoria e projetos de análise quantitativa</div>
-      </aside>
-    </section>
-
-    <section id="sobre" style="margin-top:8px">
-      <h2 style="margin-bottom:8px">Sobre</h2>
-      <div class="card" style="display:flex;gap:18px;align-items:flex-start">
-        <div style="flex:1">
-          <p style="color:var(--muted);margin:0 0 12px 0">
-            Sou economista com formação em economia aplicada e experiência em bancos de investimento e consultoria. Trabalho com modelagem macroeconômica, avaliação de ativos, backtesting de estratégias e análise de risco.
-          </p>
-          <ul style="color:var(--muted);margin:0 0 12px 18px">
-            <li>Modelagem econométrica e séries temporais</li>
-            <li>Valuation e análise de fluxo de caixa descontado</li>
-            <li>Automação de relatórios e dashboards</li>
-          </ul>
-          <p style="margin:0;color:var(--muted)">Idiomas: Português nativo; Inglês avançado.</p>
-        </div>
-        <div style="width:220px">
-          <div class="card" style="padding:12px;text-align:center">
-            <div style="font-size:12px;color:var(--muted)">Disponibilidade</div>
-            <div style="font-weight:700;font-size:18px;margin-top:6px">Projetos fechados por trimestre</div>
-            <div style="margin-top:10px;color:var(--muted);font-size:13px">Consultoria, análises e treinamentos</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projetos" style="margin-top:22px">
-      <h2 style="margin-bottom:8px">Projetos</h2>
-      <div class="projects">
-        <!-- Projeto 1 -->
-        <article class="card">
-          <h3>Valuation de carteira setorial</h3>
-          <p>Modelo de valuation por fluxo de caixa descontado aplicado a uma carteira setorial com cenários macro e sensibilidade.</p>
-          <div class="tags">
-            <span class="tag">Valuation</span>
-            <span class="tag">DCF</span>
-            <span class="tag">Python</span>
-          </div>
-        </article>
-
-        <!-- Projeto 2 -->
-        <article class="card">
-          <h3>Backtest de estratégia macro</h3>
-          <p>Backtest de estratégia baseada em indicadores macroeconômicos com métricas de performance e drawdown.</p>
-          <div class="tags">
-            <span class="tag">Backtest</span>
-            <span class="tag">R</span>
-            <span class="tag">Risk</span>
-          </div>
-        </article>
-
-        <!-- Projeto 3 -->
-        <article class="card">
-          <h3>Dashboard de risco e liquidez</h3>
-          <p>Dashboard interativo para monitoramento de risco de mercado e liquidez com alertas e exportação de relatórios.</p>
-          <div class="tags">
-            <span class="tag">Dashboards</span>
-            <span class="tag">PowerBI</span>
-            <span class="tag">Automação</span>
-          </div>
-        </article>
-      </div>
-
-      <div style="margin-top:14px" class="card">
-        <h3 style="margin-bottom:8px">Projetos adicionais</h3>
-        <p style="color:var(--muted);margin:0 0 8px 0">Inclua links para repositórios, notebooks ou PDFs. Exemplo: GitHub, Kaggle, relatórios PDF.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a href="#" style="text-decoration:none"><span class="tag">Relatório Q1</span></a>
-          <a href="#" style="text-decoration:none"><span class="tag">Notebook macro</span></a>
-          <a href="#" style="text-decoration:none"><span class="tag">Código backtest</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contato" style="margin-top:22px">
-      <h2 style="margin-bottom:8px">Contato</h2>
-      <div class="card" style="display:grid;grid-template-columns:1fr 360px;gap:18px">
-        <div>
-          <p style="color:var(--muted);margin-top:0">Preencha o formulário ou envie um e-mail para <strong style="color:var(--accent)">gabriel@seudominio.com</strong>. Para propostas institucionais, indique escopo e prazo.</p>
-
-          <form class="contact-form" action="mailto:gabriel@seudominio.com" method="post" enctype="text/plain">
-            <input type="text" name="nome" placeholder="Nome completo" required>
-            <input type="email" name="email" placeholder="Seu e-mail" required>
-            <input type="text" name="assunto" placeholder="Assunto" required>
-            <textarea name="mensagem" rows="6" placeholder="Mensagem breve com escopo e prazos" required></textarea>
-            <div style="display:flex;gap:10px">
-              <button type="submit">Enviar por e-mail</button>
-              <a href="mailto:gabriel@seudominio.com" style="text-decoration:none"><button type="button" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Abrir no e-mail</button></a>
+        <div class="hero-content">
+            <h2 id="hero-role">Economista, BI & Data Science</h2>
+            <h1 id="hero-name">Gabriel Costa</h1>
+            <p id="hero-desc">Especializado em transformar dados em análises que geram resultados e impactos reais!</p>
+            <div class="contact-links" style="justify-content: flex-start;">
+                <a href="mailto:gabrielcostaeconomista@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/gabrielcostaeco/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5537999876476" target="_blank"><i class="fab fa-whatsapp"></i> (37) 9 9987-6476</a>
             </div>
-          </form>
         </div>
-
-        <aside style="padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)">
-          <div style="font-weight:700">Informações rápidas</div>
-          <div style="color:var(--muted);margin-top:8px">
-            <div><strong>Local</strong><div style="color:var(--muted)">Capitólio, MG, Brasil</div></div>
-            <div style="margin-top:8px"><strong>Disponibilidade</strong><div style="color:var(--muted)">Projetos e consultoria</div></div>
-            <div style="margin-top:8px"><strong>LinkedIn</strong><div style="color:var(--muted)"><a href="#" style="color:var(--muted);text-decoration:underline">linkedin.com/in/seu-perfil</a></div></div>
-          </div>
-        </aside>
-      </div>
+        <div class="hero-image">
+            <img src="sua-foto.png" alt="Gabriel Costa">
+        </div>
     </section>
+
+    <div class="ticker-container">
+        <div class="ticker-wrapper" id="skills-ticker">
+            </div>
+    </div>
+
+    <section class="about-section">
+        <div>
+            <h2 id="about-title" style="color: var(--accent-amber); margin-bottom: 20px;">Quem Sou Eu</h2>
+            <p id="about-text" style="color: white;"></p>
+        </div>
+        <div class="video-box">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SEU_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="projects-grid" id="projects-container">
+        </section>
+
+    <div id="projectModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="modalContent">
+            </div>
+    </div>
 
     <footer>
-      <div>© <strong>Gabriel Costa</strong> — Economista</div>
-      <div style="color:var(--muted)">Desenvolvido para mercado financeiro</div>
+        <p>© 2026 Gabriel Costa - Economista & Analista de Dados</p>
     </footer>
-  </div>
+
+    <script>
+        const translations = {
+            pt: {
+                role: "Economista, Business Intelligence & Data Science",
+                desc: "Especializado em transformar dados em análises que geram resultados e impactos reais!",
+                aboutTitle: "Quem Sou Eu",
+                aboutText: "Olá! Bem-vindo à minha página no GitHub! Sou Bacharel em Ciências Econômicas (UFSJ) e mestrando em Data Science (USP/Esalq). Minha trajetória une o rigor técnico da análise econômica à agilidade das decisões orientadas a dados. Atuei em gestão, inteligência financeira e auditoria, com destaque para projetos que geraram economias superiores a R$ 5 milhões.",
+                projectBtn: "Ver Detalhes do Projeto",
+                downloadBtn: "Baixar Arquivo do Projeto (.pbix / .sql)"
+            },
+            en: {
+                role: "Economist, Business Intelligence & Data Science",
+                desc: "Specialized in transforming data into insights that drive real results and impact!",
+                aboutTitle: "About Me",
+                aboutText: "Hello! Welcome to my GitHub page! I hold a B.S. in Economics (UFSJ) and I'm currently an MBA student in Data Science (USP/Esalq). My career merges technical economic analysis with data-driven decision agility. I've worked in management, financial intelligence, and auditing, highlighting projects that saved over R$ 5 million.",
+                projectBtn: "View Project Details",
+                downloadBtn: "Download Project File (.pbix / .sql)"
+            },
+            es: {
+                role: "Economista, Business Intelligence & Data Science",
+                desc: "¡Especializado en transformar datos en análisis que generan resultados e impactos reales!",
+                aboutTitle: "Quién Soy",
+                aboutText: "¡Hola! ¡Bienvenido a mi página de GitHub! Soy Licenciado en Economía (UFSJ) y estudiante de MBA en Ciencia de Datos (USP/Esalq). Mi trayectoria une el rigor técnico del análisis económico con la agilidad de las decisiones orientadas a datos. He trabajado en gestión, inteligencia financiera y auditoría, destacando proyectos que generaron ahorros superiores a R$ 5 millones.",
+                projectBtn: "Ver Detalles del Proyecto",
+                downloadBtn: "Descargar Archivo del Proyecto (.pbix / .sql)"
+            }
+        };
+
+        const projects = [
+            {
+                id: 1,
+                title: "Dashboard PowerBI: Mercado Financeiro",
+                summary: "Análise do mercado de ações das Instituições Financeiras Brasileiras.",
+                details: "Fontes: Banco Central (BCB), CVM. Ferramentas: Python para automação, SQL Server para limpeza e PowerBI para visualização com DAX avançado.",
+                video: "ID_VIDEO_PROJETO_1",
+                downloadUrl: "caminho/seu_projeto.pbix"
+            },
+            {
+                id: 2,
+                title: "SQL Server: Base de Dados Bancária",
+                summary: "Criação de base ETL para instituições financeiras listadas na B3.",
+                details: "Reunião de bases IFDATA e CVM para criação de tabelas e views estratégicas.",
+                video: "ID_VIDEO_PROJETO_2",
+                downloadUrl: "caminho/script.sql"
+            }
+        ];
+
+        const skills = ["Data Visualization", "SQL Server", "PostgreSQL", "Python", "PowerBI", "Corporate Finance", "Macroeconomics", "Data Science"];
+
+        function setLanguage(lang) {
+            document.getElementById('hero-role').innerText = translations[lang].role;
+            document.getElementById('hero-desc').innerText = translations[lang].desc;
+            document.getElementById('about-title').innerText = translations[lang].aboutTitle;
+            document.getElementById('about-text').innerText = translations[lang].aboutText;
+            
+            // Atualizar botões ativos
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            renderProjects(lang);
+        }
+
+        function renderProjects(lang) {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = projects.map(p => `
+                <div class="project-card" onclick="openModal(${p.id})">
+                    <h3>${p.title}</h3>
+                    <p>${p.summary}</p>
+                    <small style="color:var(--primary-blue)">${translations[lang].projectBtn} →</small>
+                </div>
+            `).join('');
+        }
+
+        function openModal(id) {
+            const p = projects.find(proj => proj.id === id);
+            const lang = document.querySelector('.lang-btn.active').alt.toLowerCase();
+            document.getElementById('modalContent').innerHTML = `
+                <h1 style="color:var(--accent-amber)">${p.title}</h1>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #333;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <h3>Descrição Técnica</h3>
+                        <p style="margin-top:15px;">${p.details}</p>
+                        <a href="${p.downloadUrl}" class="btn-download"><i class="fas fa-download"></i> ${translations[lang].downloadBtn}</a>
+                        <div style="margin-top:30px;">
+                            <h4>Screenshots</h4>
+                            <div style="display:flex; gap:10px; margin-top:10px;">
+                                <div style="width:100px; height:60px; background:#333; border-radius:5px;"></div>
+                                <div style="width:100px; height:60px; background:#333; border-radius:5px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-box">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${p.video}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            `;
+            document.getElementById('projectModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Ticker de Habilidades
+        const ticker = document.getElementById('skills-ticker');
+        const content = skills.map(s => `<div class="skill-item"><i class="fas fa-check-circle"></i> ${s}</div>`).join('');
+        ticker.innerHTML = content + content; // Dobrar para loop infinito
+
+        // Inicializar
+        setLanguage('pt');
+    </script>
 </body>
 </html>
