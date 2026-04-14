@@ -1,289 +1,724 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Costa | Data Analyst | Economista & Inteligência Financeira </title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg: #0A0A0B;
-            --card: #121214;
-            --primary: #2563EB;
-            --amber: #f5be0b;
-            --red: #DC2626;
-            --text: #FFFFFF;
-            --text-dim: #A1A1AA;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gabriel Costa — Economista & Data Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#04091a;--bg2:#060d24;--bg3:#08122e;--surface:#0b1735;--surface2:#0e1f42;
+  --border:rgba(100,149,237,.15);--border2:rgba(100,149,237,.28);
+  --gold:#f5be0b;--gold-dim:rgba(245,190,11,.12);--gold-glow:rgba(245,190,11,.25);
+  --red:#c0392b;--red-dim:rgba(192,57,43,.15);
+  --blue:#4a90d9;--blue-light:#7ab3e8;--blue-dim:rgba(74,144,217,.12);
+  --text:#e8edf8;--muted:rgba(180,200,240,.55);
+  --fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
+#cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid var(--blue);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s,border-color .25s}
+body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:54px;height:54px;border-color:var(--gold);opacity:.7}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+/* ── GEO BG ── */
+.geo-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.geo-bg svg{width:100%;height:100%;opacity:.04}
 
-        /* --- MARCAS DÁGUA --- */
-        .watermark {
-            position: fixed; font-size: 15rem; color: rgba(255, 255, 255, 0.02);
-            z-index: -1; pointer-events: none;
-        }
-        .wm-1 { top: 10%; left: -5%; transform: rotate(-15deg); }
-        .wm-2 { bottom: 10%; right: -5%; transform: rotate(15deg); }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(4,9,26,.92);backdrop-filter:blur(14px);border-color:var(--border)}
+.nav-logo{font-family:var(--fd);font-size:1.2rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
+.nav-links a:hover{color:var(--gold)}
+.lang-switcher{display:flex;gap:.55rem;align-items:center}
+.lang-btn{
+  width:32px;height:32px;border-radius:50%;border:2px solid transparent;
+  background:var(--surface);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;transition:border-color .25s,transform .2s,box-shadow .25s;
+  padding:0;font-size:1.25rem;line-height:1;
+}
+.lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
+.lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 
-        /* --- HEADER --- */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
-            background: rgba(10, 10, 11, 0.9); backdrop-filter: blur(12px);
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; border-bottom: 1px solid #27272A;
-        }
-        nav ul { display: flex; list-style: none; gap: 25px; }
-        nav a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
-        nav a:hover { color: var(--amber); }
+/* ── HERO ── */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 400px;align-items:center;padding:9rem 4rem 5rem;position:relative;z-index:1;gap:4rem}
+.hero-eyebrow{font-family:var(--fm);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.75rem}
+.hero-eyebrow::before{content:'';display:block;width:2.5rem;height:1px;background:var(--gold)}
+.hero-name{font-family:var(--fd);font-size:clamp(3.5rem,7vw,7rem);font-weight:800;line-height:.92;letter-spacing:-.04em;margin-bottom:1.25rem}
+.hero-name em{font-style:normal;color:var(--gold)}
+.hero-role{font-family:var(--fm);font-size:.82rem;color:var(--blue-light);letter-spacing:.04em;margin-bottom:1.5rem;line-height:1.7}
+.hero-tagline{font-size:1rem;color:var(--muted);line-height:1.75;max-width:46ch;margin-bottom:2.5rem}
+.hero-contacts{display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem}
+.hci{display:flex;align-items:center;gap:.75rem;font-family:var(--fm);font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .25s}
+.hci:hover{color:var(--gold)}
+.ico{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;flex-shrink:0}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:#0a0a0a;padding:.75rem 1.75rem;font-family:var(--fd);font-weight:700;font-size:.85rem;letter-spacing:.02em;text-decoration:none;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--gold-glow)}
+.btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid var(--border2);color:var(--blue-light);padding:.73rem 1.5rem;font-family:var(--fd);font-weight:600;font-size:.85rem;text-decoration:none;transition:border-color .25s,color .25s,background .25s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 
-        .lang-switcher { display: flex; gap: 10px; }
-        .lang-btn {
-            width: 30px; height: 30px; border-radius: 50%;
-            cursor: pointer; border: 2px solid transparent; transition: 0.3s; object-fit: cover;
-        }
-        .lang-btn.active { border-color: var(--amber); transform: scale(1.1); }
+/* photo frame hero */
+.hero-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.photo-frame{width:310px;height:370px;position:relative}
+.pf-corners::before,.pf-corners::after{content:'';position:absolute;width:22px;height:22px;border-color:var(--gold);border-style:solid}
+.pf-corners::before{top:-2px;left:-2px;border-width:2px 0 0 2px}
+.pf-corners::after{bottom:-2px;right:-2px;border-width:0 2px 2px 0}
+.pf-corner2::before,.pf-corner2::after{content:'';position:absolute;width:22px;height:22px;border-color:var(--gold);border-style:solid}
+.pf-corner2::before{top:-2px;right:-2px;border-width:2px 2px 0 0}
+.pf-corner2::after{bottom:-2px;left:-2px;border-width:0 0 2px 2px}
+.photo-inner{width:100%;height:100%;background:linear-gradient(160deg,var(--surface2) 0%,var(--bg3) 100%);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;overflow:hidden;position:relative}
+.photo-inner img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-ph-icon{width:60px;height:60px;border-radius:50%;background:var(--blue-dim);border:1.5px dashed var(--border2);display:flex;align-items:center;justify-content:center}
+.photo-ph-icon svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.5}
+.photo-ph-txt{font-family:var(--fm);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center;padding:0 1.25rem;line-height:1.7}
+.hero-badge{font-family:var(--fm);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.dot-pulse{width:8px;height:8px;background:#4ade80;border-radius:50%;position:relative;flex-shrink:0}
+.dot-pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid #4ade80;animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(2.2);opacity:0}}
 
-        /* --- SEÇÕES --- */
-        section { padding: 100px 10%; position: relative; }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--amber); padding-left: 20px; }
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 0;background:var(--surface);position:relative;z-index:1}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 35s linear infinite}
+.mi{font-family:var(--fm);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 2rem;border-right:1px solid var(--border)}
+.mi.g{color:var(--gold)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-        /* --- HERO --- */
-        .hero { height: 100vh; display: flex; align-items: center; gap: 50px; }
-        .hero-content { flex: 1; }
-        .hero-content h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 10px; }
-        .hero-content h1 span { color: var(--amber); }
-        .hero-content h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; }
-        
-        .hero-image {
-            flex: 1; height: 100%; position: relative;
-            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-        }
-        .hero-image img { width: 100%; height: 100%; object-fit: contain; }
+/* ── SECTIONS ── */
+section{padding:7rem 4rem;position:relative;z-index:1}
+.stag{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.stitle{font-family:var(--fd);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;letter-spacing:-.04em;line-height:.92}
+.sec-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
 
-        /* --- TICKER --- */
-        .ticker { background: var(--amber); color: #000; padding: 15px 0; overflow: hidden; white-space: nowrap; font-weight: 700; text-transform: uppercase; }
-        .ticker-track { display: flex; animation: scroll 40s linear infinite; gap: 50px; }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* ── ABOUT ── */
+#about{background:var(--bg2)}
+/* 3-column: text | photo | video */
+.about-grid{display:grid;grid-template-columns:1fr 220px 1fr;gap:3.5rem;align-items:start}
+.about-text{font-size:.92rem;line-height:1.9;color:var(--text)}
+.about-text p{opacity:.85}
+.about-text p+p{margin-top:1.2rem}
+.about-text strong{color:var(--gold);font-weight:600}
+.about-text em{color:var(--blue-light);font-style:normal}
+.about-highlight{margin-top:1.75rem;padding:1.1rem 1.4rem;background:var(--red-dim);border-left:3px solid var(--red);font-family:var(--fm);font-size:.76rem;color:var(--text);line-height:1.75}
+.about-highlight strong{color:#e87065;font-weight:600}
+.about-wip{margin-top:1.25rem;font-size:.78rem;color:var(--muted);font-family:var(--fm);line-height:1.7}
 
-        /* --- SKILLS (ESTILO BADGE) --- */
-        .skills-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 15px; 
-            margin-top: 40px; 
-        }
-        .skill-item {
-            background: var(--card); padding: 18px 25px; border-radius: 8px; border: 1px solid #27272A;
-            display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
-        }
-        .skill-item:hover { border-color: var(--amber); background: #1a1a1d; }
-        .skill-label {
-            font-size: 0.7rem; padding: 5px 12px; border-radius: 4px;
-            background: rgba(245, 190, 11, 0.1); color: var(--amber); border: 1px solid var(--amber);
-            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-        }
+/* photo in about */
+.about-photo{display:flex;flex-direction:column;align-items:center;gap:1rem;position:sticky;top:7rem}
+.about-photo-frame{width:200px;height:260px;position:relative;flex-shrink:0}
+.about-photo-frame .pf-corners,.about-photo-frame .pf-corner2{position:absolute;inset:0;pointer-events:none}
+.about-photo-inner{width:100%;height:100%;background:linear-gradient(160deg,var(--surface2),var(--bg3));border:1px solid var(--border2);overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem}
+.about-photo-inner img{width:100%;height:100%;object-fit:cover;display:block}
+.about-photo-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center}
 
-        /* --- CONTATO BRUTALISTA --- */
-        .contact-cta {
-            text-align: center; background-color: #000 !important; padding: 120px 10%; border-top: 1px solid #27272A;
-        }
-        .contact-num { color: var(--amber); font-family: monospace; font-size: 1.1rem; letter-spacing: 4px; display: block; margin-bottom: 30px; }
-        .contact-title { font-size: clamp(3rem, 10vw, 5rem); font-weight: 800; line-height: 0.9; color: #fff; text-transform: lowercase; margin-bottom: 40px; }
-        .contact-title span { color: var(--amber); display: block; }
-        .contact-p { max-width: 600px; margin: 0 auto 60px; font-family: monospace; font-size: 1.1rem; color: var(--text-dim); }
-        .contact-links-large { display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .contact-email { 
-            font-size: clamp(1.2rem, 5vw, 2.2rem); color: #fff; text-decoration: none; font-weight: 700; 
-            border-bottom: 4px solid var(--amber); padding-bottom: 5px; transition: 0.3s; 
-        }
-        .whatsapp-icon-link { font-size: 3.5rem; color: var(--amber); transition: 0.3s; }
-        .whatsapp-icon-link:hover { transform: scale(1.1); }
+/* video */
+.video-block{display:flex;flex-direction:column;gap:.9rem}
+.video-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.video-frame{position:relative;width:100%;padding-bottom:56.25%;background:var(--surface);border:1.5px solid var(--border2);overflow:hidden}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;background:var(--surface2)}
+.video-play{width:52px;height:52px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.video-play::after{content:'';border-left:17px solid #0a0a0a;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.video-cap{font-family:var(--fm);font-size:.6rem;color:var(--muted);text-align:center;letter-spacing:.05em;line-height:1.65;padding:0 .75rem}
 
-        /* --- GERAL --- */
-        .contact-btn {
-            background: var(--amber); color: #000; padding: 15px 35px; border-radius: 8px;
-            text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s;
-        }
-        .contact-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(245, 190, 11, 0.3); }
+/* skills */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2.5rem;border:1px solid var(--border)}
+.skill-row{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:background .25s}
+.skill-row:hover{background:var(--surface2)}
+.skill-name{font-family:var(--fd);font-size:.85rem;font-weight:600}
+.skill-right{display:flex;align-items:center;gap:.65rem}
+.sll{font-family:var(--fm);font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--gold)}
+.skill-bar{width:48px;height:2px;background:var(--border);position:relative}
+.skill-bar::after{content:'';position:absolute;left:0;top:0;height:100%;background:var(--gold);width:var(--w,0%);transition:width 1.4s cubic-bezier(.22,1,.36,1)}
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 50px 10%; }
-        .close-modal { position: fixed; top: 20px; right: 50px; font-size: 3rem; color: var(--amber); cursor: pointer; }
+/* ── PROJECTS ── */
+#projects{background:var(--bg3)}
+.projects-list{display:flex;flex-direction:column;gap:2px;background:var(--border)}
+.project-card{background:var(--bg);padding:3rem;transition:background .3s;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit}
+.project-card:hover{background:var(--surface)}
+.project-card:hover .proj-arrow{transform:translate(5px,-5px)}
+.project-card:hover .proj-bar{transform:scaleX(1)}
+.project-card:hover .tool-tag{border-color:rgba(245,190,11,.4);color:var(--gold)}
+.proj-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.proj-num{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.1rem;gap:2rem}
+.proj-title{font-family:var(--fd);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.proj-arrow{font-size:1.4rem;color:var(--gold);transition:transform .25s;flex-shrink:0;margin-top:.2rem}
+.proj-desc{font-size:.88rem;line-height:1.85;color:var(--text);opacity:.75;margin-bottom:1.25rem}
+.proj-tools{display:flex;flex-wrap:wrap;gap:.45rem}
+.tool-tag{font-family:var(--fm);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .72rem;border:1px solid var(--border2);color:var(--muted);transition:border-color .25s,color .25s}
+.proj-cta{margin-top:1.5rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-light);display:flex;align-items:center;gap:.5rem}
+.proj-cta::after{content:'→';transition:transform .25s}
+.project-card:hover .proj-cta::after{transform:translateX(4px)}
 
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; height: auto; padding-top: 120px; }
-            nav { display: none; }
-        }
-    </style>
+/* ── EXPERIENCE ── */
+#experience{background:var(--bg2)}
+.exp-list{display:flex;flex-direction:column}
+.exp-item{display:grid;grid-template-columns:190px 1fr;gap:3.5rem;padding:2.75rem 0;border-bottom:1px solid var(--border);transition:padding-left .3s}
+.exp-item:hover{padding-left:.75rem}
+.exp-date{font-family:var(--fm);font-size:.64rem;letter-spacing:.06em;color:var(--muted);margin-bottom:.5rem;line-height:1.6}
+.exp-badge{display:inline-block;font-family:var(--fm);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .65rem;margin-top:.45rem}
+.exp-badge.full{background:var(--blue-dim);color:var(--blue-light);border:1px solid rgba(74,144,217,.3)}
+.exp-badge.free{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(245,190,11,.3)}
+.exp-badge.vol{background:var(--red-dim);color:#e87065;border:1px solid rgba(192,57,43,.3)}
+.exp-role{font-family:var(--fd);font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
+.exp-company{font-family:var(--fm);font-size:.74rem;color:var(--gold);margin-bottom:.9rem}
+.exp-tasks{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.exp-tasks li{font-size:.84rem;color:var(--text);opacity:.8;line-height:1.7;padding-left:1.2rem;position:relative}
+.exp-tasks li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:.68rem;top:.22rem}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg3);text-align:center;padding:9rem 4rem;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;position:relative;overflow:hidden;z-index:1}
+.contact-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(74,144,217,.07) 0%,transparent 70%);pointer-events:none}
+.contact-title{font-family:var(--fd);font-size:clamp(2.5rem,6vw,6.5rem);font-weight:800;letter-spacing:-.05em;line-height:.88;margin-bottom:2rem}
+.contact-title em{font-style:normal;color:var(--gold)}
+.contact-sub{font-family:var(--fm);font-size:.78rem;color:var(--muted);max-width:50ch;line-height:1.9;margin-bottom:3rem}
+.contact-items{display:flex;flex-direction:column;gap:1rem;align-items:center;margin-bottom:3rem}
+.contact-link{display:flex;align-items:center;gap:.85rem;font-size:.92rem;color:var(--text);text-decoration:none;transition:color .25s}
+.contact-link:hover{color:var(--gold)}
+.ico2{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5;flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.ftxt{font-family:var(--fm);font-size:.61rem;letter-spacing:.06em;color:var(--muted)}
+.ftxt a{color:var(--gold);text-decoration:none}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.32s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1050px){
+  .about-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .about-photo{display:none}
+}
+@media(max-width:960px){
+  nav{padding:1.1rem 1.5rem}
+  .nav-links{display:none}
+  #hero{grid-template-columns:1fr;padding:8rem 1.5rem 4rem}
+  .hero-photo-wrap{display:none}
+  section{padding:5rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .sec-hdr{flex-direction:column;align-items:flex-start;gap:1rem}
+  .exp-item{grid-template-columns:1fr;gap:.75rem}
+  .skills-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:.75rem;text-align:center;padding:1.5rem}
+}
+</style>
 </head>
 <body>
 
-    <i class="fas fa-chart-line watermark wm-1"></i>
-    <i class="fas fa-coins watermark wm-2"></i>
+<div class="geo-bg">
+<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#4a90d9" stroke-width="0.5" fill="none">
+    <line x1="0" y1="150" x2="1440" y2="150"/><line x1="0" y1="300" x2="1440" y2="300"/>
+    <line x1="0" y1="450" x2="1440" y2="450"/><line x1="0" y1="600" x2="1440" y2="600"/>
+    <line x1="0" y1="750" x2="1440" y2="750"/>
+    <line x1="180" y1="0" x2="180" y2="900"/><line x1="360" y1="0" x2="360" y2="900"/>
+    <line x1="540" y1="0" x2="540" y2="900"/><line x1="720" y1="0" x2="720" y2="900"/>
+    <line x1="900" y1="0" x2="900" y2="900"/><line x1="1080" y1="0" x2="1080" y2="900"/>
+    <line x1="1260" y1="0" x2="1260" y2="900"/>
+  </g>
+  <g stroke="#f5be0b" stroke-width="0.6" fill="none" opacity="0.55">
+    <polygon points="200,80 230,63 260,80 260,114 230,131 200,114"/>
+    <polygon points="800,200 830,183 860,200 860,234 830,251 800,234"/>
+    <polygon points="1200,100 1230,83 1260,100 1260,134 1230,151 1200,134"/>
+    <polygon points="100,500 130,483 160,500 160,534 130,551 100,534"/>
+    <polygon points="1350,450 1380,433 1410,450 1410,484 1380,501 1350,484"/>
+    <polygon points="650,700 680,683 710,700 710,734 680,751 650,734"/>
+  </g>
+  <g stroke="#4a90d9" stroke-width="0.7" fill="none" opacity="0.5">
+    <circle cx="360" cy="300" r="4"/><circle cx="720" cy="150" r="4"/>
+    <circle cx="1080" cy="450" r="4"/><circle cx="540" cy="600" r="4"/>
+    <line x1="360" y1="300" x2="720" y2="150"/>
+    <line x1="720" y1="150" x2="1080" y2="450"/>
+    <line x1="1080" y1="450" x2="540" y2="600"/>
+    <circle cx="360" cy="300" r="12" stroke-dasharray="4 4"/>
+    <circle cx="720" cy="150" r="12" stroke-dasharray="4 4"/>
+    <circle cx="1080" cy="450" r="12" stroke-dasharray="4 4"/>
+  </g>
+  <g stroke="#4a90d9" stroke-width="1.2" opacity="0.4">
+    <line x1="1250" y1="620" x2="1250" y2="780"/>
+    <rect x="1240" y="640" width="20" height="60" fill="rgba(74,144,217,0.2)"/>
+    <line x1="1290" y1="600" x2="1290" y2="750"/>
+    <rect x="1280" y="625" width="20" height="80" fill="rgba(74,144,217,0.2)"/>
+    <line x1="1330" y1="640" x2="1330" y2="790"/>
+    <rect x="1320" y="660" width="20" height="70" fill="rgba(74,144,217,0.2)"/>
+    <line x1="1370" y1="610" x2="1370" y2="760"/>
+    <rect x="1360" y="630" width="20" height="90" fill="rgba(245,190,11,0.2)" stroke="#f5be0b"/>
+  </g>
+</svg>
+</div>
 
-    <header>
-        <div style="font-weight: 800; font-size: 1.6rem; letter-spacing: -1px;">GABRIEL <span style="color:var(--amber)">COSTA</span></div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#habilidades">Skills</a></li>
-                <li><a href="#experiencia">Carreira</a></li>
-                <li><a href="#projetos">Portfolio</a></li>
-            </ul>
-        </nav>
-        <div class="lang-switcher">
-            <img src="https://flagcdn.com/w80/br.png" class="lang-btn active" onclick="updateLang('pt', event)" alt="pt">
-            <img src="https://flagcdn.com/w80/us.png" class="lang-btn" onclick="updateLang('en', event)" alt="en">
-        </div>
-    </header>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2 id="h-sub">Economista, BI & Data Science</h2>
-            <h1 id="h-name">Gabriel <span>Costa</span></h1>
-            <p id="h-desc" style="font-size: 1.2rem; color: var(--text-dim); margin-bottom: 30px;">Especializado em transformar dados em análises que geram resultados e impactos reais!</p>
-            <div style="display: flex; gap: 20px; align-items: center;">
-                <a href="https://wa.me/5537999876476" class="contact-btn">Conversar agora</a>
-                <div style="display: flex; gap: 15px; font-size: 1.5rem;">
-                    <a href="https://www.linkedin.com/in/gabrielcostaeco/" style="color:white"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:gabrielcostaeconomista@gmail.com" style="color:white"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="sua-foto.png" alt="Gabriel Costa">
-        </div>
-    </section>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">GC<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="nav_about">Sobre</a></li>
+    <li><a href="#projects" data-i18n="nav_projects">Projetos</a></li>
+    <li><a href="#experience" data-i18n="nav_exp">Experiência</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contato</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português — BR">🇧🇷</button>
+    <button class="lang-btn" onclick="setLang('en')" title="English — US">🇺🇸</button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español — ES">🇪🇸</button>
+  </div>
+</nav>
 
-    <div class="ticker">
-        <div class="ticker-track" id="ticker-content"></div>
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="hero-eyebrow reveal" data-i18n="hero_tag">Disponível para projetos &amp; colaborações</div>
+    <h1 class="hero-name reveal rd1">Gabriel<br><em>Costa</em></h1>
+    <div class="hero-role reveal rd2" data-i18n="hero_role">Economista · Business Intelligence · Data Science</div>
+    <p class="hero-tagline reveal rd2" data-i18n="hero_tagline">Especializado em transformar dados em análises que geram resultados e impactos reais.</p>
+    <div class="hero-contacts reveal rd3">
+      <a href="mailto:gabrielcostaeconomista@gmail.com" class="hci">
+        <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        gabrielcostaeconomista@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/gabrielcostaeco/" target="_blank" class="hci">
+        <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.5"/><path d="M12 11v5m0-5c0-1.1 1-2 2.5-2S17 10 17 11.5V16"/></svg>
+        linkedin.com/in/gabrielcostaeco
+      </a>
+      <a href="tel:+5537999876476" class="hci">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9a19.79 19.79 0 01-3-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (37) 9 9987-6476
+      </a>
+    </div>
+    <div class="hero-actions reveal rd3">
+      <a href="#projects" class="btn-gold" data-i18n="hero_cta1">Ver projetos ↗</a>
+      <a href="#contact" class="btn-outline" data-i18n="hero_cta2">Entre em contato</a>
+    </div>
+  </div>
+
+  <div class="hero-photo-wrap reveal rd2">
+    <div class="photo-frame">
+      <div class="pf-corners"></div>
+      <div class="pf-corner2"></div>
+      <div class="photo-inner">
+        <!--
+          INSTRUÇÃO: Para exibir sua foto, substitua todo o conteúdo desta div por:
+          <img src="foto.png" alt="Gabriel Costa">
+          Faça upload de foto.png no mesmo diretório deste index.html.
+        -->
+        <div class="photo-ph-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div class="photo-ph-txt">Adicione sua foto.<br>Substitua esta div por<br>&lt;img src="foto.png"&gt;</div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="dot-pulse"></span>
+      <span data-i18n="hero_open">Aberto a oportunidades</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="mi g">Data Visualization</span><span class="mi">SQL Server</span>
+    <span class="mi g">PostgreSQL</span><span class="mi">Python</span>
+    <span class="mi g">Power BI</span><span class="mi">Finanças Corporativas</span>
+    <span class="mi g">Análises Financeiras</span><span class="mi">Tributação</span>
+    <span class="mi g">Análises Macroeconômicas</span><span class="mi">Data Science</span>
+    <span class="mi g">DAX Avançado</span><span class="mi">Planejamento Financeiro</span>
+    <span class="mi g">Data Visualization</span><span class="mi">SQL Server</span>
+    <span class="mi g">PostgreSQL</span><span class="mi">Python</span>
+    <span class="mi g">Power BI</span><span class="mi">Finanças Corporativas</span>
+    <span class="mi g">Análises Financeiras</span><span class="mi">Tributação</span>
+    <span class="mi g">Análises Macroeconômicas</span><span class="mi">Data Science</span>
+    <span class="mi g">DAX Avançado</span><span class="mi">Planejamento Financeiro</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-hdr reveal">
+    <div>
+      <div class="stag" data-i18n="about_tag">01 — Sobre mim</div>
+      <h2 class="stitle" data-i18n="about_title">Quem sou eu</h2>
+    </div>
+  </div>
+
+  <div class="about-grid">
+    <!-- Texto -->
+    <div>
+      <div class="about-text reveal">
+        <p data-i18n="about_p1">Olá! Bem-vindo à minha página no GitHub! Aqui você pode conhecer meu portfólio de trabalhos e as habilidades que desenvolvo em minha trajetória profissional.</p>
+        <p data-i18n="about_p2">Sou <strong>bacharel em Ciências Econômicas</strong> pela <em>Universidade Federal de São João del-Rei (UFSJ)</em> e atualmente curso o <strong>MBA em Data Science, IA e Analytics pela USP/Esalq</strong>. Minha trajetória profissional une o rigor técnico da análise econômica à agilidade das decisões orientadas por dados.</p>
+        <p data-i18n="about_p3">Com <strong>três anos de experiência em consultoria estratégica</strong>, atuo na interseção entre finanças e tecnologia para gerar eficiência operacional e impacto real nos resultados. Minha atuação abrange gestão, inteligência financeira, auditoria, planejamento e reestruturação tributária para os setores público e privado.</p>
+        <div class="about-highlight">
+          <strong data-i18n="about_hl">Destaque:</strong> <span data-i18n="about_hltxt">Projetos de auditoria que geraram economias superiores a R$ 5 milhões para clientes do setor público.</span>
+        </div>
+        <p class="about-wip" data-i18n="about_wip">🔧 Esta página ainda está em construção. Com o tempo, compartilharei aprendizados, trabalhos realizados e demonstrações do uso de ferramentas em análises.</p>
+      </div>
+
+      <div style="margin-top:2.5rem">
+        <div class="stag reveal" data-i18n="skills_tag">Habilidades</div>
+        <div class="skills-grid reveal rd1">
+          <div class="skill-row"><span class="skill-name">Excel</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:92%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Power BI</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:88%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">SQL Server</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:65%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">PostgreSQL</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Python</span><div class="skill-right"><span class="sll" data-i18n="sk_beg">Iniciante</span><div class="skill-bar" style="--w:35%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Inglês</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Espanhol</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:55%"></div></div></div>
+        </div>
+      </div>
     </div>
 
-    <section id="sobre">
-        <h2 class="section-title" id="t-sobre">Quem Sou Eu</h2>
-        <div class="about-grid">
-            <div id="text-sobre" style="font-size: 1.1rem; line-height: 1.8;"></div>
-            <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SEU_VIDEO" frameborder="0" allowfullscreen></iframe>
-            </div>
+    <!-- Foto orgânica central -->
+    <div class="about-photo reveal rd1">
+      <div class="about-photo-frame">
+        <div class="pf-corners"></div>
+        <div class="pf-corner2"></div>
+        <div class="about-photo-inner">
+          <!--
+            Substitua o conteúdo abaixo pela sua foto:
+            <img src="foto.png" alt="Gabriel Costa">
+          -->
+          <div class="photo-ph-icon"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <div class="photo-ph-txt" style="font-size:.55rem">Sua foto aqui.<br>Substitua por<br>&lt;img src="foto.png"&gt;</div>
         </div>
-    </section>
-
-    <section id="habilidades">
-        <h2 class="section-title" id="t-skills">Habilidades Técnicas</h2>
-        <div class="skills-grid" id="skills-list"></div>
-    </section>
-
-    <section id="projetos">
-        <h2 class="section-title" id="t-proj">Projetos em Destaque</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;" id="proj-grid"></div>
-    </section>
-
-    <section class="contact-cta" id="contato">
-        <span class="contact-num">04 — CONTATO</span>
-        <h2 class="contact-title">vamos<br>trabalhar<br><span>juntos?</span></h2>
-        <p class="contact-p">Estou sempre aberto a novos projetos interessantes, colaborações criativas ou simplesmente uma boa conversa sobre tecnologia.</p>
-        <div class="contact-links-large">
-            <a href="mailto:gabrielcostaeconomista@gmail.com" class="contact-email">gabrielcostaeconomista@gmail.com</a>
-            <a href="https://wa.me/5537999876476" target="_blank" class="whatsapp-icon-link">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-    </section>
-
-    <footer>
-        <p style="text-align:center; padding: 40px; color: var(--text-dim);">© 2026 Gabriel Costa - Economista & Data Scientist</p>
-    </footer>
-
-    <div id="projectModal" class="modal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div id="modal-body"></div>
+      </div>
+      <div class="about-photo-label" data-i18n="about_photo_label">Gabriel Costa</div>
     </div>
 
-    <script>
-        const content = {
-            pt: {
-                sub: "Economista, Business Intelligence & Data Science",
-                desc: "Especializado em transformar dados em análises que geram resultados e impactos reais!",
-                sobre: "Bacharel em Ciências Econômicas (UFSJ) e atualmente aluno de MBA em Data Science, IA e Analytics (USP/Esalq). Destaque para projetos de auditoria que geraram economias superiores a <b style='color:var(--red)'>R$ 5 milhões</b>.",
-                tSobre: "Quem Sou Eu", tSkills: "Habilidades", tProj: "Projetos",
-                skills: [
-                    {n: "Excel Avançado", l: "Expert"}, {n: "Power BI", l: "Expert"}, {n: "SQL Server", l: "Avançado"}, 
-                    {n: "Python", l: "Intermediário"}, {n: "Análise Macro", l: "Expert"}, {n: "Finanças Corp.", l: "Avançado"}
-                ],
-                projs: [
-                    {t: "Dashboard Bancário B3", d: "Análise de Valuation e Risco das IFs brasileiras.", v: "ID1"},
-                    {t: "ETL Financeiro SQL", d: "Automação de limpeza de dados do BACEN.", v: "ID2"}
-                ]
-            },
-            en: {
-                sub: "Economist, BI & Data Science",
-                desc: "Specialized in turning data into insights that generate real results!",
-                sobre: "Economics degree (UFSJ) and Data Science MBA student (USP/Esalq). Notable audit projects saving over <b style='color:var(--red)'>$1M USD</b>.",
-                tSobre: "About Me", tSkills: "Skills", tProj: "Portfolio",
-                skills: [
-                    {n: "Advanced Excel", l: "Expert"}, {n: "Power BI", l: "Expert"}, {n: "SQL Server", l: "Advanced"}, 
-                    {n: "Python", l: "Intermediate"}, {n: "Macro Analysis", l: "Expert"}, {n: "Corp. Finance", l: "Advanced"}
-                ],
-                projs: [
-                    {t: "Banking Dashboard", d: "Valuation and Risk analysis of Brazilian banks.", v: "ID1"},
-                    {t: "SQL ETL", d: "Automated data cleaning for central bank data.", v: "ID2"}
-                ]
-            }
-        };
+    <!-- Vídeo -->
+    <div class="video-block reveal rd2">
+      <div class="video-label" data-i18n="video_label">Apresentação em vídeo</div>
+      <!--
+        INSTRUÇÃO YOUTUBE: Substitua a div.video-ph por:
+        <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" allowfullscreen></iframe>
+      -->
+      <div class="video-frame">
+        <div class="video-ph">
+          <div class="video-play"></div>
+          <div class="video-cap" data-i18n="video_cap">Adicione aqui seu vídeo de apresentação do YouTube.<br>Substitua pela tag iframe com seu link.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function updateLang(lang, event) {
-            const data = content[lang];
-            document.getElementById('h-sub').innerText = data.sub;
-            document.getElementById('h-desc').innerText = data.desc;
-            document.getElementById('t-sobre').innerText = data.tSobre;
-            document.getElementById('text-sobre').innerHTML = data.sobre;
-            document.getElementById('t-skills').innerText = data.tSkills;
-            document.getElementById('t-proj').innerText = data.tProj;
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-hdr reveal">
+    <div>
+      <div class="stag" data-i18n="proj_tag">02 — Projetos</div>
+      <h2 class="stitle" data-i18n="proj_title">Projetos Selecionados</h2>
+    </div>
+    <a href="https://github.com/gabrielcostaeco" target="_blank" class="btn-outline" data-i18n="proj_all">Ver todos no GitHub ↗</a>
+  </div>
+  <div class="projects-list">
 
-            // Skills com Labels
-            document.getElementById('skills-list').innerHTML = data.skills.map(s => `
-                <div class="skill-item">
-                    <span class="skill-name">${s.n}</span>
-                    <span class="skill-label">${s.l}</span>
-                </div>
-            `).join('');
+    <a href="projeto1.html" class="project-card reveal">
+      <div class="proj-num">01 — Power BI · Python · SQL Server</div>
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p1_title">Dashboard Power BI: Análise do Mercado de Ações das Instituições Financeiras Brasileiras</div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <p class="proj-desc" data-i18n="p1_desc">Indicadores financeiros de valuation, risco, retorno e crescimento das principais instituições financeiras do Brasil. Dados do BCB, CVM e relatórios de RI tratados com Python e SQL Server, visualizados em Power BI com DAX avançado.</p>
+      <div class="proj-tools">
+        <span class="tool-tag">Power BI</span><span class="tool-tag">Python</span><span class="tool-tag">SQL Server</span><span class="tool-tag">DAX</span><span class="tool-tag">BCB</span><span class="tool-tag">CVM</span>
+      </div>
+      <div class="proj-cta" data-i18n="proj_cta">Ver projeto completo</div>
+      <div class="proj-bar"></div>
+    </a>
 
-            // Projetos
-            document.getElementById('proj-grid').innerHTML = data.projs.map(p => `
-                <div class="project-card" onclick="openModal('${p.t}', '${p.d}', '${p.v}')">
-                    <h3>${p.t}</h3>
-                    <p>${p.d}</p>
-                    <small style="color:var(--primary); margin-top:15px; display:block">Ver detalhes →</small>
-                </div>
-            `).join('');
+    <a href="projeto2.html" class="project-card reveal">
+      <div class="proj-num">02 — SQL Server · BCB · CVM</div>
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p2_title">SQL Server: Base de Dados Bancária</div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <p class="proj-desc" data-i18n="p2_desc">Construção e consolidação de base de dados a partir do IFDATA (BCB) e da CVM, com foco em extração, limpeza e tratamento de dados das instituições financeiras brasileiras listadas em bolsa.</p>
+      <div class="proj-tools">
+        <span class="tool-tag">SQL Server</span><span class="tool-tag">PostgreSQL</span><span class="tool-tag">ETL</span><span class="tool-tag">IFDATA</span><span class="tool-tag">CVM</span>
+      </div>
+      <div class="proj-cta" data-i18n="proj_cta">Ver projeto completo</div>
+      <div class="proj-bar"></div>
+    </a>
 
-            if(event) {
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                event.target.classList.add('active');
-            }
-        }
+    <a href="projeto3.html" class="project-card reveal">
+      <div class="proj-num">03 — Tributação · Reforma Fiscal</div>
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p3_title">O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma</div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <p class="proj-desc" data-i18n="p3_desc">Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.</p>
+      <div class="proj-tools">
+        <span class="tool-tag">Tributação</span><span class="tool-tag">Reforma Fiscal</span><span class="tool-tag">Macroeconomia</span><span class="tool-tag">Planejamento Fiscal</span>
+      </div>
+      <div class="proj-cta" data-i18n="proj_cta">Ver projeto completo</div>
+      <div class="proj-bar"></div>
+    </a>
 
-        const tickerSkills = ["SQLServer", "Python", "PowerBI", "DataScience", "Valuation", "Auditoria"];
-        document.getElementById('ticker-content').innerHTML = tickerSkills.map(s => `<span><i class="fas fa-check"></i> ${s}</span>`).join('').repeat(6);
+  </div>
+</section>
 
-        function openModal(title, desc, video) {
-            document.getElementById('modal-body').innerHTML = `
-                <h1 style="color:var(--amber); margin-bottom:20px">${title}</h1>
-                <p style="font-size:1.2rem; margin-bottom:30px">${desc}</p>
-                <div class="video-wrapper"><iframe width="100%" height="400px" src="https://www.youtube.com/embed/${video}" frameborder="0" allowfullscreen></iframe></div>
-            `;
-            document.getElementById('projectModal').style.display = 'block';
-        }
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-hdr reveal">
+    <div>
+      <div class="stag" data-i18n="exp_tag">03 — Trajetória</div>
+      <h2 class="stitle" data-i18n="exp_title">Experiência</h2>
+    </div>
+  </div>
+  <div class="exp-list">
 
-        function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">08/2023 — 03/2026</div>
+        <span class="exp-badge full" data-i18n="b_full">Full-time</span>
+      </div>
+      <div>
+        <div class="exp-role" data-i18n="e1r">Consultor Financeiro</div>
+        <div class="exp-company">Innovattio Consultorias e Treinamentos</div>
+        <ul class="exp-tasks">
+          <li data-i18n="e1t1">Planejamento financeiro e reestruturação econômica para mais de 50 clientes — entre pessoas físicas e empresas de pequeno porte dos setores de hotelaria, alimentação e agronegócio —, com redação de planos de negócio e definição de estratégias de crescimento.</li>
+          <li data-i18n="e1t2">Auditoria financeira e treinamentos para o setor público. Destaque: auditoria de contrato de Parceria Público-Privada para a Prefeitura de Carmo do Cajuru (em parceria com a SP Inovações), resultando em renegociação que gerou economia de quase <strong style="color:var(--gold)">R$ 5 milhões</strong> na remuneração à concessionária ao longo da vigência do contrato.</li>
+        </ul>
+      </div>
+    </div>
 
-        updateLang('pt');
-    </script>
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">02/2021 — 02/2022</div>
+        <span class="exp-badge full" data-i18n="b_full">Full-time</span>
+      </div>
+      <div>
+        <div class="exp-role" data-i18n="e2r">Assessor Legislativo</div>
+        <div class="exp-company" data-i18n="e2c">Câmara Municipal de Capitólio</div>
+        <ul class="exp-tasks">
+          <li data-i18n="e2t1">Controladoria interna e apoio na elaboração de relatórios financeiros da Casa.</li>
+          <li data-i18n="e2t2">Assessoria técnica parlamentar em temas como orçamento público e administração financeira e orçamentária.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">10/2020 — 02/2021</div>
+        <span class="exp-badge full" data-i18n="b_full">Full-time</span>
+      </div>
+      <div>
+        <div class="exp-role" data-i18n="e3r">Assistente de Inteligência de Mercado</div>
+        <div class="exp-company">CANEX Exportação</div>
+        <ul class="exp-tasks">
+          <li data-i18n="e3t1">Extração e tratamento de dados macroeconômicos e financeiros.</li>
+          <li data-i18n="e3t2">Produção de análises estatísticas e simulações de operações com derivativos.</li>
+          <li data-i18n="e3t3">Apoio à tomada de decisão estratégica com base em dados de mercado.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">2015 — 2017</div>
+        <span class="exp-badge free" data-i18n="b_res">Pesquisa</span>
+      </div>
+      <div>
+        <div class="exp-role" data-i18n="e4r">Bolsista — Núcleo de Pesquisa Econômica</div>
+        <div class="exp-company">NEPE · UFSJ</div>
+        <ul class="exp-tasks">
+          <li data-i18n="e4t1">Elaboração de estudos e indicadores econômicos de preços, comércio exterior, mercado de trabalho, entre outros.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div>
+        <div class="exp-date">2023–2025<br>2017–2019</div>
+        <span class="exp-badge vol" data-i18n="b_vol">Voluntariado</span>
+      </div>
+      <div>
+        <div class="exp-role" data-i18n="e5r">Cargos de Conselho</div>
+        <div class="exp-company" data-i18n="e5c">Santa Casa de Capitólio · CONDI-UFSJ</div>
+        <ul class="exp-tasks">
+          <li data-i18n="e5t1">Conselheiro Fiscal — Santa Casa de Capitólio (2023–2025).</li>
+          <li data-i18n="e5t2">Conselheiro no CONDI-UFSJ (2017–2019): representante discente com atribuições de fiscalizar e votar decisões executivas e orçamentárias da instituição.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="stag reveal" data-i18n="ct_tag">04 — Contato</div>
+  <h2 class="contact-title reveal rd1" data-i18n="ct_title">Vamos<br><em>conversar?</em></h2>
+  <p class="contact-sub reveal rd2" data-i18n="ct_sub">Aberto a projetos de consultoria, análise de dados, Business Intelligence e novas oportunidades profissionais.</p>
+  <div class="contact-items reveal rd2">
+    <a href="mailto:gabrielcostaeconomista@gmail.com" class="contact-link">
+      <svg class="ico2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      gabrielcostaeconomista@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/gabrielcostaeco/" target="_blank" class="contact-link">
+      <svg class="ico2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.5"/><path d="M12 11v5m0-5c0-1.1 1-2 2.5-2S17 10 17 11.5V16"/></svg>
+      linkedin.com/in/gabrielcostaeco
+    </a>
+    <a href="tel:+5537999876476" class="contact-link">
+      <svg class="ico2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9a19.79 19.79 0 01-3-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      (37) 9 9987-6476
+    </a>
+  </div>
+  <a href="mailto:gabrielcostaeconomista@gmail.com" class="btn-gold reveal rd3" data-i18n="ct_btn">Enviar mensagem ↗</a>
+</section>
+
+<footer>
+  <div class="ftxt">© 2025 <a href="#">Gabriel Costa</a>. Economista &amp; Data Scientist.</div>
+  <div class="ftxt" data-i18n="ft_r">Feito com dados e determinação · GitHub Pages</div>
+</footer>
+
+<script>
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function a(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}}),{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+reveals.forEach(el=>io.observe(el));
+
+const T={
+pt:{nav_about:'Sobre',nav_projects:'Projetos',nav_exp:'Experiência',nav_contact:'Contato',
+hero_tag:'Disponível para projetos &amp; colaborações',hero_role:'Economista · Business Intelligence · Data Science',
+hero_tagline:'Especializado em transformar dados em análises que geram resultados e impactos reais.',
+hero_cta1:'Ver projetos ↗',hero_cta2:'Entre em contato',hero_open:'Aberto a oportunidades',
+about_tag:'01 — Sobre mim',about_title:'Quem sou eu',about_photo_label:'Gabriel Costa',
+about_p1:'Olá! Bem-vindo à minha página no GitHub! Aqui você pode conhecer meu portfólio de trabalhos e as habilidades que desenvolvo em minha trajetória profissional.',
+about_p2:'Sou <strong>bacharel em Ciências Econômicas</strong> pela <em>Universidade Federal de São João del-Rei (UFSJ)</em> e atualmente curso o <strong>MBA em Data Science, IA e Analytics pela USP/Esalq</strong>. Minha trajetória profissional une o rigor técnico da análise econômica à agilidade das decisões orientadas por dados.',
+about_p3:'Com <strong>três anos de experiência em consultoria estratégica</strong>, atuo na interseção entre finanças e tecnologia para gerar eficiência operacional e impacto real nos resultados. Minha atuação abrange gestão, inteligência financeira, auditoria, planejamento e reestruturação tributária para os setores público e privado.',
+about_hl:'Destaque:',about_hltxt:'Projetos de auditoria que geraram economias superiores a R$ 5 milhões para clientes do setor público.',
+about_wip:'🔧 Esta página ainda está em construção. Com o tempo, compartilharei aprendizados, trabalhos realizados e demonstrações do uso de ferramentas em análises.',
+skills_tag:'Habilidades',sk_adv:'Avançado',sk_int:'Intermediário',sk_beg:'Iniciante',
+video_label:'Apresentação em vídeo',video_cap:'Adicione aqui seu vídeo de apresentação do YouTube. Substitua pela tag iframe com seu link.',
+proj_tag:'02 — Projetos',proj_title:'Projetos Selecionados',proj_all:'Ver todos no GitHub ↗',proj_cta:'Ver projeto completo',
+p1_title:'Dashboard Power BI: Análise do Mercado de Ações das Instituições Financeiras Brasileiras',
+p1_desc:'Indicadores financeiros de valuation, risco, retorno e crescimento das principais instituições financeiras do Brasil. Dados do BCB, CVM e relatórios de RI tratados com Python e SQL Server, visualizados em Power BI com DAX avançado.',
+p2_title:'SQL Server: Base de Dados Bancária',
+p2_desc:'Construção e consolidação de base de dados a partir do IFDATA (BCB) e da CVM, com foco em extração, limpeza e tratamento de dados das instituições financeiras brasileiras listadas em bolsa.',
+p3_title:'O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma',
+p3_desc:'Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.',
+exp_tag:'03 — Trajetória',exp_title:'Experiência',b_full:'Full-time',b_res:'Pesquisa',b_vol:'Voluntariado',
+e1r:'Consultor Financeiro',e1t1:'Planejamento financeiro e reestruturação econômica para mais de 50 clientes — entre pessoas físicas e empresas de pequeno porte dos setores de hotelaria, alimentação e agronegócio —, com redação de planos de negócio e definição de estratégias de crescimento.',
+e1t2:'Auditoria financeira e treinamentos para o setor público. Destaque: auditoria de contrato de Parceria Público-Privada para a Prefeitura de Carmo do Cajuru, resultando em renegociação que gerou economia de quase <strong style="color:var(--gold)">R$ 5 milhões</strong>.',
+e2r:'Assessor Legislativo',e2c:'Câmara Municipal de Capitólio',
+e2t1:'Controladoria interna e apoio na elaboração de relatórios financeiros da Casa.',
+e2t2:'Assessoria técnica parlamentar em temas como orçamento público e administração financeira e orçamentária.',
+e3r:'Assistente de Inteligência de Mercado',
+e3t1:'Extração e tratamento de dados macroeconômicos e financeiros.',
+e3t2:'Produção de análises estatísticas e simulações de operações com derivativos.',
+e3t3:'Apoio à tomada de decisão estratégica com base em dados de mercado.',
+e4r:'Bolsista — Núcleo de Pesquisa Econômica',
+e4t1:'Elaboração de estudos e indicadores econômicos de preços, comércio exterior e mercado de trabalho, entre outros.',
+e5r:'Cargos de Conselho',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
+e5t1:'Conselheiro Fiscal — Santa Casa de Capitólio (2023–2025).',
+e5t2:'Conselheiro no CONDI-UFSJ (2017–2019): representante discente com atribuições de fiscalizar e votar decisões executivas e orçamentárias da instituição.',
+ct_tag:'04 — Contato',ct_title:'Vamos<br><em>conversar?</em>',
+ct_sub:'Aberto a projetos de consultoria, análise de dados, Business Intelligence e novas oportunidades profissionais.',
+ct_btn:'Enviar mensagem ↗',ft_r:'Feito com dados e determinação · GitHub Pages'},
+en:{nav_about:'About',nav_projects:'Projects',nav_exp:'Experience',nav_contact:'Contact',
+hero_tag:'Available for projects &amp; collaborations',hero_role:'Economist · Business Intelligence · Data Science',
+hero_tagline:'Specialized in turning data into analysis that generates real results and impact.',
+hero_cta1:'View projects ↗',hero_cta2:'Get in touch',hero_open:'Open to opportunities',
+about_tag:'01 — About me',about_title:'Who I am',about_photo_label:'Gabriel Costa',
+about_p1:'Hello! Welcome to my GitHub page! Here you can explore my portfolio of work and the skills I have developed throughout my professional journey.',
+about_p2:'I hold a <strong>Bachelor\'s degree in Economics</strong> from the <em>Federal University of São João del-Rei (UFSJ)</em> and am currently enrolled in an <strong>MBA in Data Science, AI and Analytics at USP/Esalq</strong>. My career combines the technical rigor of economic analysis with data-driven decision-making.',
+about_p3:'With <strong>three years of strategic consulting experience</strong>, I work at the intersection of finance and technology to generate operational efficiency and real business results. My work spans management, financial intelligence, auditing, planning and tax restructuring for both public and private sectors.',
+about_hl:'Highlight:',about_hltxt:'Audit projects that generated savings exceeding R$ 5 million for public sector clients.',
+about_wip:'🔧 This page is still under construction. Over time, I will share learnings, completed projects and tool demonstrations.',
+skills_tag:'Skills',sk_adv:'Advanced',sk_int:'Intermediate',sk_beg:'Beginner',
+video_label:'Video presentation',video_cap:'Add your YouTube presentation video here. Replace with your iframe link.',
+proj_tag:'02 — Projects',proj_title:'Selected Projects',proj_all:'View all on GitHub ↗',proj_cta:'View full project',
+p1_title:'Power BI Dashboard: Brazilian Financial Institutions Stock Market Analysis',
+p1_desc:'Financial indicators of valuation, risk, return and growth of major Brazilian financial institutions. Data from BCB, CVM and IR reports processed with Python and SQL Server, visualized in Power BI with advanced DAX.',
+p2_title:'SQL Server: Banking Database',
+p2_desc:'Construction and consolidation of a database from IFDATA (BCB) and CVM, focused on extracting, cleaning and processing data from Brazilian financial institutions listed on the stock exchange.',
+p3_title:'The Brazilian Tax System — Impacts and Post-Reform Transition',
+p3_desc:'In-depth analysis of the Brazilian tax system, its economic impacts and the transition following the Tax Reform. Effects on companies, tax planning and macroeconomic perspectives.',
+exp_tag:'03 — Career',exp_title:'Experience',b_full:'Full-time',b_res:'Research',b_vol:'Volunteer',
+e1r:'Financial Consultant',e1t1:'Financial planning and economic restructuring for over 50 clients — individuals and small businesses in hospitality, food and agribusiness — including business plans and growth strategy definition.',
+e1t2:'Financial auditing and training for the public sector. Highlight: PPP contract audit for the City of Carmo do Cajuru, resulting in a renegotiation saving nearly <strong style="color:var(--gold)">R$ 5 million</strong>.',
+e2r:'Legislative Advisor',e2c:'Municipal Chamber of Capitólio',
+e2t1:'Internal financial control and support in preparing financial reports.',
+e2t2:'Technical advisory on public budgeting and financial administration.',
+e3r:'Market Intelligence Assistant',
+e3t1:'Extraction and processing of macroeconomic and financial data.',
+e3t2:'Statistical analyses and derivatives operations simulations.',
+e3t3:'Strategic decision-making support based on market data.',
+e4r:'Research Scholar — Economic Research Center',
+e4t1:'Development of economic studies and indicators on prices, foreign trade and labor markets.',
+e5r:'Board Positions',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
+e5t1:'Fiscal Advisor — Santa Casa de Capitólio (2023–2025).',
+e5t2:'Board member at CONDI-UFSJ (2017–2019): student representative with duties to oversee and vote on executive and budgetary decisions.',
+ct_tag:'04 — Contact',ct_title:'Let\'s<br><em>talk?</em>',
+ct_sub:'Open to consulting projects, data analysis, Business Intelligence and new professional opportunities.',
+ct_btn:'Send a message ↗',ft_r:'Built with data and determination · GitHub Pages'},
+es:{nav_about:'Sobre mí',nav_projects:'Proyectos',nav_exp:'Experiencia',nav_contact:'Contacto',
+hero_tag:'Disponible para proyectos y colaboraciones',hero_role:'Economista · Business Intelligence · Data Science',
+hero_tagline:'Especializado en transformar datos en análisis que generan resultados e impactos reales.',
+hero_cta1:'Ver proyectos ↗',hero_cta2:'Ponerse en contacto',hero_open:'Abierto a oportunidades',
+about_tag:'01 — Sobre mí',about_title:'Quién soy',about_photo_label:'Gabriel Costa',
+about_p1:'¡Hola! Bienvenido a mi página de GitHub. Aquí puedes conocer mi portafolio de trabajos y las habilidades que desarrollo a lo largo de mi trayectoria profesional.',
+about_p2:'Soy <strong>licenciado en Ciencias Económicas</strong> por la <em>Universidad Federal de São João del-Rei (UFSJ)</em> y actualmente curso el <strong>MBA en Data Science, IA y Analytics en la USP/Esalq</strong>. Mi trayectoria une el rigor del análisis económico con las decisiones orientadas por datos.',
+about_p3:'Con <strong>tres años de experiencia en consultoría estratégica</strong>, trabajo en la intersección entre finanzas y tecnología para generar eficiencia operativa e impacto real. Mi labor abarca gestión, inteligencia financiera, auditoría, planificación y reestructuración tributaria para los sectores público y privado.',
+about_hl:'Destacado:',about_hltxt:'Proyectos de auditoría que generaron ahorros superiores a R$ 5 millones para clientes del sector público.',
+about_wip:'🔧 Esta página aún está en construcción. Con el tiempo compartiré aprendizajes, trabajos realizados y demostraciones del uso de herramientas en análisis.',
+skills_tag:'Habilidades',sk_adv:'Avanzado',sk_int:'Intermedio',sk_beg:'Principiante',
+video_label:'Video de presentación',video_cap:'Agrega aquí tu video de YouTube. Reemplaza con el iframe de tu enlace.',
+proj_tag:'02 — Proyectos',proj_title:'Proyectos Seleccionados',proj_all:'Ver todos en GitHub ↗',proj_cta:'Ver proyecto completo',
+p1_title:'Dashboard Power BI: Análisis del Mercado de Acciones de Instituciones Financieras Brasileñas',
+p1_desc:'Indicadores financieros de valoración, riesgo, retorno y crecimiento de las principales instituciones financieras de Brasil. Datos del BCB, CVM e informes de RI procesados con Python y SQL Server, visualizados en Power BI con DAX avanzado.',
+p2_title:'SQL Server: Base de Datos Bancaria',
+p2_desc:'Construcción y consolidación de base de datos a partir del IFDATA (BCB) y la CVM, con enfoque en extracción, limpieza y tratamiento de datos de instituciones financieras brasileñas listadas en bolsa.',
+p3_title:'El Sistema Tributario Brasileño — Impactos y Transición Post-Reforma',
+p3_desc:'Análisis profundo del sistema tributario brasileño, sus impactos económicos y el proceso de transición tras la Reforma Tributaria. Efectos sobre empresas, planificación fiscal y perspectivas macroeconómicas.',
+exp_tag:'03 — Trayectoria',exp_title:'Experiencia',b_full:'Tiempo completo',b_res:'Investigación',b_vol:'Voluntariado',
+e1r:'Consultor Financiero',e1t1:'Planificación financiera y reestructuración económica para más de 50 clientes — personas físicas y pequeñas empresas de hotelería, alimentación y agronegocios —, con planes de negocio y estrategias de crecimiento.',
+e1t2:'Auditoría financiera y formación para el sector público. Destacado: auditoría de contrato de APP para el Ayuntamiento de Carmo do Cajuru, con renegociación que generó un ahorro de casi <strong style="color:var(--gold)">R$ 5 millones</strong>.',
+e2r:'Asesor Legislativo',e2c:'Cámara Municipal de Capitólio',
+e2t1:'Contraloría interna y apoyo en la elaboración de informes financieros.',
+e2t2:'Asesoría técnica parlamentaria en presupuesto público y administración financiera.',
+e3r:'Asistente de Inteligencia de Mercado',
+e3t1:'Extracción y tratamiento de datos macroeconómicos y financieros.',
+e3t2:'Análisis estadísticos y simulaciones de operaciones con derivados.',
+e3t3:'Apoyo a la toma de decisiones estratégicas con base en datos de mercado.',
+e4r:'Becario — Núcleo de Investigación Económica',
+e4t1:'Elaboración de estudios e indicadores económicos de precios, comercio exterior y mercado laboral.',
+e5r:'Cargos en Consejos',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
+e5t1:'Consejero Fiscal — Santa Casa de Capitólio (2023–2025).',
+e5t2:'Consejero en el CONDI-UFSJ (2017–2019): representante estudiantil con atribuciones de fiscalizar y votar decisiones ejecutivas y presupuestarias de la institución.',
+ct_tag:'04 — Contacto',ct_title:'¿Hablemos?',
+ct_sub:'Abierto a proyectos de consultoría, análisis de datos, Business Intelligence y nuevas oportunidades profesionales.',
+ct_btn:'Enviar mensaje ↗',ft_r:'Hecho con datos y determinación · GitHub Pages'}
+};
+
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
+  const t=T[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
+}
+
+const ne=document.querySelector('.hero-name em');
+if(ne){const o=ne.textContent,c='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';let f=0;
+setTimeout(()=>{const iv=setInterval(()=>{ne.textContent=o.split('').map((ch,i)=>ch===' '?' ':f/3>i?o[i]:c[Math.floor(Math.random()*c.length)]).join('');if(f++>=o.length*3){ne.textContent=o;clearInterval(iv);}},40);},700);}
+</script>
 </body>
 </html>
