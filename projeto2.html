@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SQL Server Base Bancária — Gabriel Costa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#04091a;--bg2:#060d24;--bg3:#08122e;--surface:#0b1735;--surface2:#0e1f42;--border:rgba(100,149,237,.15);--border2:rgba(100,149,237,.28);--gold:#f5be0b;--gold-dim:rgba(245,190,11,.12);--gold-glow:rgba(245,190,11,.25);--red:#c0392b;--red-dim:rgba(192,57,43,.15);--blue:#4a90d9;--blue-light:#7ab3e8;--blue-dim:rgba(74,144,217,.12);--text:#e8edf8;--muted:rgba(180,200,240,.55);--fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden}
+.geo-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.geo-bg svg{width:100%;height:100%;opacity:.035}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;background:rgba(4,9,26,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--fd);font-size:1.1rem;font-weight:800;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-back{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
+.nav-back:hover{color:var(--gold)}
+.lang-switcher{display:flex;gap:.55rem}
+.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
+.lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
+main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:0 auto}
+.proj-hero{padding:4rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:4rem}
+.proj-num{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.proj-hero-title{font-family:var(--fd);font-size:clamp(2rem,5vw,4rem);font-weight:800;letter-spacing:-.04em;line-height:.95;margin-bottom:1.5rem}
+.proj-hero-title em{font-style:normal;color:var(--gold)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.tag{font-family:var(--fm);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .78rem;border:1px solid var(--border2);color:var(--blue-light)}
+.proj-meta{display:flex;gap:3rem;flex-wrap:wrap}
+.meta-item{display:flex;flex-direction:column;gap:.3rem}
+.meta-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.meta-value{font-family:var(--fd);font-size:.9rem;font-weight:600}
+.proj-body{display:flex;flex-direction:column;gap:3.5rem}
+.block-tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.block-title{font-family:var(--fd);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;margin-bottom:1.25rem;line-height:1.05}
+.block-text{font-size:.92rem;line-height:1.9;color:var(--text);opacity:.82}
+.block-text p+p{margin-top:1.1rem}
+.block-text strong{color:var(--gold);font-weight:600}
+.block-text ul{margin-top:.75rem;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.block-text ul li{padding-left:1.25rem;position:relative;font-size:.88rem;opacity:.82}
+.block-text ul li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:.68rem;top:.22rem}
+.divider{height:1px;background:linear-gradient(90deg,var(--gold) 0%,var(--blue) 40%,transparent 100%);opacity:.3}
+.screenshot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem}
+.screenshot-card{background:var(--surface);border:1px solid var(--border2);overflow:hidden}
+.screenshot-card:hover{border-color:rgba(245,190,11,.4)}
+.screenshot-frame{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;overflow:hidden}
+.screenshot-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.screenshot-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;padding:1.5rem;text-align:center;width:100%;height:100%}
+.screenshot-ph svg{width:32px;height:32px;stroke:var(--blue-light);fill:none;stroke-width:1.2;opacity:.6}
+.screenshot-ph-txt{font-family:var(--fm);font-size:.6rem;letter-spacing:.07em;color:var(--muted);line-height:1.6}
+.screenshot-caption{padding:.75rem 1rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border)}
+.video-wrap{position:relative;width:100%;padding-bottom:56.25%;background:var(--surface);border:1.5px solid var(--border2);overflow:hidden;margin-top:1.5rem}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:var(--surface2)}
+.video-play{width:60px;height:60px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center}
+.video-play::after{content:'';border-left:20px solid #0a0a0a;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.video-cap{font-family:var(--fm);font-size:.65rem;color:var(--muted);text-align:center;letter-spacing:.06em;line-height:1.65;padding:0 2rem}
+.cta-block{background:var(--bg3);border:1px solid var(--border2);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-title{font-family:var(--fd);font-size:1.2rem;font-weight:700;margin-bottom:.4rem}
+.cta-sub{font-family:var(--fm);font-size:.72rem;color:var(--muted)}
+.btn-gold{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:#0a0a0a;padding:.8rem 1.75rem;font-family:var(--fd);font-weight:700;font-size:.85rem;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--gold-glow)}
+.btn-outline{display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid var(--border2);color:var(--blue-light);padding:.78rem 1.5rem;font-family:var(--fd);font-weight:600;font-size:.85rem;text-decoration:none;transition:border-color .25s,color .25s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.proj-nav{display:flex;justify-content:space-between;align-items:center;padding:2.5rem 0;border-top:1px solid var(--border);margin-top:4rem}
+.pnav-link{font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
+.pnav-link:hover{color:var(--gold)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:1rem 1.25rem}main{padding:6rem 1.25rem 3rem}.cta-block{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="geo-bg">
+<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#4a90d9" stroke-width="0.5" fill="none" opacity="0.8">
+    <line x1="0" y1="150" x2="1440" y2="150"/><line x1="0" y1="300" x2="1440" y2="300"/>
+    <line x1="0" y1="450" x2="1440" y2="450"/><line x1="0" y1="600" x2="1440" y2="600"/>
+    <line x1="180" y1="0" x2="180" y2="900"/><line x1="360" y1="0" x2="360" y2="900"/>
+    <line x1="540" y1="0" x2="540" y2="900"/><line x1="720" y1="0" x2="720" y2="900"/>
+    <line x1="900" y1="0" x2="900" y2="900"/><line x1="1080" y1="0" x2="1080" y2="900"/>
+  </g>
+  <g stroke="#f5be0b" stroke-width="0.6" fill="none" opacity="0.4">
+    <polygon points="1300,100 1330,83 1360,100 1360,134 1330,151 1300,134"/>
+    <polygon points="80,600 110,583 140,600 140,634 110,651 80,634"/>
+  </g>
+</svg>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">GC<span>.</span></a>
+  <a href="index.html#projects" class="nav-back">← <span data-i18n="back">Voltar aos projetos</span></a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português">🇧🇷</button>
+    <button class="lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+  </div>
+</nav>
+
+<main>
+  <div class="proj-hero reveal">
+    <div class="proj-num">02 — SQL Server · BCB · CVM</div>
+    <h1 class="proj-hero-title" data-i18n="title"><em>SQL Server:</em><br>Base de Dados Bancária</h1>
+    <div class="proj-tags">
+      <span class="tag">SQL Server</span><span class="tag">PostgreSQL</span>
+      <span class="tag">ETL</span><span class="tag">IFDATA</span><span class="tag">CVM</span><span class="tag">BCB</span>
+    </div>
+    <div class="proj-meta">
+      <div class="meta-item"><span class="meta-label" data-i18n="ml_area">Área</span><span class="meta-value" data-i18n="mv_area">Banco de Dados · ETL</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="ml_src">Fontes</span><span class="meta-value">BCB · CVM</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="ml_status">Status</span><span class="meta-value" style="color:var(--gold)" data-i18n="mv_status">Em desenvolvimento</span></div>
+    </div>
+  </div>
+
+  <div class="proj-body">
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s1_tag">Objetivo</div>
+      <div class="block-text">
+        <p data-i18n="s1_p1">Este projeto consiste na construção e consolidação de uma base de dados relacional voltada para a análise das instituições financeiras brasileiras. O banco reúne dados do IFDATA (Banco Central) e da CVM para viabilizar consultas, visualizações e análises estratégicas de forma organizada e eficiente.</p>
+        <p data-i18n="s1_p2">A base foi estruturada para ser utilizada como backend de outros projetos analíticos, incluindo o Dashboard Power BI do Projeto 01.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s2_tag">Escopo do Projeto</div>
+      <div class="block-title" data-i18n="s2_title">O que foi desenvolvido?</div>
+      <div class="block-text">
+        <ul>
+          <li data-i18n="s2_li1"><strong>Modelagem relacional:</strong> criação de tabelas normalizadas para dados cadastrais, balanços, DREs e indicadores das instituições financeiras.</li>
+          <li data-i18n="s2_li2"><strong>Extração (Extract):</strong> coleta automatizada das bases do IFDATA (BCB) e das DFPs padronizadas da CVM.</li>
+          <li data-i18n="s2_li3"><strong>Limpeza e Tratamento (Transform):</strong> padronização de nomenclaturas, tratamento de valores nulos, remoção de duplicatas e consistência de séries históricas.</li>
+          <li data-i18n="s2_li4"><strong>Carga (Load):</strong> inserção dos dados tratados nas tabelas do SQL Server com controle de versão e atualização incremental.</li>
+          <li data-i18n="s2_li5"><strong>Views e Procedures:</strong> construção de visualizações prontas para consumo no Power BI e análises diretas via SQL.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s3_tag">Capturas de Tela</div>
+      <div class="block-title" data-i18n="s3_title">Galeria do Projeto</div>
+      <p class="block-text" style="margin-bottom:0" data-i18n="s3_p">Adicione prints das suas queries, modelo relacional e resultados abaixo.</p>
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <!-- <img src="sql1.png" alt="Modelo relacional"> -->
+            <div class="screenshot-ph">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+              <div class="screenshot-ph-txt" data-i18n="ph1">Print 1: Modelo relacional<br>&lt;img src="sql1.png"&gt;</div>
+            </div>
+          </div>
+          <div class="screenshot-caption" data-i18n="cap1">Diagrama de entidade-relacionamento</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <!-- <img src="sql2.png" alt="Query ETL"> -->
+            <div class="screenshot-ph">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+              <div class="screenshot-ph-txt" data-i18n="ph2">Print 2: Query ETL<br>&lt;img src="sql2.png"&gt;</div>
+            </div>
+          </div>
+          <div class="screenshot-caption" data-i18n="cap2">Pipeline de extração e tratamento</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <!-- <img src="sql3.png" alt="Resultado de análise"> -->
+            <div class="screenshot-ph">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+              <div class="screenshot-ph-txt" data-i18n="ph3">Print 3: Resultado de análise<br>&lt;img src="sql3.png"&gt;</div>
+            </div>
+          </div>
+          <div class="screenshot-caption" data-i18n="cap3">Análise estratégica — resultados</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s4_tag">Apresentação em Vídeo</div>
+      <div class="block-title" data-i18n="s4_title">Demonstração do projeto</div>
+      <div class="video-wrap">
+        <!-- <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" allowfullscreen></iframe> -->
+        <div class="video-ph">
+          <div class="video-play"></div>
+          <div class="video-cap" data-i18n="vid_cap">Adicione o vídeo de demonstração do projeto. Substitua pela tag iframe com o ID do seu vídeo no YouTube.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="cta-block reveal">
+      <div class="cta-text">
+        <div class="cta-title" data-i18n="cta_title">Acesse o projeto completo</div>
+        <div class="cta-sub" data-i18n="cta_sub">Scripts SQL, modelo de dados e documentação disponíveis no repositório do GitHub.</div>
+      </div>
+      <div class="cta-btns">
+        <a href="https://github.com/gabrielcostaeco" target="_blank" class="btn-gold" data-i18n="cta_dl">⬇ Download no GitHub</a>
+        <a href="index.html#projects" class="btn-outline" data-i18n="cta_back">← Voltar</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="proj-nav">
+    <a href="projeto1.html" class="pnav-link">← <span data-i18n="nav_prev">Projeto anterior</span></a>
+    <a href="projeto3.html" class="pnav-link"><span data-i18n="nav_next">Próximo projeto</span> →</a>
+  </div>
+</main>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}}),{threshold:.06});
+reveals.forEach(el=>io.observe(el));
+const T={
+pt:{back:'Voltar aos projetos',title:'<em>SQL Server:</em><br>Base de Dados Bancária',ml_area:'Área',mv_area:'Banco de Dados · ETL',ml_src:'Fontes',ml_status:'Status',mv_status:'Em desenvolvimento',
+s1_tag:'Objetivo',s1_p1:'Este projeto consiste na construção e consolidação de uma base de dados relacional voltada para a análise das instituições financeiras brasileiras. O banco reúne dados do IFDATA (BCB) e da CVM para viabilizar consultas, visualizações e análises estratégicas de forma organizada e eficiente.',s1_p2:'A base foi estruturada para ser utilizada como backend de outros projetos analíticos, incluindo o Dashboard Power BI do Projeto 01.',
+s2_tag:'Escopo do Projeto',s2_title:'O que foi desenvolvido?',
+s2_li1:'<strong>Modelagem relacional:</strong> criação de tabelas normalizadas para dados cadastrais, balanços, DREs e indicadores das instituições.',
+s2_li2:'<strong>Extração (Extract):</strong> coleta automatizada das bases do IFDATA (BCB) e das DFPs padronizadas da CVM.',
+s2_li3:'<strong>Limpeza e Tratamento (Transform):</strong> padronização de nomenclaturas, tratamento de valores nulos, remoção de duplicatas e consistência de séries históricas.',
+s2_li4:'<strong>Carga (Load):</strong> inserção dos dados tratados com controle de versão e atualização incremental.',
+s2_li5:'<strong>Views e Procedures:</strong> construção de visualizações prontas para consumo no Power BI e análises diretas via SQL.',
+s3_tag:'Capturas de Tela',s3_title:'Galeria do Projeto',s3_p:'Adicione prints das suas queries, modelo relacional e resultados abaixo.',
+ph1:'Print 1: Modelo relacional<br>&lt;img src="sql1.png"&gt;',cap1:'Diagrama de entidade-relacionamento',
+ph2:'Print 2: Query ETL<br>&lt;img src="sql2.png"&gt;',cap2:'Pipeline de extração e tratamento',
+ph3:'Print 3: Resultado de análise<br>&lt;img src="sql3.png"&gt;',cap3:'Análise estratégica — resultados',
+s4_tag:'Apresentação em Vídeo',s4_title:'Demonstração do projeto',
+vid_cap:'Adicione o vídeo de demonstração do projeto. Substitua pela tag iframe com o ID do seu vídeo no YouTube.',
+cta_title:'Acesse o projeto completo',cta_sub:'Scripts SQL, modelo de dados e documentação disponíveis no repositório do GitHub.',
+cta_dl:'⬇ Download no GitHub',cta_back:'← Voltar',nav_prev:'Projeto anterior',nav_next:'Próximo projeto'},
+en:{back:'Back to projects',title:'<em>SQL Server:</em><br>Banking Database',ml_area:'Area',mv_area:'Database · ETL',ml_src:'Sources',ml_status:'Status',mv_status:'In development',
+s1_tag:'Objective',s1_p1:'This project involves building and consolidating a relational database focused on analyzing Brazilian financial institutions, integrating IFDATA (BCB) and CVM data for organized strategic analysis.',s1_p2:'The database serves as a backend for other analytical projects, including the Power BI Dashboard in Project 01.',
+s2_tag:'Project Scope',s2_title:'What was developed?',
+s2_li1:'<strong>Relational modeling:</strong> normalized tables for registration data, balance sheets, P&Ls and performance indicators.',
+s2_li2:'<strong>Extract:</strong> automated collection from IFDATA (BCB) and CVM standardized financial statements.',
+s2_li3:'<strong>Transform:</strong> naming standardization, null value treatment, duplicate removal and historical series consistency.',
+s2_li4:'<strong>Load:</strong> processed data insertion with version control and incremental updates.',
+s2_li5:'<strong>Views and Procedures:</strong> ready-to-consume views for Power BI and direct SQL analysis.',
+s3_tag:'Screenshots',s3_title:'Project Gallery',s3_p:'Add screenshots of your queries, relational model and results below.',
+ph1:'Screenshot 1: Relational model<br>&lt;img src="sql1.png"&gt;',cap1:'Entity-relationship diagram',
+ph2:'Screenshot 2: ETL query<br>&lt;img src="sql2.png"&gt;',cap2:'Extraction and processing pipeline',
+ph3:'Screenshot 3: Analysis result<br>&lt;img src="sql3.png"&gt;',cap3:'Strategic analysis — results',
+s4_tag:'Video Presentation',s4_title:'Project demonstration',
+vid_cap:'Add the project demonstration video. Replace with an iframe with your YouTube video ID.',
+cta_title:'Access the full project',cta_sub:'SQL scripts, data model and documentation available on GitHub.',
+cta_dl:'⬇ Download on GitHub',cta_back:'← Back',nav_prev:'Previous project',nav_next:'Next project'},
+es:{back:'Volver a proyectos',title:'<em>SQL Server:</em><br>Base de Datos Bancaria',ml_area:'Área',mv_area:'Base de Datos · ETL',ml_src:'Fuentes',ml_status:'Estado',mv_status:'En desarrollo',
+s1_tag:'Objetivo',s1_p1:'Este proyecto consiste en la construcción y consolidación de una base de datos relacional para el análisis de instituciones financieras brasileñas, integrando datos del IFDATA (BCB) y la CVM.',s1_p2:'La base sirve como backend para otros proyectos analíticos, incluido el Dashboard Power BI del Proyecto 01.',
+s2_tag:'Alcance del Proyecto',s2_title:'¿Qué se desarrolló?',
+s2_li1:'<strong>Modelado relacional:</strong> tablas normalizadas para datos de registro, balances, P&Ls e indicadores.',
+s2_li2:'<strong>Extracción:</strong> recopilación automatizada del IFDATA (BCB) y estados financieros estandarizados de la CVM.',
+s2_li3:'<strong>Transformación:</strong> estandarización de nomenclaturas, tratamiento de nulos, eliminación de duplicados.',
+s2_li4:'<strong>Carga:</strong> inserción de datos procesados con control de versiones y actualización incremental.',
+s2_li5:'<strong>Views y Procedures:</strong> visualizaciones listas para Power BI y análisis directos por SQL.',
+s3_tag:'Capturas de Pantalla',s3_title:'Galería del Proyecto',s3_p:'Agrega capturas de tus queries, modelo relacional y resultados abajo.',
+ph1:'Captura 1: Modelo relacional<br>&lt;img src="sql1.png"&gt;',cap1:'Diagrama entidad-relación',
+ph2:'Captura 2: Query ETL<br>&lt;img src="sql2.png"&gt;',cap2:'Pipeline de extracción y procesamiento',
+ph3:'Captura 3: Resultado de análisis<br>&lt;img src="sql3.png"&gt;',cap3:'Análisis estratégico — resultados',
+s4_tag:'Presentación en Video',s4_title:'Demostración del proyecto',
+vid_cap:'Agrega el video de demostración del proyecto. Reemplaza con el iframe con tu ID de YouTube.',
+cta_title:'Accede al proyecto completo',cta_sub:'Scripts SQL, modelo de datos y documentación disponibles en GitHub.',
+cta_dl:'⬇ Descargar en GitHub',cta_back:'← Volver',nav_prev:'Proyecto anterior',nav_next:'Siguiente proyecto'}
+};
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
+  const t=T[l];document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sistema Tributário Brasileiro — Gabriel Costa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#04091a;--bg2:#060d24;--bg3:#08122e;--surface:#0b1735;--surface2:#0e1f42;--border:rgba(100,149,237,.15);--border2:rgba(100,149,237,.28);--gold:#f5be0b;--gold-dim:rgba(245,190,11,.12);--gold-glow:rgba(245,190,11,.25);--red:#c0392b;--red-dim:rgba(192,57,43,.15);--blue:#4a90d9;--blue-light:#7ab3e8;--blue-dim:rgba(74,144,217,.12);--text:#e8edf8;--muted:rgba(180,200,240,.55);--fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden}
+.geo-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.geo-bg svg{width:100%;height:100%;opacity:.035}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;background:rgba(4,9,26,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--fd);font-size:1.1rem;font-weight:800;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-back{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
+.nav-back:hover{color:var(--gold)}
+.lang-switcher{display:flex;gap:.55rem}
+.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
+.lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
+main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:0 auto}
+.proj-hero{padding:4rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:4rem}
+.proj-num{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.proj-hero-title{font-family:var(--fd);font-size:clamp(2rem,5vw,4rem);font-weight:800;letter-spacing:-.04em;line-height:.95;margin-bottom:1.5rem}
+.proj-hero-title em{font-style:normal;color:var(--gold)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.tag{font-family:var(--fm);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .78rem;border:1px solid var(--border2);color:var(--blue-light)}
+.proj-meta{display:flex;gap:3rem;flex-wrap:wrap}
+.meta-item{display:flex;flex-direction:column;gap:.3rem}
+.meta-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.meta-value{font-family:var(--fd);font-size:.9rem;font-weight:600}
+.proj-body{display:flex;flex-direction:column;gap:3.5rem}
+.block-tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.block-title{font-family:var(--fd);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;margin-bottom:1.25rem;line-height:1.05}
+.block-text{font-size:.92rem;line-height:1.9;color:var(--text);opacity:.82}
+.block-text p+p{margin-top:1.1rem}
+.block-text strong{color:var(--gold);font-weight:600}
+.block-text ul{margin-top:.75rem;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.block-text ul li{padding-left:1.25rem;position:relative;font-size:.88rem;opacity:.82}
+.block-text ul li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:.68rem;top:.22rem}
+.divider{height:1px;background:linear-gradient(90deg,var(--gold) 0%,var(--blue) 40%,transparent 100%);opacity:.3}
+.screenshot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem}
+.screenshot-card{background:var(--surface);border:1px solid var(--border2);overflow:hidden}
+.screenshot-card:hover{border-color:rgba(245,190,11,.4)}
+.screenshot-frame{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;overflow:hidden}
+.screenshot-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.screenshot-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;padding:1.5rem;text-align:center;width:100%;height:100%}
+.screenshot-ph svg{width:32px;height:32px;stroke:var(--blue-light);fill:none;stroke-width:1.2;opacity:.6}
+.screenshot-ph-txt{font-family:var(--fm);font-size:.6rem;letter-spacing:.07em;color:var(--muted);line-height:1.6}
+.screenshot-caption{padding:.75rem 1rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border)}
+.video-wrap{position:relative;width:100%;padding-bottom:56.25%;background:var(--surface);border:1.5px solid var(--border2);overflow:hidden;margin-top:1.5rem}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:var(--surface2)}
+.video-play{width:60px;height:60px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center}
+.video-play::after{content:'';border-left:20px solid #0a0a0a;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.video-cap{font-family:var(--fm);font-size:.65rem;color:var(--muted);text-align:center;letter-spacing:.06em;line-height:1.65;padding:0 2rem}
+.cta-block{background:var(--bg3);border:1px solid var(--border2);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-title{font-family:var(--fd);font-size:1.2rem;font-weight:700;margin-bottom:.4rem}
+.cta-sub{font-family:var(--fm);font-size:.72rem;color:var(--muted)}
+.btn-gold{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:#0a0a0a;padding:.8rem 1.75rem;font-family:var(--fd);font-weight:700;font-size:.85rem;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--gold-glow)}
+.btn-outline{display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid var(--border2);color:var(--blue-light);padding:.78rem 1.5rem;font-family:var(--fd);font-weight:600;font-size:.85rem;text-decoration:none;transition:border-color .25s,color .25s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.proj-nav{display:flex;justify-content:space-between;align-items:center;padding:2.5rem 0;border-top:1px solid var(--border);margin-top:4rem}
+.pnav-link{font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
+.pnav-link:hover{color:var(--gold)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:1rem 1.25rem}main{padding:6rem 1.25rem 3rem}.cta-block{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="geo-bg">
+<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#4a90d9" stroke-width="0.5" fill="none" opacity="0.8">
+    <line x1="0" y1="150" x2="1440" y2="150"/><line x1="0" y1="300" x2="1440" y2="300"/>
+    <line x1="0" y1="450" x2="1440" y2="450"/><line x1="0" y1="600" x2="1440" y2="600"/>
+    <line x1="180" y1="0" x2="180" y2="900"/><line x1="360" y1="0" x2="360" y2="900"/>
+    <line x1="720" y1="0" x2="720" y2="900"/><line x1="1080" y1="0" x2="1080" y2="900"/>
+  </g>
+  <g stroke="#c0392b" stroke-width="0.6" fill="none" opacity="0.3">
+    <polygon points="200,200 230,183 260,200 260,234 230,251 200,234"/>
+    <polygon points="1100,500 1130,483 1160,500 1160,534 1130,551 1100,534"/>
+  </g>
+</svg>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">GC<span>.</span></a>
+  <a href="index.html#projects" class="nav-back">← <span data-i18n="back">Voltar aos projetos</span></a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português">🇧🇷</button>
+    <button class="lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+  </div>
+</nav>
+
+<main>
+  <div class="proj-hero reveal">
+    <div class="proj-num">03 — Tributação · Reforma Fiscal · Macroeconomia</div>
+    <h1 class="proj-hero-title" data-i18n="title">O <em>Sistema Tributário</em> Brasileiro —<br>Impactos e Transição Pós-Reforma</h1>
+    <div class="proj-tags">
+      <span class="tag">Tributação</span><span class="tag">Reforma Fiscal</span>
+      <span class="tag">Macroeconomia</span><span class="tag">Planejamento Fiscal</span><span class="tag">Direito Tributário</span>
+    </div>
+    <div class="proj-meta">
+      <div class="meta-item"><span class="meta-label" data-i18n="ml_area">Área</span><span class="meta-value" data-i18n="mv_area">Economia Fiscal · Tributação</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="ml_type">Tipo</span><span class="meta-value" data-i18n="mv_type">Análise · Apresentação</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="ml_status">Status</span><span class="meta-value" style="color:var(--gold)" data-i18n="mv_status">Concluído</span></div>
+    </div>
+  </div>
+
+  <div class="proj-body">
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s1_tag">Contexto e Objetivo</div>
+      <div class="block-text">
+        <p data-i18n="s1_p1">A Reforma Tributária brasileira aprovada em 2023 representa a maior mudança no sistema fiscal do país em décadas. Este trabalho apresenta uma análise aprofundada do sistema tributário pré-reforma, os principais pontos da mudança e os impactos esperados para empresas e para a economia como um todo.</p>
+        <p data-i18n="s1_p2">O objetivo é fornecer uma visão clara e técnica sobre o processo de transição, o novo modelo de tributação sobre o consumo e as estratégias de planejamento fiscal no cenário pós-reforma.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s2_tag">Temas Abordados</div>
+      <div class="block-title" data-i18n="s2_title">Estrutura da Análise</div>
+      <div class="block-text">
+        <ul>
+          <li data-i18n="s2_li1"><strong>O sistema tributário pré-reforma:</strong> complexidade, cumulatividade e principais distorções do modelo brasileiro.</li>
+          <li data-i18n="s2_li2"><strong>Principais pontos da Reforma:</strong> criação do IBS, CBS e IS; extinção de PIS, Cofins, IPI, ICMS e ISS.</li>
+          <li data-i18n="s2_li3"><strong>Período de transição (2026–2033):</strong> coexistência dos sistemas e estratégias para empresas durante a migração.</li>
+          <li data-i18n="s2_li4"><strong>Impactos setoriais:</strong> análise diferenciada para indústria, comércio, serviços e agronegócio.</li>
+          <li data-i18n="s2_li5"><strong>Planejamento tributário pós-reforma:</strong> oportunidades e desafios para pessoas jurídicas e físicas.</li>
+          <li data-i18n="s2_li6"><strong>Perspectivas macroeconômicas:</strong> impacto esperado na competitividade, investimento e crescimento do PIB.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s3_tag">Capturas de Tela</div>
+      <div class="block-title" data-i18n="s3_title">Slides da Apresentação</div>
+      <p class="block-text" style="margin-bottom:0" data-i18n="s3_p">Adicione prints dos seus slides ou materiais visuais da apresentação abaixo.</p>
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <!-- <img src="trib1.png" alt="Slide principal"> -->
+            <div class="screenshot-ph">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <div class="screenshot-ph-txt" data-i18n="ph1">Slide 1: Capa / Introdução<br>&lt;img src="trib1.png"&gt;</div>
+            </div>
+          </div>
+          <div class="screenshot-caption" data-i18n="cap1">Slide de abertura — contexto da reforma</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <!-- <img src="trib2.png" alt="Estrutura tributária"> -->
+            <div class="screenshot-ph">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <div class="screenshot-ph-txt" data-i18n="ph2">Slide 2: Estrutura tributária<br>&lt;img src="trib2.png"&gt;</div>
+            </div>
+          </div>
+          <div class="screenshot-caption" data-i18n="cap2">Novo modelo — IBS, CBS e IS</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-frame">
+            <!-- <img src="trib3.png" alt="Impactos setoriais"> -->
+            <div class="screenshot-ph">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <div class="screenshot-ph-txt" data-i18n="ph3">Slide 3: Impactos setoriais<br>&lt;img src="trib3.png"&gt;</div>
+            </div>
+          </div>
+          <div class="screenshot-caption" data-i18n="cap3">Análise de impacto por setor</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block reveal">
+      <div class="block-tag" data-i18n="s4_tag">Apresentação em Vídeo</div>
+      <div class="block-title" data-i18n="s4_title">Assista à apresentação</div>
+      <div class="video-wrap">
+        <!-- <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" allowfullscreen></iframe> -->
+        <div class="video-ph">
+          <div class="video-play"></div>
+          <div class="video-cap" data-i18n="vid_cap">Adicione o vídeo da apresentação. Substitua pela tag iframe com o ID do seu vídeo no YouTube.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="cta-block reveal">
+      <div class="cta-text">
+        <div class="cta-title" data-i18n="cta_title">Acesse o material completo</div>
+        <div class="cta-sub" data-i18n="cta_sub">Slides em PDF e material de apoio disponíveis no repositório do GitHub.</div>
+      </div>
+      <div class="cta-btns">
+        <a href="https://github.com/gabrielcostaeco" target="_blank" class="btn-gold" data-i18n="cta_dl">⬇ Download no GitHub</a>
+        <a href="index.html#projects" class="btn-outline" data-i18n="cta_back">← Voltar</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="proj-nav">
+    <a href="projeto2.html" class="pnav-link">← <span data-i18n="nav_prev">Projeto anterior</span></a>
+    <a href="index.html#projects" class="pnav-link"><span data-i18n="nav_all">Todos os projetos</span> →</a>
+  </div>
+</main>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}}),{threshold:.06});
+reveals.forEach(el=>io.observe(el));
+const T={
+pt:{back:'Voltar aos projetos',title:'O <em>Sistema Tributário</em> Brasileiro —<br>Impactos e Transição Pós-Reforma',
+ml_area:'Área',mv_area:'Economia Fiscal · Tributação',ml_type:'Tipo',mv_type:'Análise · Apresentação',ml_status:'Status',mv_status:'Concluído',
+s1_tag:'Contexto e Objetivo',
+s1_p1:'A Reforma Tributária brasileira aprovada em 2023 representa a maior mudança no sistema fiscal do país em décadas. Este trabalho apresenta uma análise aprofundada do sistema pré-reforma, os principais pontos da mudança e os impactos esperados para empresas e para a economia.',
+s1_p2:'O objetivo é fornecer uma visão clara e técnica sobre o processo de transição, o novo modelo de tributação sobre o consumo e as estratégias de planejamento fiscal no cenário pós-reforma.',
+s2_tag:'Temas Abordados',s2_title:'Estrutura da Análise',
+s2_li1:'<strong>O sistema tributário pré-reforma:</strong> complexidade, cumulatividade e principais distorções do modelo brasileiro.',
+s2_li2:'<strong>Principais pontos da Reforma:</strong> criação do IBS, CBS e IS; extinção de PIS, Cofins, IPI, ICMS e ISS.',
+s2_li3:'<strong>Período de transição (2026–2033):</strong> coexistência dos sistemas e estratégias durante a migração.',
+s2_li4:'<strong>Impactos setoriais:</strong> análise diferenciada para indústria, comércio, serviços e agronegócio.',
+s2_li5:'<strong>Planejamento tributário pós-reforma:</strong> oportunidades e desafios para pessoas jurídicas e físicas.',
+s2_li6:'<strong>Perspectivas macroeconômicas:</strong> impacto esperado na competitividade, investimento e crescimento do PIB.',
+s3_tag:'Capturas de Tela',s3_title:'Slides da Apresentação',s3_p:'Adicione prints dos seus slides ou materiais visuais da apresentação abaixo.',
+ph1:'Slide 1: Capa / Introdução<br>&lt;img src="trib1.png"&gt;',cap1:'Slide de abertura — contexto da reforma',
+ph2:'Slide 2: Estrutura tributária<br>&lt;img src="trib2.png"&gt;',cap2:'Novo modelo — IBS, CBS e IS',
+ph3:'Slide 3: Impactos setoriais<br>&lt;img src="trib3.png"&gt;',cap3:'Análise de impacto por setor',
+s4_tag:'Apresentação em Vídeo',s4_title:'Assista à apresentação',
+vid_cap:'Adicione o vídeo da apresentação. Substitua pela tag iframe com o ID do seu vídeo no YouTube.',
+cta_title:'Acesse o material completo',cta_sub:'Slides em PDF e material de apoio disponíveis no repositório do GitHub.',
+cta_dl:'⬇ Download no GitHub',cta_back:'← Voltar',nav_prev:'Projeto anterior',nav_all:'Todos os projetos'},
+en:{back:'Back to projects',title:'The Brazilian <em>Tax System</em> —<br>Impacts and Post-Reform Transition',
+ml_area:'Area',mv_area:'Fiscal Economics · Taxation',ml_type:'Type',mv_type:'Analysis · Presentation',ml_status:'Status',mv_status:'Completed',
+s1_tag:'Context and Objective',
+s1_p1:'The Brazilian Tax Reform approved in 2023 represents the largest change to the country\'s fiscal system in decades. This work presents an in-depth analysis of the pre-reform system, the key changes and expected impacts for businesses and the broader economy.',
+s1_p2:'The objective is to provide a clear, technical view of the transition process, the new consumption tax model and fiscal planning strategies in the post-reform scenario.',
+s2_tag:'Topics Covered',s2_title:'Analysis Structure',
+s2_li1:'<strong>Pre-reform tax system:</strong> complexity, cascading effects and key distortions of the Brazilian model.',
+s2_li2:'<strong>Key reform points:</strong> creation of IBS, CBS and IS; abolition of PIS, Cofins, IPI, ICMS and ISS.',
+s2_li3:'<strong>Transition period (2026–2033):</strong> coexistence of systems and business strategies during migration.',
+s2_li4:'<strong>Sectoral impacts:</strong> differentiated analysis for industry, commerce, services and agribusiness.',
+s2_li5:'<strong>Post-reform tax planning:</strong> opportunities and challenges for legal entities and individuals.',
+s2_li6:'<strong>Macroeconomic perspectives:</strong> expected impact on competitiveness, investment and GDP growth.',
+s3_tag:'Screenshots',s3_title:'Presentation Slides',s3_p:'Add screenshots of your slides or visual materials below.',
+ph1:'Slide 1: Cover / Introduction<br>&lt;img src="trib1.png"&gt;',cap1:'Opening slide — reform context',
+ph2:'Slide 2: Tax structure<br>&lt;img src="trib2.png"&gt;',cap2:'New model — IBS, CBS and IS',
+ph3:'Slide 3: Sectoral impacts<br>&lt;img src="trib3.png"&gt;',cap3:'Impact analysis by sector',
+s4_tag:'Video Presentation',s4_title:'Watch the presentation',
+vid_cap:'Add the presentation video. Replace with an iframe with your YouTube video ID.',
+cta_title:'Access the full material',cta_sub:'PDF slides and support material available on GitHub.',
+cta_dl:'⬇ Download on GitHub',cta_back:'← Back',nav_prev:'Previous project',nav_all:'All projects'},
+es:{back:'Volver a proyectos',title:'El <em>Sistema Tributario</em> Brasileño —<br>Impactos y Transición Post-Reforma',
+ml_area:'Área',mv_area:'Economía Fiscal · Tributación',ml_type:'Tipo',mv_type:'Análisis · Presentación',ml_status:'Estado',mv_status:'Completado',
+s1_tag:'Contexto y Objetivo',
+s1_p1:'La Reforma Tributaria brasileña aprobada en 2023 representa el mayor cambio en el sistema fiscal del país en décadas. Este trabajo presenta un análisis profundo del sistema prerreforma, los principales cambios y los impactos esperados para empresas y la economía.',
+s1_p2:'El objetivo es ofrecer una visión clara y técnica del proceso de transición, el nuevo modelo de tributación al consumo y las estrategias de planificación fiscal en el escenario posreforma.',
+s2_tag:'Temas Tratados',s2_title:'Estructura del Análisis',
+s2_li1:'<strong>Sistema tributario prerreforma:</strong> complejidad, acumulación y principales distorsiones del modelo brasileño.',
+s2_li2:'<strong>Puntos clave de la Reforma:</strong> creación del IBS, CBS e IS; extinción de PIS, Cofins, IPI, ICMS e ISS.',
+s2_li3:'<strong>Período de transición (2026–2033):</strong> coexistencia de sistemas y estrategias durante la migración.',
+s2_li4:'<strong>Impactos sectoriales:</strong> análisis diferenciado para industria, comercio, servicios y agronegocios.',
+s2_li5:'<strong>Planificación tributaria posreforma:</strong> oportunidades y desafíos para personas jurídicas y físicas.',
+s2_li6:'<strong>Perspectivas macroeconómicas:</strong> impacto esperado en competitividad, inversión y crecimiento del PIB.',
+s3_tag:'Capturas de Pantalla',s3_title:'Diapositivas de la Presentación',s3_p:'Agrega capturas de tus diapositivas o materiales visuales abajo.',
+ph1:'Diapositiva 1: Portada / Introducción<br>&lt;img src="trib1.png"&gt;',cap1:'Diapositiva de apertura — contexto de la reforma',
+ph2:'Diapositiva 2: Estructura tributaria<br>&lt;img src="trib2.png"&gt;',cap2:'Nuevo modelo — IBS, CBS e IS',
+ph3:'Diapositiva 3: Impactos sectoriales<br>&lt;img src="trib3.png"&gt;',cap3:'Análisis de impacto por sector',
+s4_tag:'Presentación en Video',s4_title:'Mira la presentación',
+vid_cap:'Agrega el video de la presentación. Reemplaza con el iframe con tu ID de YouTube.',
+cta_title:'Accede al material completo',cta_sub:'Slides en PDF y material de apoyo disponibles en GitHub.',
+cta_dl:'⬇ Descargar en GitHub',cta_back:'← Volver',nav_prev:'Proyecto anterior',nav_all:'Todos los proyectos'}
+};
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
+  const t=T[l];document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
+}
+</script>
+</body>
+</html>
