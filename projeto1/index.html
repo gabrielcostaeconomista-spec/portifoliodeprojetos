@@ -260,28 +260,61 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
   <div class="banks-strip reveal">
     <div class="banks-track" id="banksTrack">
       <!-- duplicado para loop contínuo -->
-      <div class="bank-logo-item"><img src="bb.jpeg"        alt="Banco do Brasil"></div>
-      <div class="bank-logo-item"><img src="itau.jpg"       alt="Itaú Unibanco"></div>
-      <div class="bank-logo-item"><img src="bradesco.jpg"   alt="Bradesco"></div>
-      <div class="bank-logo-item"><img src="santander.png"  alt="Santander Brasil"></div>
-      <div class="bank-logo-item"><img src="btg.png"        alt="BTG Pactual"></div>
-      <div class="bank-logo-item"><img src="nubank.png"     alt="Nubank"></div>
-      <div class="bank-logo-item"><img src="inter.jpg"      alt="Banco Inter"></div>
-      <div class="bank-logo-item"><img src="bmg.JPG"        alt="Banco BMG"></div>
-      <div class="bank-logo-item"><img src="xp.jpg"         alt="XP Inc."></div>
-      <div class="bank-logo-item"><img src="mercantil.png"  alt="Banco Mercantil"></div>
+      <div class="bank-logo-item"><img src="icons/bb.jpeg"        alt="Banco do Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/itau.jpg"       alt="Itaú Unibanco"></div>
+      <div class="bank-logo-item"><img src="icons/bradesco.jpg"   alt="Bradesco"></div>
+      <div class="bank-logo-item"><img src="icons/santander.png"  alt="Santander Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/btg.png"        alt="BTG Pactual"></div>
+      <div class="bank-logo-item"><img src="icons/nubank.png"     alt="Nubank"></div>
+      <div class="bank-logo-item"><img src="icons/inter.jpg"      alt="Banco Inter"></div>
+      <div class="bank-logo-item"><img src="icons/bmg.JPG"        alt="Banco BMG"></div>
+      <div class="bank-logo-item"><img src="icons/xp.jpg"         alt="XP Inc."></div>
+      <div class="bank-logo-item"><img src="icons/mercantil.png"  alt="Banco Mercantil"></div>
       <!-- Duplicado para animação contínua -->
-      <div class="bank-logo-item"><img src="bb.jpeg"        alt="Banco do Brasil"></div>
-      <div class="bank-logo-item"><img src="itau.jpg"       alt="Itaú Unibanco"></div>
-      <div class="bank-logo-item"><img src="bradesco.jpg"   alt="Bradesco"></div>
-      <div class="bank-logo-item"><img src="santander.png"  alt="Santander Brasil"></div>
-      <div class="bank-logo-item"><img src="btg.png"        alt="BTG Pactual"></div>
-      <div class="bank-logo-item"><img src="nubank.png"     alt="Nubank"></div>
-      <div class="bank-logo-item"><img src="inter.jpg"      alt="Banco Inter"></div>
-      <div class="bank-logo-item"><img src="bmg.JPG"        alt="Banco BMG"></div>
-      <div class="bank-logo-item"><img src="xp.jpg"         alt="XP Inc."></div>
-      <div class="bank-logo-item"><img src="mercantil.png"  alt="Banco Mercantil"></div>
+      <div class="bank-logo-item"><img src="icons/bb.jpeg"        alt="Banco do Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/itau.jpg"       alt="Itaú Unibanco"></div>
+      <div class="bank-logo-item"><img src="icons/bradesco.jpg"   alt="Bradesco"></div>
+      <div class="bank-logo-item"><img src="icons/santander.png"  alt="Santander Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/btg.png"        alt="BTG Pactual"></div>
+      <div class="bank-logo-item"><img src="icons/nubank.png"     alt="Nubank"></div>
+      <div class="bank-logo-item"><img src="icons/inter.jpg"      alt="Banco Inter"></div>
+      <div class="bank-logo-item"><img src="icons/bmg.JPG"        alt="Banco BMG"></div>
+      <div class="bank-logo-item"><img src="icons/xp.jpg"         alt="XP Inc."></div>
+      <div class="bank-logo-item"><img src="icons/mercantil.png"  alt="Banco Mercantil"></div>
     </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── TELAS DO DASHBOARD ─── -->
+  <div class="section-block reveal">
+    <div class="block-tag">Telas do Dashboard</div>
+    <div class="block-title">Navegue pelas telas</div>
+    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
+      4 telas com navegação intuitiva. Use as setas ou clique nos pontos para navegar.
+    </p>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carTrack">
+        <div class="carousel-slide">
+          <img src="presentations/0.%20Capa.JPG" alt="Tela 0 — Capa do dashboard">
+        </div>
+        <div class="carousel-slide">
+          <img src="presentations/Tela%201%20-%20Retornos.JPG" alt="Tela 1 — Retornos">
+        </div>
+        <div class="carousel-slide">
+          <img src="presentations/Tela%202.%20Carteira.JPG" alt="Tela 2 — Carteira">
+        </div>
+        <div class="carousel-slide">
+          <img src="presentations/Tela%203%20-%20Riscos.JPG" alt="Tela 3 — Riscos">
+        </div>
+      </div>
+      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
+      <div class="carousel-counter" id="carCounter">1 / 4</div>
+    </div>
+    <div class="carousel-dots" id="carDots"></div>
+    <div class="slide-label" id="slideLabel">Tela 0 — Capa: Visão geral e introdução ao projeto</div>
   </div>
 
   <div class="divider"></div>
@@ -499,39 +532,6 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <div class="divider"></div>
 
-  <!-- ─── TELAS DO DASHBOARD ─── -->
-  <div class="section-block reveal">
-    <div class="block-tag">Telas do Dashboard</div>
-    <div class="block-title">Navegue pelas telas</div>
-    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
-      4 telas com navegação intuitiva. Use as setas ou clique nos pontos para navegar.
-    </p>
-
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carTrack">
-        <div class="carousel-slide">
-          <img src="Capa.png" alt="Tela 0 — Capa do dashboard">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%201%20-%20Retornos.png" alt="Tela 1 — Retornos">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%202.%20Carteira.png" alt="Tela 2 — Carteira">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%203%20-%20Riscos.png" alt="Tela 3 — Riscos">
-        </div>
-      </div>
-      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
-      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
-      <div class="carousel-counter" id="carCounter">1 / 4</div>
-    </div>
-    <div class="carousel-dots" id="carDots"></div>
-    <div class="slide-label" id="slideLabel">Tela 0 — Capa: Visão geral e introdução ao projeto</div>
-  </div>
-
-  <div class="divider"></div>
-
   <!-- ─── DESAFIOS ─── -->
   <div class="section-block reveal">
     <div class="block-tag">Bastidores</div>
@@ -597,7 +597,7 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
         Substitua o href pelo link RAR direto no GitHub:
         https://github.com/gabrielcostaeco/REPO/releases/download/v1.0/dashboard_brbanksperformance.rar
       -->
-      <a href="https://github.com/gabrielcostaeco" target="_blank" class="btn-gold">
+      <a href="files/Dashboard-bancos.rar" download class="btn-gold">
         ⬇ Download completo (.rar)
       </a>
       <a href="index.html#projects" class="btn-back">← Voltar aos projetos</a>
