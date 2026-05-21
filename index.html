@@ -14,17 +14,17 @@
   --border:rgba(100,149,237,.15);--border2:rgba(100,149,237,.28);
   --gold:#f5be0b;--gold-dim:rgba(245,190,11,.12);--gold-glow:rgba(245,190,11,.25);
   --red:#c0392b;--red-dim:rgba(192,57,43,.15);
+  --green:#22c55e;--green-dim:rgba(34,197,94,.13);
   --blue:#4a90d9;--blue-light:#7ab3e8;--blue-dim:rgba(74,144,217,.12);
   --text:#e8edf8;--muted:rgba(180,200,240,.55);
   --fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
-#cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-#cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid var(--blue);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s,border-color .25s}
-body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:54px;height:54px;border-color:var(--gold);opacity:.7}
 
-/* ── GEO BG ── */
+#cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cursor-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid var(--blue);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s}
+body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:54px;height:54px;border-color:var(--gold);opacity:.7}
 .geo-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .geo-bg svg{width:100%;height:100%;opacity:.04}
 
@@ -34,21 +34,23 @@ nav.scrolled{background:rgba(4,9,26,.92);backdrop-filter:blur(14px);border-color
 .nav-logo{font-family:var(--fd);font-size:1.2rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.01em}
 .nav-logo span{color:var(--gold)}
 .nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
-.nav-links a:hover{color:var(--gold)}
-.lang-switcher{display:flex;gap:.55rem;align-items:center}
-.lang-btn{
-  width:32px;height:32px;border-radius:50%;border:2px solid transparent;
-  background:var(--surface);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;transition:border-color .25s,transform .2s,box-shadow .25s;
-  padding:0;font-size:1.25rem;line-height:1;
+.nav-links a{
+  font-family:var(--fm);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  padding:.4rem .85rem;border-radius:4px;
+  transition:color .2s,background .2s;
 }
+.nav-links a:hover,.nav-links a.active{color:#0a0a0a;background:var(--gold)}
+.lang-switcher{display:flex;gap:.55rem;align-items:center}
+.lang-label{font-family:var(--fm);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:.25rem;white-space:nowrap}
+.lang-btn{width:34px;height:34px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .25s,transform .2s,box-shadow .25s;padding:0;font-size:1.3rem;line-height:1}
+.lang-btn img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.lang-btn span{display:block;line-height:1;pointer-events:none}
 .lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
 .lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 
 /* ── HERO ── */
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 400px;align-items:center;padding:9rem 4rem 5rem;position:relative;z-index:1;gap:4rem}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 420px;align-items:center;padding:9rem 4rem 5rem;position:relative;z-index:1;gap:4rem}
 .hero-eyebrow{font-family:var(--fm);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.75rem}
 .hero-eyebrow::before{content:'';display:block;width:2.5rem;height:1px;background:var(--gold)}
 .hero-name{font-family:var(--fd);font-size:clamp(3.5rem,7vw,7rem);font-weight:800;line-height:.92;letter-spacing:-.04em;margin-bottom:1.25rem}
@@ -60,25 +62,20 @@ nav.scrolled{background:rgba(4,9,26,.92);backdrop-filter:blur(14px);border-color
 .hci:hover{color:var(--gold)}
 .ico{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;flex-shrink:0}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:#0a0a0a;padding:.75rem 1.75rem;font-family:var(--fd);font-weight:700;font-size:.85rem;letter-spacing:.02em;text-decoration:none;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer}
+.btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:#0a0a0a;padding:.75rem 1.75rem;font-family:var(--fd);font-weight:700;font-size:.85rem;text-decoration:none;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer}
 .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--gold-glow)}
 .btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid var(--border2);color:var(--blue-light);padding:.73rem 1.5rem;font-family:var(--fd);font-weight:600;font-size:.85rem;text-decoration:none;transition:border-color .25s,color .25s,background .25s}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 
-/* photo frame hero */
+/* Hero photo — circular artwork */
 .hero-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
-.photo-frame{width:310px;height:370px;position:relative}
-.pf-corners::before,.pf-corners::after{content:'';position:absolute;width:22px;height:22px;border-color:var(--gold);border-style:solid}
-.pf-corners::before{top:-2px;left:-2px;border-width:2px 0 0 2px}
-.pf-corners::after{bottom:-2px;right:-2px;border-width:0 2px 2px 0}
-.pf-corner2::before,.pf-corner2::after{content:'';position:absolute;width:22px;height:22px;border-color:var(--gold);border-style:solid}
-.pf-corner2::before{top:-2px;right:-2px;border-width:2px 2px 0 0}
-.pf-corner2::after{bottom:-2px;left:-2px;border-width:0 0 2px 2px}
-.photo-inner{width:100%;height:100%;background:linear-gradient(160deg,var(--surface2) 0%,var(--bg3) 100%);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;overflow:hidden;position:relative}
-.photo-inner img{width:100%;height:100%;object-fit:cover;display:block}
-.photo-ph-icon{width:60px;height:60px;border-radius:50%;background:var(--blue-dim);border:1.5px dashed var(--border2);display:flex;align-items:center;justify-content:center}
-.photo-ph-icon svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.5}
-.photo-ph-txt{font-family:var(--fm);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center;padding:0 1.25rem;line-height:1.7}
+.hero-circle{
+  width:380px;height:380px;
+  border-radius:50%;overflow:hidden;
+  background:var(--bg);
+  flex-shrink:0;
+}
+.hero-circle img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-badge{font-family:var(--fm);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
 .dot-pulse{width:8px;height:8px;background:#4ade80;border-radius:50%;position:relative;flex-shrink:0}
 .dot-pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid #4ade80;animation:pulse 2s ease-out infinite}
@@ -99,8 +96,7 @@ section{padding:7rem 4rem;position:relative;z-index:1}
 
 /* ── ABOUT ── */
 #about{background:var(--bg2)}
-/* 3-column: text | photo | video */
-.about-grid{display:grid;grid-template-columns:1fr 220px 1fr;gap:3.5rem;align-items:start}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
 .about-text{font-size:.92rem;line-height:1.9;color:var(--text)}
 .about-text p{opacity:.85}
 .about-text p+p{margin-top:1.2rem}
@@ -109,27 +105,16 @@ section{padding:7rem 4rem;position:relative;z-index:1}
 .about-highlight{margin-top:1.75rem;padding:1.1rem 1.4rem;background:var(--red-dim);border-left:3px solid var(--red);font-family:var(--fm);font-size:.76rem;color:var(--text);line-height:1.75}
 .about-highlight strong{color:#e87065;font-weight:600}
 .about-wip{margin-top:1.25rem;font-size:.78rem;color:var(--muted);font-family:var(--fm);line-height:1.7}
-
-/* photo in about */
-.about-photo{display:flex;flex-direction:column;align-items:center;gap:1rem;position:sticky;top:7rem}
-.about-photo-frame{width:200px;height:260px;position:relative;flex-shrink:0}
-.about-photo-frame .pf-corners,.about-photo-frame .pf-corner2{position:absolute;inset:0;pointer-events:none}
-.about-photo-inner{width:100%;height:100%;background:linear-gradient(160deg,var(--surface2),var(--bg3));border:1px solid var(--border2);overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem}
-.about-photo-inner img{width:100%;height:100%;object-fit:cover;display:block}
-.about-photo-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center}
-
-/* video */
-.video-block{display:flex;flex-direction:column;gap:.9rem}
-.video-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
-.video-frame{position:relative;width:100%;padding-bottom:56.25%;background:var(--surface);border:1.5px solid var(--border2);overflow:hidden}
-.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
-.video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;background:var(--surface2)}
-.video-play{width:52px;height:52px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.video-play::after{content:'';border-left:17px solid #0a0a0a;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
-.video-cap{font-family:var(--fm);font-size:.6rem;color:var(--muted);text-align:center;letter-spacing:.05em;line-height:1.65;padding:0 .75rem}
-
-/* skills */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2.5rem;border:1px solid var(--border)}
+/* Right col: skills + video */
+.about-right{display:flex;flex-direction:column;gap:2rem}
+.skill-cat-hdr{
+  grid-column:1/-1;
+  font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);padding:.55rem 1.1rem;
+  background:var(--surface2);border-bottom:1px solid var(--border);
+  border-top:1px solid var(--border);
+}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
 .skill-row{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:background .25s}
 .skill-row:hover{background:var(--surface2)}
 .skill-name{font-family:var(--fd);font-size:.85rem;font-weight:600}
@@ -137,34 +122,100 @@ section{padding:7rem 4rem;position:relative;z-index:1}
 .sll{font-family:var(--fm);font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--gold)}
 .skill-bar{width:48px;height:2px;background:var(--border);position:relative}
 .skill-bar::after{content:'';position:absolute;left:0;top:0;height:100%;background:var(--gold);width:var(--w,0%);transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+/* Video */
+.video-block{display:flex;flex-direction:column;gap:.75rem}
+.video-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.video-frame{position:relative;width:100%;padding-bottom:62%;background:var(--surface);border:1.5px solid var(--border2);overflow:hidden}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;background:var(--surface2)}
+.video-play{width:56px;height:56px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.video-play::after{content:'';border-left:19px solid #0a0a0a;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.video-cap{font-family:var(--fm);font-size:.6rem;color:var(--muted);text-align:center;letter-spacing:.05em;line-height:1.65;padding:0 .75rem}
 
 /* ── PROJECTS ── */
 #projects{background:var(--bg3)}
-.projects-list{display:flex;flex-direction:column;gap:2px;background:var(--border)}
-.project-card{background:var(--bg);padding:3rem;transition:background .3s;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit}
-.project-card:hover{background:var(--surface)}
-.project-card:hover .proj-arrow{transform:translate(5px,-5px)}
-.project-card:hover .proj-bar{transform:scaleX(1)}
-.project-card:hover .tool-tag{border-color:rgba(245,190,11,.4);color:var(--gold)}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
+
+/* Card base */
+.pcard{
+  background:var(--bg);padding:2rem 2.25rem 1.75rem;
+  position:relative;overflow:hidden;
+  text-decoration:none;color:inherit;display:block;
+  transition:background .3s;
+}
+.pcard:hover{background:var(--surface)}
+.pcard:hover .proj-bar{transform:scaleX(1)}
+.pcard:hover .pcard-cta-arrow{transform:translateX(5px)}
+.pcard.locked{pointer-events:none;opacity:.72}
+.pcard-full{grid-column:1/-1}
 .proj-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,1,.36,1)}
-.proj-num{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
-.proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.1rem;gap:2rem}
-.proj-title{font-family:var(--fd);font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.05}
-.proj-arrow{font-size:1.4rem;color:var(--gold);transition:transform .25s;flex-shrink:0;margin-top:.2rem}
-.proj-desc{font-size:.88rem;line-height:1.85;color:var(--text);opacity:.75;margin-bottom:1.25rem}
-.proj-tools{display:flex;flex-wrap:wrap;gap:.45rem}
-.tool-tag{font-family:var(--fm);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .72rem;border:1px solid var(--border2);color:var(--muted);transition:border-color .25s,color .25s}
-.proj-cta{margin-top:1.5rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-light);display:flex;align-items:center;gap:.5rem}
-.proj-cta::after{content:'→';transition:transform .25s}
-.project-card:hover .proj-cta::after{transform:translateX(4px)}
+
+/* Top row */
+.pcard-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.85rem;flex-wrap:wrap}
+.pcard-num{font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pcard-top-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.pcard-icons{display:flex;gap:.4rem;align-items:center}
+.pcard-icons img{height:18px;width:auto;filter:brightness(0) invert(1);opacity:.55;transition:opacity .2s}
+.pcard:hover .pcard-icons img{opacity:.9}
+
+/* Title */
+.pcard-title{font-family:var(--fd);font-size:1.2rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:1.25rem}
+
+/* Body: text + carousel side by side */
+.pcard-body{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
+.pcard-text p{font-size:.82rem;line-height:1.8;color:var(--text);opacity:.75;margin-bottom:1rem}
+.pcard-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.tool-tag{font-family:var(--fm);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .65rem;border:1px solid var(--border2);color:var(--muted);transition:border-color .25s,color .25s}
+.pcard:hover .tool-tag{border-color:rgba(245,190,11,.4);color:var(--gold)}
+
+/* Mini carousel */
+.mini-carousel{position:relative;overflow:hidden;border:1px solid var(--border2);background:var(--surface2);border-radius:4px}
+.mc-track{display:flex;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.mc-slide{min-width:100%;aspect-ratio:16/10;overflow:hidden}
+.mc-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.mc-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:28px;height:28px;background:rgba(4,9,26,.8);
+  border:1px solid var(--border2);color:var(--gold);
+  font-size:.85rem;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s;z-index:5;padding:0;
+}
+.mc-btn:hover{background:var(--gold);color:#0a0a0a}
+.mc-prev{left:.35rem}.mc-next{right:.35rem}
+.mc-counter{
+  position:absolute;bottom:.4rem;right:.5rem;
+  font-family:var(--fm);font-size:.55rem;letter-spacing:.06em;
+  color:var(--text);background:rgba(4,9,26,.75);padding:.15rem .45rem;
+}
+
+/* Footer */
+.pcard-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.pcard-cta{
+  font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.55rem 1.25rem;
+  background:transparent;border:1.5px solid var(--border2);
+  color:var(--blue-light);
+  transition:background .2s,color .2s,border-color .2s;
+}
+.pcard:hover .pcard-cta{background:var(--gold);color:#0a0a0a;border-color:var(--gold)}
+.pcard-cta-arrow{display:inline-block;transition:transform .25s}
+.pcard-cta-disabled{
+  font-family:var(--fm);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:.4rem .9rem;border:1px dashed var(--border2);
+}
+.pcard-footer-locked{border-top:1px solid var(--border)}
 
 /* ── EXPERIENCE ── */
 #experience{background:var(--bg2)}
 .exp-list{display:flex;flex-direction:column}
-.exp-item{display:grid;grid-template-columns:190px 1fr;gap:3.5rem;padding:2.75rem 0;border-bottom:1px solid var(--border);transition:padding-left .3s}
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:3rem;padding:2.75rem 0;border-bottom:1px solid var(--border);transition:padding-left .3s}
 .exp-item:hover{padding-left:.75rem}
-.exp-date{font-family:var(--fm);font-size:.64rem;letter-spacing:.06em;color:var(--muted);margin-bottom:.5rem;line-height:1.6}
-.exp-badge{display:inline-block;font-family:var(--fm);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .65rem;margin-top:.45rem}
+.exp-meta{display:flex;flex-direction:column;gap:.5rem}
+.exp-logo{height:36px;width:auto;max-width:140px;object-fit:contain;filter:brightness(0) invert(1);opacity:.65;margin-bottom:.25rem;transition:opacity .25s}
+.exp-item:hover .exp-logo{opacity:1}
+.exp-date{font-family:var(--fm);font-size:.64rem;letter-spacing:.06em;color:var(--muted);line-height:1.6}
+.exp-badge{display:inline-block;font-family:var(--fm);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .65rem;margin-top:.25rem;align-self:flex-start}
 .exp-badge.full{background:var(--blue-dim);color:var(--blue-light);border:1px solid rgba(74,144,217,.3)}
 .exp-badge.free{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(245,190,11,.3)}
 .exp-badge.vol{background:var(--red-dim);color:#e87065;border:1px solid rgba(192,57,43,.3)}
@@ -196,10 +247,6 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
 .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.32s}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1050px){
-  .about-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
-  .about-photo{display:none}
-}
 @media(max-width:960px){
   nav{padding:1.1rem 1.5rem}
   .nav-links{display:none}
@@ -209,6 +256,9 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .sec-hdr{flex-direction:column;align-items:flex-start;gap:1rem}
   .exp-item{grid-template-columns:1fr;gap:.75rem}
+  .proj-grid{grid-template-columns:1fr}
+  .pcard-body{grid-template-columns:1fr}
+  .mini-carousel{display:none}
   .skills-grid{grid-template-columns:1fr}
   footer{flex-direction:column;gap:.75rem;text-align:center;padding:1.5rem}
 }
@@ -232,7 +282,6 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     <polygon points="800,200 830,183 860,200 860,234 830,251 800,234"/>
     <polygon points="1200,100 1230,83 1260,100 1260,134 1230,151 1200,134"/>
     <polygon points="100,500 130,483 160,500 160,534 130,551 100,534"/>
-    <polygon points="1350,450 1380,433 1410,450 1410,484 1380,501 1350,484"/>
     <polygon points="650,700 680,683 710,700 710,734 680,751 650,734"/>
   </g>
   <g stroke="#4a90d9" stroke-width="0.7" fill="none" opacity="0.5">
@@ -243,17 +292,6 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     <line x1="1080" y1="450" x2="540" y2="600"/>
     <circle cx="360" cy="300" r="12" stroke-dasharray="4 4"/>
     <circle cx="720" cy="150" r="12" stroke-dasharray="4 4"/>
-    <circle cx="1080" cy="450" r="12" stroke-dasharray="4 4"/>
-  </g>
-  <g stroke="#4a90d9" stroke-width="1.2" opacity="0.4">
-    <line x1="1250" y1="620" x2="1250" y2="780"/>
-    <rect x="1240" y="640" width="20" height="60" fill="rgba(74,144,217,0.2)"/>
-    <line x1="1290" y1="600" x2="1290" y2="750"/>
-    <rect x="1280" y="625" width="20" height="80" fill="rgba(74,144,217,0.2)"/>
-    <line x1="1330" y1="640" x2="1330" y2="790"/>
-    <rect x="1320" y="660" width="20" height="70" fill="rgba(74,144,217,0.2)"/>
-    <line x1="1370" y1="610" x2="1370" y2="760"/>
-    <rect x="1360" y="630" width="20" height="90" fill="rgba(245,190,11,0.2)" stroke="#f5be0b"/>
   </g>
 </svg>
 </div>
@@ -271,9 +309,16 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     <li><a href="#contact" data-i18n="nav_contact">Contato</a></li>
   </ul>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('pt')" title="Português — BR">🇧🇷</button>
-    <button class="lang-btn" onclick="setLang('en')" title="English — US">🇺🇸</button>
-    <button class="lang-btn" onclick="setLang('es')" title="Español — ES">🇪🇸</button>
+    <span class="lang-label">Selecione seu idioma</span>
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português">
+      <img src="home_files/pt-br.jpg" alt="PT">
+    </button>
+    <button class="lang-btn" onclick="setLang('en')" title="English">
+      <img src="home_files/eng.jpg" alt="EN">
+    </button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español">
+      <img src="home_files/esp.png" alt="ES">
+    </button>
   </div>
 </nav>
 
@@ -304,13 +349,11 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     </div>
   </div>
 
+  <!-- Foto circular — artwork já tem a borda dourada -->
   <div class="hero-photo-wrap reveal rd2">
-    <div class="photo-frame">
-      <div class="pf-corners"></div>
-      <div class="pf-corner2"></div>
-<div class="photo-inner">
-  <img src="foto.png" alt="Gabriel Costa">
-</div>    </div>
+    <div class="hero-circle">
+      <img src="home_files/foto.png" alt="Gabriel Costa">
+    </div>
     <div class="hero-badge">
       <span class="dot-pulse"></span>
       <span data-i18n="hero_open">Aberto a oportunidades</span>
@@ -346,46 +389,60 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
   </div>
 
   <div class="about-grid">
-    <!-- Texto -->
-    <div>
-      <div class="about-text reveal">
-        <p data-i18n="about_p1">Olá! Bem-vindo à minha página no GitHub! Aqui você pode conhecer meu portfólio de trabalhos e as habilidades que desenvolvo em minha trajetória profissional.</p>
-        <p data-i18n="about_p2">Sou <strong>bacharel em Ciências Econômicas</strong> pela <em>Universidade Federal de São João del-Rei (UFSJ)</em> e atualmente curso o <strong>MBA em Data Science, IA e Analytics pela USP/Esalq</strong>. Minha trajetória profissional une o rigor técnico da análise econômica à agilidade das decisões orientadas por dados.</p>
-        <p data-i18n="about_p3">Com <strong>três anos de experiência em consultoria estratégica</strong>, atuo na interseção entre finanças e tecnologia para gerar eficiência operacional e impacto real nos resultados. Minha atuação abrange gestão, inteligência financeira, auditoria, planejamento e reestruturação tributária para os setores público e privado.</p>
-        <div class="about-highlight">
-          <strong data-i18n="about_hl">Destaque:</strong> <span data-i18n="about_hltxt">Projetos de auditoria que geraram economias superiores a R$ 5 milhões para clientes do setor público.</span>
+    <!-- Coluna esquerda: biografia -->
+    <div class="about-text reveal">
+      <p data-i18n="about_p1">Olá! Seja bem-vindo(a) ao meu portfólio!</p>
+      <p data-i18n="about_p2">Sou <strong>Economista formado na UFSJ</strong> e atualmente curso o <strong>MBA em Data Science, Inteligência Artificial e Analytics pela USP/Esalq</strong>. Minha trajetória une o rigor técnico da análise econômica à capacidade de transformar dados em decisões estratégicas.</p>
+      <p data-i18n="about_p3">Com <strong>três anos de experiência em Consultoria</strong> na área de Finanças e Inteligência de Mercado, desenvolvi visão aplicada em diferentes frentes: finanças, planejamento, auditoria, comportamento do consumidor, análise comercial e inteligência de mercado — sempre com foco em resultados concretos. Destaque para uma auditoria que gerou economia de quase <strong>R$ 5 milhões</strong> para uma prefeitura da região Centro-Oeste de Minas Gerais.</p>
+      <p data-i18n="about_p4">No campo técnico, trabalho com <strong>SQL, Power BI e Excel Avançado</strong> para construção de dashboards, análise de indicadores e geração de insights estratégicos. Estou em desenvolvimento com <strong>Python</strong> para análise exploratória e automações.</p>
+      <p data-i18n="about_p5">Aqui você encontra projetos aplicados nas áreas de finanças, investimentos, economia, CRM, marketing e análise comercial — demonstrações práticas de como dados resolvem problemas reais de negócio.</p>
+      <p data-i18n="about_p6">Estou aberto a oportunidades de trabalho <strong>CLT</strong>, consultorias, colaborações e networking. Se você busca um profissional que une economia, análise de dados e visão estratégica para transformar informações em decisões de impacto — <strong>vamos conversar!</strong></p>
+    </div>
+
+    <!-- Coluna direita: habilidades + vídeo -->
+    <div class="about-right reveal rd1">
+
+      <!-- Vídeo — primeiro -->
+      <div class="video-block">
+        <div class="video-label" data-i18n="video_label">Apresentação em vídeo</div>
+        <!--
+          Substitua a div.video-ph por:
+          <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" allowfullscreen></iframe>
+        -->
+        <div class="video-frame">
+          <div class="video-ph">
+            <div class="video-play"></div>
+            <div class="video-cap" data-i18n="video_cap">Adicione aqui seu vídeo de apresentação do YouTube.<br>Substitua pela tag iframe com seu link.</div>
+          </div>
         </div>
-        <p class="about-wip" data-i18n="about_wip">🔧 Esta página ainda está em construção. Com o tempo, compartilharei aprendizados, trabalhos realizados e demonstrações do uso de ferramentas em análises.</p>
       </div>
 
-      <div style="margin-top:2.5rem">
-        <div class="stag reveal" data-i18n="skills_tag">Habilidades</div>
-        <div class="skills-grid reveal rd1">
-          <div class="skill-row"><span class="skill-name">Excel</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:92%"></div></div></div>
-          <div class="skill-row"><span class="skill-name">Power BI</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:88%"></div></div></div>
-          <div class="skill-row"><span class="skill-name">SQL Server</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:65%"></div></div></div>
+      <!-- Stack Técnico — abaixo -->
+      <div>
+        <div class="stag" data-i18n="skills_tag">Stack Técnico</div>
+        <div class="skills-grid">
+          <div class="skill-cat-hdr">📊 Análise &amp; Visualização</div>
+          <div class="skill-row"><span class="skill-name">Power BI</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:90%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">DAX</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Excel</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:90%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Google Sheets</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
+          <div class="skill-cat-hdr">🗄️ Banco de Dados</div>
+          <div class="skill-row"><span class="skill-name">SQL Server</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
           <div class="skill-row"><span class="skill-name">PostgreSQL</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
-          <div class="skill-row"><span class="skill-name">Python</span><div class="skill-right"><span class="sll" data-i18n="sk_beg">Iniciante</span><div class="skill-bar" style="--w:35%"></div></div></div>
+          <div class="skill-cat-hdr">🐍 Programação</div>
+          <div class="skill-row" style="grid-column:1/-1"><span class="skill-name">Python</span><div class="skill-right"><span class="sll" data-i18n="sk_beg">Básico</span><div class="skill-bar" style="--w:30%"></div></div></div>
+          <div class="skill-cat-hdr">📈 Métodos Quantitativos</div>
+          <div class="skill-row"><span class="skill-name">Estatística Descritiva</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:90%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Econometria</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Séries Temporais</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Modelagem Financeira</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:90%"></div></div></div>
+          <div class="skill-row" style="grid-column:1/-1"><span class="skill-name">Planejamento e Gestão Orçamentária</span><div class="skill-right"><span class="sll" data-i18n="sk_adv">Avançado</span><div class="skill-bar" style="--w:90%"></div></div></div>
+          <div class="skill-cat-hdr">🌐 Idiomas</div>
           <div class="skill-row"><span class="skill-name">Inglês</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:60%"></div></div></div>
           <div class="skill-row"><span class="skill-name">Espanhol</span><div class="skill-right"><span class="sll" data-i18n="sk_int">Intermediário</span><div class="skill-bar" style="--w:55%"></div></div></div>
         </div>
       </div>
-    </div>
 
-  
-    <!-- Vídeo -->
-    <div class="video-block reveal rd2">
-      <div class="video-label" data-i18n="video_label">Apresentação em vídeo</div>
-      <!--
-        INSTRUÇÃO YOUTUBE: Substitua a div.video-ph por:
-        <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" allowfullscreen></iframe>
-      -->
-      <div class="video-frame">
-        <div class="video-ph">
-          <div class="video-play"></div>
-          <div class="video-cap" data-i18n="video_cap">Adicione aqui seu vídeo de apresentação do YouTube.<br>Substitua pela tag iframe com seu link.</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -397,51 +454,177 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
       <div class="stag" data-i18n="proj_tag">02 — Projetos</div>
       <h2 class="stitle" data-i18n="proj_title">Projetos Selecionados</h2>
     </div>
-    <a href="https://github.com/gabrielcostaeco" target="_blank" class="btn-outline" data-i18n="proj_all">Ver todos no GitHub ↗</a>
+    <a href="https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos" target="_blank" class="btn-outline" data-i18n="proj_all">Ver todos no GitHub ↗</a>
   </div>
-  <div class="projects-list">
 
-    <a href="projeto1.html" class="project-card reveal">
-      <div class="proj-num">01 — Power BI · Python · SQL Server</div>
-      <div class="proj-header">
-        <div class="proj-title" data-i18n="p1_title">Dashboard Power BI: Análise do Mercado de Ações das Instituições Financeiras Brasileiras</div>
-        <span class="proj-arrow">↗</span>
+  <div class="proj-grid">
+
+    <!-- P1: Dashboard PowerBI — Disponível -->
+    <a href="1-dashboard-bancos/index.html" class="pcard reveal">
+      <div class="pcard-top">
+        <div class="pcard-num">01 — Power BI · Python · SQL Server</div>
+        <div class="pcard-top-right">
+          <div class="pcard-icons">
+            <img src="home_files/powerbi.png" title="Power BI">
+            <img src="home_files/sql.png" title="SQL">
+            <img src="home_files/msqls.png" title="SSMS">
+            <img src="home_files/python.png" title="Python">
+          </div>
+          <span class="badge-available" data-i18n="badge_avail">● Disponível</span>
+        </div>
       </div>
-      <p class="proj-desc" data-i18n="p1_desc">Indicadores financeiros de valuation, risco, retorno e crescimento das principais instituições financeiras do Brasil. Dados do BCB, CVM e relatórios de RI tratados com Python e SQL Server, visualizados em Power BI com DAX avançado.</p>
-      <div class="proj-tools">
-        <span class="tool-tag">Power BI</span><span class="tool-tag">Python</span><span class="tool-tag">SQL Server</span><span class="tool-tag">DAX</span><span class="tool-tag">BCB</span><span class="tool-tag">CVM</span>
+      <div class="pcard-title" data-i18n="p1_title">Dashboard Power BI: Análise do Mercado de Ações das Instituições Financeiras Brasileiras</div>
+      <div class="pcard-body">
+        <div class="pcard-text">
+          <p data-i18n="p1_desc">Indicadores financeiros de valuation, risco, retorno e crescimento das principais instituições financeiras do Brasil. Dados do BCB, CVM e relatórios de RI tratados com Python e SQL Server.</p>
+          <div class="pcard-tags">
+            <span class="tool-tag">Power BI</span><span class="tool-tag">Python</span><span class="tool-tag">SQL Server</span><span class="tool-tag">DAX</span><span class="tool-tag">BCB</span><span class="tool-tag">CVM</span>
+          </div>
+        </div>
+        <div class="mini-carousel">
+          <div class="mc-track">
+            <div class="mc-slide"><img src="home_files/0-capa.jpg" alt="Capa"></div>
+            <div class="mc-slide"><img src="home_files/tela1-retornos.jpg" alt="Tela 1"></div>
+            <div class="mc-slide"><img src="home_files/tela2-carteira.jpg" alt="Tela 2"></div>
+            <div class="mc-slide"><img src="home_files/tela3-riscos.jpg" alt="Tela 3"></div>
+          </div>
+          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <div class="mc-counter">1/4</div>
+        </div>
       </div>
-      <div class="proj-cta" data-i18n="proj_cta">Ver projeto completo</div>
+      <div class="pcard-footer">
+        <span class="pcard-cta" data-i18n="proj_cta">Ver projeto completo <span class="pcard-cta-arrow">→</span></span>
+      </div>
       <div class="proj-bar"></div>
     </a>
 
-    <a href="projeto2.html" class="project-card reveal">
-      <div class="proj-num">02 — SQL Server · BCB · CVM</div>
-      <div class="proj-header">
-        <div class="proj-title" data-i18n="p2_title">SQL Server: Base de Dados Bancária</div>
-        <span class="proj-arrow">↗</span>
+    <!-- P2: SQL Base Bancária — Em construção -->
+    <div class="pcard locked reveal">
+      <div class="pcard-top">
+        <div class="pcard-num">02 — SQL Server · BCB · CVM</div>
+        <div class="pcard-top-right">
+          <div class="pcard-icons">
+            <img src="home_files/sql.png" title="SQL">
+            <img src="home_files/msqls.png" title="SSMS">
+            <img src="home_files/Postgresql.png" title="PostgreSQL">
+            <img src="home_files/mysql.png" title="MySQL">
+          </div>
+          <span class="badge-wip" data-i18n="badge_wip">⚙ Em construção</span>
+        </div>
       </div>
-      <p class="proj-desc" data-i18n="p2_desc">Construção e consolidação de base de dados a partir do IFDATA (BCB) e da CVM, com foco em extração, limpeza e tratamento de dados das instituições financeiras brasileiras listadas em bolsa.</p>
-      <div class="proj-tools">
-        <span class="tool-tag">SQL Server</span><span class="tool-tag">PostgreSQL</span><span class="tool-tag">ETL</span><span class="tool-tag">IFDATA</span><span class="tool-tag">CVM</span>
+      <div class="pcard-title" data-i18n="p2_title">SQL Server: Base de Dados Bancária</div>
+      <div class="pcard-body">
+        <div class="pcard-text">
+          <p data-i18n="p2_desc">Construção e consolidação de base de dados a partir do IFDATA (BCB) e da CVM, com foco em extração, limpeza e tratamento de dados das instituições financeiras brasileiras listadas em bolsa.</p>
+          <div class="pcard-tags">
+            <span class="tool-tag">SQL Server</span><span class="tool-tag">PostgreSQL</span><span class="tool-tag">ETL</span><span class="tool-tag">IFDATA</span>
+          </div>
+        </div>
+        <div class="mini-carousel">
+          <div class="mc-track">
+            <div class="mc-slide"><img src="home_files/viewsql.jpg" alt="SQL View 1"></div>
+            <div class="mc-slide"><img src="home_files/viewsql2.jpg" alt="SQL View 2"></div>
+            <div class="mc-slide"><img src="home_files/viewsql3.jpg" alt="SQL View 3"></div>
+          </div>
+          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <div class="mc-counter">1/3</div>
+        </div>
       </div>
-      <div class="proj-cta" data-i18n="proj_cta">Ver projeto completo</div>
+      <div class="pcard-footer pcard-footer-locked">
+        <span class="pcard-cta-disabled" data-i18n="proj_unavail">Ainda não disponível</span>
+      </div>
+      <div class="proj-bar"></div>
+    </div>
+
+    <!-- P3: Reforma Tributária — Disponível -->
+    <a href="3-reformatributaria/index.html" class="pcard reveal">
+      <div class="pcard-top">
+        <div class="pcard-num">03 — Tributação · EC 132/2023</div>
+        <div class="pcard-top-right">
+          <div class="pcard-icons">
+            <img src="home_files/excel.png" title="Excel">
+          </div>
+          <span class="badge-available" data-i18n="badge_avail">● Disponível</span>
+        </div>
+      </div>
+      <div class="pcard-title" data-i18n="p3_title">O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma</div>
+      <div class="pcard-body">
+        <div class="pcard-text">
+          <p data-i18n="p3_desc">Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.</p>
+          <div class="pcard-tags">
+            <span class="tool-tag">EC 132/2023</span><span class="tool-tag">IBS</span><span class="tool-tag">CBS</span><span class="tool-tag">Planejamento Fiscal</span>
+          </div>
+        </div>
+        <div class="mini-carousel">
+          <div class="mc-track">
+            <div class="mc-slide"><img src="home_files/1proj3.jpg" alt="Slide 1"></div>
+            <div class="mc-slide"><img src="home_files/2proj3.jpeg" alt="Slide 2"></div>
+            <div class="mc-slide"><img src="home_files/3.proj3.jpg" alt="Slide 3"></div>
+            <div class="mc-slide"><img src="home_files/4.proj3.jpg" alt="Slide 4"></div>
+          </div>
+          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <div class="mc-counter">1/4</div>
+        </div>
+      </div>
+      <div class="pcard-footer">
+        <span class="pcard-cta" data-i18n="proj_cta">Ver projeto completo <span class="pcard-cta-arrow">→</span></span>
+      </div>
       <div class="proj-bar"></div>
     </a>
 
-    <a href="projeto3.html" class="project-card reveal">
-      <div class="proj-num">03 — Tributação · Reforma Fiscal</div>
-      <div class="proj-header">
-        <div class="proj-title" data-i18n="p3_title">O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma</div>
-        <span class="proj-arrow">↗</span>
+    <!-- P4: Biblioteca Python — Em construção -->
+    <div class="pcard locked reveal">
+      <div class="pcard-top">
+        <div class="pcard-num">04 — Python · Automação</div>
+        <div class="pcard-top-right">
+          <div class="pcard-icons">
+            <img src="home_files/python.png" title="Python">
+          </div>
+          <span class="badge-wip" data-i18n="badge_wip">⚙ Em construção</span>
+        </div>
       </div>
-      <p class="proj-desc" data-i18n="p3_desc">Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.</p>
-      <div class="proj-tools">
-        <span class="tool-tag">Tributação</span><span class="tool-tag">Reforma Fiscal</span><span class="tool-tag">Macroeconomia</span><span class="tool-tag">Planejamento Fiscal</span>
+      <div class="pcard-title" data-i18n="p4_title">Biblioteca de Scripts Python</div>
+      <div class="pcard-body">
+        <div class="pcard-text">
+          <p data-i18n="p4_desc">Repositório de scripts Python para automação de coleta, tratamento e análise de dados econômicos e financeiros. Em desenvolvimento.</p>
+          <div class="pcard-tags">
+            <span class="tool-tag">Python</span><span class="tool-tag">Automação</span><span class="tool-tag">APIs</span>
+          </div>
+        </div>
+        <div class="mini-carousel">
+          <div class="mc-track">
+            <div class="mc-slide"><img src="home_files/1-proj4.jpg" alt="Python 1"></div>
+            <div class="mc-slide"><img src="home_files/2-proj4.jpg" alt="Python 2"></div>
+          </div>
+          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <div class="mc-counter">1/2</div>
+        </div>
       </div>
-      <div class="proj-cta" data-i18n="proj_cta">Ver projeto completo</div>
+      <div class="pcard-footer pcard-footer-locked">
+        <span class="pcard-cta-disabled" data-i18n="proj_unavail">Ainda não disponível</span>
+      </div>
       <div class="proj-bar"></div>
-    </a>
+    </div>
+
+    <!-- P5: Biblioteca Relatórios — Em construção, full width -->
+    <div class="pcard locked pcard-full reveal">
+      <div class="pcard-top">
+        <div class="pcard-num">05 — Análises · Relatórios</div>
+        <div class="pcard-top-right">
+          <span class="badge-wip" data-i18n="badge_wip">⚙ Em construção</span>
+        </div>
+      </div>
+      <div class="pcard-title" data-i18n="p5_title">Biblioteca de Relatórios e Projetos Diversos</div>
+      <p class="proj-desc" data-i18n="p5_desc">Coletânea de relatórios, estudos e projetos diversos desenvolvidos ao longo da trajetória profissional nas áreas de economia, finanças e análise de dados. Em desenvolvimento.</p>
+      <div class="pcard-footer pcard-footer-locked" style="margin-top:1.25rem">
+        <span class="pcard-cta-disabled" data-i18n="proj_unavail">Ainda não disponível</span>
+      </div>
+      <div class="proj-bar"></div>
+    </div>
 
   </div>
 </section>
@@ -457,7 +640,8 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
   <div class="exp-list">
 
     <div class="exp-item reveal">
-      <div>
+      <div class="exp-meta">
+        <img src="home_files/inno.jpeg" alt="Innovattio" class="exp-logo">
         <div class="exp-date">08/2023 — 03/2026</div>
         <span class="exp-badge full" data-i18n="b_full">Full-time</span>
       </div>
@@ -466,13 +650,14 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
         <div class="exp-company">Innovattio Consultorias e Treinamentos</div>
         <ul class="exp-tasks">
           <li data-i18n="e1t1">Planejamento financeiro e reestruturação econômica para mais de 50 clientes — entre pessoas físicas e empresas de pequeno porte dos setores de hotelaria, alimentação e agronegócio —, com redação de planos de negócio e definição de estratégias de crescimento.</li>
-          <li data-i18n="e1t2">Auditoria financeira e treinamentos para o setor público. Destaque: auditoria de contrato de Parceria Público-Privada para a Prefeitura de Carmo do Cajuru (em parceria com a SP Inovações), resultando em renegociação que gerou economia de quase <strong style="color:var(--gold)">R$ 5 milhões</strong> na remuneração à concessionária ao longo da vigência do contrato.</li>
+          <li data-i18n="e1t2">Auditoria financeira e treinamentos para o setor público. Destaque: auditoria de contrato de Parceria Público-Privada para a Prefeitura de Carmo do Cajuru (em parceria com a SP Inovações), resultando em renegociação que gerou economia de quase <strong style="color:var(--gold)">R$ 5 milhões</strong>.</li>
         </ul>
       </div>
     </div>
 
     <div class="exp-item reveal">
-      <div>
+      <div class="exp-meta">
+        <img src="home_files/camaracapitolio.jpg" alt="Câmara Municipal de Capitólio" class="exp-logo">
         <div class="exp-date">02/2021 — 02/2022</div>
         <span class="exp-badge full" data-i18n="b_full">Full-time</span>
       </div>
@@ -487,7 +672,8 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     </div>
 
     <div class="exp-item reveal">
-      <div>
+      <div class="exp-meta">
+        <img src="home_files/canex.jpg" alt="CANEX Exportação" class="exp-logo">
         <div class="exp-date">10/2020 — 02/2021</div>
         <span class="exp-badge full" data-i18n="b_full">Full-time</span>
       </div>
@@ -503,7 +689,8 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     </div>
 
     <div class="exp-item reveal">
-      <div>
+      <div class="exp-meta">
+        <img src="home_files/nepe.jpeg" alt="NEPE UFSJ" class="exp-logo">
         <div class="exp-date">2015 — 2017</div>
         <span class="exp-badge free" data-i18n="b_res">Pesquisa</span>
       </div>
@@ -517,7 +704,11 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     </div>
 
     <div class="exp-item reveal">
-      <div>
+      <div class="exp-meta">
+        <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.25rem">
+          <img src="home_files/sscc.png" alt="Santa Casa de Capitólio" class="exp-logo" style="height:28px;margin-bottom:0">
+          <img src="home_files/ufsj.png" alt="CONDI UFSJ" class="exp-logo" style="height:28px;margin-bottom:0">
+        </div>
         <div class="exp-date">2023–2025<br>2017–2019</div>
         <span class="exp-badge vol" data-i18n="b_vol">Voluntariado</span>
       </div>
@@ -563,6 +754,20 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
 </footer>
 
 <script>
+// Mini carousels
+function mcMove(btn, dir) {
+  const car = btn.closest('.mini-carousel');
+  const track = car.querySelector('.mc-track');
+  const slides = track.querySelectorAll('.mc-slide');
+  const counter = car.querySelector('.mc-counter');
+  const total = slides.length;
+  let cur = parseInt(car.dataset.cur || 0);
+  cur = (cur + dir + total) % total;
+  car.dataset.cur = cur;
+  track.style.transform = `translateX(-${cur * 100}%)`;
+  if (counter) counter.textContent = `${cur + 1}/${total}`;
+}
+
 const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
@@ -574,118 +779,154 @@ const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target
 reveals.forEach(el=>io.observe(el));
 
 const T={
-pt:{nav_about:'Sobre',nav_projects:'Projetos',nav_exp:'Experiência',nav_contact:'Contato',
-hero_tag:'Disponível para projetos &amp; colaborações',hero_role:'Economista · Business Intelligence · Data Science',
-hero_tagline:'Especializado em transformar dados em análises que geram resultados e impactos reais.',
-hero_cta1:'Ver projetos ↗',hero_cta2:'Entre em contato',hero_open:'Aberto a oportunidades',
-about_tag:'01 — Sobre mim',about_title:'Quem sou eu',about_photo_label:'Gabriel Costa',
-about_p1:'Olá! Bem-vindo à minha página no GitHub! Aqui você pode conhecer meu portfólio de trabalhos e as habilidades que desenvolvo em minha trajetória profissional.',
-about_p2:'Sou <strong>bacharel em Ciências Econômicas</strong> pela <em>Universidade Federal de São João del-Rei (UFSJ)</em> e atualmente curso o <strong>MBA em Data Science, IA e Analytics pela USP/Esalq</strong>. Minha trajetória profissional une o rigor técnico da análise econômica à agilidade das decisões orientadas por dados.',
-about_p3:'Com <strong>três anos de experiência em consultoria estratégica</strong>, atuo na interseção entre finanças e tecnologia para gerar eficiência operacional e impacto real nos resultados. Minha atuação abrange gestão, inteligência financeira, auditoria, planejamento e reestruturação tributária para os setores público e privado.',
-about_hl:'Destaque:',about_hltxt:'Projetos de auditoria que geraram economias superiores a R$ 5 milhões para clientes do setor público.',
-about_wip:'🔧 Esta página ainda está em construção. Com o tempo, compartilharei aprendizados, trabalhos realizados e demonstrações do uso de ferramentas em análises.',
-skills_tag:'Habilidades',sk_adv:'Avançado',sk_int:'Intermediário',sk_beg:'Iniciante',
-video_label:'Apresentação em vídeo',video_cap:'Adicione aqui seu vídeo de apresentação do YouTube. Substitua pela tag iframe com seu link.',
-proj_tag:'02 — Projetos',proj_title:'Projetos Selecionados',proj_all:'Ver todos no GitHub ↗',proj_cta:'Ver projeto completo',
-p1_title:'Dashboard Power BI: Análise do Mercado de Ações das Instituições Financeiras Brasileiras',
-p1_desc:'Indicadores financeiros de valuation, risco, retorno e crescimento das principais instituições financeiras do Brasil. Dados do BCB, CVM e relatórios de RI tratados com Python e SQL Server, visualizados em Power BI com DAX avançado.',
-p2_title:'SQL Server: Base de Dados Bancária',
-p2_desc:'Construção e consolidação de base de dados a partir do IFDATA (BCB) e da CVM, com foco em extração, limpeza e tratamento de dados das instituições financeiras brasileiras listadas em bolsa.',
-p3_title:'O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma',
-p3_desc:'Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.',
-exp_tag:'03 — Trajetória',exp_title:'Experiência',b_full:'Full-time',b_res:'Pesquisa',b_vol:'Voluntariado',
-e1r:'Consultor Financeiro',e1t1:'Planejamento financeiro e reestruturação econômica para mais de 50 clientes — entre pessoas físicas e empresas de pequeno porte dos setores de hotelaria, alimentação e agronegócio —, com redação de planos de negócio e definição de estratégias de crescimento.',
-e1t2:'Auditoria financeira e treinamentos para o setor público. Destaque: auditoria de contrato de Parceria Público-Privada para a Prefeitura de Carmo do Cajuru, resultando em renegociação que gerou economia de quase <strong style="color:var(--gold)">R$ 5 milhões</strong>.',
-e2r:'Assessor Legislativo',e2c:'Câmara Municipal de Capitólio',
-e2t1:'Controladoria interna e apoio na elaboração de relatórios financeiros da Casa.',
-e2t2:'Assessoria técnica parlamentar em temas como orçamento público e administração financeira e orçamentária.',
-e3r:'Assistente de Inteligência de Mercado',
-e3t1:'Extração e tratamento de dados macroeconômicos e financeiros.',
-e3t2:'Produção de análises estatísticas e simulações de operações com derivativos.',
-e3t3:'Apoio à tomada de decisão estratégica com base em dados de mercado.',
-e4r:'Bolsista — Núcleo de Pesquisa Econômica',
-e4t1:'Elaboração de estudos e indicadores econômicos de preços, comércio exterior e mercado de trabalho, entre outros.',
-e5r:'Cargos de Conselho',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
-e5t1:'Conselheiro Fiscal — Santa Casa de Capitólio (2023–2025).',
-e5t2:'Conselheiro no CONDI-UFSJ (2017–2019): representante discente com atribuições de fiscalizar e votar decisões executivas e orçamentárias da instituição.',
-ct_tag:'04 — Contato',ct_title:'Vamos<br><em>conversar?</em>',
-ct_sub:'Aberto a projetos de consultoria, análise de dados, Business Intelligence e novas oportunidades profissionais.',
-ct_btn:'Enviar mensagem ↗',ft_r:'Feito com dados e determinação · GitHub Pages'},
-en:{nav_about:'About',nav_projects:'Projects',nav_exp:'Experience',nav_contact:'Contact',
-hero_tag:'Available for projects &amp; collaborations',hero_role:'Economist · Business Intelligence · Data Science',
-hero_tagline:'Specialized in turning data into analysis that generates real results and impact.',
-hero_cta1:'View projects ↗',hero_cta2:'Get in touch',hero_open:'Open to opportunities',
-about_tag:'01 — About me',about_title:'Who I am',about_photo_label:'Gabriel Costa',
-about_p1:'Hello! Welcome to my GitHub page! Here you can explore my portfolio of work and the skills I have developed throughout my professional journey.',
-about_p2:'I hold a <strong>Bachelor\'s degree in Economics</strong> from the <em>Federal University of São João del-Rei (UFSJ)</em> and am currently enrolled in an <strong>MBA in Data Science, AI and Analytics at USP/Esalq</strong>. My career combines the technical rigor of economic analysis with data-driven decision-making.',
-about_p3:'With <strong>three years of strategic consulting experience</strong>, I work at the intersection of finance and technology to generate operational efficiency and real business results. My work spans management, financial intelligence, auditing, planning and tax restructuring for both public and private sectors.',
-about_hl:'Highlight:',about_hltxt:'Audit projects that generated savings exceeding R$ 5 million for public sector clients.',
-about_wip:'🔧 This page is still under construction. Over time, I will share learnings, completed projects and tool demonstrations.',
-skills_tag:'Skills',sk_adv:'Advanced',sk_int:'Intermediate',sk_beg:'Beginner',
-video_label:'Video presentation',video_cap:'Add your YouTube presentation video here. Replace with your iframe link.',
-proj_tag:'02 — Projects',proj_title:'Selected Projects',proj_all:'View all on GitHub ↗',proj_cta:'View full project',
-p1_title:'Power BI Dashboard: Brazilian Financial Institutions Stock Market Analysis',
-p1_desc:'Financial indicators of valuation, risk, return and growth of major Brazilian financial institutions. Data from BCB, CVM and IR reports processed with Python and SQL Server, visualized in Power BI with advanced DAX.',
-p2_title:'SQL Server: Banking Database',
-p2_desc:'Construction and consolidation of a database from IFDATA (BCB) and CVM, focused on extracting, cleaning and processing data from Brazilian financial institutions listed on the stock exchange.',
-p3_title:'The Brazilian Tax System — Impacts and Post-Reform Transition',
-p3_desc:'In-depth analysis of the Brazilian tax system, its economic impacts and the transition following the Tax Reform. Effects on companies, tax planning and macroeconomic perspectives.',
-exp_tag:'03 — Career',exp_title:'Experience',b_full:'Full-time',b_res:'Research',b_vol:'Volunteer',
-e1r:'Financial Consultant',e1t1:'Financial planning and economic restructuring for over 50 clients — individuals and small businesses in hospitality, food and agribusiness — including business plans and growth strategy definition.',
-e1t2:'Financial auditing and training for the public sector. Highlight: PPP contract audit for the City of Carmo do Cajuru, resulting in a renegotiation saving nearly <strong style="color:var(--gold)">R$ 5 million</strong>.',
-e2r:'Legislative Advisor',e2c:'Municipal Chamber of Capitólio',
-e2t1:'Internal financial control and support in preparing financial reports.',
-e2t2:'Technical advisory on public budgeting and financial administration.',
-e3r:'Market Intelligence Assistant',
-e3t1:'Extraction and processing of macroeconomic and financial data.',
-e3t2:'Statistical analyses and derivatives operations simulations.',
-e3t3:'Strategic decision-making support based on market data.',
-e4r:'Research Scholar — Economic Research Center',
-e4t1:'Development of economic studies and indicators on prices, foreign trade and labor markets.',
-e5r:'Board Positions',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
-e5t1:'Fiscal Advisor — Santa Casa de Capitólio (2023–2025).',
-e5t2:'Board member at CONDI-UFSJ (2017–2019): student representative with duties to oversee and vote on executive and budgetary decisions.',
-ct_tag:'04 — Contact',ct_title:'Let\'s<br><em>talk?</em>',
-ct_sub:'Open to consulting projects, data analysis, Business Intelligence and new professional opportunities.',
-ct_btn:'Send a message ↗',ft_r:'Built with data and determination · GitHub Pages'},
-es:{nav_about:'Sobre mí',nav_projects:'Proyectos',nav_exp:'Experiencia',nav_contact:'Contacto',
-hero_tag:'Disponible para proyectos y colaboraciones',hero_role:'Economista · Business Intelligence · Data Science',
-hero_tagline:'Especializado en transformar datos en análisis que generan resultados e impactos reales.',
-hero_cta1:'Ver proyectos ↗',hero_cta2:'Ponerse en contacto',hero_open:'Abierto a oportunidades',
-about_tag:'01 — Sobre mí',about_title:'Quién soy',about_photo_label:'Gabriel Costa',
-about_p1:'¡Hola! Bienvenido a mi página de GitHub. Aquí puedes conocer mi portafolio de trabajos y las habilidades que desarrollo a lo largo de mi trayectoria profesional.',
-about_p2:'Soy <strong>licenciado en Ciencias Económicas</strong> por la <em>Universidad Federal de São João del-Rei (UFSJ)</em> y actualmente curso el <strong>MBA en Data Science, IA y Analytics en la USP/Esalq</strong>. Mi trayectoria une el rigor del análisis económico con las decisiones orientadas por datos.',
-about_p3:'Con <strong>tres años de experiencia en consultoría estratégica</strong>, trabajo en la intersección entre finanzas y tecnología para generar eficiencia operativa e impacto real. Mi labor abarca gestión, inteligencia financiera, auditoría, planificación y reestructuración tributaria para los sectores público y privado.',
-about_hl:'Destacado:',about_hltxt:'Proyectos de auditoría que generaron ahorros superiores a R$ 5 millones para clientes del sector público.',
-about_wip:'🔧 Esta página aún está en construcción. Con el tiempo compartiré aprendizajes, trabajos realizados y demostraciones del uso de herramientas en análisis.',
-skills_tag:'Habilidades',sk_adv:'Avanzado',sk_int:'Intermedio',sk_beg:'Principiante',
-video_label:'Video de presentación',video_cap:'Agrega aquí tu video de YouTube. Reemplaza con el iframe de tu enlace.',
-proj_tag:'02 — Proyectos',proj_title:'Proyectos Seleccionados',proj_all:'Ver todos en GitHub ↗',proj_cta:'Ver proyecto completo',
-p1_title:'Dashboard Power BI: Análisis del Mercado de Acciones de Instituciones Financieras Brasileñas',
-p1_desc:'Indicadores financieros de valoración, riesgo, retorno y crecimiento de las principales instituciones financieras de Brasil. Datos del BCB, CVM e informes de RI procesados con Python y SQL Server, visualizados en Power BI con DAX avanzado.',
-p2_title:'SQL Server: Base de Datos Bancaria',
-p2_desc:'Construcción y consolidación de base de datos a partir del IFDATA (BCB) y la CVM, con enfoque en extracción, limpieza y tratamiento de datos de instituciones financieras brasileñas listadas en bolsa.',
-p3_title:'El Sistema Tributario Brasileño — Impactos y Transición Post-Reforma',
-p3_desc:'Análisis profundo del sistema tributario brasileño, sus impactos económicos y el proceso de transición tras la Reforma Tributaria. Efectos sobre empresas, planificación fiscal y perspectivas macroeconómicas.',
-exp_tag:'03 — Trayectoria',exp_title:'Experiencia',b_full:'Tiempo completo',b_res:'Investigación',b_vol:'Voluntariado',
-e1r:'Consultor Financiero',e1t1:'Planificación financiera y reestructuración económica para más de 50 clientes — personas físicas y pequeñas empresas de hotelería, alimentación y agronegocios —, con planes de negocio y estrategias de crecimiento.',
-e1t2:'Auditoría financiera y formación para el sector público. Destacado: auditoría de contrato de APP para el Ayuntamiento de Carmo do Cajuru, con renegociación que generó un ahorro de casi <strong style="color:var(--gold)">R$ 5 millones</strong>.',
-e2r:'Asesor Legislativo',e2c:'Cámara Municipal de Capitólio',
-e2t1:'Contraloría interna y apoyo en la elaboración de informes financieros.',
-e2t2:'Asesoría técnica parlamentaria en presupuesto público y administración financiera.',
-e3r:'Asistente de Inteligencia de Mercado',
-e3t1:'Extracción y tratamiento de datos macroeconómicos y financieros.',
-e3t2:'Análisis estadísticos y simulaciones de operaciones con derivados.',
-e3t3:'Apoyo a la toma de decisiones estratégicas con base en datos de mercado.',
-e4r:'Becario — Núcleo de Investigación Económica',
-e4t1:'Elaboración de estudios e indicadores económicos de precios, comercio exterior y mercado laboral.',
-e5r:'Cargos en Consejos',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
-e5t1:'Consejero Fiscal — Santa Casa de Capitólio (2023–2025).',
-e5t2:'Consejero en el CONDI-UFSJ (2017–2019): representante estudiantil con atribuciones de fiscalizar y votar decisiones ejecutivas y presupuestarias de la institución.',
-ct_tag:'04 — Contacto',ct_title:'¿Hablemos?',
-ct_sub:'Abierto a proyectos de consultoría, análisis de datos, Business Intelligence y nuevas oportunidades profesionales.',
-ct_btn:'Enviar mensaje ↗',ft_r:'Hecho con datos y determinación · GitHub Pages'}
-};
+pt:{
+  nav_about:'Sobre',nav_projects:'Projetos',nav_exp:'Experiência',nav_contact:'Contato',
+  hero_tag:'Disponível para projetos &amp; colaborações',
+  hero_role:'Economista · Business Intelligence · Data Science',
+  hero_tagline:'Especializado em transformar dados em análises que geram resultados e impactos reais.',
+  hero_cta1:'Ver projetos ↗',hero_cta2:'Entre em contato',hero_open:'Aberto a oportunidades',
+  about_tag:'01 — Sobre mim',about_title:'Quem sou eu',
+  about_p1:'Olá! Seja bem-vindo(a) ao meu portfólio!',
+  about_p2:'Sou <strong>Economista formado na UFSJ</strong> e atualmente curso o <strong>MBA em Data Science, Inteligência Artificial e Analytics pela USP/Esalq</strong>. Minha trajetória une o rigor técnico da análise econômica à capacidade de transformar dados em decisões estratégicas.',
+  about_p3:'Com <strong>três anos de experiência em Consultoria</strong> na área de Finanças e Inteligência de Mercado, desenvolvi visão aplicada em diferentes frentes: finanças, planejamento, auditoria, comportamento do consumidor, análise comercial e inteligência de mercado — sempre com foco em resultados concretos. Destaque para uma auditoria que gerou economia de quase <strong>R$ 5 milhões</strong> para uma prefeitura da região Centro-Oeste de Minas Gerais.',
+  about_p4:'No campo técnico, trabalho com <strong>SQL, Power BI e Excel Avançado</strong> para construção de dashboards, análise de indicadores e geração de insights estratégicos. Estou em desenvolvimento com <strong>Python</strong> para análise exploratória e automações.',
+  about_p5:'Aqui você encontra projetos aplicados nas áreas de finanças, investimentos, economia, CRM, marketing e análise comercial — demonstrações práticas de como dados resolvem problemas reais de negócio.',
+  about_p6:'Estou aberto a oportunidades de trabalho <strong>CLT</strong>, consultorias, colaborações e networking. Se você busca um profissional que une economia, análise de dados e visão estratégica para transformar informações em decisões de impacto — <strong>vamos conversar!</strong>',
+  skills_tag:'Stack Técnico',sk_adv:'Avançado',sk_int:'Intermediário',sk_beg:'Básico',
+  video_label:'Apresentação em vídeo',
+  video_cap:'Adicione aqui seu vídeo de apresentação do YouTube. Substitua pela tag iframe com seu link.',
+  proj_tag:'02 — Projetos',proj_title:'Projetos Selecionados',proj_all:'Ver todos no GitHub ↗',
+  proj_cta:'Ver projeto completo',proj_unavail:'Ainda não disponível',
+  badge_avail:'● Disponível',badge_wip:'⚙ Em construção',
+  p1_title:'Dashboard Power BI: Análise do Mercado de Ações das Instituições Financeiras Brasileiras',
+  p1_desc:'Indicadores financeiros de valuation, risco, retorno e crescimento das principais instituições financeiras do Brasil. Dados do BCB, CVM e relatórios de RI tratados com Python e SQL Server, visualizados em Power BI com DAX avançado.',
+  p2_title:'SQL Server: Base de Dados Bancária',
+  p2_desc:'Construção e consolidação de base de dados a partir do IFDATA (BCB) e da CVM, com foco em extração, limpeza e tratamento de dados das instituições financeiras brasileiras listadas em bolsa.',
+  p3_title:'O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma',
+  p3_desc:'Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.',
+  p4_title:'Biblioteca de Scripts Python',
+  p4_desc:'Repositório de scripts Python para automação de coleta, tratamento e análise de dados econômicos e financeiros. Em desenvolvimento.',
+  p5_title:'Biblioteca de Relatórios e Projetos Diversos',
+  p5_desc:'Coletânea de relatórios, estudos e projetos diversos desenvolvidos ao longo da trajetória profissional nas áreas de economia, finanças e análise de dados. Em desenvolvimento.',
+  exp_tag:'03 — Trajetória',exp_title:'Experiência',
+  b_full:'Full-time',b_res:'Pesquisa',b_vol:'Voluntariado',
+  e1r:'Consultor Financeiro',
+  e1t1:'Planejamento financeiro e reestruturação econômica para mais de 50 clientes — entre pessoas físicas e empresas de pequeno porte dos setores de hotelaria, alimentação e agronegócio —, com redação de planos de negócio e definição de estratégias de crescimento.',
+  e1t2:'Auditoria financeira e treinamentos para o setor público. Destaque: auditoria de contrato de Parceria Público-Privada para a Prefeitura de Carmo do Cajuru, resultando em renegociação que gerou economia de quase <strong style="color:var(--gold)">R$ 5 milhões</strong>.',
+  e2r:'Assessor Legislativo',e2c:'Câmara Municipal de Capitólio',
+  e2t1:'Controladoria interna e apoio na elaboração de relatórios financeiros da Casa.',
+  e2t2:'Assessoria técnica parlamentar em temas como orçamento público e administração financeira e orçamentária.',
+  e3r:'Assistente de Inteligência de Mercado',
+  e3t1:'Extração e tratamento de dados macroeconômicos e financeiros.',
+  e3t2:'Produção de análises estatísticas e simulações de operações com derivativos.',
+  e3t3:'Apoio à tomada de decisão estratégica com base em dados de mercado.',
+  e4r:'Bolsista — Núcleo de Pesquisa Econômica',
+  e4t1:'Elaboração de estudos e indicadores econômicos de preços, comércio exterior e mercado de trabalho, entre outros.',
+  e5r:'Cargos de Conselho',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
+  e5t1:'Conselheiro Fiscal — Santa Casa de Capitólio (2023–2025).',
+  e5t2:'Conselheiro no CONDI-UFSJ (2017–2019): representante discente com atribuições de fiscalizar e votar decisões executivas e orçamentárias da instituição.',
+  ct_tag:'04 — Contato',ct_title:'Vamos<br><em>conversar?</em>',
+  ct_sub:'Aberto a projetos de consultoria, análise de dados, Business Intelligence e novas oportunidades profissionais.',
+  ct_btn:'Enviar mensagem ↗',ft_r:'Feito com dados e determinação · GitHub Pages'
+},
+en:{
+  nav_about:'About',nav_projects:'Projects',nav_exp:'Experience',nav_contact:'Contact',
+  hero_tag:'Available for projects &amp; collaborations',
+  hero_role:'Economist · Business Intelligence · Data Science',
+  hero_tagline:'Specialized in turning data into analysis that generates real results and impact.',
+  hero_cta1:'View projects ↗',hero_cta2:'Get in touch',hero_open:'Open to opportunities',
+  about_tag:'01 — About me',about_title:'Who I am',
+  about_p1:'Hello! Welcome to my portfolio!',
+  about_p2:'I am an <strong>Economist graduated from UFSJ</strong>, currently pursuing an <strong>MBA in Data Science, Artificial Intelligence and Analytics at USP/Esalq</strong>. My career combines the technical rigor of economic analysis with the ability to turn data into strategic decisions.',
+  about_p3:'With <strong>three years of Consulting experience</strong> in Finance and Market Intelligence, I have developed applied expertise across different areas: finance, planning, auditing, consumer behavior, commercial analysis and market intelligence — always focused on concrete results. Highlight: an audit that generated nearly <strong>R$ 5 million</strong> in savings for a city in the Central-West region of Minas Gerais.',
+  about_p4:'On the technical side, I work with <strong>SQL, Power BI and Advanced Excel</strong> to build dashboards, analyze KPIs and generate strategic insights. I am developing my <strong>Python</strong> skills for exploratory analysis and automation.',
+  about_p5:'Here you will find applied projects in finance, investments, economics, CRM, marketing and commercial analysis — practical demonstrations of how data solves real business problems.',
+  about_p6:'I am open to <strong>full-time</strong> positions, consulting, collaborations and networking. If you are looking for a professional who combines economics, data analysis and strategic vision to turn information into impactful decisions — <strong>let\'s talk!</strong>',
+  skills_tag:'Tech Stack',sk_adv:'Advanced',sk_int:'Intermediate',sk_beg:'Basic',
+  video_label:'Video presentation',video_cap:'Add your YouTube presentation video here. Replace with your iframe link.',
+  proj_tag:'02 — Projects',proj_title:'Selected Projects',proj_all:'View all on GitHub ↗',
+  proj_cta:'View full project',proj_unavail:'Not yet available',
+  badge_avail:'● Available',badge_wip:'⚙ In progress',
+  p1_title:'Power BI Dashboard: Brazilian Financial Institutions Stock Market Analysis',
+  p1_desc:'Financial indicators of valuation, risk, return and growth of major Brazilian financial institutions. Data from BCB, CVM and IR reports processed with Python and SQL Server, visualized in Power BI with advanced DAX.',
+  p2_title:'SQL Server: Banking Database',
+  p2_desc:'Construction and consolidation of a database from IFDATA (BCB) and CVM, focused on extracting, cleaning and processing data from Brazilian financial institutions listed on the stock exchange.',
+  p3_title:'The Brazilian Tax System — Impacts and Post-Reform Transition',
+  p3_desc:'In-depth analysis of the Brazilian tax system, its economic impacts and the transition following the Tax Reform. Effects on companies, tax planning and macroeconomic perspectives.',
+  p4_title:'Python Scripts Library',
+  p4_desc:'Repository of Python scripts for automated collection, processing and analysis of economic and financial data. Under development.',
+  p5_title:'Reports and Diverse Projects Library',
+  p5_desc:'Collection of reports, studies and diverse projects developed throughout a professional career in economics, finance and data analysis. Under development.',
+  exp_tag:'03 — Career',exp_title:'Experience',
+  b_full:'Full-time',b_res:'Research',b_vol:'Volunteer',
+  e1r:'Financial Consultant',
+  e1t1:'Financial planning and economic restructuring for over 50 clients — individuals and small businesses in hospitality, food and agribusiness — including business plans and growth strategy definition.',
+  e1t2:'Financial auditing and training for the public sector. Highlight: PPP contract audit for the City of Carmo do Cajuru, resulting in a renegotiation saving nearly <strong style="color:var(--gold)">R$ 5 million</strong>.',
+  e2r:'Legislative Advisor',e2c:'Municipal Chamber of Capitólio',
+  e2t1:'Internal financial control and support in preparing financial reports.',
+  e2t2:'Technical advisory on public budgeting and financial administration.',
+  e3r:'Market Intelligence Assistant',
+  e3t1:'Extraction and processing of macroeconomic and financial data.',
+  e3t2:'Statistical analyses and derivatives operations simulations.',
+  e3t3:'Strategic decision-making support based on market data.',
+  e4r:'Research Scholar — Economic Research Center',
+  e4t1:'Development of economic studies and indicators on prices, foreign trade and labor markets.',
+  e5r:'Board Positions',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
+  e5t1:'Fiscal Advisor — Santa Casa de Capitólio (2023–2025).',
+  e5t2:'Board member at CONDI-UFSJ (2017–2019): student representative with duties to oversee and vote on executive and budgetary decisions.',
+  ct_tag:'04 — Contact',ct_title:'Let\'s<br><em>talk?</em>',
+  ct_sub:'Open to consulting projects, data analysis, Business Intelligence and new professional opportunities.',
+  ct_btn:'Send a message ↗',ft_r:'Built with data and determination · GitHub Pages'
+},
+es:{
+  nav_about:'Sobre mí',nav_projects:'Proyectos',nav_exp:'Experiencia',nav_contact:'Contacto',
+  hero_tag:'Disponible para proyectos y colaboraciones',
+  hero_role:'Economista · Business Intelligence · Data Science',
+  hero_tagline:'Especializado en transformar datos en análisis que generan resultados e impactos reales.',
+  hero_cta1:'Ver proyectos ↗',hero_cta2:'Ponerse en contacto',hero_open:'Abierto a oportunidades',
+  about_tag:'01 — Sobre mí',about_title:'Quién soy',
+  about_p1:'¡Hola! ¡Bienvenido(a) a mi portafolio!',
+  about_p2:'Soy <strong>Economista graduado en la UFSJ</strong>, actualmente cursando el <strong>MBA en Data Science, Inteligencia Artificial y Analytics en la USP/Esalq</strong>. Mi trayectoria une el rigor técnico del análisis económico con la capacidad de transformar datos en decisiones estratégicas.',
+  about_p3:'Con <strong>tres años de experiencia en Consultoría</strong> en Finanzas e Inteligencia de Mercado, desarrollé visión aplicada en diferentes áreas: finanzas, planificación, auditoría, comportamiento del consumidor, análisis comercial e inteligencia de mercado — siempre con foco en resultados concretos. Destacado: una auditoría que generó ahorros de casi <strong>R$ 5 millones</strong> para un municipio del Centro-Oeste de Minas Gerais.',
+  about_p4:'En el campo técnico, trabajo con <strong>SQL, Power BI y Excel Avanzado</strong> para construcción de dashboards, análisis de indicadores y generación de insights estratégicos. Estoy desarrollando mis habilidades en <strong>Python</strong> para análisis exploratorio y automatizaciones.',
+  about_p5:'Aquí encontrarás proyectos aplicados en finanzas, inversiones, economía, CRM, marketing y análisis comercial — demostraciones prácticas de cómo los datos resuelven problemas reales de negocio.',
+  about_p6:'Estoy abierto a oportunidades de trabajo <strong>a tiempo completo</strong>, consultoría, colaboraciones y networking. Si buscas un profesional que une economía, análisis de datos y visión estratégica para transformar información en decisiones de impacto — <strong>¡hablemos!</strong>',
+  skills_tag:'Stack Técnico',sk_adv:'Avanzado',sk_int:'Intermedio',sk_beg:'Básico',
+  video_label:'Video de presentación',video_cap:'Agrega aquí tu video de YouTube. Reemplaza con el iframe de tu enlace.',
+  proj_tag:'02 — Proyectos',proj_title:'Proyectos Seleccionados',proj_all:'Ver todos en GitHub ↗',
+  proj_cta:'Ver proyecto completo',proj_unavail:'Aún no disponible',
+  badge_avail:'● Disponible',badge_wip:'⚙ En construcción',
+  p1_title:'Dashboard Power BI: Análisis del Mercado de Acciones de Instituciones Financieras Brasileñas',
+  p1_desc:'Indicadores financieros de valoración, riesgo, retorno y crecimiento de las principales instituciones financieras de Brasil. Datos del BCB, CVM e informes de RI procesados con Python y SQL Server, visualizados en Power BI con DAX avanzado.',
+  p2_title:'SQL Server: Base de Datos Bancaria',
+  p2_desc:'Construcción y consolidación de base de datos a partir del IFDATA (BCB) y la CVM, con enfoque en extracción, limpieza y tratamiento de datos de instituciones financieras brasileñas listadas en bolsa.',
+  p3_title:'El Sistema Tributario Brasileño — Impactos y Transición Post-Reforma',
+  p3_desc:'Análisis profundo del sistema tributario brasileño, sus impactos económicos y el proceso de transición tras la Reforma Tributaria. Efectos sobre empresas, planificación fiscal y perspectivas macroeconómicas.',
+  p4_title:'Biblioteca de Scripts Python',
+  p4_desc:'Repositorio de scripts Python para automatización de recopilación, procesamiento y análisis de datos económicos y financieros. En desarrollo.',
+  p5_title:'Biblioteca de Informes y Proyectos Diversos',
+  p5_desc:'Colección de informes, estudios y proyectos diversos desarrollados a lo largo de la trayectoria profesional en economía, finanzas y análisis de datos. En desarrollo.',
+  exp_tag:'03 — Trayectoria',exp_title:'Experiencia',
+  b_full:'Tiempo completo',b_res:'Investigación',b_vol:'Voluntariado',
+  e1r:'Consultor Financiero',
+  e1t1:'Planificación financiera y reestructuración económica para más de 50 clientes — personas físicas y pequeñas empresas de hotelería, alimentación y agronegocios —, con planes de negocio y estrategias de crecimiento.',
+  e1t2:'Auditoría financiera y formación para el sector público. Destacado: auditoría de contrato de APP para el Ayuntamiento de Carmo do Cajuru, con renegociación que generó un ahorro de casi <strong style="color:var(--gold)">R$ 5 millones</strong>.',
+  e2r:'Asesor Legislativo',e2c:'Cámara Municipal de Capitólio',
+  e2t1:'Contraloría interna y apoyo en la elaboración de informes financieros.',
+  e2t2:'Asesoría técnica parlamentaria en presupuesto público y administración financiera.',
+  e3r:'Asistente de Inteligencia de Mercado',
+  e3t1:'Extracción y tratamiento de datos macroeconómicos y financieros.',
+  e3t2:'Análisis estadísticos y simulaciones de operaciones con derivados.',
+  e3t3:'Apoyo a la toma de decisiones estratégicas con base en datos de mercado.',
+  e4r:'Becario — Núcleo de Investigación Económica',
+  e4t1:'Elaboración de estudios e indicadores económicos de precios, comercio exterior y mercado laboral.',
+  e5r:'Cargos en Consejos',e5c:'Santa Casa de Capitólio · CONDI-UFSJ',
+  e5t1:'Consejero Fiscal — Santa Casa de Capitólio (2023–2025).',
+  e5t2:'Consejero en el CONDI-UFSJ (2017–2019): representante estudiantil con atribuciones de fiscalizar y votar decisiones ejecutivas y presupuestarias de la institución.',
+  ct_tag:'04 — Contacto',ct_title:'¿Hablemos?',
+  ct_sub:'Abierto a proyectos de consultoría, análisis de datos, Business Intelligence y nuevas oportunidades profesionales.',
+  ct_btn:'Enviar mensaje ↗',ft_r:'Hecho con datos y determinación · GitHub Pages'
+}};
 
 function setLang(l){
   document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
