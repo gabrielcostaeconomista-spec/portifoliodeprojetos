@@ -31,7 +31,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-back{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
 .nav-back:hover{color:var(--gold)}
 .lang-switcher{display:flex;gap:.55rem}
-.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn{width:32px;height:32px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .25s,transform .2s;padding:0}
+.lang-btn img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
 .lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 
@@ -198,6 +199,14 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 .partner-desc{font-family:var(--fm);font-size:.63rem;color:var(--muted);text-align:center;line-height:1.65}
 
 /* PROJ NAV */
+.btn-home{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:transparent;border:1.5px solid var(--gold);
+  color:var(--gold);padding:.88rem 1.5rem;
+  font-family:var(--fd);font-weight:600;font-size:.88rem;
+  text-decoration:none;transition:background .25s,color .25s;
+}
+.btn-home:hover{background:var(--gold);color:#0a0a0a}
 .proj-nav{display:flex;justify-content:space-between;align-items:center;padding:2.5rem 0;border-top:1px solid var(--border);margin-top:4rem}
 .pnav-link{font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
 .pnav-link:hover{color:var(--gold)}
@@ -235,12 +244,12 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 </div>
 
 <nav>
-  <a href="index.html" class="nav-logo">GC<span>.</span></a>
-  <a href="index.html#projects" class="nav-back">← Voltar aos projetos</a>
+  <a href="../index.html" class="nav-logo">GC<span>.</span></a>
+  <a href="../index.html#projects" class="nav-back">← Voltar aos projetos</a>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('pt')" title="Português">🇧🇷</button>
-    <button class="lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
-    <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português"><img src="../home_files/pt-br.jpg" alt="PT"></button>
+    <button class="lang-btn" onclick="setLang('en')" title="English"><img src="../home_files/eng.jpg" alt="EN"></button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español"><img src="../home_files/esp.png" alt="ES"></button>
   </div>
 </nav>
 
@@ -300,7 +309,36 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <div class="divider"></div>
 
-  <!-- ─── APRESENTAÇÕES ─── -->
+  <!-- ─── CARROSSEL DE SLIDES ─── -->
+  <div class="section-block reveal">
+    <div class="block-tag">Apresentação</div>
+    <div class="block-title">Slides — navegue pela apresentação</div>
+    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
+      Use as setas ou clique nos pontos para navegar entre os slides. Para ver a apresentação completa, baixe o arquivo abaixo.
+    </p>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carTrack">
+        <!-- Slides gerados automaticamente pelo JavaScript abaixo.
+             Padrão de nome: "ARTICT - Slide1.JPG" até "ARTICT - Slide65.JPG"
+             Para alterar a extensão ou o total, edite as variáveis
+             SLIDE_PREFIX, SLIDE_EXT e SLIDE_TOTAL no bloco <script>. -->
+      </div>
+
+      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
+      <div class="carousel-counter" id="carCounter">1 / 65</div>
+    </div>
+
+    <div class="carousel-dots" id="carDots"></div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <div class="divider"></div>
+
+    <!-- ─── APRESENTAÇÕES ─── -->
   <div class="section-block reveal">
     <div class="block-tag">Apresentações Realizadas</div>
     <div class="block-title">Dois eventos, dois públicos</div>
@@ -357,7 +395,7 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
       <!-- Coluna esquerda: Reel vertical -->
       <div class="reel-cell">
         <div class="reel-frame">
-          <video src="ReelACIAC.mp4" controls playsinline loop muted></video>
+          <video src="pictures/ReelACIAC.mp4" controls playsinline loop muted></video>
         </div>
         <div class="reel-caption">Divulgação · Palestra ACIAC · Capitólio, MG</div>
       </div>
@@ -367,44 +405,18 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
         <!-- Paisagem: Palestra em Carmo do Cajuru -->
         <div class="foto-card">
-          <img src="ApresentacaoCC.jpeg" alt="Palestra em Carmo do Cajuru — Gabriel Costa">
+          <img src="pictures/ApresentacaoCC.jpeg" alt="Palestra em Carmo do Cajuru — Gabriel Costa">
           <div class="foto-caption">Palestra na Prefeitura de Carmo do Cajuru, MG · Setembro de 2025</div>
         </div>
 
         <!-- Retrato: Gabriel Palestrante -->
         <div class="foto-card">
-          <img src="GabrielPalestrante.jpeg" alt="Gabriel Costa palestrante — ACIAC, Capitólio MG" style="max-height:420px;object-fit:cover;width:100%">
+          <img src="pictures/GabrielPalestrante.jpeg" alt="Gabriel Costa palestrante — ACIAC, Capitólio MG" style="max-height:420px;object-fit:cover;width:100%">
           <div class="foto-caption">Gabriel Costa · Palestra na ACIAC · Capitólio, MG · Agosto de 2025</div>
         </div>
 
       </div>
     </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ─── CARROSSEL DE SLIDES ─── -->
-  <div class="section-block reveal">
-    <div class="block-tag">Apresentação</div>
-    <div class="block-title">Slides — navegue pela apresentação</div>
-    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
-      Use as setas ou clique nos pontos para navegar entre os slides. Para ver a apresentação completa, baixe o arquivo abaixo.
-    </p>
-
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carTrack">
-        <!-- Slides gerados automaticamente pelo JavaScript abaixo.
-             Padrão de nome: "ARTICT - Slide1.JPG" até "ARTICT - Slide65.JPG"
-             Para alterar a extensão ou o total, edite as variáveis
-             SLIDE_PREFIX, SLIDE_EXT e SLIDE_TOTAL no bloco <script>. -->
-      </div>
-
-      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
-      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
-      <div class="carousel-counter" id="carCounter">1 / 65</div>
-    </div>
-
-    <div class="carousel-dots" id="carDots"></div>
   </div>
 
   <div class="divider"></div>
@@ -425,18 +437,17 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
         Se precisar, troque pela URL raw do GitHub:
         https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos/raw/main/Reforma%20tribut%C3%A1ria%20-%20Innovattio%20Consultorias%20e%20Treinamentos.pptx
       -->
-      <a href="Reforma%20tribut%C3%A1ria%20-%20Innovattio%20Consultorias%20e%20Treinamentos.pptx"
-         download class="btn-gold">
+      <a href="https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos/raw/main/3-reformatributaria/files/reftrib-inno.pptx" target="_blank" class="btn-gold">
         ⬇ Baixar apresentação (.pptx)
       </a>
       <!--
         Quando tiver o PDF dos atestados, coloque o nome do arquivo no href abaixo.
         Ex: href="atestados-capacidade-tecnica.pdf"
       -->
-      <a href="atestados-capacidade-tecnica.pdf" download class="btn-outline-sm">
+      <a href="files/atestados-capacidade-tecnica.pdf" download class="btn-outline-sm">
         📄 Baixar atestados de capacidade técnica
       </a>
-      <a href="index.html#projects" class="btn-back">← Voltar aos projetos</a>
+      <a href="../index.html" class="btn-home" data-i18n3="home_btn">🏠 Voltar ao início</a>
     </div>
   </div>
 
@@ -473,7 +484,7 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
       <div class="partner-card">
         <div class="partner-logo">
-          <img src="SP%20Logo.jpg" alt="SP Inovações Institucionais">
+          <img src="icons/SP%20Logo.jpg" alt="SP Inovações Institucionais">
         </div>
         <div class="partner-name">SP Inovações Institucionais</div>
         <div class="partner-desc">Parceria no projeto de auditoria e capacitação para o setor público municipal</div>
@@ -481,7 +492,7 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
       <div class="partner-card">
         <div class="partner-logo">
-          <img src="Logotipo%20innovatio%20claro.png" alt="Innovattio Consultorias e Treinamentos">
+          <img src="icons/Logotipo%20innovatio%20claro.png" alt="Innovattio Consultorias e Treinamentos">
         </div>
         <div class="partner-name">Innovattio Consultorias e Treinamentos</div>
         <div class="partner-desc">Parceria na palestra para empresários da Associação Comercial de Capitólio</div>
@@ -492,8 +503,8 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- PROJ NAV -->
   <div class="proj-nav">
-    <a href="projeto2.html" class="pnav-link">← Projeto anterior</a>
-    <a href="index.html#projects" class="pnav-link">Todos os projetos →</a>
+    <a href="../1-dashboard-bancos/index.html" class="pnav-link" data-i18n3="nav_prev">← Projeto anterior</a>
+    <a href="../index.html#projects" class="pnav-link" data-i18n3="nav_all">Todos os projetos →</a>
   </div>
 
 </main>
@@ -508,7 +519,7 @@ reveals.forEach(el=>io.observe(el));
 
 // ── CARROSSEL ──
 // Para alterar: mude SLIDE_PREFIX, SLIDE_EXT ou SLIDE_TOTAL
-const SLIDE_PREFIX = 'ARTICT - Slide';
+const SLIDE_PREFIX = 'presentations/ARTICT - Slide';
 const SLIDE_EXT    = '.JPG';
 const SLIDE_TOTAL  = 65;
 
@@ -568,10 +579,91 @@ document.addEventListener('keydown', e => {
 });
 
 // ── LANG ──
+const T3={
+pt:{
+  back:'Voltar aos projetos',
+  s1_tag:'Contexto e Objetivo',s1_title:'A maior reforma fiscal em três décadas',
+  s1_p1:'A <strong>Emenda Constitucional nº 132/2023</strong> representa a maior transformação do sistema fiscal brasileiro desde a Constituição de 1988. Este trabalho apresenta uma análise técnica aprofundada do sistema tributário pré-reforma, os principais pontos da mudança legislativa e os impactos esperados para empresas, administrações públicas municipais e a economia nacional.',
+  s1_p2:'A apresentação foi desenvolvida para dois públicos distintos — gestores públicos e empresários —, com linguagem adaptada e casos práticos para cada contexto.',
+  slide_tag:'Apresentação',slide_title:'Navegue pela apresentação',
+  slide_hint:'Use as setas ou clique nos pontos para navegar entre os slides.',
+  ev_tag:'Apresentações Realizadas',ev_title:'Dois eventos, dois públicos',
+  foto_tag:'Registros Fotográficos',foto_title:'Momentos das apresentações',
+  cap_aciac:'Palestra na ACIAC · Capitólio, MG · Agosto de 2025',
+  cap_carmo:'Palestra na Prefeitura de Carmo do Cajuru, MG · Setembro de 2025',
+  cap_palestrante:'Gabriel Costa · Palestra na ACIAC · Capitólio, MG · Agosto de 2025',
+  reel_cap:'Divulgação · Palestra ACIAC · Capitólio, MG',
+  dl_label:'Materiais disponíveis',dl_title:'Acesse a apresentação completa',
+  dl_sub:'Arquivo <strong>PowerPoint</strong> disponível para download direto no GitHub.',
+  dl_btn:'⬇ Baixar apresentação (.pptx)',dl_atestados:'📄 Baixar atestados de capacidade técnica',
+  home_btn:'🏠 Voltar ao início',
+  yt_tag:'Vídeo Explicativo',yt_title:'Apresentação em vídeo',
+  yt_soon:'Em breve',
+  yt_p:'Em breve disponibilizarei um vídeo explicativo completo com análise aprofundada dos principais pontos da Reforma Tributária.',
+  partners_label:'Colaboração',partners_title:'Apresentações realizadas em parceria com',
+  nav_prev:'← Projeto anterior',nav_all:'Todos os projetos →'
+},
+en:{
+  back:'Back to projects',
+  s1_tag:'Context and Objective',s1_title:'The largest tax reform in three decades',
+  s1_p1:'<strong>Constitutional Amendment No. 132/2023</strong> represents the largest transformation of the Brazilian tax system since the 1988 Constitution. This work presents an in-depth technical analysis of the pre-reform tax system, the key points of the legislative change and expected impacts for businesses, municipal governments and the national economy.',
+  s1_p2:'The presentation was developed for two distinct audiences — public managers and business owners — with adapted language and practical examples for each context.',
+  slide_tag:'Presentation',slide_title:'Browse the presentation',
+  slide_hint:'Use the arrows or click the dots to navigate between slides.',
+  ev_tag:'Events Held',ev_title:'Two events, two audiences',
+  foto_tag:'Photo Gallery',foto_title:'Moments from the presentations',
+  cap_aciac:'Lecture at ACIAC · Capitólio, MG · August 2025',
+  cap_carmo:'Lecture at City Hall of Carmo do Cajuru, MG · September 2025',
+  cap_palestrante:'Gabriel Costa · Lecture at ACIAC · Capitólio, MG · August 2025',
+  reel_cap:'Promo · ACIAC Lecture · Capitólio, MG',
+  dl_label:'Available materials',dl_title:'Access the full presentation',
+  dl_sub:'<strong>PowerPoint</strong> file available for direct download on GitHub.',
+  dl_btn:'⬇ Download presentation (.pptx)',dl_atestados:'📄 Download capacity certificates',
+  home_btn:'🏠 Back to home',
+  yt_tag:'Explanatory Video',yt_title:'Video presentation',
+  yt_soon:'Coming soon',
+  yt_p:'I will soon publish a complete explanatory video with an in-depth analysis of the main points of the Tax Reform.',
+  partners_label:'Collaboration',partners_title:'Presentations held in partnership with',
+  nav_prev:'← Previous project',nav_all:'All projects →'
+},
+es:{
+  back:'Volver a proyectos',
+  s1_tag:'Contexto y Objetivo',s1_title:'La mayor reforma fiscal en tres décadas',
+  s1_p1:'La <strong>Enmienda Constitucional N.º 132/2023</strong> representa la mayor transformación del sistema fiscal brasileño desde la Constitución de 1988. Este trabajo presenta un análisis técnico profundo del sistema tributario prerreforma, los puntos clave del cambio legislativo y los impactos esperados para empresas, administraciones municipales y la economía nacional.',
+  s1_p2:'La presentación fue desarrollada para dos públicos distintos — gestores públicos y empresarios — con lenguaje adaptado y casos prácticos para cada contexto.',
+  slide_tag:'Presentación',slide_title:'Navega por la presentación',
+  slide_hint:'Usa las flechas o haz clic en los puntos para navegar entre diapositivas.',
+  ev_tag:'Eventos Realizados',ev_title:'Dos eventos, dos públicos',
+  foto_tag:'Registro Fotográfico',foto_title:'Momentos de las presentaciones',
+  cap_aciac:'Conferencia en ACIAC · Capitólio, MG · Agosto 2025',
+  cap_carmo:'Conferencia en la Alcaldía de Carmo do Cajuru, MG · Septiembre 2025',
+  cap_palestrante:'Gabriel Costa · Conferencia en ACIAC · Capitólio, MG · Agosto 2025',
+  reel_cap:'Difusión · Conferencia ACIAC · Capitólio, MG',
+  dl_label:'Materiales disponibles',dl_title:'Accede a la presentación completa',
+  dl_sub:'Archivo <strong>PowerPoint</strong> disponible para descarga directa en GitHub.',
+  dl_btn:'⬇ Descargar presentación (.pptx)',dl_atestados:'📄 Descargar certificados de capacidad',
+  home_btn:'🏠 Volver al inicio',
+  yt_tag:'Video Explicativo',yt_title:'Presentación en video',
+  yt_soon:'Próximamente',
+  yt_p:'Próximamente publicaré un video explicativo completo con análisis detallado de los principales puntos de la Reforma Tributaria.',
+  partners_label:'Colaboración',partners_title:'Presentaciones realizadas en asociación con',
+  nav_prev:'← Proyecto anterior',nav_all:'Todos los proyectos →'
+}
+};
+
 function setLang(l) {
   document.querySelectorAll('.lang-btn').forEach((b, i) =>
     b.classList.toggle('active', ['pt','en','es'][i] === l)
   );
+  const t = T3[l];
+  if (!t) return;
+  document.querySelectorAll('[data-i18n3]').forEach(el => {
+    const k = el.getAttribute('data-i18n3');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  // nav back
+  const nb = document.querySelector('.nav-back');
+  if(nb) nb.innerHTML = '← ' + t.back;
 }
 </script>
 </body>
