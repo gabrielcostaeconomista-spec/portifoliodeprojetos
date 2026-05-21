@@ -30,7 +30,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-back{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
 .nav-back:hover{color:var(--gold)}
 .lang-switcher{display:flex;gap:.55rem}
-.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
 .lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 
@@ -202,11 +203,11 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
 <nav>
   <a href="index.html" class="nav-logo">GC<span>.</span></a>
-  <a href="index.html#projects" class="nav-back">← Voltar aos projetos</a>
+  <a href="../index.html#projects" class="nav-back">← <span data-i18n="back">Voltar aos projetos</span></a>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('pt')" title="Português">🇧🇷</button>
-    <button class="lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
-    <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português"><img src="../home_files/pt-br.jpg" alt="PT"></button>
+    <button class="lang-btn" onclick="setLang('en')" title="English"><img src="../home_files/eng.jpg" alt="EN"></button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español"><img src="../home_files/esp.png" alt="ES"></button>
   </div>
 </nav>
 
@@ -248,8 +249,8 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── OBJETIVO ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Objetivo do Projeto</div>
-    <div class="block-title">Inteligência de mercado para o setor bancário</div>
+    <div class="block-tag" data-i18n="s1_tag">Objetivo do Projeto</div>
+    <div class="block-title" data-i18n="s1_title">Inteligência de mercado para o setor bancário</div>
     <div class="block-text">
       <p>O setor bancário brasileiro possui particularidades regulatórias e contábeis que exigem um olhar especializado. Este ecossistema interativo foi desenvolvido para subsidiar a tomada de decisão de investidores e analistas, consolidando indicadores de <strong>Valuation, Risco e Retorno</strong> em uma única interface.</p>
       <p>O projeto transforma dados brutos e descentralizados (BCB/CVM) em <strong>inteligência de mercado</strong>, permitindo comparações peer-to-peer e análises temporais de longo prazo. Em breve, também serão publicadas análises de performance trimestral das instituições bancárias com base nos insights deste dashboard.</p>
@@ -260,36 +261,69 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
   <div class="banks-strip reveal">
     <div class="banks-track" id="banksTrack">
       <!-- duplicado para loop contínuo -->
-      <div class="bank-logo-item"><img src="bb.jpeg"        alt="Banco do Brasil"></div>
-      <div class="bank-logo-item"><img src="itau.jpg"       alt="Itaú Unibanco"></div>
-      <div class="bank-logo-item"><img src="bradesco.jpg"   alt="Bradesco"></div>
-      <div class="bank-logo-item"><img src="santander.png"  alt="Santander Brasil"></div>
-      <div class="bank-logo-item"><img src="btg.png"        alt="BTG Pactual"></div>
-      <div class="bank-logo-item"><img src="nubank.png"     alt="Nubank"></div>
-      <div class="bank-logo-item"><img src="inter.jpg"      alt="Banco Inter"></div>
-      <div class="bank-logo-item"><img src="bmg.JPG"        alt="Banco BMG"></div>
-      <div class="bank-logo-item"><img src="xp.jpg"         alt="XP Inc."></div>
-      <div class="bank-logo-item"><img src="mercantil.png"  alt="Banco Mercantil"></div>
+      <div class="bank-logo-item"><img src="icons/bb.jpeg"        alt="Banco do Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/itau.jpg"       alt="Itaú Unibanco"></div>
+      <div class="bank-logo-item"><img src="icons/bradesco.jpg"   alt="Bradesco"></div>
+      <div class="bank-logo-item"><img src="icons/santander.png"  alt="Santander Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/btg.png"        alt="BTG Pactual"></div>
+      <div class="bank-logo-item"><img src="icons/nubank.png"     alt="Nubank"></div>
+      <div class="bank-logo-item"><img src="icons/inter.jpg"      alt="Banco Inter"></div>
+      <div class="bank-logo-item"><img src="icons/bmg.JPG"        alt="Banco BMG"></div>
+      <div class="bank-logo-item"><img src="icons/xp.jpg"         alt="XP Inc."></div>
+      <div class="bank-logo-item"><img src="icons/mercantil.png"  alt="Banco Mercantil"></div>
       <!-- Duplicado para animação contínua -->
-      <div class="bank-logo-item"><img src="bb.jpeg"        alt="Banco do Brasil"></div>
-      <div class="bank-logo-item"><img src="itau.jpg"       alt="Itaú Unibanco"></div>
-      <div class="bank-logo-item"><img src="bradesco.jpg"   alt="Bradesco"></div>
-      <div class="bank-logo-item"><img src="santander.png"  alt="Santander Brasil"></div>
-      <div class="bank-logo-item"><img src="btg.png"        alt="BTG Pactual"></div>
-      <div class="bank-logo-item"><img src="nubank.png"     alt="Nubank"></div>
-      <div class="bank-logo-item"><img src="inter.jpg"      alt="Banco Inter"></div>
-      <div class="bank-logo-item"><img src="bmg.JPG"        alt="Banco BMG"></div>
-      <div class="bank-logo-item"><img src="xp.jpg"         alt="XP Inc."></div>
-      <div class="bank-logo-item"><img src="mercantil.png"  alt="Banco Mercantil"></div>
+      <div class="bank-logo-item"><img src="icons/bb.jpeg"        alt="Banco do Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/itau.jpg"       alt="Itaú Unibanco"></div>
+      <div class="bank-logo-item"><img src="icons/bradesco.jpg"   alt="Bradesco"></div>
+      <div class="bank-logo-item"><img src="icons/santander.png"  alt="Santander Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/btg.png"        alt="BTG Pactual"></div>
+      <div class="bank-logo-item"><img src="icons/nubank.png"     alt="Nubank"></div>
+      <div class="bank-logo-item"><img src="icons/inter.jpg"      alt="Banco Inter"></div>
+      <div class="bank-logo-item"><img src="icons/bmg.JPG"        alt="Banco BMG"></div>
+      <div class="bank-logo-item"><img src="icons/xp.jpg"         alt="XP Inc."></div>
+      <div class="bank-logo-item"><img src="icons/mercantil.png"  alt="Banco Mercantil"></div>
     </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── TELAS DO DASHBOARD ─── -->
+  <div class="section-block reveal">
+    <div class="block-tag" data-i18n="s5_tag">Telas do Dashboard</div>
+    <div class="block-title" data-i18n="s5_title">Navegue pelas telas</div>
+    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
+      4 telas com navegação intuitiva. Use as setas ou clique nos pontos para navegar.
+    </p>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carTrack">
+        <div class="carousel-slide">
+          <img src="presentations/0.%20Capa.JPG" alt="Tela 0 — Capa do dashboard">
+        </div>
+        <div class="carousel-slide">
+          <img src="presentations/Tela%201%20-%20Retornos.JPG" alt="Tela 1 — Retornos">
+        </div>
+        <div class="carousel-slide">
+          <img src="presentations/Tela%202.%20Carteira.JPG" alt="Tela 2 — Carteira">
+        </div>
+        <div class="carousel-slide">
+          <img src="presentations/Tela%203%20-%20Riscos.JPG" alt="Tela 3 — Riscos">
+        </div>
+      </div>
+      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
+      <div class="carousel-counter" id="carCounter">1 / 4</div>
+    </div>
+    <div class="carousel-dots" id="carDots"></div>
+    <div class="slide-label" id="slideLabel">Tela 0 — Capa: Visão geral e introdução ao projeto</div>
   </div>
 
   <div class="divider"></div>
 
   <!-- ─── STACK TECNOLÓGICA ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Pipeline End-to-End</div>
-    <div class="block-title">Stack Tecnológica</div>
+    <div class="block-tag" data-i18n="s2_tag">Pipeline End-to-End</div>
+    <div class="block-title" data-i18n="s2_title">Stack Tecnológica</div>
     <p class="block-text">O diferencial deste projeto é o pipeline completo — da coleta automatizada à visualização interativa.</p>
     <div class="stack-grid">
 
@@ -328,16 +362,16 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── KPIs POR DIMENSÃO ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Business Intelligence & KPIs</div>
-    <div class="block-title">O coração do projeto</div>
+    <div class="block-tag" data-i18n="s3_tag">Business Intelligence & KPIs</div>
+    <div class="block-title" data-i18n="s3_title">O coração do projeto</div>
     <p class="block-text">Mais de 20 indicadores organizados em quatro dimensões analíticas. Clique nas abas para explorar cada dimensão.</p>
 
     <div class="kpi-tabs">
       <div class="tab-nav">
-        <button class="tab-btn active" onclick="showTab('rent')">📈 Rentabilidade</button>
-        <button class="tab-btn" onclick="showTab('val')">💹 Valuation</button>
-        <button class="tab-btn" onclick="showTab('risk')">🛡 Risco &amp; Prudencial</button>
-        <button class="tab-btn" onclick="showTab('rr')">⚖ Risco × Retorno</button>
+        <button class="tab-btn active" onclick="showTab('rent')" data-i18n="tab_rent">📈 Rentabilidade</button>
+        <button class="tab-btn" onclick="showTab('val')" data-i18n="tab_val">💹 Valuation</button>
+        <button class="tab-btn" onclick="showTab('risk')" data-i18n="tab_risk">🛡 Risco &amp; Prudencial</button>
+        <button class="tab-btn" onclick="showTab('rr')" data-i18n="tab_rr">⚖ Risco × Retorno</button>
       </div>
 
       <!-- TAB 1: RENTABILIDADE -->
@@ -460,8 +494,8 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── STORYTELLING / UX ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Data Storytelling</div>
-    <div class="block-title">Experiência do usuário em camadas</div>
+    <div class="block-tag" data-i18n="s4_tag">Data Storytelling</div>
+    <div class="block-title" data-i18n="s4_title">Experiência do usuário em camadas</div>
     <p class="block-text">O diferencial deste dashboard não está apenas no volume de dados, mas na forma como a informação é consumida.</p>
     <div class="ux-grid">
 
@@ -499,43 +533,10 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <div class="divider"></div>
 
-  <!-- ─── TELAS DO DASHBOARD ─── -->
-  <div class="section-block reveal">
-    <div class="block-tag">Telas do Dashboard</div>
-    <div class="block-title">Navegue pelas telas</div>
-    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
-      4 telas com navegação intuitiva. Use as setas ou clique nos pontos para navegar.
-    </p>
-
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carTrack">
-        <div class="carousel-slide">
-          <img src="Capa.png" alt="Tela 0 — Capa do dashboard">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%201%20-%20Retornos.png" alt="Tela 1 — Retornos">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%202.%20Carteira.png" alt="Tela 2 — Carteira">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%203%20-%20Riscos.png" alt="Tela 3 — Riscos">
-        </div>
-      </div>
-      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
-      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
-      <div class="carousel-counter" id="carCounter">1 / 4</div>
-    </div>
-    <div class="carousel-dots" id="carDots"></div>
-    <div class="slide-label" id="slideLabel">Tela 0 — Capa: Visão geral e introdução ao projeto</div>
-  </div>
-
-  <div class="divider"></div>
-
   <!-- ─── DESAFIOS ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Bastidores</div>
-    <div class="block-title">Desafios superados</div>
+    <div class="block-tag" data-i18n="s6_tag">Bastidores</div>
+    <div class="block-title" data-i18n="s6_title">Desafios superados</div>
     <div class="challenges-grid">
       <div class="challenge-card">
         <div class="ch-icon">📐</div>
@@ -559,8 +560,8 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── ESTRUTURA DO REPOSITÓRIO ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Estrutura do Repositório</div>
-    <div class="block-title">Organização dos arquivos</div>
+    <div class="block-tag" data-i18n="s7_tag">Estrutura do Repositório</div>
+    <div class="block-title" data-i18n="s7_title">Organização dos arquivos</div>
     <div class="repo-block">
       <div><span class="repo-folder">📁 dashboard_brbanksperformance/</span></div>
       <div><span class="repo-file">📁 /scripts_python</span> <span class="repo-comment">— Automação da coleta (APIs BCB, Yahoo Finance)</span></div>
@@ -597,10 +598,10 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
         Substitua o href pelo link RAR direto no GitHub:
         https://github.com/gabrielcostaeco/REPO/releases/download/v1.0/dashboard_brbanksperformance.rar
       -->
-      <a href="https://github.com/gabrielcostaeco" target="_blank" class="btn-gold">
-        ⬇ Download completo (.rar)
+      <a href="files/Dashboard-bancos.rar" download class="btn-gold">
+        <span data-i18n="dl_btn">⬇ Download completo (.rar)</span>
       </a>
-      <a href="index.html#projects" class="btn-back">← Voltar aos projetos</a>
+      <a href="../index.html#projects" class="btn-back" data-i18n="dl_back">← Voltar</a>
     </div>
   </div>
 
@@ -608,7 +609,7 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── YOUTUBE ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Vídeo explicativo</div>
+    <div class="block-tag" data-i18n="yt_tag">Vídeo explicativo</div>
     <h3 class="block-title" style="display:inline">Apresentação em vídeo</h3>
     <span class="coming-soon">Em breve</span>
     <p class="block-text" style="margin-top:1rem;margin-bottom:0">
@@ -629,7 +630,7 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- PROJ NAV -->
   <div class="proj-nav">
-    <a href="index.html#projects" class="pnav-link">← Todos os projetos</a>
+    <a href="../index.html#projects" class="pnav-link">← Todos os projetos</a>
     <a href="projeto2.html" class="pnav-link">Próximo projeto →</a>
   </div>
 
@@ -692,8 +693,64 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')carMove(-1);
 });
 
+const T={
+pt:{
+  back:'Voltar aos projetos',
+  s1_tag:'Objetivo do Projeto',s1_title:'Inteligência de mercado para o setor bancário',
+  s2_tag:'Pipeline End-to-End',s2_title:'Stack Tecnológica',
+  s3_tag:'Business Intelligence & KPIs',s3_title:'O coração do projeto',
+  s4_tag:'Data Storytelling',s4_title:'Experiência do usuário em camadas',
+  s5_tag:'Telas do Dashboard',s5_title:'Navegue pelas telas',
+  s6_tag:'Bastidores',s6_title:'Desafios superados',
+  s7_tag:'Estrutura do Repositório',s7_title:'Organização dos arquivos',
+  dl_label:'Material disponível',dl_title:'Acesse o projeto completo',
+  dl_sub:'Arquivo <strong>RAR completo</strong> com .pbix, scripts Python e queries SQL.<br>Disponível no repositório do GitHub.',
+  dl_btn:'<span data-i18n="dl_btn">⬇ Download completo (.rar)</span>',dl_back:'← Voltar',
+  yt_tag:'Vídeo explicativo',yt_title:'Apresentação em vídeo',
+  tab_rent:'📈 Rentabilidade',tab_val:'💹 Valuation',tab_risk:'🛡 Risco &amp; Prudencial',tab_rr:'⚖ Risco × Retorno',
+  nav_all:'Todos os projetos',nav_next:'Próximo projeto'
+},
+en:{
+  back:'Back to projects',
+  s1_tag:'Project Objective',s1_title:'Market intelligence for the banking sector',
+  s2_tag:'End-to-End Pipeline',s2_title:'Technology Stack',
+  s3_tag:'Business Intelligence & KPIs',s3_title:'The heart of the project',
+  s4_tag:'Data Storytelling',s4_title:'User experience in layers',
+  s5_tag:'Dashboard Screens',s5_title:'Browse the screens',
+  s6_tag:'Behind the scenes',s6_title:'Challenges overcome',
+  s7_tag:'Repository Structure',s7_title:'File organization',
+  dl_label:'Available material',dl_title:'Access the full project',
+  dl_sub:'Complete <strong>RAR file</strong> with .pbix, Python scripts and SQL queries.<br>Available on GitHub.',
+  dl_btn:'⬇ Full download (.rar)',dl_back:'← Back',
+  yt_tag:'Explanatory video',yt_title:'Video presentation',
+  tab_rent:'📈 Profitability',tab_val:'💹 Valuation',tab_risk:'🛡 Risk &amp; Prudential',tab_rr:'⚖ Risk × Return',
+  nav_all:'All projects',nav_next:'Next project'
+},
+es:{
+  back:'Volver a proyectos',
+  s1_tag:'Objetivo del Proyecto',s1_title:'Inteligencia de mercado para el sector bancario',
+  s2_tag:'Pipeline End-to-End',s2_title:'Stack Tecnológico',
+  s3_tag:'Business Intelligence & KPIs',s3_title:'El corazón del proyecto',
+  s4_tag:'Data Storytelling',s4_title:'Experiencia del usuario en capas',
+  s5_tag:'Pantallas del Dashboard',s5_title:'Navega por las pantallas',
+  s6_tag:'Detrás de escenas',s6_title:'Desafíos superados',
+  s7_tag:'Estructura del Repositorio',s7_title:'Organización de archivos',
+  dl_label:'Material disponible',dl_title:'Accede al proyecto completo',
+  dl_sub:'Archivo <strong>RAR completo</strong> con .pbix, scripts Python y queries SQL.<br>Disponible en GitHub.',
+  dl_btn:'⬇ Descarga completa (.rar)',dl_back:'← Volver',
+  yt_tag:'Video explicativo',yt_title:'Presentación en video',
+  tab_rent:'📈 Rentabilidad',tab_val:'💹 Valoración',tab_risk:'🛡 Riesgo &amp; Prudencial',tab_rr:'⚖ Riesgo × Retorno',
+  nav_all:'Todos los proyectos',nav_next:'Siguiente proyecto'
+}
+};
+
 function setLang(l){
   document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
+  const t=T[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]!==undefined) el.innerHTML=t[k];
+  });
 }
 </script>
 </body>
