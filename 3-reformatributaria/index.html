@@ -31,7 +31,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-back{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
 .nav-back:hover{color:var(--gold)}
 .lang-switcher{display:flex;gap:.55rem}
-.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn{width:32px;height:32px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .25s,transform .2s;padding:0}
+.lang-btn img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
 .lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 
@@ -198,6 +199,14 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 .partner-desc{font-family:var(--fm);font-size:.63rem;color:var(--muted);text-align:center;line-height:1.65}
 
 /* PROJ NAV */
+.btn-home{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:transparent;border:1.5px solid var(--gold);
+  color:var(--gold);padding:.88rem 1.5rem;
+  font-family:var(--fd);font-weight:600;font-size:.88rem;
+  text-decoration:none;transition:background .25s,color .25s;
+}
+.btn-home:hover{background:var(--gold);color:#0a0a0a}
 .proj-nav{display:flex;justify-content:space-between;align-items:center;padding:2.5rem 0;border-top:1px solid var(--border);margin-top:4rem}
 .pnav-link{font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
 .pnav-link:hover{color:var(--gold)}
@@ -235,12 +244,12 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 </div>
 
 <nav>
-  <a href="index.html" class="nav-logo">GC<span>.</span></a>
-  <a href="index.html#projects" class="nav-back">← Voltar aos projetos</a>
+  <a href="../index.html" class="nav-logo">GC<span>.</span></a>
+  <a href="../index.html#projects" class="nav-back">← Voltar aos projetos</a>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('pt')" title="Português">🇧🇷</button>
-    <button class="lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
-    <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português"><img src="../home_files/pt-br.jpg" alt="PT"></button>
+    <button class="lang-btn" onclick="setLang('en')" title="English"><img src="../home_files/eng.jpg" alt="EN"></button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español"><img src="../home_files/esp.png" alt="ES"></button>
   </div>
 </nav>
 
@@ -248,10 +257,9 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── HERO ─── -->
   <div class="proj-hero reveal">
-    <div class="proj-num">03 — Tributação · Reforma Fiscal · EC 132/2023</div>
-    <h1 class="proj-hero-title">
-      O <em>Sistema Tributário</em> Brasileiro —<br>
-      Impactos e Transição Pós-Reforma
+    <div class="proj-num" data-i18n3="hero_num">03 — Tributação · Reforma Fiscal · EC 132/2023</div>
+    <h1 class="proj-hero-title" data-i18n3="hero_title">
+      O <em>Sistema Tributário</em> Brasileiro —<br>Impactos e Transição Pós-Reforma
     </h1>
     <div class="proj-tags">
       <span class="tag">EC 132/2023</span><span class="tag">IBS</span><span class="tag">CBS</span>
@@ -261,37 +269,37 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
     </div>
     <div class="proj-meta">
       <div class="meta-item">
-        <span class="meta-label">Área</span>
-        <span class="meta-value">Economia Fiscal · Tributação</span>
+        <span class="meta-label" data-i18n3="ml_area">Área</span>
+        <span class="meta-value" data-i18n3="mv_area">Economia Fiscal · Tributação</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Tipo</span>
-        <span class="meta-value">Palestra Técnica</span>
+        <span class="meta-label" data-i18n3="ml_type">Tipo</span>
+        <span class="meta-value" data-i18n3="mv_type">Palestra Técnica</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Apresentações</span>
-        <span class="meta-value">2 eventos realizados</span>
+        <span class="meta-label" data-i18n3="ml_events">Apresentações</span>
+        <span class="meta-value" data-i18n3="mv_events">2 eventos realizados</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Status</span>
-        <span class="meta-value badge-done">✓ Concluído</span>
+        <span class="meta-label" data-i18n3="ml_status">Status</span>
+        <span class="meta-value badge-done" data-i18n3="mv_status">✓ Concluído</span>
       </div>
     </div>
   </div>
 
   <!-- ─── CONTEXTO ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Contexto e Objetivo</div>
-    <div class="block-title">A maior reforma fiscal em três décadas</div>
+    <div class="block-tag" data-i18n3="s1_tag">Contexto e Objetivo</div>
+    <div class="block-title" data-i18n3="s1_title">A maior reforma fiscal em três décadas</div>
     <div class="block-text">
-      <p>A <strong>Emenda Constitucional nº 132/2023</strong> representa a maior transformação do sistema fiscal brasileiro desde a Constituição de 1988. Este trabalho apresenta uma análise técnica aprofundada do sistema tributário pré-reforma, os principais pontos da mudança legislativa e os impactos esperados para empresas, administrações públicas municipais e a economia nacional.</p>
-      <p>A apresentação foi desenvolvida para dois públicos distintos — gestores públicos e empresários —, com linguagem adaptada e casos práticos para cada contexto. Os temas abordados incluem:</p>
-      <ul>
+      <p data-i18n3="s1_p1">A <strong>Emenda Constitucional nº 132/2023</strong> representa a maior transformação do sistema fiscal brasileiro desde a Constituição de 1988. Este trabalho apresenta uma análise técnica aprofundada do sistema tributário pré-reforma, os principais pontos da mudança legislativa e os impactos esperados para empresas, administrações públicas municipais e a economia nacional.</p>
+      <p data-i18n3="s1_p2">A apresentação foi desenvolvida para dois públicos distintos — gestores públicos e empresários —, com linguagem adaptada e casos práticos para cada contexto. Os temas abordados incluem:</p>
+      <ul data-i18n3="s1_list">
         <li>A realidade tributária brasileira versus o mundo</li>
         <li>Codificação, créditos tributários e bitributação brasileira</li>
         <li>Nova estrutura tributária com a aprovação da reforma e metodologia de cálculo</li>
         <li>Setores mais impactados com a reforma</li>
-        <li>Estratégias de planejamento fiscal para Prefeituras, Microempreendedores e Pequenas e Médias Empresas no cenário pós-reforma</li>
+        <li>Estratégias de planejamento fiscal para Prefeituras, Microempreendedores e PMEs no cenário pós-reforma</li>
         <li>Cronograma completo: transição de 2026 a 2078</li>
         <li><strong>Fontes:</strong> EC 132/2023, IBPT, Banco Mundial (Doing Business), TCMG, ANEEL</li>
       </ul>
@@ -300,46 +308,64 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <div class="divider"></div>
 
+  <!-- ─── CARROSSEL DE SLIDES ─── -->
+  <div class="section-block reveal">
+    <div class="block-tag" data-i18n3="slide_tag">Apresentação</div>
+    <div class="block-title" data-i18n3="slide_title">Slides — navegue pela apresentação</div>
+    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem" data-i18n3="slide_hint">
+      Use as setas ou clique nos pontos para navegar entre os slides. Para ver a apresentação completa, baixe o arquivo abaixo.
+    </p>
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carTrack"></div>
+      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
+      <div class="carousel-counter" id="carCounter">1 / 65</div>
+    </div>
+    <div class="carousel-dots" id="carDots"></div>
+  </div>
+
+  <div class="divider"></div>
+
   <!-- ─── APRESENTAÇÕES ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Apresentações Realizadas</div>
-    <div class="block-title">Dois eventos, dois públicos</div>
+    <div class="block-tag" data-i18n3="ev_tag">Apresentações Realizadas</div>
+    <div class="block-title" data-i18n3="ev_title">Dois eventos, dois públicos</div>
     <div class="event-grid">
 
       <div class="event-card">
-        <div class="event-city">Associação Comercial de Capitólio — ACIAC</div>
-        <div class="event-date">19 de agosto de 2025 · Capitólio, MG</div>
+        <div class="event-city" data-i18n3="ev1_city">Associação Comercial de Capitólio — ACIAC</div>
+        <div class="event-date" data-i18n3="ev1_date">19 de agosto de 2025 · Capitólio, MG</div>
         <div class="event-row">
-          <span class="event-row-label">Público</span>
-          <span>Empresários e empreendedores do município</span>
+          <span class="event-row-label" data-i18n3="row_audience">Público</span>
+          <span data-i18n3="ev1_pub">Empresários e empreendedores do município</span>
         </div>
         <div class="event-row">
-          <span class="event-row-label">Foco</span>
-          <span>Impactos setoriais e planejamento tributário para PMEs</span>
+          <span class="event-row-label" data-i18n3="row_focus">Foco</span>
+          <span data-i18n3="ev1_focus">Impactos setoriais e planejamento tributário para PMEs</span>
         </div>
         <div class="event-row">
-          <span class="event-row-label">Parceria</span>
+          <span class="event-row-label" data-i18n3="row_partner">Parceria</span>
           <span>Innovattio Consultorias e Treinamentos</span>
         </div>
-        <div class="event-count">14 participantes</div>
+        <div class="event-count" data-i18n3="ev1_count">14 participantes</div>
       </div>
 
       <div class="event-card">
-        <div class="event-city">Prefeitura Municipal de Carmo do Cajuru</div>
-        <div class="event-date">08 de setembro de 2025 · Carmo do Cajuru, MG</div>
+        <div class="event-city" data-i18n3="ev2_city">Prefeitura Municipal de Carmo do Cajuru</div>
+        <div class="event-date" data-i18n3="ev2_date">08 de setembro de 2025 · Carmo do Cajuru, MG</div>
         <div class="event-row">
-          <span class="event-row-label">Público</span>
-          <span>Departamentos de Tributos, Planejamento e Procuradoria</span>
+          <span class="event-row-label" data-i18n3="row_audience">Público</span>
+          <span data-i18n3="ev2_pub">Departamentos de Tributos, Planejamento e Procuradoria</span>
         </div>
         <div class="event-row">
-          <span class="event-row-label">Foco</span>
-          <span>Impactos na administração municipal — transição do ISS para o IBS</span>
+          <span class="event-row-label" data-i18n3="row_focus">Foco</span>
+          <span data-i18n3="ev2_focus">Impactos na administração municipal — transição do ISS para o IBS</span>
         </div>
         <div class="event-row">
-          <span class="event-row-label">Parceria</span>
+          <span class="event-row-label" data-i18n3="row_partner">Parceria</span>
           <span>SP Inovações Institucionais</span>
         </div>
-        <div class="event-count">12 servidores municipais</div>
+        <div class="event-count" data-i18n3="ev2_count">12 servidores municipais</div>
       </div>
 
     </div>
@@ -349,62 +375,26 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── REGISTROS FOTOGRÁFICOS ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Registros Fotográficos</div>
-    <div class="block-title">Momentos das apresentações</div>
-
+    <div class="block-tag" data-i18n3="foto_tag">Registros Fotográficos</div>
+    <div class="block-title" data-i18n3="foto_title">Momentos das apresentações</div>
     <div class="foto-section-grid">
-
-      <!-- Coluna esquerda: Reel vertical -->
       <div class="reel-cell">
         <div class="reel-frame">
-          <video src="ReelACIAC.mp4" controls playsinline loop muted></video>
+          <video src="pictures/ReelACIAC.mp4" controls playsinline loop muted></video>
         </div>
-        <div class="reel-caption">Divulgação · Palestra ACIAC · Capitólio, MG</div>
+        <div class="reel-caption" data-i18n3="reel_cap">Divulgação · Palestra ACIAC · Capitólio, MG</div>
       </div>
-
-      <!-- Coluna direita: duas fotos empilhadas -->
       <div class="foto-right-col">
-
-        <!-- Paisagem: Palestra em Carmo do Cajuru -->
         <div class="foto-card">
-          <img src="ApresentacaoCC.jpeg" alt="Palestra em Carmo do Cajuru — Gabriel Costa">
-          <div class="foto-caption">Palestra na Prefeitura de Carmo do Cajuru, MG · Setembro de 2025</div>
+          <img src="pictures/ApresentacaoCC.jpeg" alt="Palestra em Carmo do Cajuru — Gabriel Costa">
+          <div class="foto-caption" data-i18n3="cap_carmo">Palestra na Prefeitura de Carmo do Cajuru, MG · Setembro de 2025</div>
         </div>
-
-        <!-- Retrato: Gabriel Palestrante -->
         <div class="foto-card">
-          <img src="GabrielPalestrante.jpeg" alt="Gabriel Costa palestrante — ACIAC, Capitólio MG" style="max-height:420px;object-fit:cover;width:100%">
-          <div class="foto-caption">Gabriel Costa · Palestra na ACIAC · Capitólio, MG · Agosto de 2025</div>
+          <img src="pictures/GabrielPalestrante.jpeg" alt="Gabriel Costa palestrante" style="max-height:420px;object-fit:cover;width:100%">
+          <div class="foto-caption" data-i18n3="cap_palestrante">Gabriel Costa · Palestra na ACIAC · Capitólio, MG · Agosto de 2025</div>
         </div>
-
       </div>
     </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ─── CARROSSEL DE SLIDES ─── -->
-  <div class="section-block reveal">
-    <div class="block-tag">Apresentação</div>
-    <div class="block-title">Slides — navegue pela apresentação</div>
-    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
-      Use as setas ou clique nos pontos para navegar entre os slides. Para ver a apresentação completa, baixe o arquivo abaixo.
-    </p>
-
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carTrack">
-        <!-- Slides gerados automaticamente pelo JavaScript abaixo.
-             Padrão de nome: "ARTICT - Slide1.JPG" até "ARTICT - Slide65.JPG"
-             Para alterar a extensão ou o total, edite as variáveis
-             SLIDE_PREFIX, SLIDE_EXT e SLIDE_TOTAL no bloco <script>. -->
-      </div>
-
-      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
-      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
-      <div class="carousel-counter" id="carCounter">1 / 65</div>
-    </div>
-
-    <div class="carousel-dots" id="carDots"></div>
   </div>
 
   <div class="divider"></div>
@@ -412,31 +402,22 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
   <!-- ─── DOWNLOAD CTA ─── -->
   <div class="download-cta reveal">
     <div class="download-cta-text">
-      <div class="download-cta-label">Materiais disponíveis</div>
-      <div class="download-cta-title">Acesse a apresentação completa</div>
-      <div class="download-cta-sub">
+      <div class="download-cta-label" data-i18n3="dl_label">Materiais disponíveis</div>
+      <div class="download-cta-title" data-i18n3="dl_title">Acesse a apresentação completa</div>
+      <div class="download-cta-sub" data-i18n3="dl_sub">
         Arquivo <strong>PowerPoint</strong> disponível para download direto no GitHub.<br>
         Inclui todas as análises, quadros comparativos e cronograma de transição.
       </div>
     </div>
     <div class="download-btns">
-      <!--
-        O link abaixo aponta para o arquivo .pptx no seu repositório.
-        Se precisar, troque pela URL raw do GitHub:
-        https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos/raw/main/Reforma%20tribut%C3%A1ria%20-%20Innovattio%20Consultorias%20e%20Treinamentos.pptx
-      -->
-      <a href="Reforma%20tribut%C3%A1ria%20-%20Innovattio%20Consultorias%20e%20Treinamentos.pptx"
-         download class="btn-gold">
+      <a href="https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos/raw/main/3-reformatributaria/files/reftrib-inno.pptx"
+         target="_blank" class="btn-gold" data-i18n3="dl_btn">
         ⬇ Baixar apresentação (.pptx)
       </a>
-      <!--
-        Quando tiver o PDF dos atestados, coloque o nome do arquivo no href abaixo.
-        Ex: href="atestados-capacidade-tecnica.pdf"
-      -->
-      <a href="atestados-capacidade-tecnica.pdf" download class="btn-outline-sm">
+      <a href="files/atestados-capacidade-tecnica.pdf" download class="btn-outline-sm" data-i18n3="dl_atestados">
         📄 Baixar atestados de capacidade técnica
       </a>
-      <a href="index.html#projects" class="btn-back">← Voltar aos projetos</a>
+      <a href="../index.html" class="btn-home" data-i18n3="home_btn">🏠 Voltar ao início</a>
     </div>
   </div>
 
@@ -444,21 +425,16 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── YOUTUBE ─── -->
   <div class="section-block reveal">
-    <div class="block-tag">Vídeo Explicativo</div>
-    <h3 class="block-title" style="display:inline">Apresentação em vídeo</h3>
-    <span class="coming-soon">Em breve</span>
-    <p class="block-text" style="margin-top:1rem;margin-bottom:0">
+    <div class="block-tag" data-i18n3="yt_tag">Vídeo Explicativo</div>
+    <h3 class="block-title" style="display:inline" data-i18n3="yt_title">Apresentação em vídeo</h3>
+    <span class="coming-soon" data-i18n3="yt_soon">Em breve</span>
+    <p class="block-text" style="margin-top:1rem;margin-bottom:0" data-i18n3="yt_p">
       Em breve disponibilizarei um vídeo explicativo completo com análise aprofundada dos principais pontos da Reforma Tributária.
     </p>
     <div class="youtube-wrap">
-      <!--
-        Quando o vídeo estiver pronto, substitua a div.yt-ph por:
-        <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" allowfullscreen></iframe>
-        E remova o <span class="coming-soon"> acima.
-      -->
       <div class="yt-ph">
         <div class="yt-play"></div>
-        <div class="yt-cap">Vídeo em produção. Substitua pelo iframe do YouTube quando estiver disponível.</div>
+        <div class="yt-cap" data-i18n3="yt_cap">Vídeo em produção. Substitua pelo iframe do YouTube quando estiver disponível.</div>
       </div>
     </div>
   </div>
@@ -467,33 +443,30 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <!-- ─── PARCERIAS ─── -->
   <div class="partners-section reveal">
-    <div class="partners-label">Colaboração</div>
-    <div class="partners-title-txt">Apresentações realizadas em parceria com</div>
+    <div class="partners-label" data-i18n3="partners_label">Colaboração</div>
+    <div class="partners-title-txt" data-i18n3="partners_title">Apresentações realizadas em parceria com</div>
     <div class="partners-grid">
-
       <div class="partner-card">
         <div class="partner-logo">
-          <img src="SP%20Logo.jpg" alt="SP Inovações Institucionais">
+          <img src="icons/SP%20Logo.jpg" alt="SP Inovações Institucionais">
         </div>
         <div class="partner-name">SP Inovações Institucionais</div>
-        <div class="partner-desc">Parceria no projeto de auditoria e capacitação para o setor público municipal</div>
+        <div class="partner-desc" data-i18n3="sp_desc">Parceria no projeto de auditoria e capacitação para o setor público municipal</div>
       </div>
-
       <div class="partner-card">
         <div class="partner-logo">
-          <img src="Logotipo%20innovatio%20claro.png" alt="Innovattio Consultorias e Treinamentos">
+          <img src="icons/Logotipo%20innovatio%20claro.png" alt="Innovattio Consultorias e Treinamentos">
         </div>
         <div class="partner-name">Innovattio Consultorias e Treinamentos</div>
-        <div class="partner-desc">Parceria na palestra para empresários da Associação Comercial de Capitólio</div>
+        <div class="partner-desc" data-i18n3="inno_desc">Parceria na palestra para empresários da Associação Comercial de Capitólio</div>
       </div>
-
     </div>
   </div>
 
   <!-- PROJ NAV -->
   <div class="proj-nav">
-    <a href="projeto2.html" class="pnav-link">← Projeto anterior</a>
-    <a href="index.html#projects" class="pnav-link">Todos os projetos →</a>
+    <a href="../1-dashboard-bancos/index.html" class="pnav-link" data-i18n3="nav_prev">← Projeto anterior</a>
+    <a href="../index.html#projects" class="pnav-link" data-i18n3="nav_all">Todos os projetos →</a>
   </div>
 
 </main>
@@ -508,7 +481,7 @@ reveals.forEach(el=>io.observe(el));
 
 // ── CARROSSEL ──
 // Para alterar: mude SLIDE_PREFIX, SLIDE_EXT ou SLIDE_TOTAL
-const SLIDE_PREFIX = 'ARTICT - Slide';
+const SLIDE_PREFIX = 'presentations/ARTICT - Slide';
 const SLIDE_EXT    = '.JPG';
 const SLIDE_TOTAL  = 65;
 
@@ -568,10 +541,126 @@ document.addEventListener('keydown', e => {
 });
 
 // ── LANG ──
+const T3={
+pt:{
+  back:'Voltar aos projetos',
+  hero_num:'03 — Tributação · Reforma Fiscal · EC 132/2023',
+  hero_title:'O <em>Sistema Tributário</em> Brasileiro —<br>Impactos e Transição Pós-Reforma',
+  ml_area:'Área',mv_area:'Economia Fiscal · Tributação',
+  ml_type:'Tipo',mv_type:'Palestra Técnica',
+  ml_events:'Apresentações',mv_events:'2 eventos realizados',
+  ml_status:'Status',mv_status:'✓ Concluído',
+  s1_tag:'Contexto e Objetivo',s1_title:'A maior reforma fiscal em três décadas',
+  s1_p1:'A <strong>Emenda Constitucional nº 132/2023</strong> representa a maior transformação do sistema fiscal brasileiro desde a Constituição de 1988. Este trabalho apresenta uma análise técnica aprofundada do sistema tributário pré-reforma, os principais pontos da mudança legislativa e os impactos esperados para empresas, administrações públicas municipais e a economia nacional.',
+  s1_p2:'A apresentação foi desenvolvida para dois públicos distintos — gestores públicos e empresários —, com linguagem adaptada e casos práticos para cada contexto. Os temas abordados incluem:',
+  s1_list:'<li>A realidade tributária brasileira versus o mundo</li><li>Codificação, créditos tributários e bitributação brasileira</li><li>Nova estrutura tributária com a aprovação da reforma e metodologia de cálculo</li><li>Setores mais impactados com a reforma</li><li>Estratégias de planejamento fiscal para Prefeituras, Microempreendedores e PMEs no cenário pós-reforma</li><li>Cronograma completo: transição de 2026 a 2078</li><li><strong>Fontes:</strong> EC 132/2023, IBPT, Banco Mundial (Doing Business), TCMG, ANEEL</li>',
+  slide_tag:'Apresentação',slide_title:'Slides — navegue pela apresentação',
+  slide_hint:'Use as setas ou clique nos pontos para navegar entre os slides. Para ver a apresentação completa, baixe o arquivo abaixo.',
+  ev_tag:'Apresentações Realizadas',ev_title:'Dois eventos, dois públicos',
+  row_audience:'Público',row_focus:'Foco',row_partner:'Parceria',
+  ev1_city:'Associação Comercial de Capitólio — ACIAC',ev1_date:'19 de agosto de 2025 · Capitólio, MG',
+  ev1_pub:'Empresários e empreendedores do município',ev1_focus:'Impactos setoriais e planejamento tributário para PMEs',ev1_count:'14 participantes',
+  ev2_city:'Prefeitura Municipal de Carmo do Cajuru',ev2_date:'08 de setembro de 2025 · Carmo do Cajuru, MG',
+  ev2_pub:'Departamentos de Tributos, Planejamento e Procuradoria',ev2_focus:'Impactos na administração municipal — transição do ISS para o IBS',ev2_count:'12 servidores municipais',
+  foto_tag:'Registros Fotográficos',foto_title:'Momentos das apresentações',
+  reel_cap:'Divulgação · Palestra ACIAC · Capitólio, MG',
+  cap_carmo:'Palestra na Prefeitura de Carmo do Cajuru, MG · Setembro de 2025',
+  cap_palestrante:'Gabriel Costa · Palestra na ACIAC · Capitólio, MG · Agosto de 2025',
+  dl_label:'Materiais disponíveis',dl_title:'Acesse a apresentação completa',
+  dl_sub:'Arquivo <strong>PowerPoint</strong> disponível para download direto no GitHub.<br>Inclui todas as análises, quadros comparativos e cronograma de transição.',
+  dl_btn:'⬇ Baixar apresentação (.pptx)',dl_atestados:'📄 Baixar atestados de capacidade técnica',home_btn:'🏠 Voltar ao início',
+  yt_tag:'Vídeo Explicativo',yt_title:'Apresentação em vídeo',yt_soon:'Em breve',
+  yt_p:'Em breve disponibilizarei um vídeo explicativo completo com análise aprofundada dos principais pontos da Reforma Tributária.',
+  yt_cap:'Vídeo em produção. Substitua pelo iframe do YouTube quando estiver disponível.',
+  partners_label:'Colaboração',partners_title:'Apresentações realizadas em parceria com',
+  sp_desc:'Parceria no projeto de auditoria e capacitação para o setor público municipal',
+  inno_desc:'Parceria na palestra para empresários da Associação Comercial de Capitólio',
+  nav_prev:'← Projeto anterior',nav_all:'Todos os projetos →'
+},
+en:{
+  back:'Back to projects',
+  hero_num:'03 — Taxation · Tax Reform · EC 132/2023',
+  hero_title:'The Brazilian <em>Tax System</em> —<br>Impacts and Post-Reform Transition',
+  ml_area:'Area',mv_area:'Fiscal Economics · Taxation',
+  ml_type:'Type',mv_type:'Technical Lecture',
+  ml_events:'Presentations',mv_events:'2 events held',
+  ml_status:'Status',mv_status:'✓ Completed',
+  s1_tag:'Context and Objective',s1_title:'The largest tax reform in three decades',
+  s1_p1:'<strong>Constitutional Amendment No. 132/2023</strong> represents the largest transformation of the Brazilian tax system since the 1988 Constitution. This work presents an in-depth technical analysis of the pre-reform tax system, the key legislative changes and expected impacts for businesses, municipal governments and the national economy.',
+  s1_p2:'The presentation was developed for two distinct audiences — public managers and business owners — with adapted language and practical examples for each context. Topics covered include:',
+  s1_list:'<li>The Brazilian tax reality versus the world</li><li>Classification, tax credits and double taxation in Brazil</li><li>New tax structure following the reform approval and calculation methodology</li><li>Sectors most impacted by the reform</li><li>Tax planning strategies for City Halls, Microentrepreneurs and SMEs in the post-reform scenario</li><li>Complete timeline: transition from 2026 to 2078</li><li><strong>Sources:</strong> EC 132/2023, IBPT, World Bank (Doing Business), TCMG, ANEEL</li>',
+  slide_tag:'Presentation',slide_title:'Slides — browse the presentation',
+  slide_hint:'Use the arrows or click the dots to navigate between slides. To see the full presentation, download the file below.',
+  ev_tag:'Events Held',ev_title:'Two events, two audiences',
+  row_audience:'Audience',row_focus:'Focus',row_partner:'Partner',
+  ev1_city:'Commercial Association of Capitólio — ACIAC',ev1_date:'August 19, 2025 · Capitólio, MG',
+  ev1_pub:'Business owners and entrepreneurs in the municipality',ev1_focus:'Sectoral impacts and tax planning for SMEs',ev1_count:'14 attendees',
+  ev2_city:'City Hall of Carmo do Cajuru',ev2_date:'September 8, 2025 · Carmo do Cajuru, MG',
+  ev2_pub:'Tax, Planning and Legal departments',ev2_focus:'Municipal administration impacts — ISS to IBS transition',ev2_count:'12 civil servants',
+  foto_tag:'Photo Gallery',foto_title:'Moments from the presentations',
+  reel_cap:'Promo · ACIAC Lecture · Capitólio, MG',
+  cap_carmo:'Lecture at City Hall of Carmo do Cajuru, MG · September 2025',
+  cap_palestrante:'Gabriel Costa · Lecture at ACIAC · Capitólio, MG · August 2025',
+  dl_label:'Available materials',dl_title:'Access the full presentation',
+  dl_sub:'<strong>PowerPoint</strong> file available for direct download on GitHub.<br>Includes all analyses, comparative charts and transition timeline.',
+  dl_btn:'⬇ Download presentation (.pptx)',dl_atestados:'📄 Download capacity certificates',home_btn:'🏠 Back to home',
+  yt_tag:'Explanatory Video',yt_title:'Video presentation',yt_soon:'Coming soon',
+  yt_p:'I will soon publish a complete explanatory video with an in-depth analysis of the main points of the Tax Reform.',
+  yt_cap:'Video in production. Replace with YouTube iframe when available.',
+  partners_label:'Collaboration',partners_title:'Presentations held in partnership with',
+  sp_desc:'Partnership in the audit and training project for the municipal public sector',
+  inno_desc:'Partnership in the lecture for business owners at the Commercial Association of Capitólio',
+  nav_prev:'← Previous project',nav_all:'All projects →'
+},
+es:{
+  back:'Volver a proyectos',
+  hero_num:'03 — Tributación · Reforma Fiscal · EC 132/2023',
+  hero_title:'El <em>Sistema Tributario</em> Brasileño —<br>Impactos y Transición Posreforma',
+  ml_area:'Área',mv_area:'Economía Fiscal · Tributación',
+  ml_type:'Tipo',mv_type:'Conferencia Técnica',
+  ml_events:'Presentaciones',mv_events:'2 eventos realizados',
+  ml_status:'Estado',mv_status:'✓ Completado',
+  s1_tag:'Contexto y Objetivo',s1_title:'La mayor reforma fiscal en tres décadas',
+  s1_p1:'La <strong>Enmienda Constitucional N.º 132/2023</strong> representa la mayor transformación del sistema fiscal brasileño desde la Constitución de 1988. Este trabajo presenta un análisis técnico profundo del sistema tributario prerreforma, los puntos clave del cambio legislativo y los impactos esperados para empresas, administraciones municipales y la economía nacional.',
+  s1_p2:'La presentación fue desarrollada para dos públicos distintos — gestores públicos y empresarios — con lenguaje adaptado y casos prácticos para cada contexto. Los temas abordados incluyen:',
+  s1_list:'<li>La realidad tributaria brasileña frente al mundo</li><li>Clasificación, créditos fiscales y doble imposición en Brasil</li><li>Nueva estructura tributaria tras la aprobación de la reforma y metodología de cálculo</li><li>Sectores más impactados por la reforma</li><li>Estrategias de planificación fiscal para Municipios, Microempresarios y PYMES en el escenario posreforma</li><li>Cronograma completo: transición de 2026 a 2078</li><li><strong>Fuentes:</strong> EC 132/2023, IBPT, Banco Mundial (Doing Business), TCMG, ANEEL</li>',
+  slide_tag:'Presentación',slide_title:'Diapositivas — navega por la presentación',
+  slide_hint:'Usa las flechas o haz clic en los puntos para navegar. Para ver la presentación completa, descarga el archivo abajo.',
+  ev_tag:'Eventos Realizados',ev_title:'Dos eventos, dos públicos',
+  row_audience:'Público',row_focus:'Enfoque',row_partner:'Alianza',
+  ev1_city:'Asociación Comercial de Capitólio — ACIAC',ev1_date:'19 de agosto de 2025 · Capitólio, MG',
+  ev1_pub:'Empresarios y emprendedores del municipio',ev1_focus:'Impactos sectoriales y planificación tributaria para PYMES',ev1_count:'14 participantes',
+  ev2_city:'Ayuntamiento de Carmo do Cajuru',ev2_date:'8 de septiembre de 2025 · Carmo do Cajuru, MG',
+  ev2_pub:'Departamentos de Tributos, Planificación y Procuración',ev2_focus:'Impactos en la administración municipal — transición del ISS al IBS',ev2_count:'12 servidores municipales',
+  foto_tag:'Registro Fotográfico',foto_title:'Momentos de las presentaciones',
+  reel_cap:'Difusión · Conferencia ACIAC · Capitólio, MG',
+  cap_carmo:'Conferencia en el Ayuntamiento de Carmo do Cajuru, MG · Septiembre 2025',
+  cap_palestrante:'Gabriel Costa · Conferencia en ACIAC · Capitólio, MG · Agosto 2025',
+  dl_label:'Materiales disponibles',dl_title:'Accede a la presentación completa',
+  dl_sub:'Archivo <strong>PowerPoint</strong> disponible para descarga directa en GitHub.<br>Incluye todos los análisis, cuadros comparativos y cronograma de transición.',
+  dl_btn:'⬇ Descargar presentación (.pptx)',dl_atestados:'📄 Descargar certificados de capacidad',home_btn:'🏠 Volver al inicio',
+  yt_tag:'Video Explicativo',yt_title:'Presentación en video',yt_soon:'Próximamente',
+  yt_p:'Próximamente publicaré un video explicativo completo con análisis detallado de los principales puntos de la Reforma Tributaria.',
+  yt_cap:'Video en producción. Reemplaza con el iframe de YouTube cuando esté disponible.',
+  partners_label:'Colaboración',partners_title:'Presentaciones realizadas en asociación con',
+  sp_desc:'Alianza en el proyecto de auditoría y capacitación para el sector público municipal',
+  inno_desc:'Alianza en la conferencia para empresarios de la Asociación Comercial de Capitólio',
+  nav_prev:'← Proyecto anterior',nav_all:'Todos los proyectos →'
+}
+};
+
 function setLang(l) {
   document.querySelectorAll('.lang-btn').forEach((b, i) =>
     b.classList.toggle('active', ['pt','en','es'][i] === l)
   );
+  const t = T3[l];
+  if (!t) return;
+  document.querySelectorAll('[data-i18n3]').forEach(el => {
+    const k = el.getAttribute('data-i18n3');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  const nb = document.querySelector('.nav-back');
+  if(nb) nb.innerHTML = '← ' + t.back;
 }
 </script>
 </body>

@@ -30,7 +30,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-back{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
 .nav-back:hover{color:var(--gold)}
 .lang-switcher{display:flex;gap:.55rem}
-.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn{width:30px;height:30px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .25s,transform .2s;padding:0;font-size:1.15rem;line-height:1}
+.lang-btn img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
 .lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 
@@ -65,8 +66,8 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 .banks-track{display:flex;align-items:center;white-space:nowrap;animation:bankscroll 30s linear infinite;gap:0}
 .banks-track:hover{animation-play-state:paused}
 .bank-logo-item{display:flex;align-items:center;justify-content:center;padding:0 2.5rem;border-right:1px solid var(--border);flex-shrink:0;height:44px}
-.bank-logo-item img{height:28px;max-width:80px;object-fit:contain;filter:brightness(0) invert(1);opacity:.5;transition:opacity .25s,filter .25s}
-.bank-logo-item:hover img{opacity:1;filter:brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg)}
+.bank-logo-item img{height:28px;max-width:90px;object-fit:contain;opacity:.75;transition:opacity .25s;filter:none}
+.bank-logo-item:hover img{opacity:1}
 @keyframes bankscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── STACK CARDS ── */
@@ -202,23 +203,20 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
 <nav>
   <a href="index.html" class="nav-logo">GC<span>.</span></a>
-  <a href="index.html#projects" class="nav-back">← Voltar aos projetos</a>
+  <a href="../index.html#projects" class="nav-back">← <span data-i18n="back">Voltar aos projetos</span></a>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="setLang('pt')" title="Português">🇧🇷</button>
-    <button class="lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
-    <button class="lang-btn" onclick="setLang('es')" title="Español">🇪🇸</button>
+    <button class="lang-btn active" onclick="setLang('pt')" title="Português"><img src="../home_files/pt-br.jpg" alt="PT"></button>
+    <button class="lang-btn" onclick="setLang('en')" title="English"><img src="../home_files/eng.jpg" alt="EN"></button>
+    <button class="lang-btn" onclick="setLang('es')" title="Español"><img src="../home_files/esp.png" alt="ES"></button>
   </div>
 </nav>
 
 <main>
 
-  <!-- ─── HERO ─── -->
+  <!-- HERO -->
   <div class="proj-hero reveal">
-    <div class="proj-num">01 — Power BI · Python · SQL Server · DAX</div>
-    <h1 class="proj-hero-title">
-      Dashboard <em>Power BI</em>:<br>
-      Análise do Mercado de Ações das<br>Instituições Financeiras Brasileiras
-    </h1>
+    <div class="proj-num" data-i18n="hero_num">01 — Power BI · Python · SQL Server · DAX</div>
+    <h1 class="proj-hero-title" data-i18n="hero_title">Dashboard <em>Power BI</em>:<br>Análise do Mercado de Ações das<br>Instituições Financeiras Brasileiras</h1>
     <div class="proj-tags">
       <span class="tag">Power BI</span><span class="tag">Python</span>
       <span class="tag">SQL Server</span><span class="tag">DAX Avançado</span>
@@ -228,229 +226,169 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
     </div>
     <div class="proj-meta">
       <div class="meta-item">
-        <span class="meta-label">Área</span>
-        <span class="meta-value">Finanças · BI · Data Science</span>
+        <span class="meta-label" data-i18n="ml_area">Área</span>
+        <span class="meta-value" data-i18n="mv_area">Finanças · BI · Data Science</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Instituições</span>
-        <span class="meta-value">10 bancos analisados</span>
+        <span class="meta-label" data-i18n="ml_inst">Instituições</span>
+        <span class="meta-value" data-i18n="mv_inst">10 bancos analisados</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Medidas DAX</span>
-        <span class="meta-value">+50 medidas dinâmicas</span>
+        <span class="meta-label" data-i18n="ml_dax">Medidas DAX</span>
+        <span class="meta-value" data-i18n="mv_dax">+50 medidas dinâmicas</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Status</span>
-        <span class="meta-value badge-dev">⚙ Em desenvolvimento</span>
+        <span class="meta-label" data-i18n="ml_status">Status</span>
+        <span class="meta-value badge-dev" data-i18n="mv_status">⚙ Em desenvolvimento</span>
       </div>
     </div>
   </div>
 
-  <!-- ─── OBJETIVO ─── -->
+  <!-- OBJETIVO -->
   <div class="section-block reveal">
-    <div class="block-tag">Objetivo do Projeto</div>
-    <div class="block-title">Inteligência de mercado para o setor bancário</div>
+    <div class="block-tag" data-i18n="s1_tag">Objetivo do Projeto</div>
+    <div class="block-title" data-i18n="s1_title">Inteligência de mercado para o setor bancário</div>
     <div class="block-text">
-      <p>O setor bancário brasileiro possui particularidades regulatórias e contábeis que exigem um olhar especializado. Este ecossistema interativo foi desenvolvido para subsidiar a tomada de decisão de investidores e analistas, consolidando indicadores de <strong>Valuation, Risco e Retorno</strong> em uma única interface.</p>
-      <p>O projeto transforma dados brutos e descentralizados (BCB/CVM) em <strong>inteligência de mercado</strong>, permitindo comparações peer-to-peer e análises temporais de longo prazo. Em breve, também serão publicadas análises de performance trimestral das instituições bancárias com base nos insights deste dashboard.</p>
+      <p data-i18n="s1_p1">O setor bancário brasileiro possui particularidades regulatórias e contábeis que exigem um olhar especializado. Este ecossistema interativo foi desenvolvido para subsidiar a tomada de decisão de investidores e analistas, consolidando indicadores de <strong>Valuation, Risco e Retorno</strong> em uma única interface.</p>
+      <p data-i18n="s1_p2">O projeto transforma dados brutos e descentralizados (BCB/CVM) em <strong>inteligência de mercado</strong>, permitindo comparações peer-to-peer e análises temporais de longo prazo. Em breve, também serão publicadas análises de performance trimestral das instituições bancárias.</p>
     </div>
   </div>
 
-  <!-- ─── FAIXA DE LOGOS ─── -->
+  <!-- FAIXA DE LOGOS -->
   <div class="banks-strip reveal">
     <div class="banks-track" id="banksTrack">
-      <!-- duplicado para loop contínuo -->
-      <div class="bank-logo-item"><img src="bb.jpeg"        alt="Banco do Brasil"></div>
-      <div class="bank-logo-item"><img src="itau.jpg"       alt="Itaú Unibanco"></div>
-      <div class="bank-logo-item"><img src="bradesco.jpg"   alt="Bradesco"></div>
-      <div class="bank-logo-item"><img src="santander.png"  alt="Santander Brasil"></div>
-      <div class="bank-logo-item"><img src="btg.png"        alt="BTG Pactual"></div>
-      <div class="bank-logo-item"><img src="nubank.png"     alt="Nubank"></div>
-      <div class="bank-logo-item"><img src="inter.jpg"      alt="Banco Inter"></div>
-      <div class="bank-logo-item"><img src="bmg.JPG"        alt="Banco BMG"></div>
-      <div class="bank-logo-item"><img src="xp.jpg"         alt="XP Inc."></div>
-      <div class="bank-logo-item"><img src="mercantil.png"  alt="Banco Mercantil"></div>
-      <!-- Duplicado para animação contínua -->
-      <div class="bank-logo-item"><img src="bb.jpeg"        alt="Banco do Brasil"></div>
-      <div class="bank-logo-item"><img src="itau.jpg"       alt="Itaú Unibanco"></div>
-      <div class="bank-logo-item"><img src="bradesco.jpg"   alt="Bradesco"></div>
-      <div class="bank-logo-item"><img src="santander.png"  alt="Santander Brasil"></div>
-      <div class="bank-logo-item"><img src="btg.png"        alt="BTG Pactual"></div>
-      <div class="bank-logo-item"><img src="nubank.png"     alt="Nubank"></div>
-      <div class="bank-logo-item"><img src="inter.jpg"      alt="Banco Inter"></div>
-      <div class="bank-logo-item"><img src="bmg.JPG"        alt="Banco BMG"></div>
-      <div class="bank-logo-item"><img src="xp.jpg"         alt="XP Inc."></div>
-      <div class="bank-logo-item"><img src="mercantil.png"  alt="Banco Mercantil"></div>
+      <div class="bank-logo-item"><img src="icons/bb.jpeg" alt="Banco do Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/itau.jpg" alt="Itaú Unibanco"></div>
+      <div class="bank-logo-item"><img src="icons/bradesco.jpg" alt="Bradesco"></div>
+      <div class="bank-logo-item"><img src="icons/santander.png" alt="Santander Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/btg.png" alt="BTG Pactual"></div>
+      <div class="bank-logo-item"><img src="icons/nubank.png" alt="Nubank"></div>
+      <div class="bank-logo-item"><img src="icons/inter.jpg" alt="Banco Inter"></div>
+      <div class="bank-logo-item"><img src="icons/bmg.JPG" alt="Banco BMG"></div>
+      <div class="bank-logo-item"><img src="icons/xp.jpg" alt="XP Inc."></div>
+      <div class="bank-logo-item"><img src="icons/mercantil.png" alt="Banco Mercantil"></div>
+      <div class="bank-logo-item"><img src="icons/bb.jpeg" alt="Banco do Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/itau.jpg" alt="Itaú Unibanco"></div>
+      <div class="bank-logo-item"><img src="icons/bradesco.jpg" alt="Bradesco"></div>
+      <div class="bank-logo-item"><img src="icons/santander.png" alt="Santander Brasil"></div>
+      <div class="bank-logo-item"><img src="icons/btg.png" alt="BTG Pactual"></div>
+      <div class="bank-logo-item"><img src="icons/nubank.png" alt="Nubank"></div>
+      <div class="bank-logo-item"><img src="icons/inter.jpg" alt="Banco Inter"></div>
+      <div class="bank-logo-item"><img src="icons/bmg.JPG" alt="Banco BMG"></div>
+      <div class="bank-logo-item"><img src="icons/xp.jpg" alt="XP Inc."></div>
+      <div class="bank-logo-item"><img src="icons/mercantil.png" alt="Banco Mercantil"></div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── STACK TECNOLÓGICA ─── -->
+  <!-- TELAS DO DASHBOARD -->
   <div class="section-block reveal">
-    <div class="block-tag">Pipeline End-to-End</div>
-    <div class="block-title">Stack Tecnológica</div>
-    <p class="block-text">O diferencial deste projeto é o pipeline completo — da coleta automatizada à visualização interativa.</p>
-    <div class="stack-grid">
+    <div class="block-tag" data-i18n="s5_tag">Telas do Dashboard</div>
+    <div class="block-title" data-i18n="s5_title">Navegue pelas telas</div>
+    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem" data-i18n="s5_hint">
+      4 telas com navegação intuitiva. Use as setas ou clique nos pontos para navegar.
+    </p>
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carTrack">
+        <div class="carousel-slide"><img src="presentations/0.%20Capa.JPG" alt="Tela 0"></div>
+        <div class="carousel-slide"><img src="presentations/Tela%201%20-%20Retornos.JPG" alt="Tela 1"></div>
+        <div class="carousel-slide"><img src="presentations/Tela%202.%20Carteira.JPG" alt="Tela 2"></div>
+        <div class="carousel-slide"><img src="presentations/Tela%203%20-%20Riscos.JPG" alt="Tela 3"></div>
+      </div>
+      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
+      <div class="carousel-counter" id="carCounter">1 / 4</div>
+    </div>
+    <div class="carousel-dots" id="carDots"></div>
+    <div class="slide-label" id="slideLabel"></div>
+  </div>
 
+  <div class="divider"></div>
+
+  <!-- STACK TECNOLÓGICA -->
+  <div class="section-block reveal">
+    <div class="block-tag" data-i18n="s2_tag">Pipeline End-to-End</div>
+    <div class="block-title" data-i18n="s2_title">Stack Tecnológica</div>
+    <p class="block-text" data-i18n="s2_p">O diferencial deste projeto é o pipeline completo — da coleta automatizada à visualização interativa.</p>
+    <div class="stack-grid">
       <div class="stack-card">
         <div class="stack-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <div class="stack-name">Extração & ETL</div>
-        <div class="stack-desc">Scripts Python para consumo de APIs do Banco Central e Yahoo Finance, com tratamento de outliers e atualização automática.</div>
+        <div class="stack-name" data-i18n="sc1_name">Extração &amp; ETL</div>
+        <div class="stack-desc" data-i18n="sc1_desc">Scripts Python para consumo de APIs do Banco Central e Yahoo Finance, com tratamento de outliers e atualização automática.</div>
         <div class="stack-badges"><span class="stack-badge">Python</span><span class="stack-badge">BCB API</span><span class="stack-badge">Yahoo Finance</span></div>
       </div>
-
       <div class="stack-card">
         <div class="stack-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></div>
-        <div class="stack-name">Data Warehouse</div>
-        <div class="stack-desc">Modelagem Star Schema, Views otimizadas e Stored Procedures para limpeza de dados legados e históricos.</div>
+        <div class="stack-name" data-i18n="sc2_name">Data Warehouse</div>
+        <div class="stack-desc" data-i18n="sc2_desc">Modelagem Star Schema, Views otimizadas e Stored Procedures para limpeza de dados legados e históricos.</div>
         <div class="stack-badges"><span class="stack-badge">SQL Server</span><span class="stack-badge">Star Schema</span><span class="stack-badge">Procedures</span></div>
       </div>
-
       <div class="stack-card">
         <div class="stack-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
-        <div class="stack-name">Business Intelligence</div>
-        <div class="stack-desc">+50 medidas dinâmicas, Time Intelligence (YoY/QoQ), Dark Mode, Tooltips Dinâmicos e Navegação por Botões.</div>
+        <div class="stack-name" data-i18n="sc3_name">Business Intelligence</div>
+        <div class="stack-desc" data-i18n="sc3_desc">+50 medidas dinâmicas, Time Intelligence (YoY/QoQ), Dark Mode, Tooltips Dinâmicos e Navegação por Botões.</div>
         <div class="stack-badges"><span class="stack-badge">Power BI</span><span class="stack-badge">DAX Avançado</span><span class="stack-badge">UX Design</span></div>
       </div>
-
       <div class="stack-card">
         <div class="stack-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M12 6v6l4 2"/></svg></div>
-        <div class="stack-name">AI Augmented</div>
-        <div class="stack-desc">Utilização de LLMs (Large Language Models) para auditoria de fórmulas contábeis e refinamento da semântica dos dados.</div>
+        <div class="stack-name" data-i18n="sc4_name">AI Augmented</div>
+        <div class="stack-desc" data-i18n="sc4_desc">Utilização de LLMs (Large Language Models) para auditoria de fórmulas contábeis e refinamento da semântica dos dados.</div>
         <div class="stack-badges"><span class="stack-badge">ChatGPT</span><span class="stack-badge">Claude</span><span class="stack-badge">Auditoria LLM</span></div>
       </div>
-
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── KPIs POR DIMENSÃO ─── -->
+  <!-- KPIs -->
   <div class="section-block reveal">
-    <div class="block-tag">Business Intelligence & KPIs</div>
-    <div class="block-title">O coração do projeto</div>
-    <p class="block-text">Mais de 20 indicadores organizados em quatro dimensões analíticas. Clique nas abas para explorar cada dimensão.</p>
-
+    <div class="block-tag" data-i18n="s3_tag">Business Intelligence &amp; KPIs</div>
+    <div class="block-title" data-i18n="s3_title">O coração do projeto</div>
+    <p class="block-text" data-i18n="s3_p">Mais de 20 indicadores organizados em quatro dimensões analíticas. Clique nas abas para explorar cada dimensão.</p>
     <div class="kpi-tabs">
       <div class="tab-nav">
-        <button class="tab-btn active" onclick="showTab('rent')">📈 Rentabilidade</button>
-        <button class="tab-btn" onclick="showTab('val')">💹 Valuation</button>
-        <button class="tab-btn" onclick="showTab('risk')">🛡 Risco &amp; Prudencial</button>
-        <button class="tab-btn" onclick="showTab('rr')">⚖ Risco × Retorno</button>
+        <button class="tab-btn active" onclick="showTab('rent')" data-i18n="tab_rent">📈 Rentabilidade</button>
+        <button class="tab-btn" onclick="showTab('val')" data-i18n="tab_val">💹 Valuation</button>
+        <button class="tab-btn" onclick="showTab('risk')" data-i18n="tab_risk">🛡 Risco &amp; Prudencial</button>
+        <button class="tab-btn" onclick="showTab('rr')" data-i18n="tab_rr">⚖ Risco × Retorno</button>
       </div>
-
-      <!-- TAB 1: RENTABILIDADE -->
+      <!-- TAB 1 -->
       <div class="tab-panel active" id="tab-rent">
         <div class="kpi-list">
-          <div class="kpi-item">
-            <div class="kpi-name">ROE (Return on Equity) — L12M</div>
-            <div class="kpi-formula">ROE = (Lucro Líquido L12M / Patrimônio Líquido Médio) × 100</div>
-            <div class="kpi-desc">Mede a eficiência da empresa em gerar lucro a partir dos recursos dos acionistas. Um ROE de 15% significa que a empresa gera R$ 15 de lucro para cada R$ 100 investidos pelos sócios. Calculado sobre os últimos 4 trimestres para suavizar a sazonalidade.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Margem Líquida</div>
-            <div class="kpi-formula">Margem Líquida = (Lucro Líquido / Receita Total) × 100</div>
-            <div class="kpi-desc">Indica a capacidade do banco de converter faturamento em lucro real após todas as deduções — impostos, despesas operacionais e provisões.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Margem de Intermediação Financeira (MIF)</div>
-            <div class="kpi-formula">MIF = ((Receitas de Crédito − Despesas de Captação) / Receita Total) × 100</div>
-            <div class="kpi-desc">Mede a eficiência do banco em sua função essencial: captar recursos de quem tem e emprestar para quem precisa. Uma MIF alta significa que o banco cobra juros elevados nos empréstimos ou capta recursos a baixo custo.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Dividend Yield (DY)</div>
-            <div class="kpi-formula">DY = (Dividendos Pagos por Ação L12M / Preço Atual da Ação) × 100</div>
-            <div class="kpi-desc">Mede o rendimento gerado pelos dividendos em relação ao preço das ações. Um DY de 5% significa que, investindo R$ 100, você recebeu R$ 5 em dividendos no último ano.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Payout Ratio</div>
-            <div class="kpi-formula">Payout = (Dividendos Distribuídos / Lucro Líquido) × 100</div>
-            <div class="kpi-desc">Percentual do lucro líquido distribuído aos acionistas. Um banco pode ter lucro alto, mas se o Payout for baixo (porque quer reinvestir no crescimento), o Dividend Yield será menor.</div>
-          </div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp1_1n">ROE (Return on Equity) — L12M</div><div class="kpi-formula">ROE = (Lucro Líquido L12M / Patrimônio Líquido Médio) × 100</div><div class="kpi-desc" data-i18n="kp1_1d">Mede a eficiência da empresa em gerar lucro a partir dos recursos dos acionistas. Um ROE de 15% significa que a empresa gera R$ 15 de lucro para cada R$ 100 investidos pelos sócios. Calculado sobre os últimos 4 trimestres para suavizar a sazonalidade.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp1_2n">Margem Líquida</div><div class="kpi-formula">Margem Líquida = (Lucro Líquido / Receita Total) × 100</div><div class="kpi-desc" data-i18n="kp1_2d">Indica a capacidade do banco de converter faturamento em lucro real após todas as deduções — impostos, despesas operacionais e provisões.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp1_3n">Margem de Intermediação Financeira (MIF)</div><div class="kpi-formula">MIF = ((Receitas de Crédito − Despesas de Captação) / Receita Total) × 100</div><div class="kpi-desc" data-i18n="kp1_3d">Mede a eficiência do banco em sua função essencial: captar recursos de quem tem e emprestar para quem precisa. Uma MIF alta significa que o banco cobra juros elevados nos empréstimos ou capta recursos a baixo custo.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp1_4n">Dividend Yield (DY)</div><div class="kpi-formula">DY = (Dividendos Pagos por Ação L12M / Preço Atual da Ação) × 100</div><div class="kpi-desc" data-i18n="kp1_4d">Mede o rendimento gerado pelos dividendos em relação ao preço das ações. Um DY de 5% significa que, investindo R$ 100, você recebeu R$ 5 em dividendos no último ano.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp1_5n">Payout Ratio</div><div class="kpi-formula">Payout = (Dividendos Distribuídos / Lucro Líquido) × 100</div><div class="kpi-desc" data-i18n="kp1_5d">Percentual do lucro líquido distribuído aos acionistas. Um banco pode ter lucro alto, mas se o Payout for baixo (porque quer reinvestir no crescimento), o Dividend Yield será menor.</div></div>
         </div>
       </div>
-
-      <!-- TAB 2: VALUATION -->
+      <!-- TAB 2 -->
       <div class="tab-panel" id="tab-val">
         <div class="kpi-list">
-          <div class="kpi-item">
-            <div class="kpi-name">P/VP (Preço sobre Valor Patrimonial)</div>
-            <div class="kpi-formula">P/VP = Preço da Ação / (Patrimônio Líquido / Total de Ações)</div>
-            <div class="kpi-desc">Relaciona o preço de mercado das ações com o valor patrimonial contábil. P/VP = 1,0 significa que o mercado paga exatamente o patrimônio líquido; abaixo de 1,0 indica desconto; acima de 1,0, que está sendo negociado com prêmio (ágio).</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Valor de Mercado (Market Cap)</div>
-            <div class="kpi-formula">Market Cap = Preço da Ação × Total de Ações Emitidas</div>
-            <div class="kpi-desc">Representa o valor total que o mercado atribui à empresa. Calculado diariamente com base no fechamento dos tickers e no número total de ações em circulação (outstanding).</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Margem de Segurança</div>
-            <div class="kpi-formula">Margem = ((Valor Intrínseco − Preço de Mercado) / Valor Intrínseco) × 100</div>
-            <div class="kpi-desc">Diferença percentual entre o valor intrínseco estimado (baseado em fundamentos) e o preço de mercado. Margem positiva indica ativo subavaliado; negativa, sobrevalorizado. Funciona como proteção contra erros de avaliação.</div>
-          </div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp2_1n">P/VP (Preço sobre Valor Patrimonial)</div><div class="kpi-formula">P/VP = Preço da Ação / (Patrimônio Líquido / Total de Ações)</div><div class="kpi-desc" data-i18n="kp2_1d">Relaciona o preço de mercado das ações com o valor patrimonial contábil. P/VP = 1,0 significa que o mercado paga exatamente o patrimônio líquido; abaixo de 1,0 indica desconto; acima de 1,0, negociado com prêmio (ágio).</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp2_2n">Valor de Mercado (Market Cap)</div><div class="kpi-formula">Market Cap = Preço da Ação × Total de Ações Emitidas</div><div class="kpi-desc" data-i18n="kp2_2d">Representa o valor total que o mercado atribui à empresa. Calculado diariamente com base no fechamento dos tickers e no número total de ações em circulação (outstanding).</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp2_3n">Margem de Segurança</div><div class="kpi-formula">Margem = ((Valor Intrínseco − Preço de Mercado) / Valor Intrínseco) × 100</div><div class="kpi-desc" data-i18n="kp2_3d">Diferença percentual entre o valor intrínseco estimado (baseado em fundamentos) e o preço de mercado. Margem positiva indica ativo subavaliado; negativa, sobrevalorizado.</div></div>
         </div>
       </div>
-
-      <!-- TAB 3: RISCO -->
+      <!-- TAB 3 -->
       <div class="tab-panel" id="tab-risk">
         <div class="kpi-list">
-          <div class="kpi-item">
-            <div class="kpi-name">Índice de Basileia</div>
-            <div class="kpi-formula">Basileia = (Patrimônio de Referência / Ativos Ponderados pelo Risco) × 100</div>
-            <div class="kpi-desc">Indicador de segurança financeira que mede a proporção entre o capital próprio e os riscos assumidos. Quanto maior, mais capital a instituição possui para absorver prejuízos. Mínimo regulatório no Brasil: <strong>10,5%</strong>.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Razão de Alavancagem (RA)</div>
-            <div class="kpi-formula">RA = (Capital Principal / Exposição Total) × 100</div>
-            <div class="kpi-desc">Indicador prudencial do Acordo de Basileia III que limita o endividamento em relação ao capital próprio, evitando expansão excessiva do balanço. Mínimo regulatório: <strong>3%</strong>.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">NPL 90 (Non-Performing Loans)</div>
-            <div class="kpi-formula">NPL = (Créditos Vencidos há mais de 90 dias / Carteira Total) × 100</div>
-            <div class="kpi-desc">Indicador de qualidade da carteira de crédito. Mede o percentual de empréstimos inadimplentes com atraso superior a 90 dias. Quanto menor, melhor a qualidade da carteira.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Beta — 241 dias úteis</div>
-            <div class="kpi-formula">Beta = Cov(Retorno Ação, Retorno Mercado) / Var(Retorno Mercado)</div>
-            <div class="kpi-desc">Mede a sensibilidade da ação em relação ao Ibovespa. Beta = 1: move-se igual ao mercado; Beta &gt; 1: mais volátil; Beta &lt; 1: menos volátil. Calculado com base nos últimos 241 dias úteis (~1 ano).</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Volatilidade de Fundamentos</div>
-            <div class="kpi-formula">Vol. Fund. = Desvio Padrão(ROE trimestral, últimos 8 trimestres)</div>
-            <div class="kpi-desc">Mede a estabilidade dos resultados operacionais ao longo do tempo. Baixa volatilidade indica previsibilidade; alta volatilidade sugere inconsistência nos lucros.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Composição de Carteira por Risco (AA–H)</div>
-            <div class="kpi-formula">Distribuição por classificação de risco segundo critérios do Banco Central</div>
-            <div class="kpi-desc">Distribuição da carteira de crédito segundo os critérios do BCB: AA = menor risco até H = maior risco/inadimplência. Permite identificar a concentração da carteira em cada faixa de risco.</div>
-          </div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp3_1n">Índice de Basileia</div><div class="kpi-formula">Basileia = (Patrimônio de Referência / Ativos Ponderados pelo Risco) × 100</div><div class="kpi-desc" data-i18n="kp3_1d">Indicador de segurança financeira que mede a proporção entre o capital próprio e os riscos assumidos. Quanto maior, mais capital a instituição possui para absorver prejuízos. Mínimo regulatório no Brasil: <strong>10,5%</strong>.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp3_2n">Razão de Alavancagem (RA)</div><div class="kpi-formula">RA = (Capital Principal / Exposição Total) × 100</div><div class="kpi-desc" data-i18n="kp3_2d">Indicador prudencial do Acordo de Basileia III que limita o endividamento em relação ao capital próprio, evitando expansão excessiva do balanço. Mínimo regulatório: <strong>3%</strong>.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp3_3n">NPL 90 (Non-Performing Loans)</div><div class="kpi-formula">NPL = (Créditos Vencidos há mais de 90 dias / Carteira Total) × 100</div><div class="kpi-desc" data-i18n="kp3_3d">Indicador de qualidade da carteira de crédito. Mede o percentual de empréstimos inadimplentes com atraso superior a 90 dias. Quanto menor, melhor a qualidade da carteira.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp3_4n">Beta — 241 dias úteis</div><div class="kpi-formula">Beta = Cov(Retorno Ação, Retorno Mercado) / Var(Retorno Mercado)</div><div class="kpi-desc" data-i18n="kp3_4d">Mede a sensibilidade da ação em relação ao Ibovespa. Beta = 1: move-se igual ao mercado; Beta &gt; 1: mais volátil; Beta &lt; 1: menos volátil. Calculado com base nos últimos 241 dias úteis.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp3_5n">Volatilidade de Fundamentos</div><div class="kpi-formula">Vol. Fund. = Desvio Padrão(ROE trimestral, últimos 8 trimestres)</div><div class="kpi-desc" data-i18n="kp3_5d">Mede a estabilidade dos resultados operacionais ao longo do tempo. Baixa volatilidade indica previsibilidade; alta volatilidade sugere inconsistência nos lucros.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp3_6n">Composição de Carteira por Risco (AA–H)</div><div class="kpi-formula">Distribuição por classificação de risco segundo critérios do Banco Central</div><div class="kpi-desc" data-i18n="kp3_6d">Distribuição da carteira de crédito segundo os critérios do BCB: AA = menor risco até H = maior risco/inadimplência. Permite identificar a concentração da carteira em cada faixa de risco.</div></div>
         </div>
       </div>
-
-      <!-- TAB 4: RISCO x RETORNO -->
+      <!-- TAB 4 -->
       <div class="tab-panel" id="tab-rr">
         <div class="kpi-list">
-          <div class="kpi-item">
-            <div class="kpi-name">Análise Risk-Return (CAPM)</div>
-            <div class="kpi-formula">Capital Asset Pricing Model — Volatilidade (241d) × ROE L12M</div>
-            <div class="kpi-desc">Compara a volatilidade histórica das ações versus o retorno sobre patrimônio, posicionando cada banco em uma matriz risco-retorno. Permite identificar quais instituições entregam maior retorno por unidade de risco assumido.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Curvas SML (Security Market Line)</div>
-            <div class="kpi-formula">SML: E(R) = Rf + β × (Rm − Rf)</div>
-            <div class="kpi-desc">Sobrepostas ao gráfico de dispersão, representam a fronteira de retornos aceitáveis para capital nacional e estrangeiro. Bancos <strong>acima da linha</strong> oferecem retorno superior ao esperado; <strong>abaixo</strong>, retorno inferior ao custo de capital.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Prêmio por Unidade de Risco (Sharpe Adaptado)</div>
-            <div class="kpi-formula">Prêmio = (Retorno Total − Taxa Livre de Risco) / Beta</div>
-            <div class="kpi-desc">Mede o retorno excedente ajustado ao risco sistêmico. Quanto maior, melhor a relação retorno/risco para o investidor.</div>
-          </div>
-          <div class="kpi-item">
-            <div class="kpi-name">Spread de Intermediação Financeira</div>
-            <div class="kpi-formula">Confronto histórico: Receitas de Crédito × Despesas de Captação</div>
-            <div class="kpi-desc">Análise temporal do spread entre receitas de crédito e despesas de captação, permitindo identificar tendências de compressão ou expansão de margens ao longo do tempo.</div>
-          </div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp4_1n">Análise Risk-Return (CAPM)</div><div class="kpi-formula">Capital Asset Pricing Model — Volatilidade (241d) × ROE L12M</div><div class="kpi-desc" data-i18n="kp4_1d">Compara a volatilidade histórica das ações versus o retorno sobre patrimônio, posicionando cada banco em uma matriz risco-retorno. Permite identificar quais instituições entregam maior retorno por unidade de risco assumido.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp4_2n">Curvas SML (Security Market Line)</div><div class="kpi-formula">SML: E(R) = Rf + β × (Rm − Rf)</div><div class="kpi-desc" data-i18n="kp4_2d">Sobrepostas ao gráfico de dispersão, representam a fronteira de retornos aceitáveis para capital nacional e estrangeiro. Bancos <strong>acima da linha</strong> oferecem retorno superior ao esperado; <strong>abaixo</strong>, retorno inferior ao custo de capital.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp4_3n">Prêmio por Unidade de Risco (Sharpe Adaptado)</div><div class="kpi-formula">Prêmio = (Retorno Total − Taxa Livre de Risco) / Beta</div><div class="kpi-desc" data-i18n="kp4_3d">Mede o retorno excedente ajustado ao risco sistêmico. Quanto maior, melhor a relação retorno/risco para o investidor.</div></div>
+          <div class="kpi-item"><div class="kpi-name" data-i18n="kp4_4n">Spread de Intermediação Financeira</div><div class="kpi-formula">Confronto histórico: Receitas de Crédito × Despesas de Captação</div><div class="kpi-desc" data-i18n="kp4_4d">Análise temporal do spread entre receitas de crédito e despesas de captação, permitindo identificar tendências de compressão ou expansão de margens ao longo do tempo.</div></div>
         </div>
       </div>
     </div>
@@ -458,17 +396,16 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
   <div class="divider"></div>
 
-  <!-- ─── STORYTELLING / UX ─── -->
+  <!-- UX -->
   <div class="section-block reveal">
-    <div class="block-tag">Data Storytelling</div>
-    <div class="block-title">Experiência do usuário em camadas</div>
-    <p class="block-text">O diferencial deste dashboard não está apenas no volume de dados, mas na forma como a informação é consumida.</p>
+    <div class="block-tag" data-i18n="s4_tag">Data Storytelling</div>
+    <div class="block-title" data-i18n="s4_title">Experiência do usuário em camadas</div>
+    <p class="block-text" data-i18n="s4_p">O diferencial deste dashboard não está apenas no volume de dados, mas na forma como a informação é consumida.</p>
     <div class="ux-grid">
-
       <div class="ux-card">
         <div class="ux-num">01</div>
-        <div class="ux-title">Insights sob Demanda</div>
-        <div class="ux-text">
+        <div class="ux-title" data-i18n="ux1_t">Insights sob Demanda</div>
+        <div class="ux-text" data-i18n="ux1_d">
           <p>Tooltips Dinâmicos funcionam como um analista virtual. Ao passar o mouse sobre uma instituição:</p>
           <ul>
             <li><strong>Contexto Comparativo</strong> — posição do ROE em relação à média setorial, com narração automática</li>
@@ -477,165 +414,312 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
           </ul>
         </div>
       </div>
-
       <div class="ux-card">
         <div class="ux-num">02</div>
-        <div class="ux-title">Tendências Históricas</div>
-        <div class="ux-text">
-          <p>Indicadores visuais de variação <strong>YoY e QoQ</strong> com setas dinâmicas de direção e cor. O usuário identifica em segundos se a trajetória de crescimento está acelerando ou perdendo fôlego — sem cálculos mentais.</p>
-        </div>
+        <div class="ux-title" data-i18n="ux2_t">Tendências Históricas</div>
+        <div class="ux-text" data-i18n="ux2_d"><p>Indicadores visuais de variação <strong>YoY e QoQ</strong> com setas dinâmicas de direção e cor. O usuário identifica em segundos se a trajetória de crescimento está acelerando ou perdendo fôlego — sem cálculos mentais.</p></div>
       </div>
-
       <div class="ux-card">
         <div class="ux-num">03</div>
-        <div class="ux-title">Rankings & Benchmarking</div>
-        <div class="ux-text">
-          <p>O dashboard permite a inversão de filtros para analisar o <strong>ecossistema</strong>, não apenas um banco. A tela de rankings identifica os "outliers" — instituições com alta rentabilidade mesmo com estruturas de custo enxutas.</p>
-        </div>
+        <div class="ux-title" data-i18n="ux3_t">Rankings &amp; Benchmarking</div>
+        <div class="ux-text" data-i18n="ux3_d"><p>O dashboard permite a inversão de filtros para analisar o <strong>ecossistema</strong>, não apenas um banco. A tela de rankings identifica os "outliers" — instituições com alta rentabilidade mesmo com estruturas de custo enxutas.</p></div>
       </div>
-
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── TELAS DO DASHBOARD ─── -->
+  <!-- DESAFIOS -->
   <div class="section-block reveal">
-    <div class="block-tag">Telas do Dashboard</div>
-    <div class="block-title">Navegue pelas telas</div>
-    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem">
-      4 telas com navegação intuitiva. Use as setas ou clique nos pontos para navegar.
-    </p>
-
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carTrack">
-        <div class="carousel-slide">
-          <img src="Capa.png" alt="Tela 0 — Capa do dashboard">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%201%20-%20Retornos.png" alt="Tela 1 — Retornos">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%202.%20Carteira.png" alt="Tela 2 — Carteira">
-        </div>
-        <div class="carousel-slide">
-          <img src="Tela%203%20-%20Riscos.png" alt="Tela 3 — Riscos">
-        </div>
-      </div>
-      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
-      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
-      <div class="carousel-counter" id="carCounter">1 / 4</div>
-    </div>
-    <div class="carousel-dots" id="carDots"></div>
-    <div class="slide-label" id="slideLabel">Tela 0 — Capa: Visão geral e introdução ao projeto</div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ─── DESAFIOS ─── -->
-  <div class="section-block reveal">
-    <div class="block-tag">Bastidores</div>
-    <div class="block-title">Desafios superados</div>
+    <div class="block-tag" data-i18n="s6_tag">Bastidores</div>
+    <div class="block-title" data-i18n="s6_title">Desafios superados</div>
     <div class="challenges-grid">
       <div class="challenge-card">
         <div class="ch-icon">📐</div>
-        <div class="ch-title">Padronização Contábil</div>
-        <div class="ch-text">Harmonização de metodologias que sofreram alterações ao longo do tempo (CPC, IFRS, Circular BACEN), garantindo comparabilidade histórica entre as séries de dados.</div>
+        <div class="ch-title" data-i18n="ch1_t">Padronização Contábil</div>
+        <div class="ch-text" data-i18n="ch1_d">Harmonização de metodologias que sofreram alterações ao longo do tempo (CPC, IFRS, Circular BACEN), garantindo comparabilidade histórica entre as séries de dados.</div>
       </div>
       <div class="challenge-card">
         <div class="ch-icon">📊</div>
-        <div class="ch-title">Construção do Modelo SML</div>
-        <div class="ch-text">Sobreposição de dois gráficos (linhas e dispersão) de forma simétrica para garantir precisão na representação gráfica da Security Market Line e da fronteira eficiente.</div>
+        <div class="ch-title" data-i18n="ch2_t">Construção do Modelo SML</div>
+        <div class="ch-text" data-i18n="ch2_d">Sobreposição de dois gráficos (linhas e dispersão) de forma simétrica para garantir precisão na representação gráfica da Security Market Line e da fronteira eficiente.</div>
       </div>
       <div class="challenge-card">
         <div class="ch-icon">🤖</div>
-        <div class="ch-title">Auditoria Automatizada</div>
-        <div class="ch-text">A automação da coleta envolve riscos de erros que foram mitigados por validações cruzadas e auditoria assistida por IA (LLMs), garantindo integridade dos dados antes do carregamento.</div>
+        <div class="ch-title" data-i18n="ch3_t">Auditoria Automatizada</div>
+        <div class="ch-text" data-i18n="ch3_d">A automação da coleta envolve riscos de erros que foram mitigados por validações cruzadas e auditoria assistida por IA (LLMs), garantindo integridade dos dados antes do carregamento.</div>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── ESTRUTURA DO REPOSITÓRIO ─── -->
+  <!-- REPOSITÓRIO -->
   <div class="section-block reveal">
-    <div class="block-tag">Estrutura do Repositório</div>
-    <div class="block-title">Organização dos arquivos</div>
+    <div class="block-tag" data-i18n="s7_tag">Estrutura do Repositório</div>
+    <div class="block-title" data-i18n="s7_title">Organização dos arquivos</div>
     <div class="repo-block">
       <div><span class="repo-folder">📁 dashboard_brbanksperformance/</span></div>
-      <div><span class="repo-file">📁 /scripts_python</span> <span class="repo-comment">— Automação da coleta (APIs BCB, Yahoo Finance)</span></div>
-      <div><span class="repo-file">📁 /sql_queries</span> <span class="repo-comment">— Scripts do Data Warehouse no SQL Server</span></div>
-      <div><span class="repo-file">📁 /power_bi</span> <span class="repo-comment">— Arquivo .pbix (ou link para versão web)</span></div>
-      <div><span class="repo-file">📁 /assets</span> <span class="repo-comment">— Imagens, ícones e screenshots do dashboard</span></div>
-      <div><span class="repo-file">📁 /database</span> <span class="repo-comment">— Banco de dados completo SQL Server</span></div>
+      <div><span class="repo-file">📁 /scripts_python</span> <span class="repo-comment" data-i18n="repo1">— Automação da coleta (APIs BCB, Yahoo Finance)</span></div>
+      <div><span class="repo-file">📁 /sql_queries</span>  <span class="repo-comment" data-i18n="repo2">— Scripts do Data Warehouse no SQL Server</span></div>
+      <div><span class="repo-file">📁 /power_bi</span>    <span class="repo-comment" data-i18n="repo3">— Arquivo .pbix (ou link para versão web)</span></div>
+      <div><span class="repo-file">📁 /assets</span>      <span class="repo-comment" data-i18n="repo4">— Imagens, ícones e screenshots do dashboard</span></div>
+      <div><span class="repo-file">📁 /database</span>    <span class="repo-comment" data-i18n="repo5">— Banco de dados completo SQL Server</span></div>
     </div>
-    <div class="block-text" style="margin-top:1.5rem">
+    <div class="block-text" style="margin-top:1.5rem" data-i18n="repo_how">
       <p><strong>Como visualizar:</strong></p>
       <ul>
         <li>Baixe o arquivo RAR completo pelo botão abaixo</li>
         <li>Extraia a pasta <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">dashboard_brbanksperformance</code></li>
         <li>Não altere a organização dos arquivos e subpastas</li>
-        <li>Abra o arquivo <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">.pbix</code> e atualize as fontes de dados — ou visualize os screenshots em <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">/assets</code></li>
+        <li>Abra o arquivo <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">.pbix</code> e atualize as fontes de dados</li>
       </ul>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── DOWNLOAD ─── -->
+  <!-- DOWNLOAD -->
   <div class="download-cta reveal">
     <div>
-      <div class="dl-label">Material disponível</div>
-      <div class="dl-title">Acesse o projeto completo</div>
-      <div class="dl-sub">
-        Arquivo <strong>RAR completo</strong> com .pbix, scripts Python e queries SQL.<br>
-        Disponível no repositório do GitHub.
-      </div>
+      <div class="dl-label" data-i18n="dl_label">Material disponível</div>
+      <div class="dl-title" data-i18n="dl_title">Acesse o projeto completo</div>
+      <div class="dl-sub" data-i18n="dl_sub">Arquivo <strong>RAR completo</strong> com .pbix, scripts Python e queries SQL.<br>Disponível no repositório do GitHub.</div>
     </div>
     <div class="dl-btns">
-      <!--
-        Substitua o href pelo link RAR direto no GitHub:
-        https://github.com/gabrielcostaeco/REPO/releases/download/v1.0/dashboard_brbanksperformance.rar
-      -->
-      <a href="https://github.com/gabrielcostaeco" target="_blank" class="btn-gold">
-        ⬇ Download completo (.rar)
-      </a>
-      <a href="index.html#projects" class="btn-back">← Voltar aos projetos</a>
+      <a href="files/Dashboard-bancos.rar" download class="btn-gold" data-i18n="dl_btn">⬇ Download completo (.rar)</a>
+      <a href="../index.html#projects" class="btn-back" data-i18n="dl_back">← Voltar</a>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── YOUTUBE ─── -->
+  <!-- YOUTUBE -->
   <div class="section-block reveal">
-    <div class="block-tag">Vídeo explicativo</div>
-    <h3 class="block-title" style="display:inline">Apresentação em vídeo</h3>
-    <span class="coming-soon">Em breve</span>
-    <p class="block-text" style="margin-top:1rem;margin-bottom:0">
+    <div class="block-tag" data-i18n="yt_tag">Vídeo explicativo</div>
+    <h3 class="block-title" style="display:inline" data-i18n="yt_title">Apresentação em vídeo</h3>
+    <span class="coming-soon" data-i18n="yt_soon">Em breve</span>
+    <p class="block-text" style="margin-top:1rem;margin-bottom:0" data-i18n="yt_p">
       Em breve disponibilizarei um vídeo demonstrando o dashboard em funcionamento, com navegação pelas 4 telas e análise dos principais KPIs.
     </p>
     <div class="youtube-wrap">
-      <!--
-        Quando pronto, substitua a div.yt-ph por:
-        <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID" allowfullscreen></iframe>
-        E remova o <span class="coming-soon"> acima.
-      -->
       <div class="yt-ph">
         <div class="yt-play"></div>
-        <div class="yt-cap">Vídeo em produção. Substitua pelo iframe do YouTube quando disponível.</div>
+        <div class="yt-cap" data-i18n="yt_cap">Vídeo em produção. Substitua pelo iframe do YouTube quando disponível.</div>
       </div>
     </div>
   </div>
 
   <!-- PROJ NAV -->
   <div class="proj-nav">
-    <a href="index.html#projects" class="pnav-link">← Todos os projetos</a>
-    <a href="projeto2.html" class="pnav-link">Próximo projeto →</a>
+    <a href="../index.html#projects" class="pnav-link" data-i18n="nav_all">← Todos os projetos</a>
+    <a href="../3-reformatributaria/index.html" class="pnav-link" data-i18n="nav_next">Próximo projeto →</a>
   </div>
 
 </main>
 
 <script>
+
+const T={
+pt:{
+  back:'Voltar aos projetos',
+  hero_num:'01 — Power BI · Python · SQL Server · DAX',
+  hero_title:'Dashboard <em>Power BI</em>:<br>Análise do Mercado de Ações das<br>Instituições Financeiras Brasileiras',
+  ml_area:'Área',mv_area:'Finanças · BI · Data Science',
+  ml_inst:'Instituições',mv_inst:'10 bancos analisados',
+  ml_dax:'Medidas DAX',mv_dax:'+50 medidas dinâmicas',
+  ml_status:'Status',mv_status:'⚙ Em desenvolvimento',
+  s1_tag:'Objetivo do Projeto',s1_title:'Inteligência de mercado para o setor bancário',
+  s1_p1:'O setor bancário brasileiro possui particularidades regulatórias e contábeis que exigem um olhar especializado. Este ecossistema interativo foi desenvolvido para subsidiar a tomada de decisão de investidores e analistas, consolidando indicadores de <strong>Valuation, Risco e Retorno</strong> em uma única interface.',
+  s1_p2:'O projeto transforma dados brutos e descentralizados (BCB/CVM) em <strong>inteligência de mercado</strong>, permitindo comparações peer-to-peer e análises temporais de longo prazo. Em breve, também serão publicadas análises de performance trimestral das instituições bancárias.',
+  s5_tag:'Telas do Dashboard',s5_title:'Navegue pelas telas',
+  s5_hint:'4 telas com navegação intuitiva. Use as setas ou clique nos pontos para navegar.',
+  slides:['Tela 0 — Capa: Visão geral e introdução ao projeto','Tela 1 — Retornos: Análise de rentabilidade (ROE, margens, dividendos)','Tela 2 — Carteira: Composição de ativos, crédito e riscos','Tela 3 — Riscos: Indicadores prudenciais, volatilidade e valuation'],
+  s2_tag:'Pipeline End-to-End',s2_title:'Stack Tecnológica',
+  s2_p:'O diferencial deste projeto é o pipeline completo — da coleta automatizada à visualização interativa.',
+  sc1_name:'Extração &amp; ETL',sc1_desc:'Scripts Python para consumo de APIs do Banco Central e Yahoo Finance, com tratamento de outliers e atualização automática.',
+  sc2_name:'Data Warehouse',sc2_desc:'Modelagem Star Schema, Views otimizadas e Stored Procedures para limpeza de dados legados e históricos.',
+  sc3_name:'Business Intelligence',sc3_desc:'+50 medidas dinâmicas, Time Intelligence (YoY/QoQ), Dark Mode, Tooltips Dinâmicos e Navegação por Botões.',
+  sc4_name:'AI Augmented',sc4_desc:'Utilização de LLMs (Large Language Models) para auditoria de fórmulas contábeis e refinamento da semântica dos dados.',
+  s3_tag:'Business Intelligence &amp; KPIs',s3_title:'O coração do projeto',
+  s3_p:'Mais de 20 indicadores organizados em quatro dimensões analíticas. Clique nas abas para explorar cada dimensão.',
+  tab_rent:'📈 Rentabilidade',tab_val:'💹 Valuation',tab_risk:'🛡 Risco &amp; Prudencial',tab_rr:'⚖ Risco × Retorno',
+  kp1_1n:'ROE (Return on Equity) — L12M',kp1_1d:'Mede a eficiência da empresa em gerar lucro a partir dos recursos dos acionistas. Um ROE de 15% significa que a empresa gera R$ 15 de lucro para cada R$ 100 investidos pelos sócios. Calculado sobre os últimos 4 trimestres para suavizar a sazonalidade.',
+  kp1_2n:'Margem Líquida',kp1_2d:'Indica a capacidade do banco de converter faturamento em lucro real após todas as deduções — impostos, despesas operacionais e provisões.',
+  kp1_3n:'Margem de Intermediação Financeira (MIF)',kp1_3d:'Mede a eficiência do banco em sua função essencial: captar recursos de quem tem e emprestar para quem precisa. Uma MIF alta significa que o banco cobra juros elevados nos empréstimos ou capta recursos a baixo custo.',
+  kp1_4n:'Dividend Yield (DY)',kp1_4d:'Mede o rendimento gerado pelos dividendos em relação ao preço das ações. Um DY de 5% significa que, investindo R$ 100, você recebeu R$ 5 em dividendos no último ano.',
+  kp1_5n:'Payout Ratio',kp1_5d:'Percentual do lucro líquido distribuído aos acionistas. Um banco pode ter lucro alto, mas se o Payout for baixo (porque quer reinvestir no crescimento), o Dividend Yield será menor.',
+  kp2_1n:'P/VP (Preço sobre Valor Patrimonial)',kp2_1d:'Relaciona o preço de mercado das ações com o valor patrimonial contábil. P/VP = 1,0 significa que o mercado paga exatamente o patrimônio líquido; abaixo de 1,0 indica desconto; acima de 1,0, negociado com prêmio (ágio).',
+  kp2_2n:'Valor de Mercado (Market Cap)',kp2_2d:'Representa o valor total que o mercado atribui à empresa. Calculado diariamente com base no fechamento dos tickers e no número total de ações em circulação (outstanding).',
+  kp2_3n:'Margem de Segurança',kp2_3d:'Diferença percentual entre o valor intrínseco estimado (baseado em fundamentos) e o preço de mercado. Margem positiva indica ativo subavaliado; negativa, sobrevalorizado.',
+  kp3_1n:'Índice de Basileia',kp3_1d:'Indicador de segurança financeira que mede a proporção entre o capital próprio e os riscos assumidos. Quanto maior, mais capital a instituição possui para absorver prejuízos. Mínimo regulatório no Brasil: <strong>10,5%</strong>.',
+  kp3_2n:'Razão de Alavancagem (RA)',kp3_2d:'Indicador prudencial do Acordo de Basileia III que limita o endividamento em relação ao capital próprio, evitando expansão excessiva do balanço. Mínimo regulatório: <strong>3%</strong>.',
+  kp3_3n:'NPL 90 (Non-Performing Loans)',kp3_3d:'Indicador de qualidade da carteira de crédito. Mede o percentual de empréstimos inadimplentes com atraso superior a 90 dias. Quanto menor, melhor a qualidade da carteira.',
+  kp3_4n:'Beta — 241 dias úteis',kp3_4d:'Mede a sensibilidade da ação em relação ao Ibovespa. Beta = 1: move-se igual ao mercado; Beta &gt; 1: mais volátil; Beta &lt; 1: menos volátil. Calculado com base nos últimos 241 dias úteis.',
+  kp3_5n:'Volatilidade de Fundamentos',kp3_5d:'Mede a estabilidade dos resultados operacionais ao longo do tempo. Baixa volatilidade indica previsibilidade; alta volatilidade sugere inconsistência nos lucros.',
+  kp3_6n:'Composição de Carteira por Risco (AA–H)',kp3_6d:'Distribuição da carteira de crédito segundo os critérios do BCB: AA = menor risco até H = maior risco/inadimplência. Permite identificar a concentração da carteira em cada faixa de risco.',
+  kp4_1n:'Análise Risk-Return (CAPM)',kp4_1d:'Compara a volatilidade histórica das ações versus o retorno sobre patrimônio, posicionando cada banco em uma matriz risco-retorno. Permite identificar quais instituições entregam maior retorno por unidade de risco assumido.',
+  kp4_2n:'Curvas SML (Security Market Line)',kp4_2d:'Sobrepostas ao gráfico de dispersão, representam a fronteira de retornos aceitáveis para capital nacional e estrangeiro. Bancos <strong>acima da linha</strong> oferecem retorno superior ao esperado; <strong>abaixo</strong>, retorno inferior ao custo de capital.',
+  kp4_3n:'Prêmio por Unidade de Risco (Sharpe Adaptado)',kp4_3d:'Mede o retorno excedente ajustado ao risco sistêmico. Quanto maior, melhor a relação retorno/risco para o investidor.',
+  kp4_4n:'Spread de Intermediação Financeira',kp4_4d:'Análise temporal do spread entre receitas de crédito e despesas de captação, permitindo identificar tendências de compressão ou expansão de margens ao longo do tempo.',
+  s4_tag:'Data Storytelling',s4_title:'Experiência do usuário em camadas',
+  s4_p:'O diferencial deste dashboard não está apenas no volume de dados, mas na forma como a informação é consumida.',
+  ux1_t:'Insights sob Demanda',ux1_d:'<p>Tooltips Dinâmicos funcionam como um analista virtual. Ao passar o mouse sobre uma instituição:</p><ul><li><strong>Contexto Comparativo</strong> — posição do ROE em relação à média setorial, com narração automática</li><li><strong>Micro-Rankings</strong> — posição no ranking sem sair da visão atual</li><li><strong>Glossário Contextual</strong> — definições de Basileia, P/VP e outros conceitos aparecem ao passar o mouse</li></ul>',
+  ux2_t:'Tendências Históricas',ux2_d:'<p>Indicadores visuais de variação <strong>YoY e QoQ</strong> com setas dinâmicas de direção e cor. O usuário identifica em segundos se a trajetória de crescimento está acelerando ou perdendo fôlego — sem cálculos mentais.</p>',
+  ux3_t:'Rankings &amp; Benchmarking',ux3_d:'<p>O dashboard permite a inversão de filtros para analisar o <strong>ecossistema</strong>, não apenas um banco. A tela de rankings identifica os "outliers" — instituições com alta rentabilidade mesmo com estruturas de custo enxutas.</p>',
+  s6_tag:'Bastidores',s6_title:'Desafios superados',
+  ch1_t:'Padronização Contábil',ch1_d:'Harmonização de metodologias que sofreram alterações ao longo do tempo (CPC, IFRS, Circular BACEN), garantindo comparabilidade histórica entre as séries de dados.',
+  ch2_t:'Construção do Modelo SML',ch2_d:'Sobreposição de dois gráficos (linhas e dispersão) de forma simétrica para garantir precisão na representação gráfica da Security Market Line e da fronteira eficiente.',
+  ch3_t:'Auditoria Automatizada',ch3_d:'A automação da coleta envolve riscos de erros que foram mitigados por validações cruzadas e auditoria assistida por IA (LLMs), garantindo integridade dos dados antes do carregamento.',
+  s7_tag:'Estrutura do Repositório',s7_title:'Organização dos arquivos',
+  repo1:'— Automação da coleta (APIs BCB, Yahoo Finance)',repo2:'— Scripts do Data Warehouse no SQL Server',repo3:'— Arquivo .pbix (ou link para versão web)',repo4:'— Imagens, ícones e screenshots do dashboard',repo5:'— Banco de dados completo SQL Server',
+  repo_how:'<p><strong>Como visualizar:</strong></p><ul><li>Baixe o arquivo RAR completo pelo botão abaixo</li><li>Extraia a pasta <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">dashboard_brbanksperformance</code></li><li>Não altere a organização dos arquivos e subpastas</li><li>Abra o arquivo <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">.pbix</code> e atualize as fontes de dados</li></ul>',
+  dl_label:'Material disponível',dl_title:'Acesse o projeto completo',dl_sub:'Arquivo <strong>RAR completo</strong> com .pbix, scripts Python e queries SQL.<br>Disponível no repositório do GitHub.',
+  dl_btn:'⬇ Download completo (.rar)',dl_back:'← Voltar',
+  yt_tag:'Vídeo explicativo',yt_title:'Apresentação em vídeo',yt_soon:'Em breve',
+  yt_p:'Em breve disponibilizarei um vídeo demonstrando o dashboard em funcionamento, com navegação pelas 4 telas e análise dos principais KPIs.',
+  yt_cap:'Vídeo em produção. Substitua pelo iframe do YouTube quando disponível.',
+  nav_all:'← Todos os projetos',nav_next:'Próximo projeto →'
+},
+en:{
+  back:'Back to projects',
+  hero_num:'01 — Power BI · Python · SQL Server · DAX',
+  hero_title:'<em>Power BI</em> Dashboard:<br>Brazilian Financial Institutions<br>Stock Market Analysis',
+  ml_area:'Area',mv_area:'Finance · BI · Data Science',
+  ml_inst:'Institutions',mv_inst:'10 banks analyzed',
+  ml_dax:'DAX Measures',mv_dax:'+50 dynamic measures',
+  ml_status:'Status',mv_status:'⚙ In development',
+  s1_tag:'Project Objective',s1_title:'Market intelligence for the banking sector',
+  s1_p1:'The Brazilian banking sector has regulatory and accounting specificities that require a specialized approach. This interactive ecosystem was developed to support decision-making by investors and analysts, consolidating <strong>Valuation, Risk and Return</strong> indicators in a single interface.',
+  s1_p2:'The project transforms raw, decentralized data (BCB/CVM) into <strong>market intelligence</strong>, enabling peer-to-peer comparisons and long-term temporal analysis. Quarterly performance analyses of banking institutions will also be published soon.',
+  s5_tag:'Dashboard Screens',s5_title:'Browse the screens',
+  s5_hint:'4 screens with intuitive navigation. Use the arrows or click the dots to navigate.',
+  slides:['Screen 0 — Cover: Overview and project introduction','Screen 1 — Returns: Profitability analysis (ROE, margins, dividends)','Screen 2 — Portfolio: Asset composition, credit and risks','Screen 3 — Risks: Prudential indicators, volatility and valuation'],
+  s2_tag:'End-to-End Pipeline',s2_title:'Technology Stack',
+  s2_p:'The differentiator of this project is the complete pipeline — from automated collection to interactive visualization.',
+  sc1_name:'Extraction &amp; ETL',sc1_desc:'Python scripts for consuming Central Bank and Yahoo Finance APIs, with outlier treatment and automatic updates.',
+  sc2_name:'Data Warehouse',sc2_desc:'Star Schema modeling, optimized Views and Stored Procedures for cleaning legacy and historical data.',
+  sc3_name:'Business Intelligence',sc3_desc:'+50 dynamic measures, Time Intelligence (YoY/QoQ), Dark Mode, Dynamic Tooltips and Button Navigation.',
+  sc4_name:'AI Augmented',sc4_desc:'Use of LLMs (Large Language Models) for auditing accounting formulas and refining data semantics.',
+  s3_tag:'Business Intelligence &amp; KPIs',s3_title:'The heart of the project',
+  s3_p:'Over 20 indicators organized into four analytical dimensions. Click the tabs to explore each dimension.',
+  tab_rent:'📈 Profitability',tab_val:'💹 Valuation',tab_risk:'🛡 Risk &amp; Prudential',tab_rr:'⚖ Risk × Return',
+  kp1_1n:'ROE (Return on Equity) — L12M',kp1_1d:'Measures the company\'s efficiency in generating profit from shareholders\' resources. An ROE of 15% means the company generates R$ 15 of profit for every R$ 100 invested by shareholders. Calculated over the last 4 quarters to smooth seasonality.',
+  kp1_2n:'Net Margin',kp1_2d:'Indicates the bank\'s ability to convert revenue into real profit after all deductions — taxes, operating expenses and provisions.',
+  kp1_3n:'Financial Intermediation Margin (FIM)',kp1_3d:'Measures the bank\'s efficiency in its core function: collecting funds from those who have and lending to those who need. A high FIM means the bank charges high loan interest rates or captures resources at low cost.',
+  kp1_4n:'Dividend Yield (DY)',kp1_4d:'Measures the yield generated by dividends relative to the stock price. A DY of 5% means that, investing R$ 100, you received R$ 5 in dividends in the last year.',
+  kp1_5n:'Payout Ratio',kp1_5d:'Percentage of net income distributed to shareholders. A bank may have high profit, but if the Payout is low (because it wants to reinvest for growth), the Dividend Yield will be lower.',
+  kp2_1n:'P/BV (Price to Book Value)',kp2_1d:'Relates the market price of shares to book value. P/BV = 1.0 means the market pays exactly book value; below 1.0 indicates a discount; above 1.0, trading at a premium.',
+  kp2_2n:'Market Capitalization',kp2_2d:'Represents the total value the market assigns to the company. Calculated daily based on ticker closing prices and total shares outstanding.',
+  kp2_3n:'Margin of Safety',kp2_3d:'Percentage difference between estimated intrinsic value (based on fundamentals) and market price. Positive margin indicates undervalued asset; negative, overvalued.',
+  kp3_1n:'Basel Index',kp3_1d:'Financial safety indicator measuring the ratio between equity and assumed risks. The higher, the more capital the institution has to absorb losses. Minimum regulatory in Brazil: <strong>10.5%</strong>.',
+  kp3_2n:'Leverage Ratio (LR)',kp3_2d:'Prudential indicator from the Basel III Agreement that limits indebtedness relative to equity, preventing excessive balance sheet expansion. Minimum regulatory: <strong>3%</strong>.',
+  kp3_3n:'NPL 90 (Non-Performing Loans)',kp3_3d:'Credit portfolio quality indicator. Measures the percentage of non-performing loans with delinquency over 90 days. The lower, the better the portfolio quality.',
+  kp3_4n:'Beta — 241 business days',kp3_4d:'Measures the sensitivity of the stock relative to the Ibovespa. Beta = 1: moves like the market; Beta &gt; 1: more volatile; Beta &lt; 1: less volatile. Calculated based on the last 241 business days.',
+  kp3_5n:'Fundamental Volatility',kp3_5d:'Measures the stability of operating results over time. Low volatility indicates predictability; high volatility suggests inconsistency in profits.',
+  kp3_6n:'Portfolio Composition by Risk (AA–H)',kp3_6d:'Distribution of the credit portfolio according to BCB criteria: AA = lowest risk to H = highest risk/delinquency. Allows identifying portfolio concentration in each risk band.',
+  kp4_1n:'Risk-Return Analysis (CAPM)',kp4_1d:'Compares historical stock volatility versus return on equity, positioning each bank in a risk-return matrix. Identifies which institutions deliver the highest return per unit of risk assumed.',
+  kp4_2n:'SML Curves (Security Market Line)',kp4_2d:'Overlaid on the scatter plot, they represent the boundary of acceptable returns for domestic and foreign capital. Banks <strong>above the line</strong> offer superior expected return; <strong>below</strong>, inferior return relative to cost of capital.',
+  kp4_3n:'Risk-Adjusted Premium (Adapted Sharpe)',kp4_3d:'Measures the excess return adjusted for systemic risk. The higher, the better the return/risk ratio for the investor.',
+  kp4_4n:'Financial Intermediation Spread',kp4_4d:'Historical analysis of the spread between credit revenues and funding costs, identifying trends of margin compression or expansion over time.',
+  s4_tag:'Data Storytelling',s4_title:'User experience in layers',
+  s4_p:'The differentiator of this dashboard lies not just in the volume of data, but in how information is consumed.',
+  ux1_t:'On-Demand Insights',ux1_d:'<p>Dynamic Tooltips work like a virtual analyst. When hovering over an institution:</p><ul><li><strong>Comparative Context</strong> — ROE position relative to sector average, with automatic narration</li><li><strong>Micro-Rankings</strong> — institution\'s ranking position without leaving the current view</li><li><strong>Contextual Glossary</strong> — definitions of Basel, P/BV and other concepts appear on hover</li></ul>',
+  ux2_t:'Historical Trends',ux2_d:'<p>Visual variation indicators for <strong>YoY and QoQ</strong> with dynamic directional arrows and colors. The user identifies in seconds whether growth trajectory is accelerating or slowing — without mental calculations.</p>',
+  ux3_t:'Rankings &amp; Benchmarking',ux3_d:'<p>The dashboard allows filter inversion to analyze the <strong>ecosystem</strong>, not just one bank. The rankings screen identifies "outliers" — institutions with high profitability even with lean cost structures.</p>',
+  s6_tag:'Behind the scenes',s6_title:'Challenges overcome',
+  ch1_t:'Accounting Standardization',ch1_d:'Harmonization of methodologies that changed over time (CPC, IFRS, BACEN Circular), ensuring historical comparability between data series.',
+  ch2_t:'SML Model Construction',ch2_d:'Symmetric overlay of two charts (lines and scatter) to ensure precision in the graphical representation of the Security Market Line and the efficient frontier.',
+  ch3_t:'Automated Auditing',ch3_d:'Data collection automation involves error risks mitigated through cross-validation and AI-assisted auditing (LLMs), ensuring data integrity before loading.',
+  s7_tag:'Repository Structure',s7_title:'File organization',
+  repo1:'— Data collection automation (BCB, Yahoo Finance APIs)',repo2:'— Data Warehouse scripts in SQL Server',repo3:'— .pbix file (or link to web version)',repo4:'— Images, icons and dashboard screenshots',repo5:'— Complete SQL Server database',
+  repo_how:'<p><strong>How to view:</strong></p><ul><li>Download the complete RAR file using the button below</li><li>Extract the <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">dashboard_brbanksperformance</code> folder</li><li>Do not alter the file and subfolder organization</li><li>Open the <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">.pbix</code> file and update the data sources</li></ul>',
+  dl_label:'Available material',dl_title:'Access the full project',dl_sub:'Complete <strong>RAR file</strong> with .pbix, Python scripts and SQL queries.<br>Available on GitHub.',
+  dl_btn:'⬇ Full download (.rar)',dl_back:'← Back',
+  yt_tag:'Explanatory video',yt_title:'Video presentation',yt_soon:'Coming soon',
+  yt_p:'I will soon publish a video demonstrating the dashboard in action, with navigation through all 4 screens and analysis of the main KPIs.',
+  yt_cap:'Video in production. Replace with YouTube iframe when available.',
+  nav_all:'← All projects',nav_next:'Next project →'
+},
+es:{
+  back:'Volver a proyectos',
+  hero_num:'01 — Power BI · Python · SQL Server · DAX',
+  hero_title:'Dashboard <em>Power BI</em>:<br>Análisis del Mercado de Acciones de<br>Instituciones Financieras Brasileñas',
+  ml_area:'Área',mv_area:'Finanzas · BI · Data Science',
+  ml_inst:'Instituciones',mv_inst:'10 bancos analizados',
+  ml_dax:'Medidas DAX',mv_dax:'+50 medidas dinámicas',
+  ml_status:'Estado',mv_status:'⚙ En desarrollo',
+  s1_tag:'Objetivo del Proyecto',s1_title:'Inteligencia de mercado para el sector bancario',
+  s1_p1:'El sector bancario brasileño tiene particularidades regulatorias y contables que requieren una mirada especializada. Este ecosistema interactivo fue desarrollado para apoyar la toma de decisiones de inversores y analistas, consolidando indicadores de <strong>Valoración, Riesgo y Retorno</strong> en una única interfaz.',
+  s1_p2:'El proyecto transforma datos brutos y descentralizados (BCB/CVM) en <strong>inteligencia de mercado</strong>, permitiendo comparaciones peer-to-peer y análisis temporales de largo plazo.',
+  s5_tag:'Pantallas del Dashboard',s5_title:'Navega por las pantallas',
+  s5_hint:'4 pantallas con navegación intuitiva. Usa las flechas o haz clic en los puntos para navegar.',
+  slides:['Pantalla 0 — Portada: Visión general del proyecto','Pantalla 1 — Retornos: Análisis de rentabilidad (ROE, márgenes, dividendos)','Pantalla 2 — Cartera: Composición de activos, crédito y riesgos','Pantalla 3 — Riesgos: Indicadores prudenciales, volatilidad y valoración'],
+  s2_tag:'Pipeline End-to-End',s2_title:'Stack Tecnológico',
+  s2_p:'El diferencial de este proyecto es el pipeline completo — desde la recopilación automatizada hasta la visualización interactiva.',
+  sc1_name:'Extracción &amp; ETL',sc1_desc:'Scripts Python para consumo de APIs del Banco Central y Yahoo Finance, con tratamiento de outliers y actualización automática.',
+  sc2_name:'Data Warehouse',sc2_desc:'Modelado Star Schema, Views optimizadas y Stored Procedures para limpieza de datos legados e históricos.',
+  sc3_name:'Business Intelligence',sc3_desc:'+50 medidas dinámicas, Time Intelligence (YoY/QoQ), Dark Mode, Tooltips Dinámicos y Navegación por Botones.',
+  sc4_name:'AI Augmented',sc4_desc:'Uso de LLMs (Large Language Models) para auditoría de fórmulas contables y refinamiento de la semántica de datos.',
+  s3_tag:'Business Intelligence &amp; KPIs',s3_title:'El corazón del proyecto',
+  s3_p:'Más de 20 indicadores organizados en cuatro dimensiones analíticas. Haz clic en las pestañas para explorar cada dimensión.',
+  tab_rent:'📈 Rentabilidad',tab_val:'💹 Valoración',tab_risk:'🛡 Riesgo &amp; Prudencial',tab_rr:'⚖ Riesgo × Retorno',
+  kp1_1n:'ROE (Return on Equity) — L12M',kp1_1d:'Mide la eficiencia de la empresa para generar beneficios a partir de los recursos de los accionistas. Un ROE del 15% significa que la empresa genera R$ 15 de beneficio por cada R$ 100 invertidos. Calculado sobre los últimos 4 trimestres.',
+  kp1_2n:'Margen Neto',kp1_2d:'Indica la capacidad del banco para convertir ingresos en beneficio real tras todas las deducciones — impuestos, gastos operativos y provisiones.',
+  kp1_3n:'Margen de Intermediación Financiera (MIF)',kp1_3d:'Mide la eficiencia del banco en su función esencial: captar recursos de quienes tienen y prestar a quienes necesitan.',
+  kp1_4n:'Dividend Yield (DY)',kp1_4d:'Mide el rendimiento generado por dividendos en relación al precio de las acciones.',
+  kp1_5n:'Payout Ratio',kp1_5d:'Porcentaje del beneficio neto distribuido a los accionistas.',
+  kp2_1n:'P/VL (Precio sobre Valor en Libros)',kp2_1d:'Relaciona el precio de mercado de las acciones con el valor contable. P/VL = 1,0 significa que el mercado paga exactamente el valor en libros; por debajo de 1,0 indica descuento; por encima, prima.',
+  kp2_2n:'Capitalización de Mercado',kp2_2d:'Representa el valor total que el mercado atribuye a la empresa. Calculado diariamente en base al cierre de tickers y el total de acciones en circulación.',
+  kp2_3n:'Margen de Seguridad',kp2_3d:'Diferencia porcentual entre el valor intrínseco estimado y el precio de mercado. Margen positivo indica activo infravalorado; negativo, sobrevalorado.',
+  kp3_1n:'Índice de Basilea',kp3_1d:'Indicador de seguridad financiera que mide la proporción entre capital propio y riesgos asumidos. Mínimo regulatorio en Brasil: <strong>10,5%</strong>.',
+  kp3_2n:'Razón de Apalancamiento (RA)',kp3_2d:'Indicador prudencial de Basilea III que limita el endeudamiento respecto al capital propio. Mínimo regulatorio: <strong>3%</strong>.',
+  kp3_3n:'NPL 90 (Non-Performing Loans)',kp3_3d:'Indicador de calidad de la cartera de crédito. Mide el porcentaje de préstamos morosos con atraso superior a 90 días.',
+  kp3_4n:'Beta — 241 días hábiles',kp3_4d:'Mide la sensibilidad de la acción respecto al Ibovespa. Beta = 1: se mueve igual al mercado; Beta &gt; 1: más volátil; Beta &lt; 1: menos volátil.',
+  kp3_5n:'Volatilidad de Fundamentos',kp3_5d:'Mide la estabilidad de los resultados operativos a lo largo del tiempo.',
+  kp3_6n:'Composición de Cartera por Riesgo (AA–H)',kp3_6d:'Distribución de la cartera de crédito según criterios del BCB: AA = menor riesgo hasta H = mayor riesgo/morosidad.',
+  kp4_1n:'Análisis Risk-Return (CAPM)',kp4_1d:'Compara la volatilidad histórica de las acciones versus el retorno sobre patrimonio, posicionando cada banco en una matriz riesgo-retorno.',
+  kp4_2n:'Curvas SML (Security Market Line)',kp4_2d:'Superpuestas al gráfico de dispersión, representan la frontera de retornos aceptables. Bancos <strong>por encima</strong> ofrecen retorno superior al esperado; <strong>por debajo</strong>, inferior.',
+  kp4_3n:'Prima por Unidad de Riesgo (Sharpe Adaptado)',kp4_3d:'Mide el retorno excedente ajustado al riesgo sistémico. Cuanto mayor, mejor la relación retorno/riesgo.',
+  kp4_4n:'Spread de Intermediación Financiera',kp4_4d:'Análisis temporal del spread entre ingresos de crédito y costos de captación, identificando tendencias de compresión o expansión de márgenes.',
+  s4_tag:'Data Storytelling',s4_title:'Experiencia del usuario en capas',
+  s4_p:'El diferencial de este dashboard no está solo en el volumen de datos, sino en cómo se consume la información.',
+  ux1_t:'Insights bajo Demanda',ux1_d:'<p>Los Tooltips Dinámicos funcionan como un analista virtual al pasar el cursor sobre una institución:</p><ul><li><strong>Contexto Comparativo</strong> — posición del ROE respecto a la media sectorial</li><li><strong>Micro-Rankings</strong> — posición en el ranking sin salir de la vista actual</li><li><strong>Glosario Contextual</strong> — definiciones de Basilea, P/VL y otros conceptos</li></ul>',
+  ux2_t:'Tendencias Históricas',ux2_d:'<p>Indicadores visuales de variación <strong>YoY y QoQ</strong> con flechas dinámicas de dirección y color. El usuario identifica en segundos si la trayectoria de crecimiento está acelerando o perdiendo impulso.</p>',
+  ux3_t:'Rankings &amp; Benchmarking',ux3_d:'<p>El dashboard permite la inversión de filtros para analizar el <strong>ecosistema</strong>, no solo un banco. La pantalla de rankings identifica los "outliers" — instituciones con alta rentabilidad incluso con estructuras de costos reducidas.</p>',
+  s6_tag:'Detrás de escenas',s6_title:'Desafíos superados',
+  ch1_t:'Estandarización Contable',ch1_d:'Armonización de metodologías que cambiaron con el tiempo (CPC, IFRS, Circular BACEN), garantizando comparabilidad histórica entre las series de datos.',
+  ch2_t:'Construcción del Modelo SML',ch2_d:'Superposición simétrica de dos gráficos (líneas y dispersión) para garantizar precisión en la representación gráfica de la Security Market Line.',
+  ch3_t:'Auditoría Automatizada',ch3_d:'La automatización de la recopilación conlleva riesgos de errores mitigados mediante validaciones cruzadas y auditoría asistida por IA (LLMs).',
+  s7_tag:'Estructura del Repositorio',s7_title:'Organización de archivos',
+  repo1:'— Automatización de recopilación (APIs BCB, Yahoo Finance)',repo2:'— Scripts del Data Warehouse en SQL Server',repo3:'— Archivo .pbix (o enlace a versión web)',repo4:'— Imágenes, iconos y capturas del dashboard',repo5:'— Base de datos completa SQL Server',
+  repo_how:'<p><strong>Cómo visualizar:</strong></p><ul><li>Descarga el archivo RAR completo con el botón abajo</li><li>Extrae la carpeta <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">dashboard_brbanksperformance</code></li><li>No alteres la organización de archivos y subcarpetas</li><li>Abre el archivo <code style="font-family:var(--fm);font-size:.8rem;color:var(--gold)">.pbix</code> y actualiza las fuentes de datos</li></ul>',
+  dl_label:'Material disponible',dl_title:'Accede al proyecto completo',dl_sub:'Archivo <strong>RAR completo</strong> con .pbix, scripts Python y queries SQL.<br>Disponible en GitHub.',
+  dl_btn:'⬇ Descarga completa (.rar)',dl_back:'← Volver',
+  yt_tag:'Video explicativo',yt_title:'Presentación en video',yt_soon:'Próximamente',
+  yt_p:'Próximamente publicaré un video demostrando el dashboard en funcionamiento, con navegación por las 4 pantallas y análisis de los principales KPIs.',
+  yt_cap:'Video en producción. Reemplaza con el iframe de YouTube cuando esté disponible.',
+  nav_all:'← Todos los proyectos',nav_next:'Siguiente proyecto →'
+}
+};
+
+
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
+  const t=T[l];
+  if(!t) return;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]!==undefined) el.innerHTML=t[k];
+  });
+  // Update slide label for current slide
+  if(t.slides && slideLabels) {
+    slideLabels = t.slides;
+    const lbl = document.getElementById('slideLabel');
+    if(lbl) lbl.textContent = slideLabels[currentSlide] || '';
+  }
+}
+
 // REVEAL
 const reveals=document.querySelectorAll('.reveal');
 const io=new IntersectionObserver(e=>e.forEach(x=>{
@@ -652,6 +736,8 @@ function showTab(id){
 }
 
 // CAROUSEL
+let slideLabels = T.pt.slides;
+let currentSlide = 0;
 const slides=[
   'Tela 0 — Capa: Visão geral e introdução ao projeto',
   'Tela 1 — Retornos: Análise de rentabilidade (ROE, margens, dividendos)',
@@ -674,9 +760,10 @@ slides.forEach((_,i)=>{
 
 function goTo(n){
   cur=(n+total)%total;
+  currentSlide=cur;
   track.style.transform=`translateX(-${cur*100}%)`;
   counter.textContent=`${cur+1} / ${total}`;
-  slideLabel.textContent=slides[cur];
+  slideLabel.textContent=slideLabels[cur]||slides[cur]||'';
   dotsWrap.querySelectorAll('.cdot').forEach((d,i)=>d.classList.toggle('active',i===cur));
 }
 function carMove(dir){goTo(cur+dir);}
@@ -692,9 +779,6 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')carMove(-1);
 });
 
-function setLang(l){
-  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
-}
 </script>
 </body>
 </html>
