@@ -148,7 +148,7 @@ section{padding:7rem 4rem;position:relative;z-index:1}
 .exp-meta{display:flex;flex-direction:column;gap:.5rem}
 /* ── LOGOS DAS EMPRESAS: cores originais, sem filtro ── */
 .exp-logo{
-  height:36px;width:auto;max-width:140px;
+  height:56px;width:auto;max-width:180px;
   object-fit:contain;
   opacity:.8;
   margin-bottom:.25rem;
@@ -303,13 +303,15 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     <a href="https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos" target="_blank" class="btn-outline" data-i18n="proj_all">Ver todos no GitHub ↗</a>
   </div>
   <div class="proj-grid">
+
+    <!-- ── P1: Dashboard PowerBI — Disponível ── -->
     <a href="1-dashboard-bancos/index.html" class="pcard reveal">
       <div class="pcard-top">
         <div class="pcard-num">01 — Power BI · Python · SQL Server</div>
         <div class="pcard-top-right">
           <div class="pcard-icons">
             <img src="home_files/powerbi.png" title="Power BI">
-            <img src="home_files/sql.png" title="SQL Server">
+            <img src="home_files/sql.png" title="SQL">
             <img src="home_files/msqls.png" title="SSMS">
             <img src="home_files/python.png" title="Python">
           </div>
@@ -324,10 +326,10 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
         </div>
         <div class="mini-carousel">
           <div class="mc-track">
-            <div class="mc-slide"><img src="home_files/0-capa.JPG" alt="Capa"></div>
-            <div class="mc-slide"><img src="home_files/tela1-retornos.JPG" alt="Tela 1"></div>
-            <div class="mc-slide"><img src="home_files/Tela2-carteira.JPG" alt="Tela 2"></div>
-            <div class="mc-slide"><img src="home_files/Tela3-riscos.JPG" alt="Tela 3"></div>
+            <div class="mc-slide"><img src="home_files/0-capa.jpg" alt="Capa"></div>
+            <div class="mc-slide"><img src="home_files/tela1-retornos.jpg" alt="Tela 1"></div>
+            <div class="mc-slide"><img src="home_files/tela2-carteira.jpg" alt="Tela 2"></div>
+            <div class="mc-slide"><img src="home_files/tela3-riscos.jpg" alt="Tela 3"></div>
           </div>
           <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
           <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
@@ -337,7 +339,9 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
       <div class="pcard-footer"><span class="pcard-cta" data-i18n="proj_cta">Ver projeto completo <span class="pcard-cta-arrow">→</span></span></div>
       <div class="proj-bar"></div>
     </a>
-    <div class="pcard locked reveal">
+
+    <!-- ── P2: Biblioteca SQL — Disponível ── -->
+    <a href="2-sqlprojects/index.html" class="pcard reveal">
       <div class="pcard-top">
         <div class="pcard-num">02 — SQL Server · BCB · CVM</div>
         <div class="pcard-top-right">
@@ -347,13 +351,13 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
             <img src="home_files/Postgresql.png" title="PostgreSQL">
             <img src="home_files/MySQL.png" title="MySQL">
           </div>
-          <span class="badge-wip" data-i18n="badge_wip">⚙ Em construção</span>
+          <span class="badge-available" data-i18n="badge_avail">● Disponível</span>
         </div>
       </div>
-      <div class="pcard-title" data-i18n="p2_title">SQL Server: Base de Dados Bancária</div>
+      <div class="pcard-title" data-i18n="p2_title">Análise do Sistema Financeiro Nacional — SQL</div>
       <div class="pcard-body">
         <div class="pcard-text">
-          <p data-i18n="p2_desc">Construção e consolidação de base de dados a partir do IFDATA (BCB) e da CVM, com foco em extração, limpeza e tratamento de dados das instituições financeiras brasileiras listadas em bolsa.</p>
+          <p data-i18n="p2_desc">Um banco de dados analítico construído do zero em SQL Server, transformando dados brutos do BCB e da CVM em inteligência sobre crédito, capital e rentabilidade do setor bancário brasileiro — Pipeline completo de dados públicos do Sistema Financeiro Nacional: ingestão, limpeza, padronização contábil IAS39/IFRS9 e modelagem. Mais de 4 milhões de registros, 13 views analíticas e cobertura de 2010 a 2026.</p>
           <div class="pcard-tags"><span class="tool-tag">SQL Server</span><span class="tool-tag">PostgreSQL</span><span class="tool-tag">ETL</span><span class="tool-tag">IFDATA</span></div>
         </div>
         <div class="mini-carousel">
@@ -367,21 +371,58 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
           <div class="mc-counter">1/3</div>
         </div>
       </div>
-      <div class="pcard-footer pcard-footer-locked"><span class="pcard-cta-disabled" data-i18n="proj_unavail">Ainda não disponível</span></div>
+      <div class="pcard-footer"><span class="pcard-cta" data-i18n="proj_cta">Ver projeto completo <span class="pcard-cta-arrow">→</span></span></div>
       <div class="proj-bar"></div>
-    </div>
+    </a>
+
+    <!-- ── P3: PPP Auditoria — Disponível ── -->
+    <a href="3-ppp-auditoria/index.html" class="pcard reveal">
+      <div class="pcard-top">
+        <div class="pcard-num">03 — Auditoria · PPP · Dados Públicos</div>
+        <div class="pcard-top-right">
+          <div class="pcard-icons">
+            <img src="home_files/excel.png" title="Excel">
+            <img src="home_files/powerbi.png" title="Power BI">
+            <img src="home_files/sql.png" title="SQL">
+          </div>
+          <span class="badge-available" data-i18n="badge_avail">● Disponível</span>
+        </div>
+      </div>
+      <div class="pcard-title" data-i18n="p3_title">Case Real | R$ 5 Milhões em Economia: Auditoria e Inteligência de Dados em uma PPP</div>
+      <div class="pcard-body">
+        <div class="pcard-text">
+          <p data-i18n="p3_desc">Auditoria de contrato de Parceria Público-Privada para a Prefeitura de Carmo do Cajuru. A análise de dados identificou inconsistências que resultaram em renegociação com economia de quase R$ 5 milhões ao erário municipal.</p>
+          <div class="pcard-tags"><span class="tool-tag">Auditoria</span><span class="tool-tag">PPP</span><span class="tool-tag">Dados Públicos</span><span class="tool-tag">Setor Público</span></div>
+        </div>
+        <div class="mini-carousel">
+          <div class="mc-track">
+            <!-- Substitua pelos nomes reais dos arquivos de imagem deste projeto -->
+            <div class="mc-slide"><img src="home_files/ppp1.jpg" alt="PPP slide 1"></div>
+            <div class="mc-slide"><img src="home_files/ppp2.jpg" alt="PPP slide 2"></div>
+            <div class="mc-slide"><img src="home_files/ppp3.jpg" alt="PPP slide 3"></div>
+          </div>
+          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <div class="mc-counter">1/3</div>
+        </div>
+      </div>
+      <div class="pcard-footer"><span class="pcard-cta" data-i18n="proj_cta">Ver projeto completo <span class="pcard-cta-arrow">→</span></span></div>
+      <div class="proj-bar"></div>
+    </a>
+
+    <!-- ── P4: Reforma Tributária — Disponível ── -->
     <a href="3-reformatributaria/index.html" class="pcard reveal">
       <div class="pcard-top">
-        <div class="pcard-num">03 — Tributação · EC 132/2023</div>
+        <div class="pcard-num">04 — Tributação · EC 132/2023</div>
         <div class="pcard-top-right">
           <div class="pcard-icons"><img src="home_files/excel.png" title="Excel"></div>
           <span class="badge-available" data-i18n="badge_avail">● Disponível</span>
         </div>
       </div>
-      <div class="pcard-title" data-i18n="p3_title">O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma</div>
+      <div class="pcard-title" data-i18n="p4_title">O Sistema Tributário Brasileiro — Impactos e Transição Pós-Reforma</div>
       <div class="pcard-body">
         <div class="pcard-text">
-          <p data-i18n="p3_desc">Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.</p>
+          <p data-i18n="p4_desc">Análise aprofundada do sistema tributário brasileiro, seus impactos econômicos e o processo de transição após a Reforma Tributária. Efeitos sobre empresas, planejamento fiscal e perspectivas macroeconômicas.</p>
           <div class="pcard-tags"><span class="tool-tag">EC 132/2023</span><span class="tool-tag">IBS</span><span class="tool-tag">CBS</span><span class="tool-tag">Planejamento Fiscal</span></div>
         </div>
         <div class="mini-carousel">
@@ -399,18 +440,48 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
       <div class="pcard-footer"><span class="pcard-cta" data-i18n="proj_cta">Ver projeto completo <span class="pcard-cta-arrow">→</span></span></div>
       <div class="proj-bar"></div>
     </a>
+
+    <!-- ── P5: Biblioteca de Relatórios — Disponível ── -->
+    <a href="5.projetosdiversos/index.html" class="pcard reveal">
+      <div class="pcard-top">
+        <div class="pcard-num">05 — Análises · Relatórios · Monografia</div>
+        <div class="pcard-top-right">
+          <span class="badge-available" data-i18n="badge_avail">● Disponível</span>
+        </div>
+      </div>
+      <div class="pcard-title" data-i18n="p5_title">Biblioteca de Relatórios e Projetos Diversos</div>
+      <div class="pcard-body">
+        <div class="pcard-text">
+          <p data-i18n="p5_desc">Coletânea de trabalhos acadêmicos, relatórios técnicos e estudos sob encomenda: da monografia sobre a UHE Furnas ao dimensionamento do turismo em Capitólio.</p>
+          <div class="pcard-tags"><span class="tool-tag">Monografia</span><span class="tool-tag">Relatório Técnico</span><span class="tool-tag">Desenvolvimento Regional</span><span class="tool-tag">Turismo</span></div>
+        </div>
+        <div class="mini-carousel">
+          <div class="mc-track">
+            <div class="mc-slide"><img src="home_files/monografia.JPG" alt="Monografia Furnas"></div>
+            <div class="mc-slide"><img src="home_files/consultoriaascatur.JPG" alt="Relatório Turismo"></div>
+          </div>
+          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <div class="mc-counter">1/2</div>
+        </div>
+      </div>
+      <div class="pcard-footer"><span class="pcard-cta" data-i18n="proj_cta">Ver projeto completo <span class="pcard-cta-arrow">→</span></span></div>
+      <div class="proj-bar"></div>
+    </a>
+
+    <!-- ── P6: Biblioteca Python — Em construção ── -->
     <div class="pcard locked reveal">
       <div class="pcard-top">
-        <div class="pcard-num">04 — Python · Automação</div>
+        <div class="pcard-num">06 — Python · Automação</div>
         <div class="pcard-top-right">
           <div class="pcard-icons"><img src="home_files/python.png" title="Python"></div>
           <span class="badge-wip" data-i18n="badge_wip">⚙ Em construção</span>
         </div>
       </div>
-      <div class="pcard-title" data-i18n="p4_title">Biblioteca de Scripts Python</div>
+      <div class="pcard-title" data-i18n="p6_title">Biblioteca de Scripts Python</div>
       <div class="pcard-body">
         <div class="pcard-text">
-          <p data-i18n="p4_desc">Repositório de scripts Python para automação de coleta, tratamento e análise de dados econômicos e financeiros. Em desenvolvimento.</p>
+          <p data-i18n="p6_desc">Repositório de scripts Python para automação de coleta, tratamento e análise de dados econômicos e financeiros. Em desenvolvimento.</p>
           <div class="pcard-tags"><span class="tool-tag">Python</span><span class="tool-tag">Automação</span><span class="tool-tag">APIs</span></div>
         </div>
         <div class="mini-carousel">
@@ -426,16 +497,7 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
       <div class="pcard-footer pcard-footer-locked"><span class="pcard-cta-disabled" data-i18n="proj_unavail">Ainda não disponível</span></div>
       <div class="proj-bar"></div>
     </div>
-    <div class="pcard locked pcard-full reveal">
-      <div class="pcard-top">
-        <div class="pcard-num">05 — Análises · Relatórios</div>
-        <div class="pcard-top-right"><span class="badge-wip" data-i18n="badge_wip">⚙ Em construção</span></div>
-      </div>
-      <div class="pcard-title" data-i18n="p5_title">Biblioteca de Relatórios e Projetos Diversos</div>
-      <p style="font-size:.82rem;line-height:1.8;color:var(--text);opacity:.75;margin-bottom:1rem" data-i18n="p5_desc">Coletânea de relatórios, estudos e projetos diversos desenvolvidos ao longo da trajetória profissional nas áreas de economia, finanças e análise de dados. Em desenvolvimento.</p>
-      <div class="pcard-footer pcard-footer-locked" style="margin-top:1.25rem"><span class="pcard-cta-disabled" data-i18n="proj_unavail">Ainda não disponível</span></div>
-      <div class="proj-bar"></div>
-    </div>
+
   </div>
 </section>
 <section id="experience">
@@ -537,6 +599,11 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
 </section>
 <footer>
   <div class="ftxt">© 2025 <a href="#">Gabriel Costa</a>. Economista &amp; Data Scientist.</div>
+  <div class="visitor-count">
+    <a href="https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos" target="_blank" title="Visitantes">
+      <img src="https://visitor-badge.laobi.icu/badge?page_id=gabrielcostaeconomista-spec.portifoliodeprojetos&left_color=%230b1735&right_color=%23f5be0b&left_text=visitantes" alt="visitor count" style="height:20px;opacity:.7;transition:opacity .25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">
+    </a>
+  </div>
   <div class="ftxt" data-i18n="ft_r">Feito com dados e determinação · GitHub Pages</div>
 </footer>
 <script>
