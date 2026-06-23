@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Reforma Tributária — Gabriel Costa</title>
+<title>Auditoria PPP — Gabriel Costa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
@@ -12,19 +12,19 @@
 :root{
   --bg:#04091a;--bg2:#060d24;--bg3:#08122e;--surface:#0b1735;--surface2:#0e1f42;
   --border:rgba(100,149,237,.15);--border2:rgba(100,149,237,.28);
-  --gold:#f5be0b;--gold-dim:rgba(245,190,11,.12);--gold-glow:rgba(245,190,11,.3);
-  --red:#c0392b;--red-dim:rgba(192,57,43,.15);
-  --blue:#4a90d9;--blue-light:#7ab3e8;--blue-dim:rgba(74,144,217,.12);
-  --green:#4ade80;--green-dim:rgba(74,222,128,.12);
+  --gold:#f5be0b;--gold-dim:rgba(245,190,11,.1);--gold-glow:rgba(245,190,11,.25);
+  --green:#22c55e;--green-dim:rgba(34,197,94,.1);
+  --blue:#4a90d9;--blue-light:#7ab3e8;--blue-dim:rgba(74,144,217,.1);
+  --red:#e84040;--red-dim:rgba(232,64,64,.08);
   --text:#e8edf8;--muted:rgba(180,200,240,.55);
   --fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden}
-
 .geo-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.geo-bg svg{width:100%;height:100%;opacity:.035}
+.geo-bg svg{width:100%;height:100%;opacity:.03}
 
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;background:rgba(4,9,26,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:var(--fd);font-size:1.1rem;font-weight:800;color:var(--text);text-decoration:none}
 .nav-logo span{color:var(--gold)}
@@ -32,213 +32,221 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-back:hover{color:var(--gold)}
 .lang-switcher{display:flex;gap:.55rem}
 .lang-btn{width:32px;height:32px;border-radius:50%;border:2px solid transparent;background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .25s,transform .2s;padding:0}
-.lang-btn img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.lang-btn img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .lang-btn:hover{transform:scale(1.15);border-color:var(--gold)}
 .lang-btn.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 
 main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:0 auto}
 
 /* ── HERO ── */
-.proj-hero{padding:4rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:4rem}
-.proj-num{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-.proj-hero-title{font-family:var(--fd);font-size:clamp(2rem,4.5vw,3.8rem);font-weight:800;letter-spacing:-.04em;line-height:.95;margin-bottom:1.5rem}
-.proj-hero-title em{font-style:normal;color:var(--gold)}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2rem}
-.tag{font-family:var(--fm);font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;padding:.25rem .72rem;border:1px solid var(--border2);color:var(--blue-light)}
-.proj-meta{display:flex;gap:2.5rem;flex-wrap:wrap}
+.hero-wrap{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+.hero-num{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.hero-title{font-family:var(--fd);font-size:clamp(1.8rem,3.8vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:.96;margin-bottom:1.25rem}
+.hero-title em{font-style:normal;color:var(--gold)}
+.hero-context{font-size:.92rem;line-height:1.8;color:var(--text);opacity:.75;max-width:72ch;margin-bottom:2rem}
+.hero-meta{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:1.5rem;border-top:1px solid var(--border)}
 .meta-item{display:flex;flex-direction:column;gap:.3rem}
-.meta-label{font-family:var(--fm);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.meta-value{font-family:var(--fd);font-size:.88rem;font-weight:600}
-.badge-done{color:var(--green)}
+.meta-label{font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.meta-value{font-family:var(--fd);font-size:.87rem;font-weight:600}
 
-/* ── SHARED ── */
-.block-tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
-.block-title{font-family:var(--fd);font-size:1.55rem;font-weight:800;letter-spacing:-.03em;margin-bottom:1.2rem;line-height:1.05}
-.block-text{font-size:.91rem;line-height:1.9;color:var(--text);opacity:.82}
-.block-text p+p{margin-top:1rem}
-.block-text strong{color:var(--gold);font-weight:600}
-.block-text ul{margin-top:.75rem;list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.block-text ul li{padding-left:1.2rem;position:relative;font-size:.87rem}
-.block-text ul li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:.65rem;top:.22rem}
-.divider{height:1px;background:linear-gradient(90deg,var(--gold) 0%,var(--blue) 40%,transparent 100%);opacity:.3;margin:3.5rem 0}
+/* ── RESULTS STRIP (discreto) ── */
+.results-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--border);border:1px solid var(--border);margin-bottom:3.5rem}
+.rs-item{background:var(--surface);padding:1.1rem 1.25rem;border-right:1px solid var(--border);transition:background .2s}
+.rs-item:last-child{border-right:none}
+.rs-item:hover{background:var(--surface2)}
+.rs-val{font-family:var(--fd);font-size:1.35rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.2rem}
+.rs-val.green{color:var(--green)}
+.rs-val.gold{color:var(--gold)}
+.rs-val.blue{color:var(--blue-light)}
+.rs-lbl{font-family:var(--fm);font-size:.56rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);line-height:1.5}
 
-/* ── EVENTOS ── */
-.event-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.25rem}
-.event-card{background:var(--surface);border:1px solid var(--border2);padding:2rem;position:relative;overflow:hidden;transition:border-color .3s}
-.event-card:hover{border-color:rgba(245,190,11,.45)}
-.event-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue))}
-.event-city{font-family:var(--fd);font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.35rem}
-.event-date{font-family:var(--fm);font-size:.65rem;letter-spacing:.08em;color:var(--gold);margin-bottom:1rem}
-.event-row{display:flex;gap:.6rem;margin-bottom:.5rem;font-size:.84rem;align-items:flex-start}
-.event-row-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex-shrink:0;margin-top:.15rem;min-width:76px}
-.event-count{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.66rem;letter-spacing:.06em;color:var(--green);margin-top:.75rem}
-.event-count::before{content:'';display:block;width:6px;height:6px;background:var(--green);border-radius:50%}
+/* SHARED */
+.stag{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.stitle{font-family:var(--fd);font-size:1.4rem;font-weight:800;letter-spacing:-.03em;margin-bottom:1.1rem;line-height:1.05}
+.body-text{font-size:.91rem;line-height:1.9;color:var(--text);opacity:.82}
+.body-text p+p{margin-top:.95rem}
+.body-text strong{color:var(--gold);font-weight:600}
+.body-text ul{margin-top:.75rem;list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.body-text ul li{padding-left:1.2rem;position:relative;font-size:.87rem}
+.body-text ul li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:.6rem;top:.24rem}
+.divider{height:1px;background:linear-gradient(90deg,var(--gold) 0%,var(--blue) 40%,transparent 100%);opacity:.25;margin:3rem 0}
+.section-block{margin-bottom:.5rem}
 
-/* ── REGISTROS FOTOGRÁFICOS ── */
-/* Grid: reel (esquerda, tall) | fotos (direita, stacked) */
-.foto-section-grid{
-  display:grid;
-  grid-template-columns:260px 1fr;
-  gap:1.25rem;
-  margin-top:1.25rem;
-  align-items:start;
-}
-/* Reel vertical */
-.reel-cell{display:flex;flex-direction:column;gap:.75rem}
-.reel-frame{
-  width:100%;aspect-ratio:9/16;
-  background:var(--surface2);
-  border:1.5px solid var(--border2);
-  border-radius:16px;overflow:hidden;position:relative;
-}
-.reel-frame video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;border-radius:14px;
-}
-/* Fotos direita: empilhadas */
-.foto-right-col{display:flex;flex-direction:column;gap:1.25rem}
-.foto-card{position:relative;overflow:hidden;border:1.5px solid var(--border2);transition:border-color .3s}
-.foto-card:hover{border-color:rgba(245,190,11,.5)}
-.foto-card img{width:100%;display:block;transition:transform .4s}
-.foto-card:hover img{transform:scale(1.03)}
-/* Legenda OURO */
-.foto-caption{
-  padding:.65rem 1rem;
-  background:var(--gold);
-  color:#0a0a0a;
-  font-family:var(--fm);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
-  font-weight:600;
-}
-.reel-caption{
-  font-family:var(--fm);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
-  color:#0a0a0a;background:var(--gold);padding:.5rem 1rem;text-align:center;font-weight:600;
-}
+/* ── MEDIA LAYOUT ── */
+.media-layout{display:grid;grid-template-columns:1fr 260px;gap:2rem;align-items:start;margin-top:1.5rem}
 
-/* ── CARROSSEL ── */
-.carousel-wrap{position:relative;margin-top:1.25rem;background:var(--surface2);border:1.5px solid var(--border2);overflow:hidden;user-select:none}
-.carousel-track{display:flex;transition:transform .4s cubic-bezier(.22,1,.36,1)}
-.carousel-slide{min-width:100%;position:relative}
-.carousel-slide img{width:100%;display:block;max-height:520px;object-fit:contain;background:var(--bg)}
-/* Setas */
-.carousel-btn{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:48px;height:48px;background:rgba(4,9,26,.75);border:1.5px solid var(--border2);
-  color:var(--gold);font-size:1.3rem;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:background .2s,border-color .2s;z-index:10;
-  backdrop-filter:blur(6px);
-}
-.carousel-btn:hover{background:var(--gold);color:#0a0a0a;border-color:var(--gold)}
-.carousel-btn.prev{left:.75rem}
-.carousel-btn.next{right:.75rem}
-/* Indicadores */
-.carousel-dots{display:flex;justify-content:center;gap:.5rem;padding:.85rem 0;background:var(--surface)}
-.cdot{width:7px;height:7px;border-radius:50%;background:var(--border2);cursor:pointer;transition:background .25s,transform .2s}
-.cdot.active{background:var(--gold);transform:scale(1.25)}
-/* Contador */
-.carousel-counter{
-  position:absolute;bottom:.75rem;right:.85rem;
-  font-family:var(--fm);font-size:.65rem;letter-spacing:.08em;
-  color:var(--text);background:rgba(4,9,26,.75);padding:.25rem .65rem;
-  backdrop-filter:blur(4px);z-index:10;
-}
+/* Photo carousel */
+.photo-car{position:relative;border:1px solid var(--border2);overflow:hidden;background:var(--surface2)}
+.photo-track{display:flex;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.photo-slide{min-width:100%}
+.photo-slide img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.photo-ph{width:100%;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.65rem}
+.photo-ph svg{width:28px;height:28px;stroke:var(--blue-light);fill:none;stroke-width:1.2;opacity:.4}
+.photo-ph-txt{font-family:var(--fm);font-size:.56rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center;padding:0 1.25rem;line-height:1.6}
+.photo-btn{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;background:rgba(4,9,26,.8);border:1px solid var(--border2);color:var(--gold);font-size:.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;z-index:5;padding:0}
+.photo-btn:hover{background:var(--gold);color:#0a0a0a}
+.photo-btn.prev{left:.4rem}.photo-btn.next{right:.4rem}
+.photo-counter{position:absolute;bottom:.4rem;right:.5rem;font-family:var(--fm);font-size:.52rem;color:var(--text);background:rgba(4,9,26,.8);padding:.12rem .4rem}
+.photo-caption{padding:.55rem .9rem;font-family:var(--fm);font-size:.56rem;letter-spacing:.07em;text-transform:uppercase;background:var(--gold);color:#0a0a0a;font-weight:700}
 
-/* ── DOWNLOAD CTA ── */
-.download-cta{
-  background:var(--bg3);border:1.5px solid rgba(245,190,11,.35);
-  padding:3rem;display:flex;align-items:center;justify-content:space-between;
-  gap:2rem;flex-wrap:wrap;position:relative;overflow:hidden;
-}
-.download-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue),transparent)}
-.download-cta-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
-.download-cta-title{font-family:var(--fd);font-size:1.45rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.4rem}
-.download-cta-sub{font-family:var(--fm);font-size:.72rem;color:var(--muted);line-height:1.7}
-.download-cta-sub strong{color:var(--text)}
-.download-btns{display:flex;flex-direction:column;gap:.75rem;flex-shrink:0}
-.btn-gold{
-  display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:#0a0a0a;
-  padding:.9rem 2rem;font-family:var(--fd);font-weight:700;font-size:.88rem;
-  text-decoration:none;transition:transform .2s,box-shadow .2s;white-space:nowrap;
-  justify-content:center;
-}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 32px var(--gold-glow)}
-.btn-outline-sm{
-  display:inline-flex;align-items:center;gap:.5rem;
-  border:1px solid var(--border2);color:var(--muted);
-  padding:.65rem 1.25rem;font-family:var(--fm);font-size:.7rem;letter-spacing:.06em;
-  text-decoration:none;text-transform:uppercase;transition:border-color .25s,color .25s;
-  justify-content:center;
-}
-.btn-outline-sm:hover{border-color:var(--gold);color:var(--gold)}
-.btn-back{
-  display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid var(--border2);
-  color:var(--blue-light);padding:.88rem 1.5rem;font-family:var(--fd);font-weight:600;
-  font-size:.88rem;text-decoration:none;transition:border-color .25s,color .25s;
-}
-.btn-back:hover{border-color:var(--gold);color:var(--gold)}
+/* Report cover */
+.report-col{display:flex;flex-direction:column;gap:.6rem}
+.report-col-label{font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.report-cover-box{border:1px solid var(--border2);overflow:hidden;transition:border-color .3s}
+.report-cover-box:hover{border-color:rgba(245,190,11,.4)}
+.report-cover-box img{width:100%;display:block;transition:transform .35s}
+.report-cover-box:hover img{transform:scale(1.02)}
+.report-cover-label{padding:.55rem .75rem;font-family:var(--fm);font-size:.54rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface);border-top:1px solid var(--border);text-align:center}
 
-/* ── YOUTUBE ── */
-.youtube-wrap{position:relative;width:100%;padding-bottom:56.25%;background:var(--surface);border:1.5px solid var(--border2);overflow:hidden;margin-top:1.25rem}
-.youtube-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
-.yt-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:var(--surface2)}
-.yt-play{width:64px;height:64px;border-radius:50%;background:#ff0000;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.yt-play::after{content:'';border-left:22px solid white;border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:5px}
-.yt-cap{font-family:var(--fm);font-size:.65rem;color:var(--muted);text-align:center;letter-spacing:.05em;line-height:1.65;padding:0 2rem}
-.coming-soon{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .8rem;background:var(--blue-dim);border:1px solid rgba(74,144,217,.35);color:var(--blue-light);margin-left:.75rem;vertical-align:middle}
+/* ── BENCHMARK ── */
+.bench-box{background:var(--bg3);border:1px solid var(--border2);padding:1.75rem;margin-top:1.25rem;position:relative;overflow:hidden}
+.bench-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue),transparent)}
+.bench-label{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
+.bench-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1.25rem;align-items:center;margin-bottom:1.25rem}
+.bench-city{background:var(--surface);border:1px solid var(--border2);padding:1.25rem;text-align:center}
+.bench-city-name{font-family:var(--fd);font-size:.85rem;font-weight:700;margin-bottom:.85rem}
+.bench-city.ok .bench-city-name{color:var(--green)}
+.bench-city.nk .bench-city-name{color:rgba(232,64,64,.8)}
+.bench-kpi{display:flex;flex-direction:column;gap:.2rem;margin-bottom:.6rem}
+.bench-kpi-val{font-family:var(--fd);font-size:1.5rem;font-weight:800;letter-spacing:-.04em}
+.bench-city.ok .bench-kpi-val{color:var(--green)}
+.bench-city.nk .bench-kpi-val{color:rgba(232,64,64,.8)}
+.bench-kpi-lbl{font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.bench-vs{font-family:var(--fd);font-size:1.2rem;font-weight:800;color:var(--muted);text-align:center}
+.bench-finding{background:var(--surface);border:1px solid rgba(245,190,11,.2);padding:.9rem 1.1rem;font-family:var(--fm);font-size:.74rem;color:var(--text);opacity:.8;line-height:1.75}
+.bench-finding strong{color:var(--gold)}
 
-/* ── PARCERIAS ── */
-.partners-section{background:var(--surface);border:1px solid var(--border);padding:3rem}
-.partners-label{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:.6rem}
-.partners-title-txt{font-family:var(--fd);font-size:1.25rem;font-weight:700;text-align:center;margin-bottom:2.5rem;letter-spacing:-.02em}
-.partners-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.partner-card{display:flex;flex-direction:column;align-items:center;gap:1.25rem;padding:2rem;border:1.5px solid var(--border2);background:var(--bg);transition:border-color .3s}
-.partner-card:hover{border-color:rgba(245,190,11,.4)}
-.partner-logo{width:180px;height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.partner-logo img{max-width:100%;max-height:100%;object-fit:contain;display:block}
-.partner-name{font-family:var(--fd);font-size:.92rem;font-weight:700;text-align:center}
-.partner-desc{font-family:var(--fm);font-size:.63rem;color:var(--muted);text-align:center;line-height:1.65}
+/* ── METHODOLOGY ── */
+.method-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);margin-top:1.25rem}
+.method-item{display:grid;grid-template-columns:40px 1fr;gap:1.25rem;padding:1.5rem;border-bottom:1px solid var(--border);transition:background .2s;position:relative;overflow:hidden}
+.method-item:last-child{border-bottom:none}
+.method-item:hover{background:var(--surface2)}
+.method-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border2);transition:background .25s}
+.method-item:hover::before{background:var(--gold)}
+.method-n{font-family:var(--fd);font-size:1.3rem;font-weight:800;color:rgba(245,190,11,.2);line-height:1;padding-top:.2rem}
+.method-content{}
+.method-tag{font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-light);margin-bottom:.35rem}
+.method-title{font-family:var(--fd);font-size:.97rem;font-weight:700;margin-bottom:.5rem}
+.method-body{font-size:.85rem;line-height:1.8;color:var(--text);opacity:.75}
+.method-body strong{color:var(--gold);font-weight:600}
+
+/* ── SHADOW CAPEX ── */
+.shadow-box{background:var(--surface);border:1px solid var(--border2);padding:1.5rem;margin-top:1.5rem}
+.shadow-steps{display:flex;flex-direction:column;gap:.5rem;margin-top:.85rem}
+.shadow-step{display:flex;align-items:flex-start;gap:.85rem;font-size:.86rem;color:var(--text);opacity:.78;line-height:1.7}
+.shadow-step-n{font-family:var(--fd);font-size:.75rem;font-weight:700;color:var(--gold);flex-shrink:0;background:var(--gold-dim);width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin-top:.1rem}
+
+/* ── NEGOTIATION ── */
+.negoc-box{background:var(--bg3);border:1px solid var(--border2);padding:1.75rem;margin-top:1.25rem}
+.negoc-quote{font-family:var(--fm);font-size:.82rem;color:var(--blue-light);line-height:1.8;padding:1rem 1.25rem;border-left:3px solid var(--blue);margin:1rem 0;background:var(--blue-dim)}
+
+/* ── RESULTS ── */
+.results-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:1.25rem}
+.res-card{background:var(--bg);padding:1.5rem;transition:background .25s}
+.res-card:hover{background:var(--surface)}
+.res-icon{font-size:1.2rem;margin-bottom:.6rem}
+.res-title{font-family:var(--fd);font-size:.92rem;font-weight:700;margin-bottom:.45rem}
+.res-body{font-size:.82rem;line-height:1.75;color:var(--text);opacity:.72}
+.res-body strong{color:var(--gold);font-weight:600}
+
+/* BDE */
+.bde-row{display:grid;grid-template-columns:1fr auto 1fr;gap:1.25rem;align-items:center;background:var(--surface);border:1px solid var(--border2);padding:1.5rem;margin-top:1.25rem}
+.bde-block{text-align:center}
+.bde-lbl{font-family:var(--fm);font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.bde-pct{font-family:var(--fd);font-size:1.6rem;font-weight:800;letter-spacing:-.04em}
+.bde-pct.before{color:rgba(232,64,64,.8)}
+.bde-pct.after{color:var(--green)}
+.bde-sub{font-family:var(--fm);font-size:.6rem;color:var(--muted);margin-top:.2rem}
+.bde-arrow{font-family:var(--fd);font-size:1.5rem;color:var(--muted)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:1.25rem}
+.skill-col{background:var(--surface);padding:1.25rem 1.4rem}
+.skill-col-title{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.skill-items{display:flex;flex-direction:column;gap:.35rem}
+.skill-it{font-size:.82rem;color:var(--text);opacity:.78;padding-left:.85rem;position:relative}
+.skill-it::before{content:'·';position:absolute;left:0;color:var(--gold)}
+
+/* DOWNLOADS */
+.dl-box{border:1px solid var(--border2);overflow:hidden;margin-top:1.25rem}
+.dl-hdr{padding:1.25rem 1.75rem;border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:center;gap:.75rem}
+.dl-hdr-title{font-family:var(--fd);font-size:1rem;font-weight:700}
+.dl-items{display:flex;flex-direction:column}
+.dl-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.75rem;border-bottom:1px solid var(--border);gap:1.25rem;transition:background .2s}
+.dl-row:last-child{border-bottom:none}
+.dl-row:hover{background:var(--surface2)}
+.dl-left{display:flex;align-items:center;gap:.85rem}
+.dl-ico{width:34px;height:34px;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.dl-name{font-family:var(--fd);font-size:.85rem;font-weight:600;margin-bottom:.15rem}
+.dl-meta{font-family:var(--fm);font-size:.58rem;letter-spacing:.05em;color:var(--muted)}
+.dl-meta.pending{color:rgba(245,190,11,.5)}
+.dl-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .95rem;border:1.5px solid var(--border2);color:var(--blue-light);text-decoration:none;transition:all .2s;flex-shrink:0}
+.dl-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.dl-btn.soon{border-style:dashed;color:var(--muted);pointer-events:none}
+
+/* COMPLIANCE */
+.compliance{background:var(--surface);border-left:3px solid var(--blue-dim);padding:1.1rem 1.4rem;font-family:var(--fm);font-size:.7rem;color:var(--muted);line-height:1.8;margin-top:1.75rem}
+.compliance strong{color:var(--blue-light)}
 
 /* PROJ NAV */
-.btn-home{
-  display:inline-flex;align-items:center;gap:.6rem;
-  background:transparent;border:1.5px solid var(--gold);
-  color:var(--gold);padding:.88rem 1.5rem;
-  font-family:var(--fd);font-weight:600;font-size:.88rem;
-  text-decoration:none;transition:background .25s,color .25s;
-}
-.btn-home:hover{background:var(--gold);color:#0a0a0a}
-.proj-nav{display:flex;justify-content:space-between;align-items:center;padding:2.5rem 0;border-top:1px solid var(--border);margin-top:4rem}
-.pnav-link{font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .25s}
+.proj-nav{display:flex;justify-content:space-between;align-items:center;padding:2.5rem 0;border-top:1px solid var(--border);margin-top:4rem;flex-wrap:wrap;gap:1rem}
+.pnav-link{font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
 .pnav-link:hover{color:var(--gold)}
+.btn-home{display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid var(--gold);color:var(--gold);padding:.7rem 1.4rem;font-family:var(--fd);font-weight:600;font-size:.85rem;text-decoration:none;transition:background .25s,color .25s}
+.btn-home:hover{background:var(--gold);color:#0a0a0a}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:900px){
   nav{padding:1rem 1.5rem}
   main{padding:6rem 1.5rem 3rem}
-  .foto-section-grid{grid-template-columns:1fr}
-  .reel-frame{aspect-ratio:9/16;max-width:280px;margin:0 auto}
-  .event-grid,.partners-grid{grid-template-columns:1fr}
-  .download-cta{flex-direction:column;align-items:flex-start}
-  .download-btns{width:100%}
-  .btn-gold,.btn-outline-sm{width:100%}
+  .results-strip,.results-cards,.skills-grid{grid-template-columns:repeat(2,1fr)}
+  .media-layout{grid-template-columns:1fr}
+  .bench-grid,.bde-row{grid-template-columns:1fr;gap:.75rem}
+  .bench-vs,.bde-arrow{display:none}
+  .method-item{grid-template-columns:30px 1fr}
 }
+
+/* ── COMPLIANCE PROMINENT ── */
+.compliance-prominent{
+  background:var(--surface);
+  border:1.5px solid rgba(74,144,217,.3);
+  padding:1.75rem;
+  position:relative;
+  overflow:hidden;
+}
+.compliance-prominent::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),rgba(74,144,217,.2),transparent);
+}
+.compliance-prom-header{
+  display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;
+}
+.compliance-prom-icon{font-size:1.4rem;flex-shrink:0;line-height:1.2}
+.compliance-prom-title{
+  font-family:var(--fd);font-size:1rem;font-weight:700;margin-bottom:.2rem;
+}
+.compliance-prom-sub{
+  font-family:var(--fm);font-size:.6rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--blue-light);
+}
+.compliance-prom-body{
+  font-size:.86rem;line-height:1.85;color:var(--text);opacity:.78;
+  padding-left:2.4rem;
+}
+.compliance-prom-body strong{color:var(--blue-light);font-weight:600}
 </style>
 </head>
 <body>
 
 <div class="geo-bg">
 <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <g stroke="#4a90d9" stroke-width="0.5" fill="none" opacity="0.8">
+  <g stroke="#4a90d9" stroke-width="0.4" fill="none" opacity="0.6">
     <line x1="0" y1="150" x2="1440" y2="150"/><line x1="0" y1="300" x2="1440" y2="300"/>
     <line x1="0" y1="450" x2="1440" y2="450"/><line x1="0" y1="600" x2="1440" y2="600"/>
     <line x1="180" y1="0" x2="180" y2="900"/><line x1="360" y1="0" x2="360" y2="900"/>
     <line x1="720" y1="0" x2="720" y2="900"/><line x1="1080" y1="0" x2="1080" y2="900"/>
-  </g>
-  <g stroke="#c0392b" stroke-width="0.6" fill="none" opacity="0.3">
-    <polygon points="80,200 110,183 140,200 140,234 110,251 80,234"/>
-    <polygon points="1300,600 1330,583 1360,600 1360,634 1330,651 1300,634"/>
   </g>
 </svg>
 </div>
@@ -255,412 +263,432 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 
 <main>
 
-  <!-- ─── HERO ─── -->
-  <div class="proj-hero reveal">
-    <div class="proj-num" data-i18n3="hero_num">03 — Tributação · Reforma Fiscal · EC 132/2023</div>
-    <h1 class="proj-hero-title" data-i18n3="hero_title">
-      O <em>Sistema Tributário</em> Brasileiro —<br>Impactos e Transição Pós-Reforma
+  <!-- ── HERO ── -->
+  <div class="hero-wrap reveal">
+    <div class="hero-num">03 — Auditoria Econômico-Financeira · PPP · Inteligência Regulatória</div>
+    <h1 class="hero-title">
+      Case Real — Auditoria Financeira de uma<br>
+      <em>Parceria Público-Privada</em>
     </h1>
-    <div class="proj-tags">
-      <span class="tag">EC 132/2023</span><span class="tag">IBS</span><span class="tag">CBS</span>
-      <span class="tag">IVA Dual</span><span class="tag">IS</span><span class="tag">Reforma Tributária</span>
-      <span class="tag">ICMS · ISS</span><span class="tag">Planejamento Fiscal</span>
-      <span class="tag">Direito Tributário</span><span class="tag">Adm. Pública</span>
-    </div>
-    <div class="proj-meta">
-      <div class="meta-item">
-        <span class="meta-label" data-i18n3="ml_area">Área</span>
-        <span class="meta-value" data-i18n3="mv_area">Economia Fiscal · Tributação</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label" data-i18n3="ml_type">Tipo</span>
-        <span class="meta-value" data-i18n3="mv_type">Palestra Técnica</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label" data-i18n3="ml_events">Apresentações</span>
-        <span class="meta-value" data-i18n3="mv_events">2 eventos realizados</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label" data-i18n3="ml_status">Status</span>
-        <span class="meta-value badge-done" data-i18n3="mv_status">✓ Concluído</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── CONTEXTO ─── -->
-  <div class="section-block reveal">
-    <div class="block-tag" data-i18n3="s1_tag">Contexto e Objetivo</div>
-    <div class="block-title" data-i18n3="s1_title">A maior reforma fiscal em três décadas</div>
-    <div class="block-text">
-      <p data-i18n3="s1_p1">A <strong>Emenda Constitucional nº 132/2023</strong> representa a maior transformação do sistema fiscal brasileiro desde a Constituição de 1988. Este trabalho apresenta uma análise técnica aprofundada do sistema tributário pré-reforma, os principais pontos da mudança legislativa e os impactos esperados para empresas, administrações públicas municipais e a economia nacional.</p>
-      <p data-i18n3="s1_p2">A apresentação foi desenvolvida para dois públicos distintos — gestores públicos e empresários —, com linguagem adaptada e casos práticos para cada contexto. Os temas abordados incluem:</p>
-      <ul data-i18n3="s1_list">
-        <li>A realidade tributária brasileira versus o mundo</li>
-        <li>Codificação, créditos tributários e bitributação brasileira</li>
-        <li>Nova estrutura tributária com a aprovação da reforma e metodologia de cálculo</li>
-        <li>Setores mais impactados com a reforma</li>
-        <li>Estratégias de planejamento fiscal para Prefeituras, Microempreendedores e PMEs no cenário pós-reforma</li>
-        <li>Cronograma completo: transição de 2026 a 2078</li>
-        <li><strong>Fontes:</strong> EC 132/2023, IBPT, Banco Mundial (Doing Business), TCMG, ANEEL</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ─── CARROSSEL DE SLIDES ─── -->
-  <div class="section-block reveal">
-    <div class="block-tag" data-i18n3="slide_tag">Apresentação</div>
-    <div class="block-title" data-i18n3="slide_title">Slides — navegue pela apresentação</div>
-    <p class="block-text" style="margin-bottom:0;opacity:.7;font-size:.82rem" data-i18n3="slide_hint">
-      Use as setas ou clique nos pontos para navegar entre os slides. Para ver a apresentação completa, baixe o arquivo abaixo.
+    <p class="hero-context">
+      No período de agosto a dezembro de 2025, coordenei e participei de uma equipe de auditoria independente
+      de natureza econômico-financeira e regulatória sobre o Contrato de PPP de Cidades Inteligentes do município
+      de Carmo do Cajuru/MG — Contrato nº 065/2020, avaliado globalmente em <strong>R$ 64,5 milhões por 25 anos</strong>.
     </p>
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carTrack"></div>
-      <button class="carousel-btn prev" onclick="carMove(-1)" aria-label="Anterior">&#8592;</button>
-      <button class="carousel-btn next" onclick="carMove(+1)" aria-label="Próximo">&#8594;</button>
-      <div class="carousel-counter" id="carCounter">1 / 65</div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Contrato</span>
+        <span class="meta-value">PPP nº 065/2020 · Cidades Inteligentes</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Município</span>
+        <span class="meta-value">Carmo do Cajuru — MG</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Período</span>
+        <span class="meta-value">Agosto a Dezembro de 2025</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Parceria</span>
+        <span class="meta-value">Innovattio + SP Inovações Institucionais</span>
+      </div>
     </div>
-    <div class="carousel-dots" id="carDots"></div>
   </div>
 
-  <div class="divider"></div>
+  <!-- ── RESULTS STRIP ── -->
+  <div class="results-strip reveal">
+    <div class="rs-item">
+      <div class="rs-val green">R$ 4,95M</div>
+      <div class="rs-lbl">Economia gerada ao erário — período restante da concessão</div>
+    </div>
+    <div class="rs-item">
+      <div class="rs-val gold">40%</div>
+      <div class="rs-lbl">Ganho da concessionária sobre CAPEX não investido</div>
+    </div>
+    <div class="rs-item">
+      <div class="rs-val blue">62%</div>
+      <div class="rs-lbl">Bônus de eficiência revertido ao município no 5º aditivo</div>
+    </div>
+    <div class="rs-item">
+      <div class="rs-val" style="color:var(--blue-light)">5º TA</div>
+      <div class="rs-lbl">Termo Aditivo que consolidou o reequilíbrio contratual</div>
+    </div>
+  </div>
 
-  <!-- ─── APRESENTAÇÕES ─── -->
+  <!-- ── SEÇÃO 1: CONTEXTO ── -->
   <div class="section-block reveal">
-    <div class="block-tag" data-i18n3="ev_tag">Apresentações Realizadas</div>
-    <div class="block-title" data-i18n3="ev_title">Dois eventos, dois públicos</div>
-    <div class="event-grid">
-
-      <div class="event-card">
-        <div class="event-city" data-i18n3="ev1_city">Associação Comercial de Capitólio — ACIAC</div>
-        <div class="event-date" data-i18n3="ev1_date">19 de agosto de 2025 · Capitólio, MG</div>
-        <div class="event-row">
-          <span class="event-row-label" data-i18n3="row_audience">Público</span>
-          <span data-i18n3="ev1_pub">Empresários e empreendedores do município</span>
+    <div class="stag">1 — Contexto e Escopo</div>
+    <div class="media-layout">
+      <div>
+        <div class="stitle">O problema e a contratação</div>
+        <div class="body-text">
+          <p>O contrato tinha como escopo a implementação de três frentes de modernização municipal:
+          <strong>usina solar fotovoltaica de 1 MW</strong>, construção de uma rede de dados em
+          <strong>fibra ótica e videomonitoramento</strong>, e a <strong>eficientização da iluminação
+          pública</strong> da cidade.</p>
+          <p>Nas abordagens iniciais, a prefeitura relatava estar gastando <strong>mais com a
+          contrapartida à concessionária</strong> do que gastava anteriormente com energia elétrica,
+          telefonia e iluminação pública. Diante desse problema, em parceria com a
+          SP Inovações Institucionais fui contratado para auditar a modelagem financeira e as
+          premissas do contrato.</p>
+          <p>A auditoria envolveu a análise de <strong>mais de 20 pastas com mais de 10 mil folhas</strong>
+          de documentação, sem bases de dados estruturadas — e com recusa da concessionária em apresentar
+          documentos comprobatórios dos investimentos realizados.</p>
         </div>
-        <div class="event-row">
-          <span class="event-row-label" data-i18n3="row_focus">Foco</span>
-          <span data-i18n3="ev1_focus">Impactos setoriais e planejamento tributário para PMEs</span>
-        </div>
-        <div class="event-row">
-          <span class="event-row-label" data-i18n3="row_partner">Parceria</span>
-          <span>Innovattio Consultorias e Treinamentos</span>
-        </div>
-        <div class="event-count" data-i18n3="ev1_count">14 participantes</div>
       </div>
 
-      <div class="event-card">
-        <div class="event-city" data-i18n3="ev2_city">Prefeitura Municipal de Carmo do Cajuru</div>
-        <div class="event-date" data-i18n3="ev2_date">08 de setembro de 2025 · Carmo do Cajuru, MG</div>
-        <div class="event-row">
-          <span class="event-row-label" data-i18n3="row_audience">Público</span>
-          <span data-i18n3="ev2_pub">Departamentos de Tributos, Planejamento e Procuradoria</span>
+      <!-- Capa do relatório -->
+      <div class="report-col">
+        <div class="report-col-label">Relatório técnico</div>
+        <div class="report-cover-box">
+          <img src="pictures/1_Relatório.jpg" alt="Capa do Relatório — PPP Carmo do Cajuru">
+          <div class="report-cover-label">Relatório Técnico · PPP Cidades Inteligentes · Carmo do Cajuru, MG</div>
         </div>
-        <div class="event-row">
-          <span class="event-row-label" data-i18n3="row_focus">Foco</span>
-          <span data-i18n3="ev2_focus">Impactos na administração municipal — transição do ISS para o IBS</span>
-        </div>
-        <div class="event-row">
-          <span class="event-row-label" data-i18n3="row_partner">Parceria</span>
-          <span>SP Inovações Institucionais</span>
-        </div>
-        <div class="event-count" data-i18n3="ev2_count">12 servidores municipais</div>
       </div>
+    </div>
 
+    <!-- Carrossel de fotos -->
+    <div style="margin-top:1.5rem">
+      <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">
+        Registros fotográficos — reuniões e apresentações
+      </div>
+      <div style="position:relative">
+        <div class="photo-car">
+          <div class="photo-track" id="photoTrack">
+            <div class="photo-slide"><img src="pictures/1_Reuniao.JPEG" alt="Reunião com servidores — Prefeitura de Carmo do Cajuru"></div>
+            <div class="photo-slide"><img src="pictures/2_Reuniao.JPEG" alt="Apresentação dos dados — Mesa de negociação"></div>
+            <div class="photo-slide"><img src="pictures/3.Reuniao.JPEG" alt="Registro da reunião — Carmo do Cajuru, MG"></div>
+          </div>
+          <button class="photo-btn prev" onclick="photoMove(-1)">&#8592;</button>
+          <button class="photo-btn next" onclick="photoMove(+1)">&#8594;</button>
+          <div class="photo-counter" id="photoCounter">1/3</div>
+        </div>
+        <div class="photo-caption">Reuniões técnicas · Prefeitura de Carmo do Cajuru, MG · Setembro de 2025</div>
+      </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── REGISTROS FOTOGRÁFICOS ─── -->
+  <!-- ── SEÇÃO 2: PROCEDIMENTOS ── -->
   <div class="section-block reveal">
-    <div class="block-tag" data-i18n3="foto_tag">Registros Fotográficos</div>
-    <div class="block-title" data-i18n3="foto_title">Momentos das apresentações</div>
-    <div class="foto-section-grid">
-      <div class="reel-cell">
-        <div class="reel-frame">
-          <video src="pictures/ReelACIAC.mp4" controls playsinline loop muted></video>
+    <div class="stag">2 — Metodologias e Procedimentos de Auditoria</div>
+    <div class="stitle">Abordagem técnica adotada</div>
+    <div class="body-text">
+      <p>A auditoria iniciou-se pelo exame retroativo do edital de licitação à luz da até então
+      vigente <strong>Lei 8.666/1993</strong> e da gestão do contrato à luz das novas disposições da
+      <strong>Lei nº 14.133/21</strong> e da <strong>Lei nº 11.079/04 — Lei das PPPs</strong>.</p>
+      <p>Também foram examinados os anexos que constituíram e edificaram a modelagem
+      econômico-financeira do empreendimento: plano de negócios, matriz de riscos,
+      modelo de governança, indicadores de desempenho e mecanismos de bonificação por desempenho.</p>
+    </div>
+
+    <div class="method-list">
+      <div class="method-item">
+        <div class="method-n">01</div>
+        <div class="method-content">
+          <div class="method-tag">FP&amp;A · Modelagem Financeira</div>
+          <div class="method-title">Análise das premissas do plano de negócios</div>
+          <div class="method-body">Revisão das metodologias adotadas para cálculos de
+          <strong>custo de capital (WACC), CAPEX, OPEX, remuneração e fluxos de caixa</strong>,
+          avaliando a aderência das premissas ao contexto macroeconômico e regulatório vigente.</div>
         </div>
-        <div class="reel-caption" data-i18n3="reel_cap">Divulgação · Palestra ACIAC · Capitólio, MG</div>
       </div>
-      <div class="foto-right-col">
-        <div class="foto-card">
-          <img src="pictures/ApresentacaoCC.jpeg" alt="Palestra em Carmo do Cajuru — Gabriel Costa">
-          <div class="foto-caption" data-i18n3="cap_carmo">Palestra na Prefeitura de Carmo do Cajuru, MG · Setembro de 2025</div>
+      <div class="method-item">
+        <div class="method-n">02</div>
+        <div class="method-content">
+          <div class="method-tag">Benchmarking · Análise Comparativa</div>
+          <div class="method-title">Análise comparativa — valores estimados vs. valores reais</div>
+          <div class="method-body">Confronto entre os valores projetados no plano de negócios e os
+          valores efetivamente realizados, com benchmarking externo utilizando contratos semelhantes
+          e tabelas de preços de referência públicas (<strong>SINAP, SEINFRA</strong>).</div>
         </div>
-        <div class="foto-card">
-          <img src="pictures/GabrielPalestrante.jpeg" alt="Gabriel Costa palestrante" style="max-height:420px;object-fit:cover;width:100%">
-          <div class="foto-caption" data-i18n3="cap_palestrante">Gabriel Costa · Palestra na ACIAC · Capitólio, MG · Agosto de 2025</div>
+      </div>
+      <div class="method-item">
+        <div class="method-n">03</div>
+        <div class="method-content">
+          <div class="method-tag">Compliance · Direito Administrativo</div>
+          <div class="method-title">Análise de conformidade dos procedimentos licitatórios</div>
+          <div class="method-body">Exame da documentação, lisura do processo licitatório e
+          conformidade com a legislação aplicável — identificando vícios formais e
+          <strong>desalinhamentos entre a modelagem do edital e as práticas de mercado</strong>.</div>
         </div>
+      </div>
+      <div class="method-item">
+        <div class="method-n">04</div>
+        <div class="method-content">
+          <div class="method-tag">Contabilidade Forense</div>
+          <div class="method-title">Análise dos demonstrativos contábeis da concessionária</div>
+          <div class="method-body">Diante da recusa em apresentar notas fiscais comprobatórias,
+          foram acionadas as obrigações regulatórias de envio periódico de demonstrações financeiras.
+          A análise do <strong>Balanço Patrimonial, DRE e Mutações do Ativo Imobilizado</strong>
+          permitiu rastrear contabilmente os ativos reais investidos.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dificuldades -->
+    <div style="margin-top:1.75rem;background:var(--surface);border:1px solid var(--border2);padding:1.5rem">
+      <div class="stag" style="margin-bottom:.75rem">Dificuldades encontradas</div>
+      <div class="body-text">
+        <ul>
+          <li>Grande volume de documentos: <strong>mais de 20 pastas com mais de 10 mil folhas impressas</strong>, sem bases de dados estruturadas</li>
+          <li>Até então, a concessionária <strong>recusava-se a apresentar as notas fiscais</strong> que comprovassem o volume de seus investimentos em CAPEX</li>
+          <li>Necessidade de reconstituição contábil dos ativos a partir de demonstrações financeiras societárias</li>
+        </ul>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── DOWNLOAD CTA ─── -->
-  <div class="download-cta reveal">
-    <div class="download-cta-text">
-      <div class="download-cta-label" data-i18n3="dl_label">Materiais disponíveis</div>
-      <div class="download-cta-title" data-i18n3="dl_title">Acesse a apresentação completa</div>
-      <div class="download-cta-sub" data-i18n3="dl_sub">
-        Arquivo <strong>PowerPoint</strong> disponível para download direto no GitHub.<br>
-        Inclui todas as análises, quadros comparativos e cronograma de transição.
-      </div>
-    </div>
-    <div class="download-btns">
-      <a href="https://github.com/gabrielcostaeconomista-spec/portifoliodeprojetos/raw/main/3-reformatributaria/files/reftrib-inno.pptx"
-         target="_blank" class="btn-gold" data-i18n3="dl_btn">
-        ⬇ Baixar apresentação (.pptx)
-      </a>
-      <a href="files/atestados-capacidade-tecnica.pdf" download class="btn-outline-sm" data-i18n3="dl_atestados">
-        📄 Baixar atestados de capacidade técnica
-      </a>
-      <a href="../index.html" class="btn-home" data-i18n3="home_btn">🏠 Voltar ao início</a>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ─── YOUTUBE ─── -->
+  <!-- ── SEÇÃO 3: DIAGNÓSTICO LICITATÓRIO ── -->
   <div class="section-block reveal">
-    <div class="block-tag" data-i18n3="yt_tag">Vídeo Explicativo</div>
-    <h3 class="block-title" style="display:inline" data-i18n3="yt_title">Apresentação em vídeo</h3>
-    <span class="coming-soon" data-i18n3="yt_soon">Em breve</span>
-    <p class="block-text" style="margin-top:1rem;margin-bottom:0" data-i18n3="yt_p">
-      Em breve disponibilizarei um vídeo explicativo completo com análise aprofundada dos principais pontos da Reforma Tributária.
-    </p>
-    <div class="youtube-wrap">
-      <div class="yt-ph">
-        <div class="yt-play"></div>
-        <div class="yt-cap" data-i18n3="yt_cap">Vídeo em produção. Substitua pelo iframe do YouTube quando estiver disponível.</div>
+    <div class="stag">3 — Diagnóstico e Principais Achados</div>
+    <div class="stitle">Resultados encontrados</div>
+    <div class="body-text">
+      <p>Através dos indicadores contratuais, constatou-se que a concessionária
+      <strong>cumpriu integralmente o contrato em termos de entregas físicas</strong>.
+      Todavia, a perícia contábil revelou inconsistências relevantes na modelagem financeira.</p>
+    </div>
+
+    <!-- CAPEX finding -->
+    <div style="margin-top:1.25rem;background:var(--bg3);border:1px solid var(--border2);padding:1.5rem">
+      <div class="stag" style="margin-bottom:.75rem">Discrepância do CAPEX</div>
+      <div class="body-text">
+        <p>Através da perícia contábil, apurou-se que a concessionária havia
+        <strong>investido aproximadamente R$ 10 milhões</strong> até o momento da auditoria.
+        Considerando o plano de negócios original (<strong>R$ 14 milhões</strong>) e o
+        primeiro termo aditivo (<strong>R$ 2,5 milhões adicionais</strong>), o CAPEX total
+        previsto era de <strong>R$ 16 milhões</strong> — dos quais apenas
+        <strong>~60% havia sido efetivamente investido</strong>.</p>
+
+        <p>Conforme a matriz de riscos do contrato, diferenças em preços de insumos do projeto
+        que alterassem o equilíbrio contratual — positivamente (elevação de preços) ou negativamente
+        (ganhos de eficiência) — seriam de <strong>responsabilidade da concessionária</strong>.</p>
+
+        <p>Todavia, amparados na jurisprudência brasileira, discutimos a diferença entre
+        <strong>ganhos de eficiência e falhas de modelagem</strong>, questionando a concessionária
+        se havia sido empregada alguma tecnologia inovadora ou condição especial de contrato que
+        justificasse tamanha diferença entre o CAPEX estimado e o efetivamente investido.</p>
+
+        <p>Como evidência de falha na modelagem financeira, temos o caso de
+        <strong>Nova Serrana/MG</strong>. O município vizinho realizou projeto similar, com
+        modelagem elaborada pela <strong>mesma empresa de consultoria</strong>. Em um processo
+        de licitação sob o critério de julgamento de maior desconto sobre a contraprestação
+        estimada, o município conseguiu um <strong>desconto de 44%</strong> em um cenário de ampla
+        concorrência — com 7 licitantes. Tal volume expressivo sinaliza possível falha nas
+        estimativas do CAPEX, que já não possuíam muito detalhamento metodológico em ambos os
+        planos de negócios.</p>
+
+        <p>Adicionalmente, identificou-se que a modelagem original não considerou o cenário do
+        mercado mundial, que apresentou <strong>expressivas quedas de preços dos insumos da
+        transição energética nos últimos 15 anos</strong> — sobretudo painéis solares e
+        luminárias LED, impulsionadas pelo aumento da escala produtiva global, especialmente
+        na China. Tal fato seria vantajoso e de interesse público para o projeto, e deveria
+        ter sido incorporado à matriz de riscos.</p>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ─── PARCERIAS ─── -->
-  <div class="partners-section reveal">
-    <div class="partners-label" data-i18n3="partners_label">Colaboração</div>
-    <div class="partners-title-txt" data-i18n3="partners_title">Apresentações realizadas em parceria com</div>
-    <div class="partners-grid">
-      <div class="partner-card">
-        <div class="partner-logo">
-          <img src="icons/SP%20Logo.jpg" alt="SP Inovações Institucionais">
-        </div>
-        <div class="partner-name">SP Inovações Institucionais</div>
-        <div class="partner-desc" data-i18n3="sp_desc">Parceria no projeto de auditoria e capacitação para o setor público municipal</div>
+  <!-- ── SEÇÃO 4: NEGOCIAÇÃO ── -->
+  <div class="section-block reveal">
+    <div class="stag">4 — Condução Estratégica da Negociação</div>
+    <div class="stitle">Teoria dos Jogos aplicada à mesa de negociação</div>
+    <div class="body-text">
+      <p>Na mesa de negociação junto ao Prefeito, Procuradoria e Diretores da concessionária (MG1 SPE),
+      a assimetria de informação foi quebrada pela apresentação dos dados financeiros irrefutáveis.</p>
+    </div>
+    <div class="negoc-box">
+      <div class="body-text">
+        <p>A apresentação dos achados — CAPEX 30% menor no balanço, a comparação técnica com o sucesso de
+        Nova Serrana e as evidências de falhas de modelagem nas premissas — mudou completamente a
+        postura da concessionária. O argumento central:</p>
       </div>
-      <div class="partner-card">
-        <div class="partner-logo">
-          <img src="icons/Logotipo%20innovatio%20claro.png" alt="Innovattio Consultorias e Treinamentos">
+      <div class="negoc-quote">
+        "Erros de modelagem de premissas não podem ser blindados sob o pretexto de ganho de eficiência de longo prazo."
+      </div>
+      <div class="body-text">
+        <p>Este argumento <strong>desarmou a defesa jurídica da empresa</strong>, forçando-a a abrir mão
+        de cláusulas rígidas para evitar uma rescisão judicial ou a imposição de penalidades regulatórias.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── SEÇÃO 5: RESULTADOS ── -->
+  <div class="section-block reveal">
+    <div class="stag">5 — Resultados Consolidados no 5º Termo Aditivo</div>
+    <div class="stitle">Reequilíbrio econômico em favor do interesse público</div>
+
+    <!-- BDE -->
+    <div style="margin-bottom:1.5rem">
+      <div class="stag" style="font-size:.56rem;margin-bottom:.5rem">Inversão do Bônus de Desempenho e Eficiência (BDE-IP)</div>
+      <div class="bde-row">
+        <div class="bde-block">
+          <div class="bde-lbl">Regra original</div>
+          <div class="bde-pct before">80%</div>
+          <div class="bde-sub">Bônus à concessionária</div>
+          <div class="bde-pct before" style="font-size:1rem;margin-top:.3rem">20%</div>
+          <div class="bde-sub">ao município</div>
         </div>
-        <div class="partner-name">Innovattio Consultorias e Treinamentos</div>
-        <div class="partner-desc" data-i18n3="inno_desc">Parceria na palestra para empresários da Associação Comercial de Capitólio</div>
+        <div class="bde-arrow">→</div>
+        <div class="bde-block">
+          <div class="bde-lbl">Após repactuação (5º TA)</div>
+          <div class="bde-pct after">62%</div>
+          <div class="bde-sub">ao Município ✓</div>
+          <div class="bde-pct after" style="font-size:1rem;margin-top:.3rem">38%</div>
+          <div class="bde-sub">à concessionária</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-cards">
+      <div class="res-card">
+        <div class="res-icon">📉</div>
+        <div class="res-title">Redução imediata da remuneração mensal</div>
+        <div class="res-body">A contraprestação mensal foi reduzida significativamente após a comprovação das inconsistências no CAPEX executado versus o previsto contratualmente.</div>
+      </div>
+      <div class="res-card">
+        <div class="res-icon">⚖️</div>
+        <div class="res-title">Reequilíbrio econômico-financeiro</div>
+        <div class="res-body">O 5º TA promoveu o reequilíbrio em favor do interesse público, conforme prevê a <strong>Lei nº 11.079/04</strong>. A concessionária manteve o contrato evitando rescisão judicial.</div>
+      </div>
+      <div class="res-card">
+        <div class="res-icon">💼</div>
+        <div class="res-title">R$ 4.954.218,00 em eficiência fiscal</div>
+        <div class="res-body">Economia real calculada com precisão e consolidada no instrumento aditivo, gerada ao fluxo de caixa do município ao longo do <strong>período restante da concessão</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── COMPLIANCE (destacada, antes dos downloads) ── -->
+  <div class="section-block reveal">
+    <div class="compliance-prominent">
+      <div class="compliance-prom-header">
+        <span class="compliance-prom-icon">🔒</span>
+        <div>
+          <div class="compliance-prom-title">Nota de Compliance e Governança de Dados</div>
+          <div class="compliance-prom-sub">LGPD · Sigilo Comercial · Transparência Pública</div>
+        </div>
+      </div>
+      <div class="compliance-prom-body">
+        Todas as análises expostas cumprem estritamente os preceitos da
+        <strong>Lei Geral de Proteção de Dados (LGPD)</strong> e as normas de sigilo comercial.
+        Dados sensíveis da folha de pagamento corporativa e segredos de tecnologia específicos
+        da empresa privada foram intencionalmente omitidos, modificados por fatores proporcionais
+        ou indexados em percentuais, <strong>preservando-se integralmente a lógica econométrica</strong>.
+        As atas de reuniões oficiais e os termos aditivos possuem
+        <strong>publicidade e transparência legal irrestritas por lei</strong> e são disponibilizados
+        integralmente nos arquivos abaixo.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOWNLOADS ── -->
+  <div class="section-block reveal">
+    <div class="stag">6 — Documentação</div>
+    <div class="stitle">Arquivos disponíveis</div>
+    <div class="dl-box">
+      <div class="dl-hdr">
+        <span>📁</span>
+        <div class="dl-hdr-title">Documentação oficial do projeto</div>
+      </div>
+      <div class="dl-items">
+
+        <div class="dl-row">
+          <div class="dl-left">
+            <div class="dl-ico">🏛️</div>
+            <div>
+              <div class="dl-name">Ata de Reunião — Conselho Gestor da PPP</div>
+              <div class="dl-meta">10/09/2025 · Carmo do Cajuru · PDF</div>
+            </div>
+          </div>
+          <a href="files/1_Ata%20da%20Reuni%C3%A3o%20PPP%2010.09.25.pdf" download class="dl-btn">⬇ Baixar</a>
+        </div>
+
+        <div class="dl-row">
+          <div class="dl-left">
+            <div class="dl-ico">⭐</div>
+            <div>
+              <div class="dl-name">Atestado de Capacidade Técnica</div>
+              <div class="dl-meta">Prefeitura Municipal de Carmo do Cajuru · PDF</div>
+            </div>
+          </div>
+          <a href="files/2.atestado_captec.pdf" download class="dl-btn">⬇ Baixar</a>
+        </div>
+
+        <div class="dl-row">
+          <div class="dl-left">
+            <div class="dl-ico">📋</div>
+            <div>
+              <div class="dl-name">Atas de frequência e trabalhos realizados</div>
+              <div class="dl-meta">Prefeitura de Carmo do Cajuru · PDF</div>
+            </div>
+          </div>
+          <a href="files/3_atasfreq.pdf" download class="dl-btn">⬇ Baixar</a>
+        </div>
+
+        <div class="dl-row">
+          <div class="dl-left">
+            <div class="dl-ico">📄</div>
+            <div>
+              <div class="dl-name">5º Termo Aditivo — Repactuação Contratual</div>
+              <div class="dl-meta">PPP Cidades Inteligentes · Carmo do Cajuru · PDF</div>
+            </div>
+          </div>
+          <a href="files/4_5aditivoppp.pdf" download class="dl-btn">⬇ Baixar</a>
+        </div>
+
+        <div class="dl-row">
+          <div class="dl-left">
+            <div class="dl-ico">⭐</div>
+            <div>
+              <div class="dl-name">Atestado de Capacidade Técnica — SP Inovações Institucionais</div>
+              <div class="dl-meta pending">⏳ Em processo de emissão</div>
+            </div>
+          </div>
+          <span class="dl-btn soon">Em breve</span>
+        </div>
+
       </div>
     </div>
   </div>
 
   <!-- PROJ NAV -->
   <div class="proj-nav">
-    <a href="../1-dashboard-bancos/index.html" class="pnav-link" data-i18n3="nav_prev">← Projeto anterior</a>
-    <a href="../index.html#projects" class="pnav-link" data-i18n3="nav_all">Todos os projetos →</a>
+    <a href="../2-sqlprojects/index.html" class="pnav-link">← Projeto anterior</a>
+    <a href="../index.html" class="btn-home">🏠 Voltar ao início</a>
+    <a href="../3-reformatributaria/index.html" class="pnav-link">Próximo projeto →</a>
   </div>
 
 </main>
 
 <script>
-// ── REVEAL ──
 const reveals=document.querySelectorAll('.reveal');
 const io=new IntersectionObserver(e=>e.forEach(x=>{
   if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}
 }),{threshold:.05,rootMargin:'0px 0px -40px 0px'});
 reveals.forEach(el=>io.observe(el));
 
-// ── CARROSSEL ──
-// Para alterar: mude SLIDE_PREFIX, SLIDE_EXT ou SLIDE_TOTAL
-const SLIDE_PREFIX = 'presentations/ARTICT - Slide';
-const SLIDE_EXT    = '.JPG';
-const SLIDE_TOTAL  = 65;
-
-const track    = document.getElementById('carTrack');
-const counter  = document.getElementById('carCounter');
-const dotsWrap = document.getElementById('carDots');
-let current = 0;
-
-// Gerar slides dinamicamente
-for (let i = 1; i <= SLIDE_TOTAL; i++) {
-  const div = document.createElement('div');
-  div.className = 'carousel-slide';
-  const img = document.createElement('img');
-  img.src = `${SLIDE_PREFIX}${i}${SLIDE_EXT}`;
-  img.alt = `Slide ${i} — Reforma Tributária`;
-  img.loading = i === 1 ? 'eager' : 'lazy'; // lazy load para performance
-  div.appendChild(img);
-  track.appendChild(div);
+// Photo carousel
+let cur=0;
+const track=document.getElementById('photoTrack');
+const counter=document.getElementById('photoCounter');
+const total=track?track.querySelectorAll('.photo-slide').length:3;
+function photoMove(dir){
+  cur=(cur+dir+total)%total;
+  if(track)track.style.transform=`translateX(-${cur*100}%)`;
+  if(counter)counter.textContent=`${cur+1}/${total}`;
 }
 
-const total = SLIDE_TOTAL;
-counter.textContent = `1 / ${total}`;
-
-// Gerar pontos (agrupados de 5 em 5 para não poluir visualmente com 65 pontos)
-for (let i = 0; i < total; i += 5) {
-  const d = document.createElement('div');
-  d.className = 'cdot' + (i === 0 ? ' active' : '');
-  d.dataset.group = Math.floor(i / 5);
-  d.onclick = () => goTo(i);
-  dotsWrap.appendChild(d);
-}
-
-function goTo(n) {
-  current = (n + total) % total;
-  track.style.transform = `translateX(-${current * 100}%)`;
-  counter.textContent = `${current + 1} / ${total}`;
-  const groupIdx = Math.floor(current / 5);
-  dotsWrap.querySelectorAll('.cdot').forEach(d =>
-    d.classList.toggle('active', parseInt(d.dataset.group) === groupIdx)
-  );
-}
-
-function carMove(dir) { goTo(current + dir); }
-
-// Swipe touch
-let ts = 0;
-track.addEventListener('touchstart', e => ts = e.touches[0].clientX, {passive:true});
-track.addEventListener('touchend', e => {
-  const diff = ts - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 40) carMove(diff > 0 ? 1 : -1);
-});
-
-// Teclado
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') carMove(1);
-  if (e.key === 'ArrowLeft')  carMove(-1);
-});
-
-// ── LANG ──
-const T3={
-pt:{
-  back:'Voltar aos projetos',
-  hero_num:'03 — Tributação · Reforma Fiscal · EC 132/2023',
-  hero_title:'O <em>Sistema Tributário</em> Brasileiro —<br>Impactos e Transição Pós-Reforma',
-  ml_area:'Área',mv_area:'Economia Fiscal · Tributação',
-  ml_type:'Tipo',mv_type:'Palestra Técnica',
-  ml_events:'Apresentações',mv_events:'2 eventos realizados',
-  ml_status:'Status',mv_status:'✓ Concluído',
-  s1_tag:'Contexto e Objetivo',s1_title:'A maior reforma fiscal em três décadas',
-  s1_p1:'A <strong>Emenda Constitucional nº 132/2023</strong> representa a maior transformação do sistema fiscal brasileiro desde a Constituição de 1988. Este trabalho apresenta uma análise técnica aprofundada do sistema tributário pré-reforma, os principais pontos da mudança legislativa e os impactos esperados para empresas, administrações públicas municipais e a economia nacional.',
-  s1_p2:'A apresentação foi desenvolvida para dois públicos distintos — gestores públicos e empresários —, com linguagem adaptada e casos práticos para cada contexto. Os temas abordados incluem:',
-  s1_list:'<li>A realidade tributária brasileira versus o mundo</li><li>Codificação, créditos tributários e bitributação brasileira</li><li>Nova estrutura tributária com a aprovação da reforma e metodologia de cálculo</li><li>Setores mais impactados com a reforma</li><li>Estratégias de planejamento fiscal para Prefeituras, Microempreendedores e PMEs no cenário pós-reforma</li><li>Cronograma completo: transição de 2026 a 2078</li><li><strong>Fontes:</strong> EC 132/2023, IBPT, Banco Mundial (Doing Business), TCMG, ANEEL</li>',
-  slide_tag:'Apresentação',slide_title:'Slides — navegue pela apresentação',
-  slide_hint:'Use as setas ou clique nos pontos para navegar entre os slides. Para ver a apresentação completa, baixe o arquivo abaixo.',
-  ev_tag:'Apresentações Realizadas',ev_title:'Dois eventos, dois públicos',
-  row_audience:'Público',row_focus:'Foco',row_partner:'Parceria',
-  ev1_city:'Associação Comercial de Capitólio — ACIAC',ev1_date:'19 de agosto de 2025 · Capitólio, MG',
-  ev1_pub:'Empresários e empreendedores do município',ev1_focus:'Impactos setoriais e planejamento tributário para PMEs',ev1_count:'14 participantes',
-  ev2_city:'Prefeitura Municipal de Carmo do Cajuru',ev2_date:'08 de setembro de 2025 · Carmo do Cajuru, MG',
-  ev2_pub:'Departamentos de Tributos, Planejamento e Procuradoria',ev2_focus:'Impactos na administração municipal — transição do ISS para o IBS',ev2_count:'12 servidores municipais',
-  foto_tag:'Registros Fotográficos',foto_title:'Momentos das apresentações',
-  reel_cap:'Divulgação · Palestra ACIAC · Capitólio, MG',
-  cap_carmo:'Palestra na Prefeitura de Carmo do Cajuru, MG · Setembro de 2025',
-  cap_palestrante:'Gabriel Costa · Palestra na ACIAC · Capitólio, MG · Agosto de 2025',
-  dl_label:'Materiais disponíveis',dl_title:'Acesse a apresentação completa',
-  dl_sub:'Arquivo <strong>PowerPoint</strong> disponível para download direto no GitHub.<br>Inclui todas as análises, quadros comparativos e cronograma de transição.',
-  dl_btn:'⬇ Baixar apresentação (.pptx)',dl_atestados:'📄 Baixar atestados de capacidade técnica',home_btn:'🏠 Voltar ao início',
-  yt_tag:'Vídeo Explicativo',yt_title:'Apresentação em vídeo',yt_soon:'Em breve',
-  yt_p:'Em breve disponibilizarei um vídeo explicativo completo com análise aprofundada dos principais pontos da Reforma Tributária.',
-  yt_cap:'Vídeo em produção. Substitua pelo iframe do YouTube quando estiver disponível.',
-  partners_label:'Colaboração',partners_title:'Apresentações realizadas em parceria com',
-  sp_desc:'Parceria no projeto de auditoria e capacitação para o setor público municipal',
-  inno_desc:'Parceria na palestra para empresários da Associação Comercial de Capitólio',
-  nav_prev:'← Projeto anterior',nav_all:'Todos os projetos →'
-},
-en:{
-  back:'Back to projects',
-  hero_num:'03 — Taxation · Tax Reform · EC 132/2023',
-  hero_title:'The Brazilian <em>Tax System</em> —<br>Impacts and Post-Reform Transition',
-  ml_area:'Area',mv_area:'Fiscal Economics · Taxation',
-  ml_type:'Type',mv_type:'Technical Lecture',
-  ml_events:'Presentations',mv_events:'2 events held',
-  ml_status:'Status',mv_status:'✓ Completed',
-  s1_tag:'Context and Objective',s1_title:'The largest tax reform in three decades',
-  s1_p1:'<strong>Constitutional Amendment No. 132/2023</strong> represents the largest transformation of the Brazilian tax system since the 1988 Constitution. This work presents an in-depth technical analysis of the pre-reform tax system, the key legislative changes and expected impacts for businesses, municipal governments and the national economy.',
-  s1_p2:'The presentation was developed for two distinct audiences — public managers and business owners — with adapted language and practical examples for each context. Topics covered include:',
-  s1_list:'<li>The Brazilian tax reality versus the world</li><li>Classification, tax credits and double taxation in Brazil</li><li>New tax structure following the reform approval and calculation methodology</li><li>Sectors most impacted by the reform</li><li>Tax planning strategies for City Halls, Microentrepreneurs and SMEs in the post-reform scenario</li><li>Complete timeline: transition from 2026 to 2078</li><li><strong>Sources:</strong> EC 132/2023, IBPT, World Bank (Doing Business), TCMG, ANEEL</li>',
-  slide_tag:'Presentation',slide_title:'Slides — browse the presentation',
-  slide_hint:'Use the arrows or click the dots to navigate between slides. To see the full presentation, download the file below.',
-  ev_tag:'Events Held',ev_title:'Two events, two audiences',
-  row_audience:'Audience',row_focus:'Focus',row_partner:'Partner',
-  ev1_city:'Commercial Association of Capitólio — ACIAC',ev1_date:'August 19, 2025 · Capitólio, MG',
-  ev1_pub:'Business owners and entrepreneurs in the municipality',ev1_focus:'Sectoral impacts and tax planning for SMEs',ev1_count:'14 attendees',
-  ev2_city:'City Hall of Carmo do Cajuru',ev2_date:'September 8, 2025 · Carmo do Cajuru, MG',
-  ev2_pub:'Tax, Planning and Legal departments',ev2_focus:'Municipal administration impacts — ISS to IBS transition',ev2_count:'12 civil servants',
-  foto_tag:'Photo Gallery',foto_title:'Moments from the presentations',
-  reel_cap:'Promo · ACIAC Lecture · Capitólio, MG',
-  cap_carmo:'Lecture at City Hall of Carmo do Cajuru, MG · September 2025',
-  cap_palestrante:'Gabriel Costa · Lecture at ACIAC · Capitólio, MG · August 2025',
-  dl_label:'Available materials',dl_title:'Access the full presentation',
-  dl_sub:'<strong>PowerPoint</strong> file available for direct download on GitHub.<br>Includes all analyses, comparative charts and transition timeline.',
-  dl_btn:'⬇ Download presentation (.pptx)',dl_atestados:'📄 Download capacity certificates',home_btn:'🏠 Back to home',
-  yt_tag:'Explanatory Video',yt_title:'Video presentation',yt_soon:'Coming soon',
-  yt_p:'I will soon publish a complete explanatory video with an in-depth analysis of the main points of the Tax Reform.',
-  yt_cap:'Video in production. Replace with YouTube iframe when available.',
-  partners_label:'Collaboration',partners_title:'Presentations held in partnership with',
-  sp_desc:'Partnership in the audit and training project for the municipal public sector',
-  inno_desc:'Partnership in the lecture for business owners at the Commercial Association of Capitólio',
-  nav_prev:'← Previous project',nav_all:'All projects →'
-},
-es:{
-  back:'Volver a proyectos',
-  hero_num:'03 — Tributación · Reforma Fiscal · EC 132/2023',
-  hero_title:'El <em>Sistema Tributario</em> Brasileño —<br>Impactos y Transición Posreforma',
-  ml_area:'Área',mv_area:'Economía Fiscal · Tributación',
-  ml_type:'Tipo',mv_type:'Conferencia Técnica',
-  ml_events:'Presentaciones',mv_events:'2 eventos realizados',
-  ml_status:'Estado',mv_status:'✓ Completado',
-  s1_tag:'Contexto y Objetivo',s1_title:'La mayor reforma fiscal en tres décadas',
-  s1_p1:'La <strong>Enmienda Constitucional N.º 132/2023</strong> representa la mayor transformación del sistema fiscal brasileño desde la Constitución de 1988. Este trabajo presenta un análisis técnico profundo del sistema tributario prerreforma, los puntos clave del cambio legislativo y los impactos esperados para empresas, administraciones municipales y la economía nacional.',
-  s1_p2:'La presentación fue desarrollada para dos públicos distintos — gestores públicos y empresarios — con lenguaje adaptado y casos prácticos para cada contexto. Los temas abordados incluyen:',
-  s1_list:'<li>La realidad tributaria brasileña frente al mundo</li><li>Clasificación, créditos fiscales y doble imposición en Brasil</li><li>Nueva estructura tributaria tras la aprobación de la reforma y metodología de cálculo</li><li>Sectores más impactados por la reforma</li><li>Estrategias de planificación fiscal para Municipios, Microempresarios y PYMES en el escenario posreforma</li><li>Cronograma completo: transición de 2026 a 2078</li><li><strong>Fuentes:</strong> EC 132/2023, IBPT, Banco Mundial (Doing Business), TCMG, ANEEL</li>',
-  slide_tag:'Presentación',slide_title:'Diapositivas — navega por la presentación',
-  slide_hint:'Usa las flechas o haz clic en los puntos para navegar. Para ver la presentación completa, descarga el archivo abajo.',
-  ev_tag:'Eventos Realizados',ev_title:'Dos eventos, dos públicos',
-  row_audience:'Público',row_focus:'Enfoque',row_partner:'Alianza',
-  ev1_city:'Asociación Comercial de Capitólio — ACIAC',ev1_date:'19 de agosto de 2025 · Capitólio, MG',
-  ev1_pub:'Empresarios y emprendedores del municipio',ev1_focus:'Impactos sectoriales y planificación tributaria para PYMES',ev1_count:'14 participantes',
-  ev2_city:'Ayuntamiento de Carmo do Cajuru',ev2_date:'8 de septiembre de 2025 · Carmo do Cajuru, MG',
-  ev2_pub:'Departamentos de Tributos, Planificación y Procuración',ev2_focus:'Impactos en la administración municipal — transición del ISS al IBS',ev2_count:'12 servidores municipales',
-  foto_tag:'Registro Fotográfico',foto_title:'Momentos de las presentaciones',
-  reel_cap:'Difusión · Conferencia ACIAC · Capitólio, MG',
-  cap_carmo:'Conferencia en el Ayuntamiento de Carmo do Cajuru, MG · Septiembre 2025',
-  cap_palestrante:'Gabriel Costa · Conferencia en ACIAC · Capitólio, MG · Agosto 2025',
-  dl_label:'Materiales disponibles',dl_title:'Accede a la presentación completa',
-  dl_sub:'Archivo <strong>PowerPoint</strong> disponible para descarga directa en GitHub.<br>Incluye todos los análisis, cuadros comparativos y cronograma de transición.',
-  dl_btn:'⬇ Descargar presentación (.pptx)',dl_atestados:'📄 Descargar certificados de capacidad',home_btn:'🏠 Volver al inicio',
-  yt_tag:'Video Explicativo',yt_title:'Presentación en video',yt_soon:'Próximamente',
-  yt_p:'Próximamente publicaré un video explicativo completo con análisis detallado de los principales puntos de la Reforma Tributaria.',
-  yt_cap:'Video en producción. Reemplaza con el iframe de YouTube cuando esté disponible.',
-  partners_label:'Colaboración',partners_title:'Presentaciones realizadas en asociación con',
-  sp_desc:'Alianza en el proyecto de auditoría y capacitación para el sector público municipal',
-  inno_desc:'Alianza en la conferencia para empresarios de la Asociación Comercial de Capitólio',
-  nav_prev:'← Proyecto anterior',nav_all:'Todos los proyectos →'
-}
-};
-
-function setLang(l) {
-  document.querySelectorAll('.lang-btn').forEach((b, i) =>
-    b.classList.toggle('active', ['pt','en','es'][i] === l)
-  );
-  const t = T3[l];
-  if (!t) return;
-  document.querySelectorAll('[data-i18n3]').forEach(el => {
-    const k = el.getAttribute('data-i18n3');
-    if (t[k] !== undefined) el.innerHTML = t[k];
-  });
-  const nb = document.querySelector('.nav-back');
-  if(nb) nb.innerHTML = '← ' + t.back;
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
 }
 </script>
 </body>
