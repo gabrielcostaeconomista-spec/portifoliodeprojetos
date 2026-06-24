@@ -326,13 +326,13 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
         </div>
         <div class="mini-carousel">
           <div class="mc-track">
-            <div class="mc-slide"><img src="home_files/0-capa.jpg" alt="Capa"></div>
-            <div class="mc-slide"><img src="home_files/tela1-retornos.jpg" alt="Tela 1"></div>
-            <div class="mc-slide"><img src="home_files/tela2-carteira.jpg" alt="Tela 2"></div>
-            <div class="mc-slide"><img src="home_files/tela3-riscos.jpg" alt="Tela 3"></div>
+            <div class="mc-slide"><img src="home_files/0-capa.JPG" alt="Capa"></div>
+            <div class="mc-slide"><img src="home_files/tela1-retornos.JPG" alt="Tela 1"></div>
+            <div class="mc-slide"><img src="home_files/tela2-carteira.JPG" alt="Tela 2"></div>
+            <div class="mc-slide"><img src="home_files/tela3-riscos.JPG" alt="Tela 3"></div>
           </div>
-          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
-          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <button class="mc-btn mc-prev" onclick="event.stopPropagation();event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.stopPropagation();event.preventDefault();mcMove(this,+1)">&#8594;</button>
           <div class="mc-counter">1/4</div>
         </div>
       </div>
@@ -366,8 +366,8 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
             <div class="mc-slide"><img src="home_files/viewsql2.JPG" alt="SQL View 2"></div>
             <div class="mc-slide"><img src="home_files/viewsql3.JPG" alt="SQL View 3"></div>
           </div>
-          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
-          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <button class="mc-btn mc-prev" onclick="event.stopPropagation();event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.stopPropagation();event.preventDefault();mcMove(this,+1)">&#8594;</button>
           <div class="mc-counter">1/3</div>
         </div>
       </div>
@@ -376,7 +376,7 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
     </a>
 
     <!-- ── P3: PPP Auditoria — Disponível ── -->
-    <a href="3-ppp-auditoria/index.html" class="pcard reveal">
+    <a href="3-AuditoriaFinanceira/index.html" class="pcard reveal">
       <div class="pcard-top">
         <div class="pcard-num">03 — Auditoria · PPP · Dados Públicos</div>
         <div class="pcard-top-right">
@@ -397,12 +397,12 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
         <div class="mini-carousel">
           <div class="mc-track">
             <!-- Substitua pelos nomes reais dos arquivos de imagem deste projeto -->
-            <div class="mc-slide"><img src="home_files/ppp1.jpg" alt="PPP slide 1"></div>
-            <div class="mc-slide"><img src="home_files/ppp2.jpg" alt="PPP slide 2"></div>
-            <div class="mc-slide"><img src="home_files/ppp3.jpg" alt="PPP slide 3"></div>
+            <div class="mc-slide"><img src="3-AuditoriaFinanceira/pictures/1_Reuniao.JPEG" alt="Reunião técnica — Carmo do Cajuru"></div>
+            <div class="mc-slide"><img src="3-AuditoriaFinanceira/pictures/2_Reuniao.JPEG" alt="Mesa de negociação"></div>
+            <div class="mc-slide"><img src="3-AuditoriaFinanceira/pictures/3.Reuniao.JPEG" alt="Reunião com servidores municipais"></div>
           </div>
-          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
-          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <button class="mc-btn mc-prev" onclick="event.stopPropagation();event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.stopPropagation();event.preventDefault();mcMove(this,+1)">&#8594;</button>
           <div class="mc-counter">1/3</div>
         </div>
       </div>
@@ -432,8 +432,8 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
             <div class="mc-slide"><img src="home_files/3proj3.JPG" alt="Slide 3"></div>
             <div class="mc-slide"><img src="home_files/4proj3.JPG" alt="Slide 4"></div>
           </div>
-          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
-          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <button class="mc-btn mc-prev" onclick="event.stopPropagation();event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.stopPropagation();event.preventDefault();mcMove(this,+1)">&#8594;</button>
           <div class="mc-counter">1/4</div>
         </div>
       </div>
@@ -457,11 +457,11 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
         </div>
         <div class="mini-carousel">
           <div class="mc-track">
-            <div class="mc-slide"><img src="home_files/monografia.JPG" alt="Monografia Furnas"></div>
-            <div class="mc-slide"><img src="home_files/consultoriaascatur.JPG" alt="Relatório Turismo"></div>
+            <div class="mc-slide"><img src="5.projetosdiversos/monografia.JPG" alt="Monografia Furnas"></div>
+            <div class="mc-slide"><img src="5.projetosdiversos/consultoriaascatur.JPG" alt="Relatório Turismo Capitólio"></div>
           </div>
-          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
-          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <button class="mc-btn mc-prev" onclick="event.stopPropagation();event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.stopPropagation();event.preventDefault();mcMove(this,+1)">&#8594;</button>
           <div class="mc-counter">1/2</div>
         </div>
       </div>
@@ -489,8 +489,8 @@ footer{padding:1.75rem 4rem;border-top:1px solid var(--border);display:flex;alig
             <div class="mc-slide"><img src="home_files/1-proj4.JPG" alt="Python 1"></div>
             <div class="mc-slide"><img src="home_files/2-proj4.JPG" alt="Python 2"></div>
           </div>
-          <button class="mc-btn mc-prev" onclick="event.preventDefault();mcMove(this,-1)">&#8592;</button>
-          <button class="mc-btn mc-next" onclick="event.preventDefault();mcMove(this,+1)">&#8594;</button>
+          <button class="mc-btn mc-prev" onclick="event.stopPropagation();event.preventDefault();mcMove(this,-1)">&#8592;</button>
+          <button class="mc-btn mc-next" onclick="event.stopPropagation();event.preventDefault();mcMove(this,+1)">&#8594;</button>
           <div class="mc-counter">1/2</div>
         </div>
       </div>
