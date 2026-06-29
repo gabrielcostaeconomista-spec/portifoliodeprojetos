@@ -176,11 +176,22 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
 .btn-home{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:.75rem 1.5rem;font-family:var(--fd);font-weight:600;font-size:.85rem;text-decoration:none;transition:background .25s,color .25s}
 .btn-home:hover{background:var(--gold);color:#0a0a0a}
 
-/* SCREENSHOT */
-.screenshot-placeholder{width:100%;aspect-ratio:16/7;background:var(--surface2);border:1.5px dashed var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;margin-top:1.25rem}
-.screenshot-placeholder svg{width:32px;height:32px;stroke:var(--blue);fill:none;stroke-width:1.2;opacity:.4}
-.screenshot-ph-txt{font-family:var(--fm);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center}
-.screenshot-placeholder img{width:100%;height:100%;object-fit:cover;display:block}
+/* SQL code carousel */
+.sql-carousel{position:relative;overflow:hidden;border:1px solid var(--border2);background:var(--surface2)}
+.sql-track{display:flex;transition:transform .38s cubic-bezier(.22,1,.36,1)}
+.sql-slide{min-width:100%}
+.sql-slide img{width:100%;display:block;object-fit:contain;max-height:480px;background:var(--bg3)}
+.sql-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;background:rgba(4,9,26,.8);border:1px solid var(--border2);color:var(--gold);font-size:.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;z-index:5;padding:0}
+.sql-btn:hover{background:var(--gold);color:#0a0a0a}
+.sql-prev{left:.4rem}.sql-next{right:.4rem}
+.sql-counter{position:absolute;bottom:.4rem;right:.55rem;font-family:var(--fm);font-size:.55rem;color:var(--text);background:rgba(4,9,26,.8);padding:.12rem .45rem}
+/* Schema image */
+.sql-schema-wrap{border:1px solid var(--border2);overflow:hidden;background:var(--bg3);margin-top:.5rem}
+.sql-schema-wrap img{width:100%;display:block;object-fit:contain}
+.sql-schema-note{font-family:var(--fm);font-size:.6rem;color:var(--muted);margin-top:.5rem;line-height:1.6}
+.sql-schema-note code{color:var(--gold)}
+.schema-err{padding:1.5rem;font-size:.82rem;color:var(--muted);line-height:1.7}
+.schema-err strong{color:var(--gold)}
 
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -323,16 +334,18 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
       </div>
     </div>
 
-    <!-- Screenshot placeholder -->
+    <!-- Carrossel de código SQL -->
     <div style="margin-top:2rem">
-      <div class="block-tag" style="margin-bottom:.75rem">Arquitetura visual</div>
-      <div class="screenshot-placeholder">
-        <!--
-          INSTRUÇÃO: Substitua pelo print do SQL Server mostrando schemas/objetos.
-          <img src="arquitetura-sql.png" alt="Arquitetura SQL Server — SFN Analytics">
-        -->
-        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
-        <div class="screenshot-ph-txt">Adicione um print do SQL Server mostrando schemas e objetos<br>&lt;img src="arquitetura-sql.png"&gt;</div>
+      <div class="block-tag" style="margin-bottom:.75rem">Código — Scripts T-SQL</div>
+      <div class="sql-carousel">
+        <div class="sql-track" id="sqlTrack">
+          <div class="sql-slide"><img src="pictures/2_codsql.JPG" alt="Script SQL — SFN Analytics"></div>
+          <div class="sql-slide"><img src="pictures/3_codsql.JPG" alt="Script SQL — SFN Analytics"></div>
+          <div class="sql-slide"><img src="pictures/4_codsql.JPG" alt="Script SQL — SFN Analytics"></div>
+        </div>
+        <button class="sql-btn sql-prev" onclick="sqlMove(-1)">&#8592;</button>
+        <button class="sql-btn sql-next" onclick="sqlMove(+1)">&#8594;</button>
+        <div class="sql-counter" id="sqlCounter">1 / 3</div>
       </div>
     </div>
   </div>
@@ -407,16 +420,15 @@ main{position:relative;z-index:1;padding:7rem 4rem 5rem;max-width:1100px;margin:
       </div>
     </div>
 
-    <!-- Screenshot placeholder 2 -->
+    <!-- Schema GitHub -->
     <div style="margin-top:2rem">
-      <div class="block-tag" style="margin-bottom:.75rem">Schemas e objetos no SQL Server</div>
-      <div class="screenshot-placeholder">
-        <!--
-          Substitua pelo print da arquitetura ou SQL Server Management Studio
-          <img src="schemas-sql.png" alt="Schemas SQL Server — SFN Analytics">
-        -->
-        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
-        <div class="screenshot-ph-txt">Adicione print do SQL Server Management Studio<br>&lt;img src="schemas-sql.png"&gt;</div>
+      <div class="block-tag" style="margin-bottom:.75rem">Schema — Modelo de dados no GitHub</div>
+      <div class="sql-schema-wrap">
+        <img src="pictures/1_Schemagithub.jfif" alt="Schema do modelo de dados — SFN Analytics no GitHub"
+             onerror="this.parentElement.innerHTML='<div class=\'schema-err\'>Imagem não encontrada — verifique se o arquivo <strong>1_Schemagithub.jfif</strong> está em <strong>2-sqlprojects/pictures/</strong>. Se o browser não carregar .jfif, renomeie para .jpg</div>'">
+      </div>
+      <div class="sql-schema-note">
+        💡 Se a imagem não carregar no browser, renomeie o arquivo de <code>.jfif</code> para <code>.jpg</code> — o conteúdo é idêntico.
       </div>
     </div>
   </div>
@@ -615,6 +627,17 @@ const io=new IntersectionObserver(e=>e.forEach(x=>{
   if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}
 }),{threshold:.05,rootMargin:'0px 0px -40px 0px'});
 reveals.forEach(el=>io.observe(el));
+
+// SQL carousel
+let sqlCur=0;
+const sqlTotal=3;
+function sqlMove(dir){
+  const track=document.getElementById('sqlTrack');
+  const counter=document.getElementById('sqlCounter');
+  sqlCur=(sqlCur+dir+sqlTotal)%sqlTotal;
+  if(track)track.style.transform=`translateX(-${sqlCur*100}%)`;
+  if(counter)counter.textContent=`${sqlCur+1} / ${sqlTotal}`;
+}
 
 function setLang(l){
   document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['pt','en','es'][i]===l));
